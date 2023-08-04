@@ -1,0 +1,25 @@
+{
+    "name": "AsteroidsProject.CompositionRoot",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
+        "GUID:97dee08ff393f664f814ba2bb1c37327",
+        "GUID:c729fcbbc35974e478bf90545a6af166",
+        "GUID:780aac07e10eb1d4db697f1cb6e766ad",
+        "GUID:a4967d574fe74a848b5d22d94927d892",
+        "GUID:5d774c5f8e6070346b34608449b351c4",
+        "GUID:5065598d28e591a4694bf71a82437002",
+        "GUID:58f194e789f836342bbbf3f8e394afdf",
+        "GUID:5c4129add17b1db4986cbf4d717afe6e",
+        "GUID:2f0436f85c6e7bd4ba01ea41755a4d5a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
