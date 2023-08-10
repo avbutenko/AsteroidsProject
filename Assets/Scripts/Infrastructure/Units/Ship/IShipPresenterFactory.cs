@@ -2,7 +2,7 @@
 
 namespace AsteroidsProject.Infrastructure.Units.Ship
 {
-    public interface IShipPresenterFactory : IFactory<ITransformable, IShipPresenter>
+    public interface IShipPresenterFactory : IFactory<IShipInitParams, IShipPresenter>
     {
     }
 }

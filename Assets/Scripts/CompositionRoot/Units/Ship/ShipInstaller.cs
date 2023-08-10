@@ -1,5 +1,4 @@
-﻿using AsteroidsProject.Infrastructure;
-using AsteroidsProject.Infrastructure.Units.Ship;
+﻿using AsteroidsProject.Infrastructure.Units.Ship;
 using AsteroidsProject.Units.Ship;
 using AsteroidsProject.Views;
 using Zenject;
@@ -9,12 +8,12 @@ namespace AsteroidsProject.CompositionRoot.Units.Ship
     public class ShipInstaller : Installer<ShipInstaller>
     {
         [Inject]
-        private readonly ITransformable creationParameters;
+        private readonly IShipInitParams creationParameters;
 
         public override void InstallBindings()
         {
             BindMVP();
-            BindShipStateMachine();
+            BindShipStateMachines();
         }
 
         private void BindMVP()
@@ -25,12 +24,18 @@ namespace AsteroidsProject.CompositionRoot.Units.Ship
             Container.BindInterfacesAndSelfTo<ShipPresenter>().AsSingle();
         }
 
-        private void BindShipStateMachine()
+        private void BindShipStateMachines()
         {
             Container
-                .Bind<IShipStateMachine>()
+                .Bind<IShipRotatingStateMachine>()
                 .FromSubContainerResolve()
-                .ByInstaller<ShipStateMachineInstaller>()
+                .ByInstaller<ShipRotatingStateMachineInstaller>()
+                .AsSingle();
+
+            Container
+                .Bind<IShipMovingStateMachine>()
+                .FromSubContainerResolve()
+                .ByInstaller<ShipMovingStateMachineInstaller>()
                 .AsSingle();
         }
     }

@@ -1,4 +1,5 @@
-﻿using AsteroidsProject.Infrastructure.Units.Ship;
+﻿using AsteroidsProject.Data.Units.Ship;
+using AsteroidsProject.Infrastructure.Units.Ship;
 using UnityEngine;
 using Zenject;
 
@@ -34,14 +35,14 @@ namespace AsteroidsProject.GameLogic
 
         private void SpawnPlayerShip()
         {
-            Transformable initparams = new()
+            ShipInitParams initParams = new()
             {
                 Position = startPosition.position,
                 Rotation = startPosition.rotation,
                 Scale = Vector3.one[0],
             };
 
-            shipFactory.Create(initparams);
+            shipFactory.Create(initParams);
         }
     }
 }

@@ -1,4 +1,3 @@
-using AsteroidsProject.Infrastructure;
 using AsteroidsProject.Infrastructure.Units.Ship;
 using AsteroidsProject.Infrastructure.Views;
 using System;
@@ -9,46 +8,46 @@ namespace AsteroidsProject.Units.Ship
 {
     public class ShipPresenter : IShipPresenter, IInitializable, IDisposable, ITickable
     {
-        public event Action<Quaternion> RotationChanged;
-        public event Action<Vector3> PositionChanged;
-        public event Action<float> ScaleChanged;
-
         private IShipModel model;
         private ISceneObjectView view;
-        private IShipStateMachine stateMachine;
-        private ITransformable initTransformParams;
+        private IShipRotatingStateMachine rotatingStateMachine;
+        private IShipMovingStateMachine movingStateMachine;
+        private IShipInitParams shipInitParams;
 
 
         [Inject]
-        public void Constract(
+        public void Construct(
             IShipModel model,
             ISceneObjectView view,
-            IShipStateMachine stateMachine,
-            ITransformable initTransformParams)
+            IShipRotatingStateMachine rotatingStateMachine,
+            IShipMovingStateMachine movingStateMachine,
+            IShipInitParams shipInitParams)
         {
             this.model = model;
             this.view = view;
-            this.stateMachine = stateMachine;
-            this.initTransformParams = initTransformParams;
+            this.rotatingStateMachine = rotatingStateMachine;
+            this.movingStateMachine = movingStateMachine;
+            this.shipInitParams = shipInitParams;
         }
 
         public void Initialize()
         {
             model.PositionChanged += Model_OnPositionChanged;
             model.RotationChanged += Model_OnRotationChanged;
-            model.ScaleChanged += Model_ScaleChanged;
-            view.OnCollision += View_OnCollision;
+            model.ScaleChanged += Model_OnScaleChanged;
 
-            model.Position = initTransformParams.Position;
-            model.Rotation = initTransformParams.Rotation;
-            model.Scale = initTransformParams.Scale;
+            model.Position = shipInitParams.Position;
+            model.Rotation = shipInitParams.Rotation;
+            model.Scale = shipInitParams.Scale;
 
-            stateMachine.Enter<ShipIdleState>();
+            rotatingStateMachine.Enter<ShipNotRotatingState>();
+            movingStateMachine.Enter<ShipNotMovingState>();
         }
 
         public void Tick()
         {
-            stateMachine.Tick();
+            rotatingStateMachine.Tick();
+            movingStateMachine.Tick();
         }
 
         public Vector3 Position
@@ -68,46 +67,49 @@ namespace AsteroidsProject.Units.Ship
             set { model.Scale = value; }
         }
 
-        public float Speed
+        public float MovementSpeed
         {
-            get { return model.Speed; }
-            set { model.Speed = value; }
+            get { return model.MovementSpeed; }
+            set { model.MovementSpeed = value; }
         }
 
-        private void View_OnCollision(Collision2D collision)
+        public float RatationSpeed
         {
-            HandleCollision(collision);
+            get { return model.MovementSpeed; }
+            set { model.MovementSpeed = value; }
         }
 
-        private void HandleCollision(Collision2D collision)
+        public Vector3 MovementDirection
         {
-            //TODO
+            get { return model.MovementDirection; }
+            set { model.MovementDirection = value; }
         }
+
+        public int RotationDirection { get; set; }
 
         private void Model_OnPositionChanged(Vector3 vector)
         {
-            PositionChanged?.Invoke(vector);
+            view.UpdatePosition(vector);
         }
 
         private void Model_OnRotationChanged(Quaternion quaternion)
         {
-            RotationChanged?.Invoke(quaternion);
+            view.UpdateRotation(quaternion);
         }
 
-        private void Model_ScaleChanged(float value)
+        private void Model_OnScaleChanged(float value)
         {
-            ScaleChanged?.Invoke(value);
+            view.UpdateScale(value);
         }
 
         public void Dispose()
         {
             model.PositionChanged -= Model_OnPositionChanged;
             model.RotationChanged -= Model_OnRotationChanged;
-            model.ScaleChanged -= Model_ScaleChanged;
-            view.OnCollision -= View_OnCollision;
+            model.ScaleChanged -= Model_OnScaleChanged;
         }
 
-        public class Factory : PlaceholderFactory<ITransformable, IShipPresenter>, IShipPresenterFactory
+        public class Factory : PlaceholderFactory<IShipInitParams, IShipPresenter>, IShipPresenterFactory
         {
         }
     }

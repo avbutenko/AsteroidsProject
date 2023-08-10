@@ -1,6 +1,6 @@
 ﻿namespace AsteroidsProject.Infrastructure.Units.Ship
 {
-    public interface IShipModel : ITransformable, IMovable
+    public interface IShipModel : ITransformableWithOnChangeEvents, IMovableWithOnChangeEvents, IRotatable
     {
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace AsteroidsProject.Infrastructure.Units.Ship
+﻿using UnityEngine;
+
+namespace AsteroidsProject.Infrastructure.Units.Ship
 {
-    public interface IShipPresenter : ITransformable, IMovable
+    public interface IShipPresenter : ITransformable, IMovable, IRotatable
     {
     }
 }

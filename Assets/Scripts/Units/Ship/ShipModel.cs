@@ -9,11 +9,14 @@ namespace AsteroidsProject.Units.Ship
         public event Action<Quaternion> RotationChanged;
         public event Action<Vector3> PositionChanged;
         public event Action<float> ScaleChanged;
+        public event Action<float> MovementSpeedChanged;
 
         private Vector3 position;
         private Quaternion rotation;
         private float scale;
+        private float rotationSpeed;
         private float speed;
+        private Vector3 movementDirection;
 
         public Vector3 Position
         {
@@ -45,10 +48,28 @@ namespace AsteroidsProject.Units.Ship
             }
         }
 
-        public float Speed
+        public float MovementSpeed
         {
             get { return speed; }
-            set { speed = value; }
+            set
+            {
+                speed = value;
+                MovementSpeedChanged?.Invoke(speed);
+            }
         }
+
+        public float RatationSpeed
+        {
+            get { return rotationSpeed; }
+            set { rotationSpeed = value; }
+        }
+
+        public Vector3 MovementDirection
+        {
+            get { return movementDirection; }
+            set { movementDirection = value; }
+        }
+
+        public int RotationDirection { get; set; }
     }
 }
