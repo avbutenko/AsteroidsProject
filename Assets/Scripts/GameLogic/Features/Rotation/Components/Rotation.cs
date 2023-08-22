@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AsteroidsProject.GameLogic.Features.Movement
+namespace AsteroidsProject.GameLogic.Features.Rotation
 {
     public struct Rotation
     {

@@ -8,7 +8,7 @@ namespace AsteroidsProject.CompositionRoot
     {
         public override void InstallBindings()
         {
-            Container.Bind<IInputService>().To<InputService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<InputService>().AsSingle().NonLazy();
             Container.Bind<IAssetProvider>().To<AssetProvider>().AsSingle();
         }
     }

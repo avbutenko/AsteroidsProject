@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Zenject;
 
-namespace AsteroidsProject.GameLogic
+namespace AsteroidsProject.GameLogic.Ecs
 {
     public sealed class EcsStartup : IInitializable, IDisposable, ITickable
     {

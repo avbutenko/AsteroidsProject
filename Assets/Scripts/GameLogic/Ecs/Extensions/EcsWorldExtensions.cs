@@ -1,6 +1,6 @@
 ﻿using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Extensions
+namespace AsteroidsProject.GameLogic.Ecs
 {
     public static class EcsWorldExtensions
     {
@@ -14,10 +14,10 @@ namespace AsteroidsProject.GameLogic.Extensions
         public static void NewEntityWith<TComponent>(this EcsWorld world, TComponent value) where TComponent : struct
         {
             var entity = world.NewEntity();
-            world.AddComponent(entity, value);
+            world.AddComponentToEntity(entity, value);
         }
 
-        public static void AddComponent<TComponent>(this EcsWorld world, int id, TComponent component)
+        public static void AddComponentToEntity<TComponent>(this EcsWorld world, int id, TComponent component)
             where TComponent : struct
         {
             var pool = world.GetPool<TComponent>();

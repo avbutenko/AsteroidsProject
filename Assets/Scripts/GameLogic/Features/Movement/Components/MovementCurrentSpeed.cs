@@ -1,8 +1,7 @@
 ﻿namespace AsteroidsProject.GameLogic.Features.Movement
 {
-    public struct MovementSpeed
+    public struct MovementCurrentSpeed
     {
-
         public float Value;
     }
 }
