@@ -1,8 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Movement
 {
-    public struct Position
+    public struct Velocity
     {
         public Vector2 Value;
     }

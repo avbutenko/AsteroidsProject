@@ -9,6 +9,7 @@ namespace AsteroidsProject.EngineRelated.Services
     {
         private InputActions inputActions;
         private bool isAccelerating;
+        private bool isInerting;
         private bool isRotating;
 
         public void Initialize()
@@ -24,9 +25,11 @@ namespace AsteroidsProject.EngineRelated.Services
             {
                 case InputActionPhase.Performed:
                     isAccelerating = true;
+                    isInerting = false;
                     break;
                 case InputActionPhase.Canceled:
                     isAccelerating = false;
+                    isInerting = true;
                     break;
             }
         }
@@ -45,7 +48,7 @@ namespace AsteroidsProject.EngineRelated.Services
         }
 
         public bool IsAccelerating => isAccelerating;
-
+        public bool IsInerting => isInerting;
         public bool IsRotating => isRotating;
 
         public float RotationDirection => inputActions.Ship.Rotate.ReadValue<float>();

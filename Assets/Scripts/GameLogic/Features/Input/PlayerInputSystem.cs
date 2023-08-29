@@ -19,19 +19,25 @@ namespace AsteroidsProject.GameLogic.Features.Movement
             var world = systems.GetWorld();
             var filter = world.Filter<PlayerTag>().End();
 
-            var AccelerateCommandPool = world.GetPool<AccelerationCommand>();
-            var RotateCommandPool = world.GetPool<RotateCommand>();
+            var accelerateCommandPool = world.GetPool<AccelerationRequest>();
+            var inertCommandPool = world.GetPool<InertionRequest>();
+            var rotateCommandPool = world.GetPool<RotateRequest>();
 
-            foreach (var entityIndex in filter)
+            foreach (var entity in filter)
             {
                 if (inputService.IsAccelerating)
                 {
-                    ref var accelerateCommand = ref AccelerateCommandPool.Add(entityIndex);
+                    accelerateCommandPool.Add(entity);
+                }
+
+                if (inputService.IsInerting)
+                {
+                    inertCommandPool.Add(entity);
                 }
 
                 if (inputService.IsRotating)
                 {
-                    ref var rotateCommand = ref RotateCommandPool.Add(entityIndex);
+                    ref var rotateCommand = ref rotateCommandPool.Add(entity);
                     rotateCommand.RotationDirection = inputService.RotationDirection;
                 }
             }

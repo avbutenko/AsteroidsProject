@@ -1,6 +1,5 @@
 using AsteroidsProject.GameLogic.Ecs;
 using AsteroidsProject.GameLogic.Features.Movement;
-using AsteroidsProject.GameLogic.Features.Rotation;
 using AsteroidsProject.Infrastructure.Services;
 using AsteroidsProject.Infrastructure.Views;
 using Leopotam.EcsLite;
@@ -24,28 +23,18 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
             var entity = world.NewEntity();
 
             world.AddComponentToEntity(entity, new PlayerTag());
-            AddMovementFeature(world, entity);
-            AddRotationFeature(world, entity);
+            world.AddComponentToEntity(entity, new Velocity { Value = Vector2.zero });
+            world.AddComponentToEntity(entity, new Acceleration { Value = Vector2.zero });
+
+            world.AddComponentToEntity(entity, new GameLogic.GameplayObjectViewComponent
+            {
+                Position = Vector2.zero,
+                Rotation = Quaternion.identity,
+                Scale = 1
+            });
 
             var view = await InstantiateViewAsync();
             LinkViewAndEntity(world, entity, view);
-        }
-
-        private void AddMovementFeature(EcsWorld world, int entity)
-        {
-            world.AddComponentToEntity(entity, new MovementSpeed { Value = 5 });
-            world.AddComponentToEntity(entity, new MovementMaxSpeed { Value = 5 });
-            world.AddComponentToEntity(entity, new MovementCurrentSpeed { Value = 0 });
-            world.AddComponentToEntity(entity, new MovementDirection { Value = Vector2.up });
-            world.AddComponentToEntity(entity, new MovementAccelerationModifier { Value = 2 });
-            world.AddComponentToEntity(entity, new MovementInertiaModifier { Value = 3 });
-            world.AddComponentToEntity(entity, new Position { Value = Vector2.zero });
-        }
-
-        private void AddRotationFeature(EcsWorld world, int entity)
-        {
-            world.AddComponentToEntity(entity, new RotationSpeed { Value = 120 });
-            world.AddComponentToEntity(entity, new Rotation.Rotation { Value = Quaternion.identity });
         }
 
         private async Task<IGameplayObjectView> InstantiateViewAsync()
