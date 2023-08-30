@@ -1,6 +1,6 @@
 using AsteroidsProject.Infrastructure.Views;
 
-namespace AsteroidsProject.GameLogic.Features.Spawn
+namespace AsteroidsProject.GameLogic.Features.Common
 {
     public struct GameplayObjectViewComponent
     {

@@ -2,7 +2,7 @@
 
 namespace AsteroidsProject.GameLogic.Features.Movement
 {
-    public struct Acceleration
+    public struct AccelerationModifier
     {
         public Vector2 Value;
     }

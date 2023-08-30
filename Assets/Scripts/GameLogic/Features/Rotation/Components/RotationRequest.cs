@@ -1,6 +1,6 @@
 ﻿namespace AsteroidsProject.GameLogic.Features.Rotation
 {
-    public struct RotateRequest
+    public struct RotationRequest
     {
         public float RotationDirection;
     }

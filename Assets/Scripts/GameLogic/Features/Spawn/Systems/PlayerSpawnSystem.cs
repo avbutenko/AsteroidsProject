@@ -1,5 +1,7 @@
 using AsteroidsProject.GameLogic.Ecs;
+using AsteroidsProject.GameLogic.Features.Common;
 using AsteroidsProject.GameLogic.Features.Movement;
+using AsteroidsProject.GameLogic.Features.Rotation;
 using AsteroidsProject.Infrastructure.Services;
 using AsteroidsProject.Infrastructure.Views;
 using Leopotam.EcsLite;
@@ -23,15 +25,12 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
             var entity = world.NewEntity();
 
             world.AddComponentToEntity(entity, new PlayerTag());
+            world.AddComponentToEntity(entity, new Position { Value = Vector2.zero });
+            world.AddComponentToEntity(entity, new Rotation.Rotation { Value = Quaternion.identity });
             world.AddComponentToEntity(entity, new Velocity { Value = Vector2.zero });
-            world.AddComponentToEntity(entity, new Acceleration { Value = Vector2.zero });
-
-            world.AddComponentToEntity(entity, new GameLogic.GameplayObjectViewComponent
-            {
-                Position = Vector2.zero,
-                Rotation = Quaternion.identity,
-                Scale = 1
-            });
+            world.AddComponentToEntity(entity, new AccelerationModifier { Value = Vector2.up });
+            world.AddComponentToEntity(entity, new InertionModifier { Value = Vector2.down });
+            world.AddComponentToEntity(entity, new RotationSpeed { Value = 120 });
 
             var view = await InstantiateViewAsync();
             LinkViewAndEntity(world, entity, view);

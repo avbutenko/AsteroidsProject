@@ -1,5 +1,5 @@
-﻿using AsteroidsProject.GameLogic.Features.Rotation;
-using AsteroidsProject.GameLogic.Features.Spawn;
+﻿using AsteroidsProject.GameLogic.Features.Common;
+using AsteroidsProject.GameLogic.Features.Rotation;
 using AsteroidsProject.Infrastructure.Services;
 using Leopotam.EcsLite;
 
@@ -21,7 +21,7 @@ namespace AsteroidsProject.GameLogic.Features.Movement
 
             var accelerateCommandPool = world.GetPool<AccelerationRequest>();
             var inertCommandPool = world.GetPool<InertionRequest>();
-            var rotateCommandPool = world.GetPool<RotateRequest>();
+            var rotateCommandPool = world.GetPool<RotationRequest>();
 
             foreach (var entity in filter)
             {
@@ -29,8 +29,7 @@ namespace AsteroidsProject.GameLogic.Features.Movement
                 {
                     accelerateCommandPool.Add(entity);
                 }
-
-                if (inputService.IsInerting)
+                else
                 {
                     inertCommandPool.Add(entity);
                 }

@@ -5,52 +5,18 @@ using System;
 
 namespace AsteroidsProject.EngineRelated.Services
 {
-    public class InputService : IInitializable, IDisposable, IInputService, InputActions.IShipActions
+    public class InputService : IInitializable, IDisposable, IInputService
     {
         private InputActions inputActions;
-        private bool isAccelerating;
-        private bool isInerting;
-        private bool isRotating;
 
         public void Initialize()
         {
             inputActions = new InputActions();
-            inputActions.Ship.SetCallbacks(this);
             inputActions.Ship.Enable();
         }
 
-        public void OnAccelerate(InputAction.CallbackContext context)
-        {
-            switch (context.phase)
-            {
-                case InputActionPhase.Performed:
-                    isAccelerating = true;
-                    isInerting = false;
-                    break;
-                case InputActionPhase.Canceled:
-                    isAccelerating = false;
-                    isInerting = true;
-                    break;
-            }
-        }
-
-        public void OnRotate(InputAction.CallbackContext context)
-        {
-            switch (context.phase)
-            {
-                case InputActionPhase.Performed:
-                    isRotating = true;
-                    break;
-                case InputActionPhase.Canceled:
-                    isRotating = false;
-                    break;
-            }
-        }
-
-        public bool IsAccelerating => isAccelerating;
-        public bool IsInerting => isInerting;
-        public bool IsRotating => isRotating;
-
+        public bool IsAccelerating => inputActions.Ship.Accelerate.phase == InputActionPhase.Performed;
+        public bool IsRotating => inputActions.Ship.Rotate.phase == InputActionPhase.Performed;
         public float RotationDirection => inputActions.Ship.Rotate.ReadValue<float>();
 
         public void Dispose()

@@ -15,13 +15,15 @@ namespace AsteroidsProject.CompositionRoot
         {
             Container.Bind<IGameplayObjectViewFactory>().To<GameplayObjectViewFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerSpawnSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<DeleteHereSystem<RotateRequest>>().AsSingle();
+            Container.BindInterfacesAndSelfTo<DeleteHereSystem<RotationRequest>>().AsSingle();
             Container.BindInterfacesAndSelfTo<DeleteHereSystem<AccelerationRequest>>().AsSingle();
             Container.BindInterfacesAndSelfTo<DeleteHereSystem<InertionRequest>>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerInputSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<AccelerationModifierSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<InertionModifierSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<UniformAccelerationMovementSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<RotationSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AccelerationMovementSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<InertionMovementSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<UpdateViewRotationSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<UpdateViewPositionSystem>().AsSingle();
 
 
 #if UNITY_EDITOR
