@@ -3,6 +3,7 @@ using AsteroidsProject.GameLogic.Ecs;
 using AsteroidsProject.GameLogic.Features.Movement;
 using AsteroidsProject.GameLogic.Features.Rotation;
 using AsteroidsProject.GameLogic.Features.Spawn;
+using AsteroidsProject.GameLogic.Features.Teleportation;
 using AsteroidsProject.Infrastructure.Services;
 using Leopotam.EcsLite.UnityEditor;
 using Zenject;
@@ -22,6 +23,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<RotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<AccelerationMovementSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<InertionMovementSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<TeleportationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<UpdateViewRotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<UpdateViewPositionSystem>().AsSingle();
 
