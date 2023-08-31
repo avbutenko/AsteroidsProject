@@ -4,6 +4,6 @@ namespace AsteroidsProject.GameLogic.Features.Movement
 {
     public struct Velocity
     {
-        public Vector2 Value;
+        public Vector3 Value;
     }
 }

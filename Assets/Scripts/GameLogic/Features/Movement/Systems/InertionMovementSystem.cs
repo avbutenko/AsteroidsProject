@@ -26,25 +26,29 @@ namespace AsteroidsProject.GameLogic.Features.Movement
             var inertionPool = world.GetPool<InertionModifier>();
             var velocityPool = world.GetPool<Velocity>();
             var positionPool = world.GetPool<Position>();
+            var rotationPool = world.GetPool<Rotation.Rotation>();
 
             foreach (var entity in filter)
             {
+                inertionCommandPool.Del(entity);
+
                 ref var velocity = ref velocityPool.Get(entity).Value;
-
-                if (velocity.y <= 0)
-                {
-                    velocity = Vector2.zero;
-                    inertionCommandPool.Del(entity);
-                    return;
-                }
-
                 ref var inertion = ref inertionPool.Get(entity).Value;
                 ref var position = ref positionPool.Get(entity).Value;
+                ref var rotation = ref rotationPool.Get(entity).Value;
 
-                position += velocity * timeService.DeltaTime + Mathf.Pow(timeService.DeltaTime, 2) * inertion / 2;
-                velocity += inertion * timeService.DeltaTime;
+                var newVelocity = velocity + rotation * inertion * timeService.DeltaTime;
 
-                inertionCommandPool.Del(entity);
+                if (newVelocity.magnitude > velocity.magnitude)
+                {
+                    velocity = Vector3.zero;
+                    return;
+                }
+                else
+                {
+                    velocity = newVelocity;
+                    position += velocity * timeService.DeltaTime + Mathf.Pow(timeService.DeltaTime, 2) * inertion / 2;
+                }
             }
         }
     }

@@ -25,11 +25,11 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
             var entity = world.NewEntity();
 
             world.AddComponentToEntity(entity, new PlayerTag());
-            world.AddComponentToEntity(entity, new Position { Value = Vector2.zero });
+            world.AddComponentToEntity(entity, new Position { Value = Vector3.zero });
             world.AddComponentToEntity(entity, new Rotation.Rotation { Value = Quaternion.identity });
-            world.AddComponentToEntity(entity, new Velocity { Value = Vector2.zero });
-            world.AddComponentToEntity(entity, new AccelerationModifier { Value = Vector2.up });
-            world.AddComponentToEntity(entity, new InertionModifier { Value = Vector2.down });
+            world.AddComponentToEntity(entity, new Velocity { Value = Vector3.zero });
+            world.AddComponentToEntity(entity, new AccelerationModifier { Value = Vector3.up });
+            world.AddComponentToEntity(entity, new InertionModifier { Value = Vector3.down });
             world.AddComponentToEntity(entity, new RotationSpeed { Value = 120 });
 
             var view = await InstantiateViewAsync();

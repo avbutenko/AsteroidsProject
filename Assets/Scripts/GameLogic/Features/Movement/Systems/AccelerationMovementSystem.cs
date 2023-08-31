@@ -26,15 +26,17 @@ namespace AsteroidsProject.GameLogic.Features.Movement
             var accelerationPool = world.GetPool<AccelerationModifier>();
             var velocityPool = world.GetPool<Velocity>();
             var positionPool = world.GetPool<Position>();
+            var rotationPool = world.GetPool<Rotation.Rotation>();
 
             foreach (var entity in filter)
             {
                 ref var acceleration = ref accelerationPool.Get(entity).Value;
                 ref var position = ref positionPool.Get(entity).Value;
                 ref var velocity = ref velocityPool.Get(entity).Value;
+                ref var rotation = ref rotationPool.Get(entity).Value;
 
+                velocity += rotation * acceleration * timeService.DeltaTime;
                 position += velocity * timeService.DeltaTime + Mathf.Pow(timeService.DeltaTime, 2) * acceleration / 2;
-                velocity += acceleration * timeService.DeltaTime;
 
                 accelerateCommandPool.Del(entity);
             }
