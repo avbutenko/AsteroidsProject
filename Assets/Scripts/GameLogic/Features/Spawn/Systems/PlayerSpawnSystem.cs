@@ -2,6 +2,7 @@ using AsteroidsProject.GameLogic.Ecs;
 using AsteroidsProject.GameLogic.Features.Common;
 using AsteroidsProject.GameLogic.Features.Movement;
 using AsteroidsProject.GameLogic.Features.Rotation;
+using AsteroidsProject.GameLogic.Features.Teleportation;
 using AsteroidsProject.Infrastructure.Services;
 using AsteroidsProject.Infrastructure.Views;
 using Leopotam.EcsLite;
@@ -25,10 +26,13 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
             var entity = world.NewEntity();
 
             world.AddComponentToEntity(entity, new PlayerTag());
+            world.AddComponentToEntity(entity, new TeleportableTag());
             world.AddComponentToEntity(entity, new Position { Value = Vector3.zero });
             world.AddComponentToEntity(entity, new Rotation.Rotation { Value = Quaternion.identity });
+            world.AddComponentToEntity(entity, new Scale.Scale { Value = Vector3.one[0] });
             world.AddComponentToEntity(entity, new Velocity { Value = Vector3.zero });
-            world.AddComponentToEntity(entity, new AccelerationModifier { Value = Vector3.up });
+            world.AddComponentToEntity(entity, new MovingDirectionQuaternion { Value = Quaternion.identity });
+            world.AddComponentToEntity(entity, new AccelerationModifier { Value = new Vector3(0, 3, 0) });
             world.AddComponentToEntity(entity, new InertionModifier { Value = Vector3.down });
             world.AddComponentToEntity(entity, new RotationSpeed { Value = 120 });
 

@@ -2,6 +2,7 @@
 using AsteroidsProject.GameLogic.Ecs;
 using AsteroidsProject.GameLogic.Features.Movement;
 using AsteroidsProject.GameLogic.Features.Rotation;
+using AsteroidsProject.GameLogic.Features.Scale;
 using AsteroidsProject.GameLogic.Features.Spawn;
 using AsteroidsProject.GameLogic.Features.Teleportation;
 using AsteroidsProject.Infrastructure.Services;
@@ -14,6 +15,13 @@ namespace AsteroidsProject.CompositionRoot
     {
         public override void InstallBindings()
         {
+            Container.Bind<ILevelService>().To<LevelService>().AsSingle();
+            Container.Bind<ITeleportationService>().To<TeleportationService>().AsSingle();
+            BindEcsSystems();
+        }
+
+        private void BindEcsSystems()
+        {
             Container.Bind<IGameplayObjectViewFactory>().To<GameplayObjectViewFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerSpawnSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<DeleteHereSystem<RotationRequest>>().AsSingle();
@@ -24,14 +32,13 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<AccelerationMovementSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<InertionMovementSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<TeleportationSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<UpdateViewScaleSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<UpdateViewRotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<UpdateViewPositionSystem>().AsSingle();
-
 
 #if UNITY_EDITOR
             Container.BindInterfacesAndSelfTo<EcsWorldDebugSystem>().AsSingle();
 #endif
-
             Container.BindInterfacesTo<EcsStartup>().AsSingle();
         }
     }

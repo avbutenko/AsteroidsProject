@@ -1,27 +1,27 @@
 ﻿using AsteroidsProject.GameLogic.Features.Common;
 using Leopotam.EcsLite;
+using UnityEngine;
 
-namespace AsteroidsProject.GameLogic.Features.Movement
+namespace AsteroidsProject.GameLogic.Features.Scale
 {
-    public class UpdateViewRotationSystem : IEcsRunSystem
+    public class UpdateViewScaleSystem : IEcsRunSystem
     {
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
             var filter = world.Filter<GameplayObjectViewComponent>()
-                              .Inc<Rotation.Rotation>()
+                              .Inc<Scale>()
                               .End();
 
             var viewPool = world.GetPool<GameplayObjectViewComponent>();
-            var rotationPool = world.GetPool<Rotation.Rotation>();
-
+            var scalePool = world.GetPool<Scale>();
 
             foreach (var entity in filter)
             {
-                ref var rotation = ref rotationPool.Get(entity).Value;
+                ref var scale = ref scalePool.Get(entity).Value;
                 ref var view = ref viewPool.Get(entity).View;
 
-                view.Transform.localRotation = rotation;
+                view.Transform.localScale = new Vector3(scale, scale, scale);
             }
         }
     }

@@ -20,6 +20,7 @@ namespace AsteroidsProject.GameLogic.Features.Movement
                               .Inc<AccelerationModifier>()
                               .Inc<Velocity>()
                               .Inc<Position>()
+                              .Inc<MovingDirectionQuaternion>()
                               .End();
 
             var accelerateCommandPool = world.GetPool<AccelerationRequest>();
@@ -27,6 +28,7 @@ namespace AsteroidsProject.GameLogic.Features.Movement
             var velocityPool = world.GetPool<Velocity>();
             var positionPool = world.GetPool<Position>();
             var rotationPool = world.GetPool<Rotation.Rotation>();
+            var directionQuaternionPool = world.GetPool<MovingDirectionQuaternion>();
 
             foreach (var entity in filter)
             {
@@ -34,9 +36,11 @@ namespace AsteroidsProject.GameLogic.Features.Movement
                 ref var position = ref positionPool.Get(entity).Value;
                 ref var velocity = ref velocityPool.Get(entity).Value;
                 ref var rotation = ref rotationPool.Get(entity).Value;
+                ref var directionQuaternion = ref directionQuaternionPool.Get(entity).Value;
 
                 velocity += rotation * acceleration * timeService.DeltaTime;
-                position += velocity * timeService.DeltaTime + Mathf.Pow(timeService.DeltaTime, 2) * acceleration / 2;
+                position += velocity * timeService.DeltaTime + (Mathf.Pow(timeService.DeltaTime, 2) * (rotation * acceleration)) / 2;
+                directionQuaternion = rotation;
 
                 accelerateCommandPool.Del(entity);
             }

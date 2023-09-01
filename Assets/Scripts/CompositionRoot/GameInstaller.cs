@@ -11,8 +11,6 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<InputService>().AsSingle().NonLazy();
             Container.Bind<IAssetProvider>().To<AssetProvider>().AsSingle();
             Container.Bind<ITimeService>().To<TimeService>().AsSingle();
-            Container.Bind<ILevelService>().To<LevelService>().AsSingle();
-            Container.Bind<ITeleportationService>().To<TeleportationService>().AsSingle();
         }
     }
 }
