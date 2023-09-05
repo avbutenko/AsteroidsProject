@@ -19,8 +19,8 @@ namespace AsteroidsProject.GameLogic.Features.Movement
             var world = systems.GetWorld();
             var filter = world.Filter<PlayerTag>().End();
 
-            var accelerateCommandPool = world.GetPool<AccelerationRequest>();
-            var inertCommandPool = world.GetPool<InertionRequest>();
+            var accelerateCommandPool = world.GetPool<ForwardAccelerationRequest>();
+            var inertCommandPool = world.GetPool<DeaccelerationRequest>();
             var rotateCommandPool = world.GetPool<RotationRequest>();
 
             foreach (var entity in filter)

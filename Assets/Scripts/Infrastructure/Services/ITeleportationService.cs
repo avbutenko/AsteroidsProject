@@ -4,7 +4,7 @@ namespace AsteroidsProject.Infrastructure.Services
 {
     public interface ITeleportationService
     {
-        public bool IsOutOfLevel(Vector3 currentPosition, float scale);
-        public Vector3 Teleport(Vector3 currentPosition, float scale);
+        public bool IsOutOfLevel(Vector2 currentPosition, float scale);
+        public Vector2 Teleport(Vector2 currentPosition, float scale);
     }
 }

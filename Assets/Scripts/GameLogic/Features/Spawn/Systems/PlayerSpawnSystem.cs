@@ -27,13 +27,12 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
 
             world.AddComponentToEntity(entity, new PlayerTag());
             world.AddComponentToEntity(entity, new TeleportableTag());
-            world.AddComponentToEntity(entity, new Position { Value = Vector3.zero });
+            world.AddComponentToEntity(entity, new Position { Value = Vector2.zero });
             world.AddComponentToEntity(entity, new Rotation.Rotation { Value = Quaternion.identity });
-            world.AddComponentToEntity(entity, new Scale.Scale { Value = Vector3.one[0] });
-            world.AddComponentToEntity(entity, new Velocity { Value = Vector3.zero });
-            world.AddComponentToEntity(entity, new MovingDirectionQuaternion { Value = Quaternion.identity });
-            world.AddComponentToEntity(entity, new AccelerationModifier { Value = new Vector3(0, 3, 0) });
-            world.AddComponentToEntity(entity, new InertionModifier { Value = Vector3.down });
+            world.AddComponentToEntity(entity, new Scale.Scale { Value = Vector2.one[0] });
+            world.AddComponentToEntity(entity, new Velocity { Value = Vector2.zero });
+            world.AddComponentToEntity(entity, new ForwardAcceleration { Value = 5f });
+            world.AddComponentToEntity(entity, new Deacceleration { Value = -1f });
             world.AddComponentToEntity(entity, new RotationSpeed { Value = 120 });
 
             var view = await InstantiateViewAsync();
@@ -42,7 +41,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
 
         private async Task<IGameplayObjectView> InstantiateViewAsync()
         {
-            var instance = await factory.InstantiateAsync("Player/Prefabs/Player.prefab", Vector3.zero, Quaternion.identity, null);
+            var instance = await factory.InstantiateAsync("Player/Prefabs/Player.prefab", Vector2.zero, Quaternion.identity, null);
             return instance.GetComponent<IGameplayObjectView>();
         }
 

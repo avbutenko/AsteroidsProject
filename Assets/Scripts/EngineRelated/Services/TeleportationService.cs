@@ -11,12 +11,12 @@ namespace AsteroidsProject.EngineRelated.Services
             this.level = level;
         }
 
-        public bool IsOutOfLevel(Vector3 currentPosition, float scale)
+        public bool IsOutOfLevel(Vector2 currentPosition, float scale)
         {
-            if ((currentPosition.x > level.Right + scale && IsMovingInDirection(currentPosition, Vector3.right))
-                || (currentPosition.x < level.Left - scale && IsMovingInDirection(currentPosition, -Vector3.right))
-                || (currentPosition.y < level.Bottom - scale && IsMovingInDirection(currentPosition, -Vector3.up))
-                || (currentPosition.y > level.Top + scale && IsMovingInDirection(currentPosition, Vector3.up)))
+            if ((currentPosition.x > level.Right + scale && IsMovingInDirection(currentPosition, Vector2.right))
+                || (currentPosition.x < level.Left - scale && IsMovingInDirection(currentPosition, -Vector2.right))
+                || (currentPosition.y < level.Bottom - scale && IsMovingInDirection(currentPosition, -Vector2.up))
+                || (currentPosition.y > level.Top + scale && IsMovingInDirection(currentPosition, Vector2.up)))
             {
                 return true;
             }
@@ -26,19 +26,19 @@ namespace AsteroidsProject.EngineRelated.Services
             }
         }
 
-        public Vector3 Teleport(Vector3 currentPosition, float scale)
+        public Vector2 Teleport(Vector2 currentPosition, float scale)
         {
             LevelSide teleportingDirection = GetTeleportingDirection(currentPosition, scale);
-            Vector3 newPosition = GetTeleportingPosition(currentPosition, scale, teleportingDirection);
+            Vector2 newPosition = GetTeleportingPosition(currentPosition, scale, teleportingDirection);
             return newPosition;
         }
 
-        private bool IsMovingInDirection(Vector3 moveDir, Vector3 checkDir)
+        private bool IsMovingInDirection(Vector2 moveDir, Vector2 checkDir)
         {
-            return Vector3.Dot(checkDir, moveDir) > 0;
+            return Vector2.Dot(checkDir, moveDir) > 0;
         }
 
-        private LevelSide GetTeleportingDirection(Vector3 currentPosition, float scale)
+        private LevelSide GetTeleportingDirection(Vector2 currentPosition, float scale)
         {
             if (currentPosition.x > level.Right + scale)
             {
@@ -60,25 +60,25 @@ namespace AsteroidsProject.EngineRelated.Services
             return default;
         }
 
-        private Vector3 GetTeleportingPosition(Vector3 currentPosition, float scale, LevelSide direction)
+        private Vector2 GetTeleportingPosition(Vector2 currentPosition, float scale, LevelSide direction)
         {
             switch (direction)
             {
                 case LevelSide.Top:
                     {
-                        return new Vector3(currentPosition.x, (level.Top + scale), currentPosition.z);
+                        return new Vector2(currentPosition.x, (level.Top + scale));
                     }
                 case LevelSide.Bottom:
                     {
-                        return new Vector3(currentPosition.x, (level.Bottom - scale), currentPosition.z);
+                        return new Vector2(currentPosition.x, (level.Bottom - scale));
                     }
                 case LevelSide.Right:
                     {
-                        return new Vector3((level.Right + scale), currentPosition.y, currentPosition.z);
+                        return new Vector2((level.Right + scale), currentPosition.y);
                     }
                 case LevelSide.Left:
                     {
-                        return new Vector3((level.Left - scale), currentPosition.y, currentPosition.z);
+                        return new Vector2((level.Left - scale), currentPosition.y);
                     }
                 default:
                     {

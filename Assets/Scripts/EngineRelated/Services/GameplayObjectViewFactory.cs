@@ -13,7 +13,7 @@ namespace AsteroidsProject.EngineRelated.Services
             this.assetProvider = assetProvider;
         }
 
-        public async Task<GameObject> InstantiateAsync(string prefabAddress, Vector3 position, Quaternion rotation, Transform parentTransform)
+        public async Task<GameObject> InstantiateAsync(string prefabAddress, Vector2 position, Quaternion rotation, Transform parentTransform)
         {
             var prefab = await assetProvider.Load<GameObject>(prefabAddress);
             var insinstance = Object.Instantiate(prefab, position, rotation, parentTransform);
