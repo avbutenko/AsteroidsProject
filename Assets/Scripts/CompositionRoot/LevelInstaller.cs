@@ -1,11 +1,13 @@
-﻿using AsteroidsProject.EngineRelated.Services;
-using AsteroidsProject.GameLogic.Ecs;
-using AsteroidsProject.GameLogic.Features.Movement;
-using AsteroidsProject.GameLogic.Features.Rotation;
-using AsteroidsProject.GameLogic.Features.Scale;
-using AsteroidsProject.GameLogic.Features.Spawn;
-using AsteroidsProject.GameLogic.Features.Teleportation;
-using AsteroidsProject.Infrastructure.Services;
+﻿using AsteroidsProject.Infrastructure.Services;
+using AsteroidsProject.EngineRelated.Services;
+using AsteroidsProject.Features.Core;
+using AsteroidsProject.Features.Rotation;
+using AsteroidsProject.Features.Input;
+using AsteroidsProject.Features.DeaccelerationMovement;
+using AsteroidsProject.Features.ForwardAccelerationMovement;
+using AsteroidsProject.Features.Spawn;
+using AsteroidsProject.Features.Teleportation;
+using AsteroidsProject.Ecs;
 using Leopotam.EcsLite.UnityEditor;
 using Zenject;
 
@@ -24,9 +26,9 @@ namespace AsteroidsProject.CompositionRoot
         {
             Container.Bind<IGameplayObjectViewFactory>().To<GameplayObjectViewFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerSpawnSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<DeleteHereSystem<RotationRequest>>().AsSingle();
-            Container.BindInterfacesAndSelfTo<DeleteHereSystem<ForwardAccelerationRequest>>().AsSingle();
-            Container.BindInterfacesAndSelfTo<DeleteHereSystem<DeaccelerationRequest>>().AsSingle();
+            Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<RotationRequest>>().AsSingle();
+            Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<ForwardAccelerationRequest>>().AsSingle();
+            Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<DeaccelerationRequest>>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerInputSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<ForwardAccelerationMovementSystem>().AsSingle();

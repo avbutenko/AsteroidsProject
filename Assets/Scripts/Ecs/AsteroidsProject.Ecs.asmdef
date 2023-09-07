@@ -1,8 +1,9 @@
 {
-    "name": "AsteroidsProject.Infrastructure",
+    "name": "AsteroidsProject.Ecs",
     "rootNamespace": "",
     "references": [
-        "GUID:e59bf9fc7d5a44b18a819a92edd46163"
+        "GUID:e59bf9fc7d5a44b18a819a92edd46163",
+        "GUID:6edd76a60c59af6479735feb61d29472"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
