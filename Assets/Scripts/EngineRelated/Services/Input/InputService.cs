@@ -16,6 +16,7 @@ namespace AsteroidsProject.EngineRelated.Services
         }
 
         public bool IsAccelerating => inputActions.Ship.Accelerate.phase == InputActionPhase.Performed;
+        public bool IsDeaccelerating => inputActions.Ship.Accelerate.WasReleasedThisFrame() == true;
         public bool IsRotating => inputActions.Ship.Rotate.phase == InputActionPhase.Performed;
         public float RotationDirection => inputActions.Ship.Rotate.ReadValue<float>();
 

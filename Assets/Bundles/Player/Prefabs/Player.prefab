@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _component:
-    Value: 120
+    Value: 150
 --- !u!114 &7483786656033615924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,4 +254,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _component:
-    Value: -2
+    Value: -1.5

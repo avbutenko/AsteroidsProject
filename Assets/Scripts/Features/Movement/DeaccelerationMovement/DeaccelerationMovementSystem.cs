@@ -23,7 +23,7 @@ namespace AsteroidsProject.Features.DeaccelerationMovement
                               .Inc<Position>()
                               .End();
 
-            var deaccelerationCommandPool = world.GetPool<DeaccelerationRequest>();
+            var deaccelerationRequestPool = world.GetPool<DeaccelerationRequest>();
             var deaccelerationPool = world.GetPool<Deacceleration>();
             var velocityPool = world.GetPool<Velocity>();
             var positionPool = world.GetPool<Position>();
@@ -31,9 +31,6 @@ namespace AsteroidsProject.Features.DeaccelerationMovement
             foreach (var entity in filter)
             {
                 ref var velocity = ref velocityPool.Get(entity).Value;
-
-                if (velocity == Vector2.zero) return;
-
                 ref var deacceleration = ref deaccelerationPool.Get(entity).Value;
                 ref var position = ref positionPool.Get(entity).Value;
 
@@ -48,9 +45,8 @@ namespace AsteroidsProject.Features.DeaccelerationMovement
                 else
                 {
                     velocity = Vector2.zero;
+                    deaccelerationRequestPool.Del(entity);
                 }
-
-                deaccelerationCommandPool.Del(entity);
             }
         }
 

@@ -26,9 +26,6 @@ namespace AsteroidsProject.CompositionRoot
         {
             Container.Bind<IGameplayObjectViewFactory>().To<GameplayObjectViewFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerSpawnSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<RotationRequest>>().AsSingle();
-            Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<ForwardAccelerationRequest>>().AsSingle();
-            Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<DeaccelerationRequest>>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerInputSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<ForwardAccelerationMovementSystem>().AsSingle();

@@ -18,25 +18,28 @@ namespace AsteroidsProject.Features.Input
             var world = systems.GetWorld();
             var filter = world.Filter<PlayerTag>().End();
 
-            var accelerateCommandPool = world.GetPool<ForwardAccelerationRequest>();
-            var inertCommandPool = world.GetPool<DeaccelerationRequest>();
-            var rotateCommandPool = world.GetPool<RotationRequest>();
+            var accelerationRequestPool = world.GetPool<ForwardAccelerationRequest>();
+            var deaccelerationRequestPool = world.GetPool<DeaccelerationRequest>();
+            var rotationRequestPool = world.GetPool<RotationRequest>();
 
             foreach (var entity in filter)
             {
                 if (inputService.IsAccelerating)
                 {
-                    accelerateCommandPool.Add(entity);
+                    accelerationRequestPool.Add(entity);
+                    deaccelerationRequestPool.Del(entity);
                 }
-                else
+
+                if (inputService.IsDeaccelerating)
                 {
-                    inertCommandPool.Add(entity);
+                    deaccelerationRequestPool.Add(entity);
+                    accelerationRequestPool.Del(entity);
                 }
 
                 if (inputService.IsRotating)
                 {
-                    ref var rotateCommand = ref rotateCommandPool.Add(entity);
-                    rotateCommand.RotationDirection = inputService.RotationDirection;
+                    ref var rotationRequest = ref rotationRequestPool.Add(entity);
+                    rotationRequest.RotationDirection = inputService.RotationDirection;
                 }
             }
         }
