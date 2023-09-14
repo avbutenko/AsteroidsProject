@@ -1,0 +1,30 @@
+{
+    "name": "AsteroidsProject.CompositionRoot",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0d8beb7f090555447a6cf5ce9e54dbb4",
+        "GUID:e59bf9fc7d5a44b18a819a92edd46163",
+        "GUID:a22362b82293644e1bbe51356c008d63",
+        "GUID:02e9d0c052fbf484388102198213ee39",
+        "GUID:880cfb47bfb08994a805f7e0d9441d1e",
+        "GUID:af344f99ae164b8489c5e46d93d1e7ea",
+        "GUID:82e47fb6cfee41b4988fa1b318ce1490",
+        "GUID:645e8f36bd4c0b04a81fceeba3e815f4",
+        "GUID:948b22657b3dd9f4591cdb1efc563239",
+        "GUID:3c142de93d2fe6247ac9dd2a1c1cae77",
+        "GUID:f9b0b4a9343459a4cb6bc1596e13921b",
+        "GUID:56f8b3745e721e74e890e817d1a96998",
+        "GUID:58e21ef98ce13c44fbff14419c2f785a",
+        "GUID:f9004f7f15daebd40a3f5fbb8b522441",
+        "GUID:bd1451bfb17fec74b89a59142110e8bf"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

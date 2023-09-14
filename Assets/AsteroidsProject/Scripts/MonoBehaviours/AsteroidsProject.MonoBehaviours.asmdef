@@ -1,0 +1,16 @@
+{
+    "name": "AsteroidsProject.MonoBehaviours",
+    "rootNamespace": "",
+    "references": [
+        "GUID:02e9d0c052fbf484388102198213ee39"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
