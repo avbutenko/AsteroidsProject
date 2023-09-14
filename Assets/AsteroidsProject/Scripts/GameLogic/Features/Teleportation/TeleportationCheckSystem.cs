@@ -4,11 +4,11 @@ using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.Teleportation
 {
-    public class TeleportationSystem : IEcsRunSystem
+    public class TeleportationCheckSystem : IEcsRunSystem
     {
         private readonly ILevelService level;
 
-        public TeleportationSystem(ILevelService level)
+        public TeleportationCheckSystem(ILevelService level)
         {
             this.level = level;
         }
@@ -16,22 +16,24 @@ namespace AsteroidsProject.GameLogic.Features.Teleportation
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<TeleportationRequest>()
+            var filter = world.Filter<TeleportableTag>()
                               .Inc<Position>()
                               .Inc<Scale>()
                               .End();
 
-            var teleportationRequestPool = world.GetPool<TeleportationRequest>();
             var positionPool = world.GetPool<Position>();
             var scalePool = world.GetPool<Scale>();
+            var teleportationRequestPool = world.GetPool<TeleportationRequest>();
 
             foreach (var entity in filter)
             {
                 ref var position = ref positionPool.Get(entity).Value;
                 ref var scale = ref scalePool.Get(entity).Value;
 
-                position = level.GetOppositePosition(position, scale);
-                teleportationRequestPool.Del(entity);
+                if (level.IsOut(position, scale))
+                {
+                    teleportationRequestPool.Add(entity);
+                }
             }
         }
     }

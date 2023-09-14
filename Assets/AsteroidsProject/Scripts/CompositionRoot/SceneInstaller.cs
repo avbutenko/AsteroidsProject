@@ -22,7 +22,6 @@ namespace AsteroidsProject.CompositionRoot
         public override void InstallBindings()
         {
             Container.Bind<ILevelService>().To<LevelService>().AsSingle();
-            Container.Bind<ITeleportationService>().To<TeleportationService>().AsSingle();
             Container.Bind<ISceneData>().FromInstance(SceneData).AsSingle();
             BindEcsSystems();
         }
@@ -36,6 +35,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<RotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<AccelerationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<DeaccelerationSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<TeleportationCheckSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<TeleportationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<UpdateGameplayObjectViewScaleSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<UpdateGameplayObjectViewRotationSystem>().AsSingle();
