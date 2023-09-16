@@ -3,8 +3,5 @@
 namespace AsteroidsProject.GameLogic.Core
 {
     [Serializable]
-    public struct Scale
-    {
-        public float Value;
-    }
+    public struct AsteroidTag { }
 }

@@ -6,6 +6,5 @@ namespace AsteroidsProject.Shared
     {
         public Vector2 Position { set; }
         public Quaternion Rotation { set; }
-        public float Scale { set; }
     }
 }

@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Deacceleration
 {
-    public class DeaccelerationSystem : IEcsRunSystem
+    public class DeaccelerationMovementSystem : IEcsRunSystem
     {
         private readonly ITimeService timeService;
 
-        public DeaccelerationSystem(ITimeService timeService)
+        public DeaccelerationMovementSystem(ITimeService timeService)
         {
             this.timeService = timeService;
         }

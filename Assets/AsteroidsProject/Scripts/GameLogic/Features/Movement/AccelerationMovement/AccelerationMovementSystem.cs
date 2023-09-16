@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Acceleration
 {
-    public class AccelerationSystem : IEcsRunSystem
+    public class AccelerationMovementSystem : IEcsRunSystem
     {
         private readonly ITimeService timeService;
 
-        public AccelerationSystem(ITimeService timeService)
+        public AccelerationMovementSystem(ITimeService timeService)
         {
             this.timeService = timeService;
         }

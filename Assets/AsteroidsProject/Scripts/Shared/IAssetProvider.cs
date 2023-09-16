@@ -5,6 +5,6 @@ namespace AsteroidsProject.Shared
 {
     public interface IAssetProvider
     {
-        public Task<TAsset> Load<TAsset>(string address) where TAsset : Object;
+        public Task<T> Load<T>(string address) where T : Object;
     }
 }

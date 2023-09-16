@@ -18,19 +18,16 @@ namespace AsteroidsProject.GameLogic.Features.Teleportation
             var world = systems.GetWorld();
             var filter = world.Filter<TeleportableTag>()
                               .Inc<Position>()
-                              .Inc<Scale>()
                               .End();
 
             var positionPool = world.GetPool<Position>();
-            var scalePool = world.GetPool<Scale>();
             var teleportationRequestPool = world.GetPool<TeleportationRequest>();
 
             foreach (var entity in filter)
             {
                 ref var position = ref positionPool.Get(entity).Value;
-                ref var scale = ref scalePool.Get(entity).Value;
 
-                if (level.IsOut(position, scale))
+                if (level.IsOut(position))
                 {
                     teleportationRequestPool.Add(entity);
                 }

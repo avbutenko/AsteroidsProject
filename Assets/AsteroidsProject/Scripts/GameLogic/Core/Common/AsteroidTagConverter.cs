@@ -2,5 +2,5 @@
 
 namespace AsteroidsProject.GameLogic.Core
 {
-    public class ScaleConverter : ComponentConverter<Scale> { }
+    public class AsteroidTagConverter : ComponentConverter<AsteroidTag> { }
 }

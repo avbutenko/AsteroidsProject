@@ -1,3 +1,4 @@
+using AsteroidsProject.Configs;
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
@@ -7,19 +8,22 @@ namespace AsteroidsProject.GameLogic.Features.SpawnPlayer
     public class SpawnPlayerSystem : IEcsInitSystem
     {
         private readonly ISceneData sceneData;
+        private readonly IConfigProvider configProvider;
 
-        public SpawnPlayerSystem(ISceneData sceneData)
+        public SpawnPlayerSystem(ISceneData sceneData, IConfigProvider configProvider)
         {
             this.sceneData = sceneData;
+            this.configProvider = configProvider;
         }
 
-        public void Init(IEcsSystems systems)
+        public async void Init(IEcsSystems systems)
         {
             var world = systems.GetWorld();
+            var spawnConfig = await configProvider.Load<PlayerConfig>("Configs/PlayerSpawnConfig.json");
 
             world.NewEntityWith(new SpawnPrefab
             {
-                PrefabAddress = "Player/Prefabs/Player.prefab",
+                PrefabAddress = spawnConfig.PrefabAddresses[0],
                 Position = sceneData.SpawnPlayerPosition.position,
                 Rotation = sceneData.SpawnPlayerPosition.rotation,
                 Parent = null
