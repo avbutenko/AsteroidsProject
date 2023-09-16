@@ -6,13 +6,12 @@ using AsteroidsProject.MonoBehaviours;
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.GameLogic.Features.Input;
 using AsteroidsProject.GameLogic.Features.Rotation;
-using AsteroidsProject.GameLogic.Features.Acceleration;
-using AsteroidsProject.GameLogic.Features.Deacceleration;
 using AsteroidsProject.GameLogic.Features.SpawnPlayer;
 using AsteroidsProject.GameLogic.Features.SpawnAsteroid;
 using AsteroidsProject.GameLogic.Features.SpawnPrefab;
 using AsteroidsProject.GameLogic.Features.Teleportation;
 using AsteroidsProject.GameLogic.Features.UpdateGameplayObjectView;
+using AsteroidsProject.GameLogic.Features.AccelerationMovement;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -35,8 +34,11 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<SpawnPrefabSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerInputSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RotationSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<AccelerationMovementSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<DeaccelerationMovementSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AccelerationVectorSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AccelerationVelocitySystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<DeaccelerationVectorSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<DeaccelerationVelocitySystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AccelerationPositionSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<TeleportationCheckSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<TeleportationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<UpdateGameplayObjectViewRotationSystem>().AsSingle();

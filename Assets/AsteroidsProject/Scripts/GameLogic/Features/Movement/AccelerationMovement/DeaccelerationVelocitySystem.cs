@@ -3,13 +3,13 @@ using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace AsteroidsProject.GameLogic.Features.Deacceleration
+namespace AsteroidsProject.GameLogic.Features.AccelerationMovement
 {
-    public class DeaccelerationMovementSystem : IEcsRunSystem
+    public class DeaccelerationVelocitySystem : IEcsRunSystem
     {
         private readonly ITimeService timeService;
 
-        public DeaccelerationMovementSystem(ITimeService timeService)
+        public DeaccelerationVelocitySystem(ITimeService timeService)
         {
             this.timeService = timeService;
         }
@@ -18,29 +18,24 @@ namespace AsteroidsProject.GameLogic.Features.Deacceleration
         {
             var world = systems.GetWorld();
             var filter = world.Filter<DeaccelerationRequest>()
-                              .Inc<Deacceleration>()
+                              .Inc<Acceleration>()
                               .Inc<Velocity>()
-                              .Inc<Position>()
                               .End();
 
             var deaccelerationRequestPool = world.GetPool<DeaccelerationRequest>();
-            var deaccelerationPool = world.GetPool<Deacceleration>();
+            var deaccelerationPool = world.GetPool<Acceleration>();
             var velocityPool = world.GetPool<Velocity>();
-            var positionPool = world.GetPool<Position>();
 
             foreach (var entity in filter)
             {
                 ref var velocity = ref velocityPool.Get(entity).Value;
-                ref var deacceleration = ref deaccelerationPool.Get(entity).Value;
-                ref var position = ref positionPool.Get(entity).Value;
+                ref var deaccelerationVector = ref deaccelerationPool.Get(entity).Vector;
 
-                var deaccelerationVector = velocity.normalized * deacceleration;
                 var newVelocity = velocity + deaccelerationVector * timeService.DeltaTime;
 
                 if (IsOppositeVectors(newVelocity, velocity))
                 {
                     velocity = newVelocity;
-                    position += velocity * timeService.DeltaTime + deaccelerationVector * Mathf.Pow(timeService.DeltaTime, 2) / 2;
                 }
                 else
                 {
