@@ -12,6 +12,7 @@ using AsteroidsProject.GameLogic.Features.SpawnPrefab;
 using AsteroidsProject.GameLogic.Features.Teleportation;
 using AsteroidsProject.GameLogic.Features.UpdateGameplayObjectView;
 using AsteroidsProject.GameLogic.Features.AccelerationMovement;
+using AsteroidsProject.GameLogic.Features.BasicMovement;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -39,6 +40,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<DeaccelerationVectorSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<DeaccelerationVelocitySystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<AccelerationPositionSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<BasicMovementSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<TeleportationCheckSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<TeleportationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<UpdateGameplayObjectViewRotationSystem>().AsSingle();

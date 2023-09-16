@@ -24,7 +24,7 @@ namespace AsteroidsProject.GameLogic.Features.SpawnAsteroid
 
         public async void Init(IEcsSystems systems)
         {
-            spawnConfig = await configProvider.Load<AsteroidConfig>("Configs/AsteroidSpawnConfig.json");
+            spawnConfig = await configProvider.Load<AsteroidConfig>("Configs/AsteroidConfig.json");
             timeIntervalBetweenSpawns = spawnConfig.MaxSpawnTime / (spawnConfig.MaxSpawns - spawnConfig.StartingSpawns);
             timeToNextSpawn = timeIntervalBetweenSpawns;
         }

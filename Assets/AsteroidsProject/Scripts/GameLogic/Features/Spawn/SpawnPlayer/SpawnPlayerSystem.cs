@@ -19,7 +19,7 @@ namespace AsteroidsProject.GameLogic.Features.SpawnPlayer
         public async void Init(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var spawnConfig = await configProvider.Load<PlayerConfig>("Configs/PlayerSpawnConfig.json");
+            var spawnConfig = await configProvider.Load<PlayerConfig>("Configs/PlayerConfig.json");
 
             world.NewEntityWith(new SpawnPrefab
             {

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace AsteroidsProject.GameLogic.Features.AccelerationMovement
+namespace AsteroidsProject.GameLogic.Core
 {
     [Serializable]
     public struct Acceleration

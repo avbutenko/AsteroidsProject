@@ -18,18 +18,5 @@ namespace AsteroidsProject.Services
             var asset = await assetProvider.Load<TextAsset>(configAddress);
             return JsonConvert.DeserializeObject<T>(asset.text);
         }
-
-        //private T DeserializeConfig<T>(string value)
-        //{
-        //    try
-        //    {
-        //        return JsonConvert.DeserializeObject<T>(value);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Debug.LogError($"Deserialization failed: {e.Message}");
-        //        throw e;
-        //    }
-        //}
     }
 }
