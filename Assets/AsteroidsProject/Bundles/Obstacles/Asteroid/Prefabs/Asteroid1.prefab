@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 9215618323547820296}
   - component: {fileID: 4214775061788670372}
   - component: {fileID: 8094310453804949815}
+  - component: {fileID: 366674465568985102}
   m_Layer: 0
   m_Name: Asteroid1
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4353995834622107108
 SpriteRenderer:
@@ -119,6 +120,7 @@ MonoBehaviour:
   - {fileID: 9215618323547820296}
   - {fileID: 4214775061788670372}
   - {fileID: 8094310453804949815}
+  - {fileID: 366674465568985102}
   _destroyAfterConversion: 1
 --- !u!114 &8943875964900433729
 MonoBehaviour:
@@ -157,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _component:
-    Value: {x: 1, y: 1}
+    Value: {x: 0, y: 0}
 --- !u!114 &8094310453804949815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,3 +174,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _component:
     Value: 50
+--- !u!114 &366674465568985102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762388553939839248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08ba61066ce22d546bd262ac39a6b99a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

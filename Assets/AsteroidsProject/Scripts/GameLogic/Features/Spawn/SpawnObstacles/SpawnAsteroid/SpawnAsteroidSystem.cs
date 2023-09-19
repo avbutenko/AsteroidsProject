@@ -11,7 +11,7 @@ namespace AsteroidsProject.GameLogic.Features.SpawnAsteroid
         private readonly ILevelService level;
         private readonly IConfigProvider configProvider;
         private readonly ITimeService timeService;
-        private AsteroidConfig spawnConfig;
+        private AsteroidConfig config;
         private float timeIntervalBetweenSpawns;
         private float timeToNextSpawn;
 
@@ -24,8 +24,8 @@ namespace AsteroidsProject.GameLogic.Features.SpawnAsteroid
 
         public async void Init(IEcsSystems systems)
         {
-            spawnConfig = await configProvider.Load<AsteroidConfig>("Configs/AsteroidConfig.json");
-            timeIntervalBetweenSpawns = spawnConfig.MaxSpawnTime / (spawnConfig.MaxSpawns - spawnConfig.StartingSpawns);
+            config = await configProvider.Load<AsteroidConfig>("Configs/AsteroidConfig.json");
+            timeIntervalBetweenSpawns = config.MaxSpawnTime / (config.MaxSpawns - config.StartingSpawns);
             timeToNextSpawn = timeIntervalBetweenSpawns;
         }
 
@@ -37,15 +37,15 @@ namespace AsteroidsProject.GameLogic.Features.SpawnAsteroid
 
             timeToNextSpawn -= timeService.DeltaTime;
 
-            if (timeToNextSpawn < 0 && count < spawnConfig?.MaxSpawns)
+            if (timeToNextSpawn < 0 && count < config?.MaxSpawns)
             {
                 timeToNextSpawn = timeIntervalBetweenSpawns;
 
-                var prefabIndex = Random.Range(0, spawnConfig.PrefabAddresses.Length);
+                var prefabIndex = Random.Range(0, config.PrefabAddresses.Length);
 
                 world.NewEntityWith(new SpawnPrefab
                 {
-                    PrefabAddress = spawnConfig.PrefabAddresses[prefabIndex],
+                    PrefabAddress = config.PrefabAddresses[prefabIndex],
                     Position = level.GetRandomPosition(),
                     Rotation = Quaternion.identity,
                     Parent = null

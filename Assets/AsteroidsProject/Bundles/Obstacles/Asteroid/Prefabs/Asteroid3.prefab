@@ -58,11 +58,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4214775061788670372, guid: aa1e7e6564d77d14184558c39a394ee2, type: 3}
       propertyPath: _component.Value.x
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4214775061788670372, guid: aa1e7e6564d77d14184558c39a394ee2, type: 3}
       propertyPath: _component.Value.y
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4353995834622107108, guid: aa1e7e6564d77d14184558c39a394ee2, type: 3}
       propertyPath: m_Sprite
