@@ -20,7 +20,7 @@ namespace AsteroidsProject.GameLogic.Features.Input
 
             var accelerationRequestPool = world.GetPool<AccelerationRequest>();
             var deaccelerationRequestPool = world.GetPool<DeaccelerationRequest>();
-            var rotationRequestPool = world.GetPool<RotationRequest>();
+            var rotationDirectionPool = world.GetPool<RotationDirection>();
 
             foreach (var entity in filter)
             {
@@ -36,11 +36,8 @@ namespace AsteroidsProject.GameLogic.Features.Input
                     accelerationRequestPool.Del(entity);
                 }
 
-                if (inputService.IsRotating)
-                {
-                    ref var rotationRequest = ref rotationRequestPool.Add(entity);
-                    rotationRequest.RotationDirection = inputService.RotationDirection;
-                }
+                ref var rotationDirection = ref rotationDirectionPool.Get(entity).Value;
+                rotationDirection = inputService.RotationDirection;
             }
         }
     }

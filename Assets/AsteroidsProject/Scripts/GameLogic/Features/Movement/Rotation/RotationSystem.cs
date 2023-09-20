@@ -18,24 +18,22 @@ namespace AsteroidsProject.GameLogic.Features.Rotation
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<RotationRequest>()
+            var filter = world.Filter<RotationDirection>()
                               .Inc<RotationSpeed>()
-                              .Inc<GameLogic.Core.Rotation>()
+                              .Inc<Core.Rotation>()
                               .End();
 
-            var rotationCommandPool = world.GetPool<RotationRequest>();
+            var rotationDirectionPool = world.GetPool<RotationDirection>();
             var rotationSpeedPool = world.GetPool<RotationSpeed>();
-            var rotationPool = world.GetPool<GameLogic.Core.Rotation>();
+            var rotationPool = world.GetPool<Core.Rotation>();
 
             foreach (var entity in filter)
             {
-                ref var rotationDirection = ref rotationCommandPool.Get(entity).RotationDirection;
+                ref var rotationDirection = ref rotationDirectionPool.Get(entity).Value;
                 ref var rotationSpeed = ref rotationSpeedPool.Get(entity).Value;
                 ref var rotation = ref rotationPool.Get(entity).Value;
 
                 rotation = GetNewRotation(rotation, rotationDirection, rotationSpeed);
-
-                rotationCommandPool.Del(entity);
             }
         }
 
