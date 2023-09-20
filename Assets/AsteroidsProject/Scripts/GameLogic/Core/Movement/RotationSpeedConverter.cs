@@ -1,6 +1,6 @@
 ﻿using AB_Utility.FromSceneToEntityConverter;
 
-namespace AsteroidsProject.GameLogic.Features.Rotation
+namespace AsteroidsProject.GameLogic.Core
 {
     public class RotationSpeedConverter : ComponentConverter<RotationSpeed> { }
 }

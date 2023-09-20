@@ -15,6 +15,7 @@ using AsteroidsProject.GameLogic.Features.AccelerationMovement;
 using AsteroidsProject.GameLogic.Features.BasicMovement;
 using AsteroidsProject.GameLogic.Features.RandomizedVelocity;
 using AsteroidsProject.GameLogic.Features.RandomizeRotationDirection;
+using AsteroidsProject.GameLogic.Features.RandomizeRotationSpeed;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -37,6 +38,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<SpawnPrefabSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RandomizeVelocitySystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RandomizeRotationDirectionSysytem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<RandomizeRotationSpeedSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerInputSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<AccelerationVectorSystem>().AsSingle();

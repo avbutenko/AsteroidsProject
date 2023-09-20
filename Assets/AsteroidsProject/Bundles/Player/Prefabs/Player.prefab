@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 5952499270330099802}
   - component: {fileID: 3191863852462059129}
   - component: {fileID: 3149634441101418755}
-  - component: {fileID: 5272213048589319271}
   - component: {fileID: 8295825105859723844}
+  - component: {fileID: 1032289287720031990}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -121,8 +121,8 @@ MonoBehaviour:
   - {fileID: 5952499270330099802}
   - {fileID: 3191863852462059129}
   - {fileID: 3149634441101418755}
-  - {fileID: 5272213048589319271}
   - {fileID: 8295825105859723844}
+  - {fileID: 1032289287720031990}
   _destroyAfterConversion: 1
 --- !u!114 &5374718352742615870
 MonoBehaviour:
@@ -176,20 +176,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _component:
     Value: 0
---- !u!114 &5272213048589319271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2707922812654170391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cb03c7523747ec4ba73072cbeb6232e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _component:
-    Value: 150
 --- !u!114 &8295825105859723844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,5 +190,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _component:
     Vector: {x: 0, y: 0}
-    AccelerationModifier: 5
+    AccelerationModifier: 6
     DeaccelerationModifier: -1.5
+--- !u!114 &1032289287720031990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2707922812654170391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b6e39df5402ec42b22915272a7415c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _component:
+    Value: 150

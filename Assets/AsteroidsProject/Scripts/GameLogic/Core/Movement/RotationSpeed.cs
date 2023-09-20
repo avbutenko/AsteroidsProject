@@ -1,6 +1,6 @@
 using System;
 
-namespace AsteroidsProject.GameLogic.Features.Rotation
+namespace AsteroidsProject.GameLogic.Core
 {
     [Serializable]
     public struct RotationSpeed
