@@ -1,30 +1,11 @@
-﻿using AsteroidsProject.Configs;
-using AsteroidsProject.GameLogic.Core;
-using AsteroidsProject.Shared;
+﻿using AsteroidsProject.GameLogic.Core;
 using Leopotam.EcsLite;
 using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.RandomizedVelocity
 {
-    public class RandomizeVelocitySystem : IEcsInitSystem, IEcsRunSystem
+    public class RandomizeVelocitySystem : IEcsRunSystem
     {
-        private readonly IConfigProvider configProvider;
-        private float[] XRange;
-        private float[] YRange;
-
-        public RandomizeVelocitySystem(IConfigProvider configProvider)
-        {
-            this.configProvider = configProvider;
-        }
-
-        public async void Init(IEcsSystems systems)
-        {
-            var config = await configProvider.Load<AsteroidConfig>("Configs/AsteroidConfig.json");
-
-            XRange = config.VelocityRange.XRange;
-            YRange = config.VelocityRange.YRange;
-        }
-
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
@@ -38,9 +19,13 @@ namespace AsteroidsProject.GameLogic.Features.RandomizedVelocity
             foreach (var entity in filter)
             {
                 ref var velocity = ref velocityPool.Get(entity).Value;
+                ref var xMin = ref randomizeVelocityRequestPool.Get(entity).VelocityRange.XMin;
+                ref var xMax = ref randomizeVelocityRequestPool.Get(entity).VelocityRange.XMax;
+                ref var yMin = ref randomizeVelocityRequestPool.Get(entity).VelocityRange.YMin;
+                ref var yMax = ref randomizeVelocityRequestPool.Get(entity).VelocityRange.YMax;
 
-                velocity.x = Random.Range(XRange[0], XRange[1]);
-                velocity.y = Random.Range(YRange[0], YRange[1]);
+                velocity.x = Random.Range(xMin, xMax);
+                velocity.y = Random.Range(yMin, yMax);
 
                 randomizeVelocityRequestPool.Del(entity);
             }

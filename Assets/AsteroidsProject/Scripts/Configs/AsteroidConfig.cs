@@ -8,12 +8,5 @@ namespace AsteroidsProject.Configs
         public float StartingSpawns { get; set; }
         public float MaxSpawns { get; set; }
         public float MaxSpawnTime { get; set; }
-        public VelocityRange VelocityRange { get; set; }
-    }
-
-    public struct VelocityRange
-    {
-        public float[] XRange;
-        public float[] YRange;
     }
 }

@@ -6,10 +6,5 @@
     ],
     "StartingSpawns": 13,
     "MaxSpawns": 36,
-    "MaxSpawnTime": 60,
-    "VelocityRange": {
-        "XRange": [ -2, 2 ],
-        "YRange": [ -2, 2 ]
-    }
-
+    "MaxSpawnTime": 60
 }
