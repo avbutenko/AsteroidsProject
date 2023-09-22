@@ -1,9 +1,9 @@
-﻿using AsteroidsProject.Shared;
-
-namespace AsteroidsProject.Configs
+﻿namespace AsteroidsProject.Configs
 {
-    public class PlayerConfig : IPrefabConfig
+    public class PlayerConfig
     {
-        public string[] PrefabAddresses { get; set; }
+        public string PrefabAddress { get; set; }
+        public string PrimaryWeaponPrefabAddress { get; set; }
+        public string SecondaryWeaponPrefabAddress { get; set; }
     }
 }

@@ -1,18 +1,18 @@
 ﻿using AsteroidsProject.GameLogic.Core;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.UpdateGameplayObjectView
+namespace AsteroidsProject.GameLogic.Features.UpdateGameObjectView
 {
-    public class UpdateGameplayObjectViewPositionSystem : IEcsRunSystem
+    public class UpdateGameObjectViewPositionSystem : IEcsRunSystem
     {
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<LinkToGameplayObjectView>()
+            var filter = world.Filter<LinkToGameObject>()
                               .Inc<Position>()
                               .End();
 
-            var viewPool = world.GetPool<LinkToGameplayObjectView>();
+            var viewPool = world.GetPool<LinkToGameObject>();
             var positionPool = world.GetPool<Position>();
 
 

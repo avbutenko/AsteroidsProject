@@ -2,9 +2,9 @@
 
 namespace AsteroidsProject.Shared
 {
-    public struct EntityLinkedToView
+    public struct EntityWithGameObject
     {
         public int Entity;
-        public GameObject View;
+        public GameObject GameObject;
     }
 }

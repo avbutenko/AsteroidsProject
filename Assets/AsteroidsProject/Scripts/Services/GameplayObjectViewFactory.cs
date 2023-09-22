@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace AsteroidsProject.Services
 {
-    public class GameplayObjectViewFactory : IGameplayObjectViewFactory
+    public class GameplayObjectViewFactory : IGameObjectFactory
     {
         private readonly IAssetProvider assetProvider;
 
@@ -15,14 +15,14 @@ namespace AsteroidsProject.Services
             this.assetProvider = assetProvider;
         }
 
-        public async Task<EntityLinkedToView> InstantiateAsync(string prefabAddress,
+        public async Task<EntityWithGameObject> InstantiateAsync(string prefabAddress,
             Vector2 position, Quaternion rotation, Transform parentTransform, EcsWorld world)
         {
             var prefab = await assetProvider.Load<GameObject>(prefabAddress);
 
-            var view = EcsConverter.InstantiateAndCreateEntity(prefab, position, rotation, parentTransform, world, out int entity);
+            var gameObject = EcsConverter.InstantiateAndCreateEntity(prefab, position, rotation, parentTransform, world, out int entity);
 
-            return new EntityLinkedToView { Entity = entity, View = view };
+            return new EntityWithGameObject { Entity = entity, GameObject = gameObject };
         }
     }
 }

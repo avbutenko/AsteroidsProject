@@ -1,3 +1,4 @@
+using Leopotam.EcsLite;
 using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Core
@@ -8,5 +9,6 @@ namespace AsteroidsProject.GameLogic.Core
         public Vector3 Position;
         public Quaternion Rotation;
         public Transform Parent;
+        public EcsPackedEntity OwnerEntity;
     }
 }

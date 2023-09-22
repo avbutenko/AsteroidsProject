@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace AsteroidsProject.Shared
 {
-    public interface IGameplayObjectViewFactory
+    public interface IGameObjectFactory
     {
-        public Task<EntityLinkedToView> InstantiateAsync(string prefabAddress,
+        public Task<EntityWithGameObject> InstantiateAsync(string prefabAddress,
             Vector2 position, Quaternion rotation, Transform parentTransform, EcsWorld world);
     }
 }

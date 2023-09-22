@@ -1,8 +1,8 @@
 {
     "PrefabAddresses": [
-        "Obstacles/Asteroid/Prefabs/Asteroid1.prefab",
-        "Obstacles/Asteroid/Prefabs/Asteroid2.prefab",
-        "Obstacles/Asteroid/Prefabs/Asteroid3.prefab"
+        "Bundles/Obstacles/Asteroid/Prefabs/Asteroid1.prefab",
+        "Bundles/Obstacles/Asteroid/Prefabs/Asteroid2.prefab",
+        "Bundles/Obstacles/Asteroid/Prefabs/Asteroid3.prefab"
     ],
     "StartingSpawns": 13,
     "MaxSpawns": 36,

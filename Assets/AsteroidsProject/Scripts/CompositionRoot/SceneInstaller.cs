@@ -10,12 +10,16 @@ using AsteroidsProject.GameLogic.Features.SpawnPlayer;
 using AsteroidsProject.GameLogic.Features.SpawnAsteroid;
 using AsteroidsProject.GameLogic.Features.SpawnPrefab;
 using AsteroidsProject.GameLogic.Features.Teleportation;
-using AsteroidsProject.GameLogic.Features.UpdateGameplayObjectView;
+using AsteroidsProject.GameLogic.Features.UpdateGameObjectView;
 using AsteroidsProject.GameLogic.Features.AccelerationMovement;
 using AsteroidsProject.GameLogic.Features.BasicMovement;
 using AsteroidsProject.GameLogic.Features.RandomizedVelocity;
 using AsteroidsProject.GameLogic.Features.RandomizeRotationDirection;
 using AsteroidsProject.GameLogic.Features.RandomizeRotationSpeed;
+using AsteroidsProject.GameLogic.Features.PrimaryWeapon;
+using AsteroidsProject.GameLogic.Features.BulletGun;
+using AsteroidsProject.GameLogic.Features.SecondaryWeapon;
+using AsteroidsProject.GameLogic.Features.LaserGun;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -32,13 +36,18 @@ namespace AsteroidsProject.CompositionRoot
 
         private void BindEcsSystems()
         {
-            Container.Bind<IGameplayObjectViewFactory>().To<GameplayObjectViewFactory>().AsSingle();
+            Container.Bind<IGameObjectFactory>().To<GameplayObjectViewFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPlayerSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnPrimaryWeaponSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnSecondaryWeaponSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnAsteroidSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPrefabSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RandomizeVelocitySystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RandomizeRotationDirectionSysytem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RandomizeRotationSpeedSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<AccelerationRequest>>().AsSingle();
+            Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<PrimaryWeaponAttackRequest>>().AsSingle();
+            Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<SecondaryWeaponAttackRequest>>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerInputSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<AccelerationVectorSystem>().AsSingle();
@@ -49,8 +58,12 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<BasicMovementSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<TeleportationCheckSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<TeleportationSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<UpdateGameplayObjectViewRotationSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<UpdateGameplayObjectViewPositionSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PrimaryWeaponAttackSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SecondaryWeaponAttackSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<BulletGunAttackSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LaserGunAttackSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<UpdateGameObjectViewRotationSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<UpdateGameObjectViewPositionSystem>().AsSingle();
 
 #if UNITY_EDITOR
             Container.BindInterfacesAndSelfTo<EcsWorldDebugSystem>().AsSingle();

@@ -31,7 +31,6 @@ namespace AsteroidsProject.GameLogic.Features.AccelerationMovement
                 ref var velocity = ref velocityPool.Get(entity).Value;
 
                 velocity += accelerationVector * timeService.DeltaTime;
-                accelerationRequestPool.Del(entity);
             }
         }
     }

@@ -4,8 +4,8 @@ using System;
 namespace AsteroidsProject.GameLogic.Core
 {
     [Serializable]
-    public struct LinkToGameplayObjectView
+    public struct LinkToGameObject
     {
-        public ILinkToGameplayObjectView View;
+        public IGameObject View;
     }
 }

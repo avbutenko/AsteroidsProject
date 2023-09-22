@@ -40,6 +40,7 @@ namespace AsteroidsProject.GameLogic.Features.AccelerationMovement
                 else
                 {
                     velocity = Vector2.zero;
+                    deaccelerationVector = Vector2.zero;
                     deaccelerationRequestPool.Del(entity);
                 }
             }

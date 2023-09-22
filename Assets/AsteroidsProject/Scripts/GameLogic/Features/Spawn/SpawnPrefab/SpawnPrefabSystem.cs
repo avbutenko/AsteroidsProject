@@ -7,9 +7,9 @@ namespace AsteroidsProject.GameLogic.Features.SpawnPrefab
 {
     public class SpawnPrefabSystem : IEcsRunSystem
     {
-        private readonly IGameplayObjectViewFactory factory;
+        private readonly IGameObjectFactory factory;
 
-        public SpawnPrefabSystem(IGameplayObjectViewFactory factory)
+        public SpawnPrefabSystem(IGameObjectFactory factory)
         {
             this.factory = factory;
         }
@@ -26,22 +26,29 @@ namespace AsteroidsProject.GameLogic.Features.SpawnPrefab
                 ref var position = ref spawnPrefabPool.Get(entity).Position;
                 ref var rotation = ref spawnPrefabPool.Get(entity).Rotation;
                 ref var parent = ref spawnPrefabPool.Get(entity).Parent;
+                ref var owner = ref spawnPrefabPool.Get(entity).OwnerEntity;
 
-                SpawnAndLink(prefabAddress, position, rotation, parent, world);
+                SpawnAndLink(prefabAddress, position, rotation, parent, world, owner);
 
                 world.DelEntity(entity);
             }
         }
 
         private async void SpawnAndLink(string prefabAddress,
-            Vector2 position, Quaternion rotation, Transform parentTransform, EcsWorld world)
+            Vector2 position, Quaternion rotation, Transform parent, EcsWorld world, EcsPackedEntity ecsOwnerPackedEntity)
         {
-            var entityLinkedToView = await factory.InstantiateAsync(prefabAddress, position, rotation, parentTransform, world);
+            var entityWithGameObject = await factory.InstantiateAsync(prefabAddress, position, rotation, parent, world);
 
-            var view = entityLinkedToView.View.GetComponent<ILinkToGameplayObjectView>();
-            world.AddComponentToEntity(entityLinkedToView.Entity, new LinkToGameplayObjectView { View = view });
-            world.AddComponentToEntity(entityLinkedToView.Entity, new Position { Value = position });
-            world.AddComponentToEntity(entityLinkedToView.Entity, new Rotation { Value = rotation });
+            var gameObject = entityWithGameObject.GameObject.GetComponent<IGameObject>();
+
+            world.AddComponentToEntity(entityWithGameObject.Entity, new LinkToGameObject { View = gameObject });
+            world.AddComponentToEntity(entityWithGameObject.Entity, new Position { Value = position });
+            world.AddComponentToEntity(entityWithGameObject.Entity, new Rotation { Value = rotation });
+
+            if (ecsOwnerPackedEntity.Unpack(world, out int entity))
+            {
+                world.AddComponentToEntity(entityWithGameObject.Entity, new OwnerEntity { Value = ecsOwnerPackedEntity });
+            }
         }
     }
 }

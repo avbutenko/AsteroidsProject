@@ -38,6 +38,16 @@ namespace AsteroidsProject.GameLogic.Features.Input
 
                 ref var rotationDirection = ref rotationDirectionPool.Get(entity).Value;
                 rotationDirection = inputService.RotationDirection;
+
+                if (inputService.IsPrimaryWeaponAttackPerformed)
+                {
+                    world.NewEntityWith<PrimaryWeaponAttackRequest>();
+                }
+
+                if (inputService.IsSecondaryWeaponAttackPerformed)
+                {
+                    world.NewEntityWith<SecondaryWeaponAttackRequest>();
+                }
             }
         }
     }
