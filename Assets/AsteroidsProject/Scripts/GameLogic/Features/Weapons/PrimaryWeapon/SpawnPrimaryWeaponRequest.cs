@@ -1,4 +1,12 @@
-﻿namespace AsteroidsProject.GameLogic.Features.PrimaryWeapon
+﻿using System;
+using UnityEngine;
+
+namespace AsteroidsProject.GameLogic.Features.PrimaryWeapon
 {
-    public struct SpawnPrimaryWeaponRequest { }
+    [Serializable]
+    public struct SpawnPrimaryWeaponRequest
+    {
+        public string PrefabAddress;
+        public Transform WeaponSlot;
+    }
 }

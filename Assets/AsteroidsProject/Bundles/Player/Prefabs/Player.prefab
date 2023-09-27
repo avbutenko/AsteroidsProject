@@ -258,6 +258,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e5dd470337ab04b818faa6f3bd0e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _component:
+    PrefabAddress: Bundles/Weapons/Prefabs/BulletGun.prefab
+    WeaponSlot: {fileID: 3912911271661441822}
 --- !u!114 &5518065300724055131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +273,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6c473f526b542a49a0dd2f5e70b406a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _component:
+    PrefabAddress: Bundles/Weapons/Prefabs/LaserGun.prefab
+    WeaponSlot: {fileID: 2713995690916705976}
 --- !u!1 &4260022647186748621
 GameObject:
   m_ObjectHideFlags: 0

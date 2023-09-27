@@ -21,6 +21,8 @@ namespace AsteroidsProject.GameLogic.Features.Input
             var accelerationRequestPool = world.GetPool<AccelerationRequest>();
             var deaccelerationRequestPool = world.GetPool<DeaccelerationRequest>();
             var rotationDirectionPool = world.GetPool<RotationDirection>();
+            var primaryWeaponAttackRequestPool = world.GetPool<PrimaryWeaponAttackRequest>();
+            var secondaryWeaponAttackRequestPool = world.GetPool<SecondaryWeaponAttackRequest>();
 
             foreach (var entity in filter)
             {
@@ -41,12 +43,12 @@ namespace AsteroidsProject.GameLogic.Features.Input
 
                 if (inputService.IsPrimaryWeaponAttackPerformed)
                 {
-                    world.NewEntityWith<PrimaryWeaponAttackRequest>();
+                    primaryWeaponAttackRequestPool.Add(entity);
                 }
 
                 if (inputService.IsSecondaryWeaponAttackPerformed)
                 {
-                    world.NewEntityWith<SecondaryWeaponAttackRequest>();
+                    secondaryWeaponAttackRequestPool.Add(entity);
                 }
             }
         }

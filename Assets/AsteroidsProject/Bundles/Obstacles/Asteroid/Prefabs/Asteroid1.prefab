@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _component:
     Value: {x: 0, y: 0}
+    RandomizeOnInit: 1
 --- !u!114 &366674465568985102
 MonoBehaviour:
   m_ObjectHideFlags: 0

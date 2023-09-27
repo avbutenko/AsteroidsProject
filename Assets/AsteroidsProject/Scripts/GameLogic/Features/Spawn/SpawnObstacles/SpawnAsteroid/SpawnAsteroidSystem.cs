@@ -11,15 +11,17 @@ namespace AsteroidsProject.GameLogic.Features.SpawnAsteroid
         private readonly ILevelService level;
         private readonly IConfigProvider configProvider;
         private readonly ITimeService timeService;
+        private readonly ISceneData sceneData;
         private AsteroidConfig config;
         private float timeIntervalBetweenSpawns;
         private float timeToNextSpawn;
 
-        public SpawnAsteroidSystem(ILevelService level, IConfigProvider configProvider, ITimeService timeService)
+        public SpawnAsteroidSystem(ILevelService level, IConfigProvider configProvider, ITimeService timeService, ISceneData sceneData)
         {
             this.level = level;
             this.configProvider = configProvider;
             this.timeService = timeService;
+            this.sceneData = sceneData;
         }
 
         public async void Init(IEcsSystems systems)
@@ -48,7 +50,7 @@ namespace AsteroidsProject.GameLogic.Features.SpawnAsteroid
                     PrefabAddress = config.PrefabAddresses[prefabIndex],
                     Position = level.GetRandomPosition(),
                     Rotation = Quaternion.identity,
-                    Parent = null
+                    Parent = sceneData.AsteroidsParent
                 });
             }
         }

@@ -9,13 +9,11 @@ namespace AsteroidsProject.GameLogic.Features.SpawnPlayer
     {
         private readonly ISceneData sceneData;
         private readonly IConfigProvider configProvider;
-        private readonly IGameObjectFactory factory;
 
-        public SpawnPlayerSystem(ISceneData sceneData, IConfigProvider configProvider, IGameObjectFactory factory)
+        public SpawnPlayerSystem(ISceneData sceneData, IConfigProvider configProvider)
         {
             this.sceneData = sceneData;
             this.configProvider = configProvider;
-            this.factory = factory;
         }
 
         public async void Init(IEcsSystems systems)

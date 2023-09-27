@@ -36,7 +36,6 @@ namespace AsteroidsProject.CompositionRoot
 
         private void BindEcsSystems()
         {
-            Container.Bind<IGameObjectFactory>().To<GameplayObjectViewFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPlayerSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPrimaryWeaponSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnSecondaryWeaponSystem>().AsSingle();
@@ -48,6 +47,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<AccelerationRequest>>().AsSingle();
             Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<PrimaryWeaponAttackRequest>>().AsSingle();
             Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<SecondaryWeaponAttackRequest>>().AsSingle();
+            Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<AttackRequest>>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerInputSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<AccelerationVectorSystem>().AsSingle();

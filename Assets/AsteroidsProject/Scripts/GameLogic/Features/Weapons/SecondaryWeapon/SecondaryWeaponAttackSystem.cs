@@ -8,17 +8,21 @@ namespace AsteroidsProject.GameLogic.Features.SecondaryWeapon
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var requestFilter = world.Filter<SecondaryWeaponAttackRequest>().End();
-            var weaponFilter = world.Filter<SecondaryWeaponTag>().End();
+            var filter = world.Filter<SecondaryWeaponAttackRequest>()
+                              .Inc<SecondaryWeapon>()
+                              .End();
 
-            foreach (var requestEntity in requestFilter)
+            var weaponPool = world.GetPool<SecondaryWeapon>();
+            var attackRequestPool = world.GetPool<AttackRequest>();
+
+            foreach (var entity in filter)
             {
-                foreach (var weaponEntity in weaponFilter)
-                {
-                    world.AddComponentToEntity(weaponEntity, new AttackRequest { });
-                }
+                ref var weaponPackedEntity = ref weaponPool.Get(entity).WeaponEntity;
 
-                world.DelEntity(requestEntity);
+                if (weaponPackedEntity.Unpack(world, out int weaponUnpackedEntity))
+                {
+                    attackRequestPool.Add(weaponUnpackedEntity);
+                }
             }
         }
     }

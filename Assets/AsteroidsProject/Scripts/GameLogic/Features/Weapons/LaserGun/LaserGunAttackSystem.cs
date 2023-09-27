@@ -13,12 +13,9 @@ namespace AsteroidsProject.GameLogic.Features.LaserGun
                               .Inc<AttackRequest>()
                               .End();
 
-            var attackRequestPool = world.GetPool<AttackRequest>();
-
             foreach (var entity in filter)
             {
                 Debug.Log("Spawn Laser!!!");
-                attackRequestPool.Del(entity);
             }
         }
     }

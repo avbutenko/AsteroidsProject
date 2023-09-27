@@ -1,5 +1,5 @@
 {
     "PrefabAddress": "Bundles/Player/Prefabs/Player.prefab",
-    "PrimaryWeaponPrefabAddress": "Bundles/Weapons/Prefabs/BulletGun.prefab",
-    "SecondaryWeaponPrefabAddress": "Bundles/Weapons/Prefabs/LaserGun.prefab"
+    //"PrimaryWeaponPrefabAddress": "Bundles/Weapons/Prefabs/BulletGun.prefab",
+    //"SecondaryWeaponPrefabAddress": "Bundles/Weapons/Prefabs/LaserGun.prefab"
 }

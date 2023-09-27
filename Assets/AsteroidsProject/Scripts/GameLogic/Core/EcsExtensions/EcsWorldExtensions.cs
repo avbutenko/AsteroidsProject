@@ -17,12 +17,12 @@ namespace AsteroidsProject.GameLogic.Core
             world.AddComponentToEntity(entity, value);
         }
 
-        public static void AddComponentToEntity<TComponent>(this EcsWorld world, int id, TComponent component)
+        public static void AddComponentToEntity<TComponent>(this EcsWorld world, int entity, TComponent component)
             where TComponent : struct
         {
             var pool = world.GetPool<TComponent>();
-            pool.Add(id);
-            ref var reference = ref pool.Get(id);
+            pool.Add(entity);
+            ref var reference = ref pool.Get(entity);
             reference = component;
         }
     }

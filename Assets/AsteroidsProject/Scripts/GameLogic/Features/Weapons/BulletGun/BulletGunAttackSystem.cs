@@ -13,12 +13,9 @@ namespace AsteroidsProject.GameLogic.Features.BulletGun
                               .Inc<AttackRequest>()
                               .End();
 
-            var attackRequestPool = world.GetPool<AttackRequest>();
-
             foreach (var entity in filter)
             {
                 Debug.Log("Spawn Bullet!!!");
-                attackRequestPool.Del(entity);
             }
         }
     }

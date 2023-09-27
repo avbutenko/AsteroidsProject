@@ -1,4 +1,3 @@
-using AsteroidsProject.Configs;
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
@@ -6,49 +5,41 @@ using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.SecondaryWeapon
 {
-    public class SpawnSecondaryWeaponSystem : IEcsInitSystem, IEcsRunSystem
+    public class SpawnSecondaryWeaponSystem : BaseSpawnSystem, IEcsRunSystem
     {
-        private readonly IConfigProvider configProvider;
-        private PlayerConfig config;
-
-        public SpawnSecondaryWeaponSystem(IConfigProvider configProvider)
-        {
-            this.configProvider = configProvider;
-        }
-
-        public async void Init(IEcsSystems systems)
-        {
-            config = await configProvider.Load<PlayerConfig>("Configs/PlayerConfig.json");
-        }
+        public SpawnSecondaryWeaponSystem(IGameObjectFactory factory) : base(factory) { }
 
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<PlayerTag>()
-                              .Inc<LinkToGameObject>()
-                              .Inc<SpawnSecondaryWeaponRequest>()
-                              .End();
+            var filter = world.Filter<SpawnSecondaryWeaponRequest>().End();
 
-            var spawnSecondaryWeaponRequestPool = world.GetPool<SpawnSecondaryWeaponRequest>();
-            var linkToGameObjectPool = world.GetPool<LinkToGameObject>();
+            var requestPool = world.GetPool<SpawnSecondaryWeaponRequest>();
+            var weaponPool = world.GetPool<SecondaryWeapon>();
 
             foreach (var entity in filter)
             {
-                ref var link = ref linkToGameObjectPool.Get(entity);
-                var weaponSlot = link.View.GameObject.GetComponent<IPlayerGameObject>().SecondaryWeaponSlot;
+                ref var prefabAddress = ref requestPool.Get(entity).PrefabAddress;
+                ref var weaponSlot = ref requestPool.Get(entity).WeaponSlot;
 
-                world.NewEntityWith(new SpawnPrefab
-                {
-                    PrefabAddress = config.SecondaryWeaponPrefabAddress,
-                    Position = Vector2.zero,
-                    Rotation = Quaternion.identity,
-                    Parent = weaponSlot,
-                    OwnerEntity = world.PackEntity(entity)
-                });
+                SpawnPrimaryWeapon(entity, prefabAddress, weaponSlot, world, weaponPool);
 
-                spawnSecondaryWeaponRequestPool.Del(entity);
+                requestPool.Del(entity);
             }
+        }
+
+        private async void SpawnPrimaryWeapon(int ownerEntity, string prefabAddress, Transform weaponSlot, EcsWorld world, EcsPool<SecondaryWeapon> primaryWeaponPool)
+        {
+            var newEntityWithGameObject = await Spawn(new SpawnInfo
+            {
+                PrefabAddress = prefabAddress,
+                Position = Vector2.zero,
+                Rotation = Quaternion.identity,
+                Parent = weaponSlot,
+                World = world,
+            });
+
+            primaryWeaponPool.Add(ownerEntity).WeaponEntity = world.PackEntity(newEntityWithGameObject.Entity);
         }
     }
 }
-

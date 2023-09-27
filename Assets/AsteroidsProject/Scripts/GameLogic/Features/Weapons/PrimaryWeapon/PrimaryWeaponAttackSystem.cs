@@ -8,17 +8,21 @@ namespace AsteroidsProject.GameLogic.Features.PrimaryWeapon
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var requestFilter = world.Filter<PrimaryWeaponAttackRequest>().End();
-            var weaponFilter = world.Filter<PrimaryWeaponTag>().End();
+            var filter = world.Filter<PrimaryWeaponAttackRequest>()
+                              .Inc<PrimaryWeapon>()
+                              .End();
 
-            foreach (var requestEntity in requestFilter)
+            var primaryWeaponPool = world.GetPool<PrimaryWeapon>();
+            var attackRequestPool = world.GetPool<AttackRequest>();
+
+            foreach (var entity in filter)
             {
-                foreach (var weaponEntity in weaponFilter)
-                {
-                    world.AddComponentToEntity(weaponEntity, new AttackRequest { });
-                }
+                ref var primaryWeaponPackedEntity = ref primaryWeaponPool.Get(entity).WeaponEntity;
 
-                world.DelEntity(requestEntity);
+                if (primaryWeaponPackedEntity.Unpack(world, out int primaryWeaponUnpackedEntity))
+                {
+                    attackRequestPool.Add(primaryWeaponUnpackedEntity);
+                }
             }
         }
     }
