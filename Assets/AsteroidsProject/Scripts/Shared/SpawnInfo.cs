@@ -10,5 +10,6 @@ namespace AsteroidsProject.Shared
         public Quaternion Rotation;
         public Transform Parent;
         public EcsWorld World;
+        public EcsPackedEntity OwnerEntity;
     }
 }

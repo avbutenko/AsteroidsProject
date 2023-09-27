@@ -26,7 +26,8 @@ namespace AsteroidsProject.GameLogic.Features.SpawnAsteroid
 
         public async void Init(IEcsSystems systems)
         {
-            config = await configProvider.Load<AsteroidConfig>("Configs/AsteroidConfig.json");
+            var gameConfig = await configProvider.Load<GameConfig>("Configs/GameConfig.json");
+            config = await configProvider.Load<AsteroidConfig>(gameConfig.AsteroidConfigPath);
             timeIntervalBetweenSpawns = config.MaxSpawnTime / (config.MaxSpawns - config.StartingSpawns);
             timeToNextSpawn = timeIntervalBetweenSpawns;
         }
@@ -45,12 +46,15 @@ namespace AsteroidsProject.GameLogic.Features.SpawnAsteroid
 
                 var prefabIndex = Random.Range(0, config.PrefabAddresses.Length);
 
-                world.NewEntityWith(new SpawnPrefab
+                world.NewEntityWith(new SpawnPrefabRequest
                 {
-                    PrefabAddress = config.PrefabAddresses[prefabIndex],
-                    Position = level.GetRandomPosition(),
-                    Rotation = Quaternion.identity,
-                    Parent = sceneData.AsteroidsParent
+                    SpawnInfo = new SpawnInfo
+                    {
+                        PrefabAddress = config.PrefabAddresses[prefabIndex],
+                        Position = level.GetRandomPosition(),
+                        Rotation = Quaternion.identity,
+                        Parent = sceneData.AsteroidsParent
+                    }
                 });
             }
         }

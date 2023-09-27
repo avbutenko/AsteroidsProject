@@ -11,15 +11,15 @@ namespace AsteroidsProject.GameLogic.Features.SpawnPrefab
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<Core.SpawnPrefab>().End();
-            var spawnPrefabPool = world.GetPool<Core.SpawnPrefab>();
+            var filter = world.Filter<SpawnPrefabRequest>().End();
+            var spawnPrefabPool = world.GetPool<SpawnPrefabRequest>();
 
             foreach (var entity in filter)
             {
-                ref var prefabAddress = ref spawnPrefabPool.Get(entity).PrefabAddress;
-                ref var position = ref spawnPrefabPool.Get(entity).Position;
-                ref var rotation = ref spawnPrefabPool.Get(entity).Rotation;
-                ref var parent = ref spawnPrefabPool.Get(entity).Parent;
+                ref var prefabAddress = ref spawnPrefabPool.Get(entity).SpawnInfo.PrefabAddress;
+                ref var position = ref spawnPrefabPool.Get(entity).SpawnInfo.Position;
+                ref var rotation = ref spawnPrefabPool.Get(entity).SpawnInfo.Rotation;
+                ref var parent = ref spawnPrefabPool.Get(entity).SpawnInfo.Parent;
 
                 SpawnPrefab(new SpawnInfo
                 {

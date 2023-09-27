@@ -21,8 +21,9 @@ namespace AsteroidsProject.GameLogic.Features.Input
             var accelerationRequestPool = world.GetPool<AccelerationRequest>();
             var deaccelerationRequestPool = world.GetPool<DeaccelerationRequest>();
             var rotationDirectionPool = world.GetPool<RotationDirection>();
-            var primaryWeaponAttackRequestPool = world.GetPool<PrimaryWeaponAttackRequest>();
-            var secondaryWeaponAttackRequestPool = world.GetPool<SecondaryWeaponAttackRequest>();
+            var primaryWeaponPool = world.GetPool<PrimaryWeapon>();
+            var secondaryWeaponPool = world.GetPool<SecondaryWeapon>();
+            var attackRequestPool = world.GetPool<AttackRequest>();
 
             foreach (var entity in filter)
             {
@@ -43,13 +44,24 @@ namespace AsteroidsProject.GameLogic.Features.Input
 
                 if (inputService.IsPrimaryWeaponAttackPerformed)
                 {
-                    primaryWeaponAttackRequestPool.Add(entity);
+                    ref var primaryWeaponPackedEntity = ref primaryWeaponPool.Get(entity).WeaponEntity;
+                    AddWeaponAttackRequest(attackRequestPool, primaryWeaponPackedEntity, world);
+
                 }
 
                 if (inputService.IsSecondaryWeaponAttackPerformed)
                 {
-                    secondaryWeaponAttackRequestPool.Add(entity);
+                    ref var secondaryWeaponPackedEntity = ref secondaryWeaponPool.Get(entity).WeaponEntity;
+                    AddWeaponAttackRequest(attackRequestPool, secondaryWeaponPackedEntity, world);
                 }
+            }
+        }
+
+        private void AddWeaponAttackRequest(EcsPool<AttackRequest> attackRequestPool, EcsPackedEntity weaponPackedEntity, EcsWorld world)
+        {
+            if (weaponPackedEntity.Unpack(world, out int weaponUnpackedEntity))
+            {
+                attackRequestPool.Add(weaponUnpackedEntity);
             }
         }
     }

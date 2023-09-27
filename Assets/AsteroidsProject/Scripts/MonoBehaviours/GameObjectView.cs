@@ -7,6 +7,5 @@ namespace AsteroidsProject.MonoBehaviours
     {
         public Vector2 Position { set => transform.localPosition = value; }
         public Quaternion Rotation { set => transform.localRotation = value; }
-        public GameObject GameObject => gameObject;
     }
 }

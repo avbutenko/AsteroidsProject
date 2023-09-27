@@ -19,15 +19,18 @@ namespace AsteroidsProject.GameLogic.Features.SpawnPlayer
         public async void Init(IEcsSystems systems)
         {
             var world = systems.GetWorld();
+            var gameConfig = await configProvider.Load<GameConfig>("Configs/GameConfig.json");
+            var config = await configProvider.Load<PlayerConfig>(gameConfig.PlayerConfigPath);
 
-            var config = await configProvider.Load<PlayerConfig>("Configs/PlayerConfig.json");
-
-            world.NewEntityWith(new SpawnPrefab
+            world.NewEntityWith(new SpawnPrefabRequest
             {
-                PrefabAddress = config.PrefabAddress,
-                Position = sceneData.SpawnPlayerPosition.position,
-                Rotation = sceneData.SpawnPlayerPosition.rotation,
-                Parent = null
+                SpawnInfo = new SpawnInfo
+                {
+                    PrefabAddress = config.PrefabAddress,
+                    Position = sceneData.SpawnPlayerPosition.position,
+                    Rotation = sceneData.SpawnPlayerPosition.rotation,
+                    Parent = null
+                }
             });
         }
     }

@@ -1,9 +1,4 @@
-﻿using UnityEngine;
-
-namespace AsteroidsProject.Shared
+﻿namespace AsteroidsProject.Shared
 {
-    public interface IGameObject : ITransformable
-    {
-        public GameObject GameObject { get; }
-    }
+    public interface IGameObject : ITransformable { }
 }

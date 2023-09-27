@@ -1,6 +1,6 @@
 ﻿using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.SecondaryWeapon
+namespace AsteroidsProject.GameLogic.Core
 {
     public struct SecondaryWeapon
     {
