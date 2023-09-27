@@ -12,17 +12,14 @@ namespace AsteroidsProject.GameLogic.Features.RandomizeRotationDirection
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<RandomizeRotationDirectionRequest>()
-                              .Inc<RotationDirection>()
-                              .End();
+            var filter = world.Filter<RandomizeRotationDirectionRequest>().End();
 
             var randomizeRotationDirectionRequestPool = world.GetPool<RandomizeRotationDirectionRequest>();
             var rotationDirectionPool = world.GetPool<RotationDirection>();
 
             foreach (var entity in filter)
             {
-                ref var rotationDirection = ref rotationDirectionPool.Get(entity).Value;
-                rotationDirection = Random.Range(RIGHT, LEFT);
+                rotationDirectionPool.Add(entity).Value = Random.Range(RIGHT, LEFT);
                 randomizeRotationDirectionRequestPool.Del(entity);
             }
         }
