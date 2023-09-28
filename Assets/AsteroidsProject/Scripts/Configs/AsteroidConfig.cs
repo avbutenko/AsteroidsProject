@@ -2,7 +2,7 @@ using AsteroidsProject.Shared;
 
 namespace AsteroidsProject.Configs
 {
-    public class AsteroidConfig : IPrefabConfig
+    public class AsteroidConfig
     {
         public string[] PrefabAddresses { get; set; }
         public float StartingSpawns { get; set; }

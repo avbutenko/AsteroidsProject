@@ -20,6 +20,7 @@ using AsteroidsProject.GameLogic.Features.RandomizeRotationSpeed;
 using AsteroidsProject.GameLogic.Features.SpawnWeapon;
 using AsteroidsProject.GameLogic.Features.BulletGun;
 using AsteroidsProject.GameLogic.Features.LaserGun;
+using AsteroidsProject.GameLogic.Features.AlignVelocityWithRotation;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -32,48 +33,64 @@ namespace AsteroidsProject.CompositionRoot
             Container.Bind<ILevelService>().To<LevelService>().AsSingle();
             Container.Bind<ISceneData>().FromInstance(SceneData).AsSingle();
             BindEcsSystems();
+            Container.BindInterfacesTo<EcsStartup>().AsSingle();
         }
 
         private void BindEcsSystems()
+        {
+            BindSpawnSystems();
+            BindPlayerInputSystems();
+            BindMovementSystems();
+            BindWeaponSystems();
+            BindUpdateGameObjectViewSystems();
+
+#if UNITY_EDITOR
+            Container.BindInterfacesAndSelfTo<EcsWorldDebugSystem>().AsSingle();
+#endif
+        }
+
+        private void BindSpawnSystems()
         {
             Container.BindInterfacesAndSelfTo<SpawnPlayerSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnWeaponSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnAsteroidSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPrefabSystem>().AsSingle();
+        }
 
+        private void BindPlayerInputSystems()
+        {
+            Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<AttackRequest>>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerInputSystem>().AsSingle();
+        }
+
+        private void BindMovementSystems()
+        {
             Container.BindInterfacesAndSelfTo<RandomizeVelocitySystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RandomizeRotationDirectionSysytem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RandomizeRotationSpeedSystem>().AsSingle();
-
-            Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<AttackRequest>>().AsSingle();
-
-            Container.BindInterfacesAndSelfTo<PlayerInputSystem>().AsSingle();
-
+            Container.BindInterfacesAndSelfTo<AlignVelocityWithRotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RotationSystem>().AsSingle();
-
             Container.BindInterfacesAndSelfTo<AccelerationVectorSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<AccelerationVelocitySystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<AccelerationPositionSystem>().AsSingle();
-
             Container.BindInterfacesAndSelfTo<DeaccelerationVectorSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<DeaccelerationVelocitySystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<DeaccelerationPositionSystem>().AsSingle();
-
             Container.BindInterfacesAndSelfTo<BasicMovementSystem>().AsSingle();
-
             Container.BindInterfacesAndSelfTo<TeleportationCheckSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<TeleportationSystem>().AsSingle();
+        }
 
+        private void BindWeaponSystems()
+        {
             Container.BindInterfacesAndSelfTo<BulletGunAttackSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<LaserGunAttackSystem>().AsSingle();
+        }
 
+        private void BindUpdateGameObjectViewSystems()
+        {
             Container.BindInterfacesAndSelfTo<UpdateGameObjectViewRotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<UpdateGameObjectViewPositionSystem>().AsSingle();
-
-#if UNITY_EDITOR
-            Container.BindInterfacesAndSelfTo<EcsWorldDebugSystem>().AsSingle();
-#endif
-            Container.BindInterfacesTo<EcsStartup>().AsSingle();
         }
     }
 }

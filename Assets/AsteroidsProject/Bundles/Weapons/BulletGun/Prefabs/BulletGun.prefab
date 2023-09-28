@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 561301057503971243}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.27, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 1385297107952063511}
   - component: {fileID: 6022398114482749957}
   - component: {fileID: 894362164624697343}
+  - component: {fileID: 5798825872337793034}
   m_Layer: 0
   m_Name: BulletGun
   m_TagString: Untagged
@@ -177,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _converters:
   - {fileID: 894362164624697343}
+  - {fileID: 5798825872337793034}
   _destroyAfterConversion: 1
 --- !u!114 &894362164624697343
 MonoBehaviour:
@@ -190,3 +192,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff1a366ebc0c1444ae0e3aaa890837b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5798825872337793034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6243598741928209995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e2b53d422f4af94baea74c0daf3a710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _component:
+    Value: {fileID: 2611206825038936705}
