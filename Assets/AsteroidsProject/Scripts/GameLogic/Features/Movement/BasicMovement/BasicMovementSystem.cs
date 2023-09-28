@@ -18,7 +18,8 @@ namespace AsteroidsProject.GameLogic.Features.BasicMovement
             var world = systems.GetWorld();
             var filter = world.Filter<Velocity>()
                               .Inc<Position>()
-                              .Exc<Acceleration>()
+                              .Exc<AccelerationVector>()
+                              .Exc<DeaccelerationVector>()
                               .End();
 
             var velocityPool = world.GetPool<Velocity>();

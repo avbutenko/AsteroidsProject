@@ -16,18 +16,16 @@ namespace AsteroidsProject.GameLogic.Features.AccelerationMovement
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<AccelerationRequest>()
-                              .Inc<Acceleration>()
+            var filter = world.Filter<AccelerationVector>()
                               .Inc<Velocity>()
                               .End();
 
-            var accelerationRequestPool = world.GetPool<AccelerationRequest>();
-            var accelerationPool = world.GetPool<Acceleration>();
+            var accelerationVectorPool = world.GetPool<AccelerationVector>();
             var velocityPool = world.GetPool<Velocity>();
 
             foreach (var entity in filter)
             {
-                ref var accelerationVector = ref accelerationPool.Get(entity).Vector;
+                ref var accelerationVector = ref accelerationVectorPool.Get(entity).Value;
                 ref var velocity = ref velocityPool.Get(entity).Value;
 
                 velocity += accelerationVector * timeService.DeltaTime;

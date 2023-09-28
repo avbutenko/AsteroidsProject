@@ -12,6 +12,7 @@ using AsteroidsProject.GameLogic.Features.SpawnPrefab;
 using AsteroidsProject.GameLogic.Features.Teleportation;
 using AsteroidsProject.GameLogic.Features.UpdateGameObjectView;
 using AsteroidsProject.GameLogic.Features.AccelerationMovement;
+using AsteroidsProject.GameLogic.Features.DeaccelerationMovement;
 using AsteroidsProject.GameLogic.Features.BasicMovement;
 using AsteroidsProject.GameLogic.Features.RandomizedVelocity;
 using AsteroidsProject.GameLogic.Features.RandomizeRotationDirection;
@@ -39,23 +40,33 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<SpawnWeaponSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnAsteroidSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPrefabSystem>().AsSingle();
+
             Container.BindInterfacesAndSelfTo<RandomizeVelocitySystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RandomizeRotationDirectionSysytem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RandomizeRotationSpeedSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<AccelerationRequest>>().AsSingle();
+
             Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<AttackRequest>>().AsSingle();
+
             Container.BindInterfacesAndSelfTo<PlayerInputSystem>().AsSingle();
+
             Container.BindInterfacesAndSelfTo<RotationSystem>().AsSingle();
+
             Container.BindInterfacesAndSelfTo<AccelerationVectorSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<AccelerationVelocitySystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AccelerationPositionSystem>().AsSingle();
+
             Container.BindInterfacesAndSelfTo<DeaccelerationVectorSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<DeaccelerationVelocitySystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<AccelerationPositionSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<DeaccelerationPositionSystem>().AsSingle();
+
             Container.BindInterfacesAndSelfTo<BasicMovementSystem>().AsSingle();
+
             Container.BindInterfacesAndSelfTo<TeleportationCheckSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<TeleportationSystem>().AsSingle();
+
             Container.BindInterfacesAndSelfTo<BulletGunAttackSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<LaserGunAttackSystem>().AsSingle();
+
             Container.BindInterfacesAndSelfTo<UpdateGameObjectViewRotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<UpdateGameObjectViewPositionSystem>().AsSingle();
 

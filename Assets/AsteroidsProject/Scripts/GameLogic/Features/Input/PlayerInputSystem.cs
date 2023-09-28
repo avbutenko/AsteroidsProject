@@ -18,8 +18,8 @@ namespace AsteroidsProject.GameLogic.Features.Input
             var world = systems.GetWorld();
             var filter = world.Filter<PlayerTag>().End();
 
-            var accelerationRequestPool = world.GetPool<AccelerationRequest>();
-            var deaccelerationRequestPool = world.GetPool<DeaccelerationRequest>();
+            var accelerationVectorPool = world.GetPool<AccelerationVector>();
+            var deaccelerationVectorPool = world.GetPool<DeaccelerationVector>();
             var rotationDirectionPool = world.GetPool<RotationDirection>();
             var primaryWeaponPool = world.GetPool<PrimaryWeapon>();
             var secondaryWeaponPool = world.GetPool<SecondaryWeapon>();
@@ -29,14 +29,18 @@ namespace AsteroidsProject.GameLogic.Features.Input
             {
                 if (inputService.IsAccelerating)
                 {
-                    accelerationRequestPool.Add(entity);
-                    deaccelerationRequestPool.Del(entity);
+                    if (!accelerationVectorPool.Has(entity))
+                    {
+                        accelerationVectorPool.Add(entity);
+                    }
+
+                    deaccelerationVectorPool.Del(entity);
                 }
 
                 if (inputService.IsDeaccelerating)
                 {
-                    deaccelerationRequestPool.Add(entity);
-                    accelerationRequestPool.Del(entity);
+                    deaccelerationVectorPool.Add(entity);
+                    accelerationVectorPool.Del(entity);
                 }
 
                 ref var rotationDirection = ref rotationDirectionPool.Get(entity).Value;

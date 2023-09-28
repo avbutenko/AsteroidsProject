@@ -3,7 +3,7 @@ using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace AsteroidsProject.GameLogic.Features.AccelerationMovement
+namespace AsteroidsProject.GameLogic.Features.DeaccelerationMovement
 {
     public class DeaccelerationVelocitySystem : IEcsRunSystem
     {
@@ -17,19 +17,18 @@ namespace AsteroidsProject.GameLogic.Features.AccelerationMovement
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<DeaccelerationRequest>()
-                              .Inc<Acceleration>()
+            var filter = world.Filter<DeaccelerationVector>()
                               .Inc<Velocity>()
                               .End();
 
-            var deaccelerationRequestPool = world.GetPool<DeaccelerationRequest>();
-            var deaccelerationPool = world.GetPool<Acceleration>();
+
+            var deaccelerationVectorPool = world.GetPool<DeaccelerationVector>();
             var velocityPool = world.GetPool<Velocity>();
 
             foreach (var entity in filter)
             {
                 ref var velocity = ref velocityPool.Get(entity).Value;
-                ref var deaccelerationVector = ref deaccelerationPool.Get(entity).Vector;
+                ref var deaccelerationVector = ref deaccelerationVectorPool.Get(entity).Value;
 
                 var newVelocity = velocity + deaccelerationVector * timeService.DeltaTime;
 
@@ -40,8 +39,7 @@ namespace AsteroidsProject.GameLogic.Features.AccelerationMovement
                 else
                 {
                     velocity = Vector2.zero;
-                    deaccelerationVector = Vector2.zero;
-                    deaccelerationRequestPool.Del(entity);
+                    deaccelerationVectorPool.Del(entity);
                 }
             }
         }
