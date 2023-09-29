@@ -1,6 +1,6 @@
-namespace AsteroidsProject.Configs
+﻿namespace AsteroidsProject.Configs
 {
-    public class BulletGunConfig
+    public class LaserGunConfig
     {
         public string ProjectilePrefabAddress { get; set; }
     }

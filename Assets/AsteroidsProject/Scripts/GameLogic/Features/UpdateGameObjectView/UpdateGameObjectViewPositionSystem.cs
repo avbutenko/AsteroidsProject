@@ -21,7 +21,7 @@ namespace AsteroidsProject.GameLogic.Features.UpdateGameObjectView
                 ref var position = ref positionPool.Get(entity).Value;
                 ref var view = ref viewPool.Get(entity).View;
 
-                view.Position = position;
+                view.Transform.localPosition = position;
             }
         }
     }

@@ -13,7 +13,6 @@ namespace AsteroidsProject.CompositionRoot
             Container.Bind<IConfigProvider>().To<ConfigProvider>().AsSingle();
             Container.Bind<ITimeService>().To<TimeService>().AsSingle();
             Container.Bind<IGameObjectFactory>().To<GameplayObjectViewFactory>().AsSingle();
-            Container.Bind<ICoolDownService>().To<CoolDownService>().AsTransient();
         }
     }
 }

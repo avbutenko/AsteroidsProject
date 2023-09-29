@@ -21,6 +21,8 @@ using AsteroidsProject.GameLogic.Features.SpawnWeapon;
 using AsteroidsProject.GameLogic.Features.BulletGun;
 using AsteroidsProject.GameLogic.Features.LaserGun;
 using AsteroidsProject.GameLogic.Features.AlignVelocityWithRotation;
+using AsteroidsProject.GameLogic.Features.CoolDown;
+using AsteroidsProject.GameLogic.Features.AmmoRefill;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -42,6 +44,7 @@ namespace AsteroidsProject.CompositionRoot
             BindPlayerInputSystems();
             BindMovementSystems();
             BindWeaponSystems();
+            BindAmmoSystems();
             BindUpdateGameObjectViewSystems();
 
 #if UNITY_EDITOR
@@ -85,6 +88,12 @@ namespace AsteroidsProject.CompositionRoot
         {
             Container.BindInterfacesAndSelfTo<BulletGunAttackSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<LaserGunAttackSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CoolDownSystem>().AsSingle();
+        }
+
+        private void BindAmmoSystems()
+        {
+            Container.BindInterfacesAndSelfTo<AmmoRefillSystem>().AsSingle();
         }
 
         private void BindUpdateGameObjectViewSystems()

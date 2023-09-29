@@ -1,4 +1,3 @@
 {
-    "ProjectilePrefabAddress": "Bundles/Projectiles/Bullet/Prefabs/Bullet.prefab",
-    "Cooldown": 0.3
+    "ProjectilePrefabAddress": "Bundles/Projectiles/Bullet/Prefabs/Bullet.prefab"
 }

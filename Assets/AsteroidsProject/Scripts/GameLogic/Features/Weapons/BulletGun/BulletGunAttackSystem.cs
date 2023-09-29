@@ -8,37 +8,37 @@ namespace AsteroidsProject.GameLogic.Features.BulletGun
     public class BulletGunAttackSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly IConfigProvider configProvider;
-        private readonly ICoolDownService coolDownService;
         private BulletGunConfig config;
 
-        public BulletGunAttackSystem(IConfigProvider configProvider, ICoolDownService coolDownService)
+        public BulletGunAttackSystem(IConfigProvider configProvider)
         {
             this.configProvider = configProvider;
-            this.coolDownService = coolDownService;
         }
+
         public async void Init(IEcsSystems systems)
         {
             var gameConfig = await configProvider.Load<GameConfig>("Configs/GameConfig.json");
             config = await configProvider.Load<BulletGunConfig>(gameConfig.BulletGunConfigPath);
-            coolDownService.Value = config.Cooldown;
-            coolDownService.Reset();
         }
 
         public void Run(IEcsSystems systems)
         {
-            if (!coolDownService.IsReady) return;
-
             var world = systems.GetWorld();
             var filter = world.Filter<BulletGunTag>()
                               .Inc<AttackRequest>()
                               .Inc<ShootingPoint>()
+                              .Inc<CoolDown>()
+                              .Exc<ActiveCoolDown>()
                               .End();
 
             var shootingPointPool = world.GetPool<ShootingPoint>();
+            var coolDownPool = world.GetPool<CoolDown>();
+            var activeCoolDownPool = world.GetPool<ActiveCoolDown>();
 
             foreach (var entity in filter)
             {
                 ref var shootingPoint = ref shootingPointPool.Get(entity).Value;
+                ref var coolDown = ref coolDownPool.Get(entity).Value;
 
                 world.NewEntityWith(new SpawnPrefabRequest
                 {
@@ -50,9 +50,9 @@ namespace AsteroidsProject.GameLogic.Features.BulletGun
                         Parent = null
                     }
                 });
-            }
 
-            coolDownService.Reset();
+                activeCoolDownPool.Add(entity).Value = coolDown;
+            }
         }
     }
 }
