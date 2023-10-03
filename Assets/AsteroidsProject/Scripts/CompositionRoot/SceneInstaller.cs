@@ -23,6 +23,8 @@ using AsteroidsProject.GameLogic.Features.LaserGun;
 using AsteroidsProject.GameLogic.Features.AlignVelocityWithRotation;
 using AsteroidsProject.GameLogic.Features.CoolDown;
 using AsteroidsProject.GameLogic.Features.AmmoRefill;
+using AsteroidsProject.GameLogic.Features.Lifetime;
+using AsteroidsProject.GameLogic.Features.Destroy;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -40,6 +42,7 @@ namespace AsteroidsProject.CompositionRoot
 
         private void BindEcsSystems()
         {
+            BindLifecycleSystems();
             BindSpawnSystems();
             BindPlayerInputSystems();
             BindMovementSystems();
@@ -50,6 +53,12 @@ namespace AsteroidsProject.CompositionRoot
 #if UNITY_EDITOR
             Container.BindInterfacesAndSelfTo<EcsWorldDebugSystem>().AsSingle();
 #endif
+        }
+
+        private void BindLifecycleSystems()
+        {
+            Container.BindInterfacesAndSelfTo<LifetimeSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<DestroySystem>().AsSingle();
         }
 
         private void BindSpawnSystems()
