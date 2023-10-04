@@ -23,5 +23,11 @@ namespace AsteroidsProject.Services
 
             return new EntityWithGameObject { Entity = entity, GameObject = gameObject };
         }
+
+        public async Task<GameObject> InstantiateGameObjectAsync(SpawnInfo spawnInfo)
+        {
+            var prefab = await assetProvider.Load<GameObject>(spawnInfo.PrefabAddress);
+            return Object.Instantiate(prefab, spawnInfo.Position, spawnInfo.Rotation, spawnInfo.Parent);
+        }
     }
 }

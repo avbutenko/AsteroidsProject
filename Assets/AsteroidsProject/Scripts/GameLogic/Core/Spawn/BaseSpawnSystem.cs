@@ -16,7 +16,7 @@ namespace AsteroidsProject.GameLogic.Core
         protected async Task<EntityWithGameObject> Spawn(SpawnInfo spawnInfo)
         {
             var entityWithGameObject = await factory.InstantiateAsync(spawnInfo);
-            var gameObject = entityWithGameObject.GameObject.GetComponent<IGameObject>();
+            var gameObject = entityWithGameObject.GameObject.GetComponent<ILinkToGameObject>();
             spawnInfo.World.AddComponentToEntity(entityWithGameObject.Entity, new LinkToGameObject { View = gameObject });
             spawnInfo.World.AddComponentToEntity(entityWithGameObject.Entity, new Position { Value = spawnInfo.Position });
             spawnInfo.World.AddComponentToEntity(entityWithGameObject.Entity, new Rotation { Value = spawnInfo.Rotation });

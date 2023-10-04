@@ -1,4 +1,3 @@
-using AB_Utility.FromSceneToEntityConverter;
 using Leopotam.EcsLite;
 using System;
 using System.Collections.Generic;
@@ -6,20 +5,20 @@ using Zenject;
 
 namespace AsteroidsProject.GameLogic.Core
 {
-    public sealed class EcsStartup : IInitializable, IDisposable, ITickable
+    public abstract class EcsBaseStartup : IInitializable, IDisposable
     {
         private EcsWorld world;
-        private IEcsSystems systems;
         private readonly IEnumerable<IEcsSystem> bindedSystems;
+        protected IEcsSystems systems;
 
-        public EcsStartup(IEnumerable<IEcsSystem> bindedSystems)
+        public EcsBaseStartup(EcsWorld world, IEnumerable<IEcsSystem> bindedSystems)
         {
+            this.world = world;
             this.bindedSystems = bindedSystems;
         }
 
-        public void Initialize()
+        public virtual void Initialize()
         {
-            world = new EcsWorld();
             systems = new EcsSystems(world);
             InitializeSystems();
         }
@@ -29,16 +28,10 @@ namespace AsteroidsProject.GameLogic.Core
             foreach (var system in bindedSystems)
                 systems.Add(system);
 
-            systems.ConvertScene();
             systems.Init();
         }
 
-        public void Tick()
-        {
-            systems?.Run();
-        }
-
-        public void Dispose()
+        public virtual void Dispose()
         {
             if (systems != null)
             {

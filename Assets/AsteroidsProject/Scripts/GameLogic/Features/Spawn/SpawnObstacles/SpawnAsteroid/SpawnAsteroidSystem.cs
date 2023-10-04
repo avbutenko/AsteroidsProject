@@ -12,16 +12,20 @@ namespace AsteroidsProject.GameLogic.Features.SpawnAsteroid
         private readonly IConfigProvider configProvider;
         private readonly ITimeService timeService;
         private readonly ISceneData sceneData;
+        private readonly IAssetProvider assetProvider;
+
         private AsteroidConfig config;
         private float timeIntervalBetweenSpawns;
         private float timeToNextSpawn;
 
-        public SpawnAsteroidSystem(ILevelService level, IConfigProvider configProvider, ITimeService timeService, ISceneData sceneData)
+        public SpawnAsteroidSystem(ILevelService level, IConfigProvider configProvider, ITimeService timeService,
+            ISceneData sceneData, IAssetProvider assetProvider)
         {
             this.level = level;
             this.configProvider = configProvider;
             this.timeService = timeService;
             this.sceneData = sceneData;
+            this.assetProvider = assetProvider;
         }
 
         public async void Init(IEcsSystems systems)
@@ -32,7 +36,7 @@ namespace AsteroidsProject.GameLogic.Features.SpawnAsteroid
             timeToNextSpawn = timeIntervalBetweenSpawns;
         }
 
-        public void Run(IEcsSystems systems)
+        public async void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
             var filter = world.Filter<AsteroidTag>().End();
@@ -44,18 +48,28 @@ namespace AsteroidsProject.GameLogic.Features.SpawnAsteroid
             {
                 timeToNextSpawn = timeIntervalBetweenSpawns;
 
+                var asteroidEntity = world.NewEntity();
                 var prefabIndex = Random.Range(0, config.PrefabAddresses.Length);
+                var position = level.GetRandomPosition();
+                var rotation = Quaternion.identity;
+                var velocityX = Random.Range(config.VelocityX[0], config.VelocityX[1]);
+                var velocityY = Random.Range(config.VelocityY[0], config.VelocityY[1]);
+                var rotationDirection = Random.Range(config.RotationDirection[0], config.RotationDirection[1]);
+                var rotationSpeed = Random.Range(config.RotationSpeed[0], config.RotationSpeed[1]);
 
-                world.NewEntityWith(new SpawnPrefabRequest
-                {
-                    SpawnInfo = new SpawnInfo
-                    {
-                        PrefabAddress = config.PrefabAddresses[prefabIndex],
-                        Position = level.GetRandomPosition(),
-                        Rotation = Quaternion.identity,
-                        Parent = sceneData.AsteroidsParent
-                    }
-                });
+                world.AddComponentToEntity(asteroidEntity, new AsteroidTag { });
+                world.AddComponentToEntity(asteroidEntity, new TeleportableTag { });
+                world.AddComponentToEntity(asteroidEntity, new Position { Value = position });
+                world.AddComponentToEntity(asteroidEntity, new Rotation { Value = rotation });
+                world.AddComponentToEntity(asteroidEntity, new Velocity { Value = new Vector2(velocityX, velocityY) });
+                world.AddComponentToEntity(asteroidEntity, new RotationDirection { Value = rotationDirection });
+                world.AddComponentToEntity(asteroidEntity, new RotationSpeed { Value = rotationSpeed });
+
+                var prefab = await assetProvider.Load<GameObject>(config.PrefabAddresses[prefabIndex]);
+                var go = Object.Instantiate(prefab, position, rotation, sceneData.AsteroidsParent);
+                var goLink = go.GetComponent<ILinkToGameObject>();
+                goLink.Entity = world.PackEntity(asteroidEntity);
+                world.AddComponentToEntity(asteroidEntity, new LinkToGameObject { View = goLink });
             }
         }
     }

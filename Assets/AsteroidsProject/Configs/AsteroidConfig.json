@@ -4,7 +4,14 @@
         "Bundles/Obstacles/Asteroid/Prefabs/Asteroid2.prefab",
         "Bundles/Obstacles/Asteroid/Prefabs/Asteroid3.prefab"
     ],
-    "StartingSpawns": 13,
-    "MaxSpawns": 36,
-    "MaxSpawnTime": 60
+    //"StartingSpawns": 13,
+    //"MaxSpawns": 36,
+    //"MaxSpawnTime": 60,
+    "StartingSpawns": 1,
+    "MaxSpawns": 3,
+    "MaxSpawnTime": 1,
+    "VelocityX": [ -2, 2 ],
+    "VelocityY": [ -2, 2 ],
+    "RotationDirection": [ -1, 1 ],
+    "RotationSpeed": [ 50, 100 ]
 }

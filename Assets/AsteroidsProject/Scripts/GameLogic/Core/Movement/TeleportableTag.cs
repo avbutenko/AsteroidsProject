@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AsteroidsProject.GameLogic.Features.Teleportation
+namespace AsteroidsProject.GameLogic.Core
 {
     [Serializable]
     public struct TeleportableTag { }

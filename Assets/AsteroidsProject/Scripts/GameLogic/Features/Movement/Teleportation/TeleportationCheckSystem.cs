@@ -16,7 +16,7 @@ namespace AsteroidsProject.GameLogic.Features.Teleportation
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<TeleportableTag>()
+            var filter = world.Filter<Core.TeleportableTag>()
                               .Inc<Position>()
                               .End();
 

@@ -21,7 +21,7 @@ namespace AsteroidsProject.GameLogic.Features.UpdateGameObjectView
                 ref var rotation = ref rotationPool.Get(entity).Value;
                 ref var view = ref viewPool.Get(entity).View;
 
-                view.Transform.localRotation = rotation;
+                view.Rotation = rotation;
             }
         }
     }
