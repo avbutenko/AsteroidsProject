@@ -1,15 +1,8 @@
 {
-    "PrefabAddresses": [
-        "Bundles/Obstacles/Asteroid/Prefabs/Asteroid1.prefab",
-        "Bundles/Obstacles/Asteroid/Prefabs/Asteroid2.prefab",
-        "Bundles/Obstacles/Asteroid/Prefabs/Asteroid3.prefab"
-    ],
-    //"StartingSpawns": 13,
-    //"MaxSpawns": 36,
-    //"MaxSpawnTime": 60,
-    "StartingSpawns": 1,
-    "MaxSpawns": 3,
-    "MaxSpawnTime": 1,
+    "PrefabAddress": "Bundles/Obstacles/Asteroid/Prefabs/Asteroid.prefab",
+    "StartingSpawns": 10,
+    "MaxSpawns": 30,
+    "SpawnTime": 3,
     "VelocityX": [ -2, 2 ],
     "VelocityY": [ -2, 2 ],
     "RotationDirection": [ -1, 1 ],

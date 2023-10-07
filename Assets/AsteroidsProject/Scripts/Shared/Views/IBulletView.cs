@@ -1,4 +1,4 @@
 ﻿namespace AsteroidsProject.Shared
 {
-    public interface IBulletView { }
+    public interface IBulletView : IPoolable { }
 }

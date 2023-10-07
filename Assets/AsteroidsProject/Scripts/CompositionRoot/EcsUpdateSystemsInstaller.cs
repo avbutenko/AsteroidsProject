@@ -54,6 +54,7 @@ namespace AsteroidsProject.CompositionRoot
         {
             Container.BindInterfacesAndSelfTo<SpawnPlayerSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnWeaponSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnAsteroidTimerSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnAsteroidSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPrefabSystem>().AsSingle();
         }

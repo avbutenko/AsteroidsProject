@@ -1,4 +1,4 @@
 ﻿namespace AsteroidsProject.Shared
 {
-    public interface IAsteroidView : IEnemyView { }
+    public interface IAsteroidView : IEnemyView, IPoolable { }
 }

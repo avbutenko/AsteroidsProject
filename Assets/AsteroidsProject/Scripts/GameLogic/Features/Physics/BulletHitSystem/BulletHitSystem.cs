@@ -7,7 +7,14 @@ namespace AsteroidsProject.GameLogic.Features.BulletHitSystem
 {
     public class BulletHitSystem : IEcsRunSystem
     {
+        private readonly IPool pool;
         private int hittedEntity;
+
+        public BulletHitSystem(IPool pool)
+        {
+            this.pool = pool;
+        }
+
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
@@ -29,7 +36,8 @@ namespace AsteroidsProject.GameLogic.Features.BulletHitSystem
 
                     link.Entity.Unpack(world, out hittedEntity);
                     world.DelEntity(hittedEntity);
-                    Object.Destroy(collider.gameObject);
+                    //Object.Destroy(collider.gameObject);
+                    pool.Push(collider.gameObject);
                     eventPool.Del(entity);
                 }
             }
