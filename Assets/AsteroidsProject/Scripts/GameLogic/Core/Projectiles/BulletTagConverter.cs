@@ -2,5 +2,5 @@
 
 namespace AsteroidsProject.GameLogic.Core
 {
-    public class BulletTagConverter : ComponentConverter<BulletTag> { }
+    public class BulletTagConverter : ComponentConverter<CBulletTag> { }
 }

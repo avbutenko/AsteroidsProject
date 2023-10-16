@@ -6,21 +6,19 @@ namespace AsteroidsProject.GameLogic.Features.RandomizeRotationDirection
 {
     public class RandomizeRotationDirectionSysytem : IEcsRunSystem
     {
-        private const int LEFT = 1;
-        private const int RIGHT = -1;
-
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<RandomizeRotationDirectionRequest>().End();
+            var filter = world.Filter<CRandomizeRotationDirectionRequest>().End();
 
-            var randomizeRotationDirectionRequestPool = world.GetPool<RandomizeRotationDirectionRequest>();
-            var rotationDirectionPool = world.GetPool<RotationDirection>();
+            var requestPool = world.GetPool<CRandomizeRotationDirectionRequest>();
+            var pool = world.GetPool<CRotationDirection>();
 
             foreach (var entity in filter)
             {
-                rotationDirectionPool.Add(entity).Value = Random.Range(RIGHT, LEFT);
-                randomizeRotationDirectionRequestPool.Del(entity);
+                ref var range = ref requestPool.Get(entity).Range;
+                pool.Add(entity).Value = Random.Range(range[0], range[1] + 1);
+                requestPool.Del(entity);
             }
         }
     }

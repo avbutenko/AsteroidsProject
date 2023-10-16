@@ -10,7 +10,7 @@ namespace AsteroidsProject.GameLogic.Features.SpawnAsteroid
         private readonly IConfigProvider configProvider;
         private readonly ITimeService timeService;
 
-        private AsteroidConfig config;
+        private AsteroidConfigOLD config;
         private float timeToNextSpawn;
         private EcsWorld world;
 
@@ -22,32 +22,39 @@ namespace AsteroidsProject.GameLogic.Features.SpawnAsteroid
 
         public async void Init(IEcsSystems systems)
         {
-            var gameConfig = await configProvider.Load<GameConfig>("Configs/GameConfig.json");
-            config = await configProvider.Load<AsteroidConfig>(gameConfig.AsteroidConfigPath);
-            timeToNextSpawn = config.SpawnTime;
-
             world = systems.GetWorld();
+
+            var gameConfig = await configProvider.Load<GameConfig>("Configs/GameConfig.json");
+            config = await configProvider.Load<AsteroidConfigOLD>(gameConfig.AsteroidConfigPath);
+
+            timeToNextSpawn = config.SpawnTime;
 
             var counter = config.StartingSpawns;
             while (counter > 0)
             {
                 counter--;
-                world.NewEntityWith(new SpawnAsteroidRequest());
+                world.NewEntityWith(new CSpawnAsteroidRequest());
             }
         }
 
         public void Run(IEcsSystems systems)
         {
-            var filter = world.Filter<AsteroidTag>().End();
+
+            if (config == null)
+            {
+                return;
+            }
+
+            var filter = world.Filter<CAsteroidTag>().End();
             var count = filter.GetEntitiesCount();
 
             timeToNextSpawn -= timeService.DeltaTime;
 
-            if (timeToNextSpawn < 0 && count >= config?.StartingSpawns && count < config?.MaxSpawns)
+            if (timeToNextSpawn < 0 && count < config.MaxSpawns)
             {
                 timeToNextSpawn = config.SpawnTime;
 
-                world.NewEntityWith(new SpawnAsteroidRequest());
+                world.NewEntityWith(new CSpawnAsteroidRequest());
             }
         }
     }

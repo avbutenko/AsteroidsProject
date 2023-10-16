@@ -17,9 +17,9 @@ namespace AsteroidsProject.GameLogic.Core
         {
             var entityWithGameObject = await factory.InstantiateAsync(spawnInfo);
             var gameObject = entityWithGameObject.GameObject.GetComponent<ILinkToGameObject>();
-            spawnInfo.World.AddComponentToEntity(entityWithGameObject.Entity, new LinkToGameObject { View = gameObject });
-            spawnInfo.World.AddComponentToEntity(entityWithGameObject.Entity, new Position { Value = spawnInfo.Position });
-            spawnInfo.World.AddComponentToEntity(entityWithGameObject.Entity, new Rotation { Value = spawnInfo.Rotation });
+            spawnInfo.World.AddComponentToEntity(entityWithGameObject.Entity, new CLinkToGameObject { View = gameObject });
+            spawnInfo.World.AddComponentToEntity(entityWithGameObject.Entity, new CPosition { Value = spawnInfo.Position });
+            spawnInfo.World.AddComponentToEntity(entityWithGameObject.Entity, new CRotation { Value = spawnInfo.Rotation });
 
             if (spawnInfo.OwnerEntity.Unpack(spawnInfo.World, out int ownerEntity))
             {

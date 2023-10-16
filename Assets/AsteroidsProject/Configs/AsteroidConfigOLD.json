@@ -1,0 +1,10 @@
+{
+    "PrefabAddress": "Bundles/Obstacles/Asteroid/Prefabs/Asteroid.prefab",
+    "StartingSpawns": 10,
+    "MaxSpawns": 30,
+    "SpawnTime": 3,
+    "VelocityX": [ -2, 2 ],
+    "VelocityY": [ -2, 2 ],
+    "RotationDirection": [ -1, 1 ],
+    "RotationSpeed": [ 50, 100 ]
+}

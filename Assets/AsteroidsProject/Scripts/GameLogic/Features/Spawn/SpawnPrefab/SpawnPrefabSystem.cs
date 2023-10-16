@@ -1,42 +1,51 @@
-﻿using AsteroidsProject.GameLogic.Core;
+using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.SpawnPrefab
+public class SpawnPrefabSystem : IEcsRunSystem
 {
-    public class SpawnPrefabSystem : BaseSpawnSystem, IEcsRunSystem
+    private readonly IGameObjectFactory gameObjectFactory;
+    public SpawnPrefabSystem(IGameObjectFactory gameObjectFactory)
     {
-        public SpawnPrefabSystem(IGameObjectFactory factory) : base(factory) { }
+        this.gameObjectFactory = gameObjectFactory;
+    }
 
-        public void Run(IEcsSystems systems)
+    public void Run(IEcsSystems systems)
+    {
+        var world = systems.GetWorld();
+        var filter = world.Filter<CSpawnPrefabRequest>().End();
+        var spawnPool = world.GetPool<CSpawnPrefabRequest>();
+        var positionPool = world.GetPool<CPosition>();
+        var rotationPool = world.GetPool<CRotation>();
+
+        foreach (var entity in filter)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<SpawnPrefabRequest>().End();
-            var spawnPrefabPool = world.GetPool<SpawnPrefabRequest>();
+            ref var prefabAddress = ref spawnPool.Get(entity).PrefabAddress;
+            ref var position = ref positionPool.Get(entity).Value;
+            ref var rotation = ref rotationPool.Get(entity).Value;
 
-            foreach (var entity in filter)
+            Spawn(entity, world, new SpawnInfo
             {
-                ref var prefabAddress = ref spawnPrefabPool.Get(entity).SpawnInfo.PrefabAddress;
-                ref var position = ref spawnPrefabPool.Get(entity).SpawnInfo.Position;
-                ref var rotation = ref spawnPrefabPool.Get(entity).SpawnInfo.Rotation;
-                ref var parent = ref spawnPrefabPool.Get(entity).SpawnInfo.Parent;
+                PrefabAddress = prefabAddress,
+                Position = position,
+                Rotation = rotation,
+            });
 
-                SpawnPrefab(new SpawnInfo
-                {
-                    PrefabAddress = prefabAddress,
-                    Position = position,
-                    Rotation = rotation,
-                    Parent = parent,
-                    World = world
-                }); ;
-
-                world.DelEntity(entity);
-            }
+            spawnPool.Del(entity);
         }
+    }
 
-        private async void SpawnPrefab(SpawnInfo info)
+    private async void Spawn(int entity, EcsWorld world, SpawnInfo info)
+    {
+        var go = await gameObjectFactory.CreateAsync(new SpawnInfo
         {
-            await Spawn(info);
-        }
+            PrefabAddress = info.PrefabAddress,
+            Position = info.Position,
+            Rotation = info.Rotation,
+        });
+
+        var goLink = go.GetComponent<ILinkToGameObject>();
+        goLink.Entity = world.PackEntity(entity);
+        world.AddComponentToEntity(entity, new CLinkToGameObject { View = goLink });
     }
 }

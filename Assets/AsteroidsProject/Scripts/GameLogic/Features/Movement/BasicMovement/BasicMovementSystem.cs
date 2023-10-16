@@ -16,14 +16,14 @@ namespace AsteroidsProject.GameLogic.Features.BasicMovement
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<Velocity>()
-                              .Inc<Position>()
-                              .Exc<AccelerationVector>()
-                              .Exc<DeaccelerationVector>()
+            var filter = world.Filter<CVelocity>()
+                              .Inc<CPosition>()
+                              .Exc<CAccelerationVector>()
+                              .Exc<CDeaccelerationVector>()
                               .End();
 
-            var velocityPool = world.GetPool<Velocity>();
-            var positionPool = world.GetPool<Position>();
+            var velocityPool = world.GetPool<CVelocity>();
+            var positionPool = world.GetPool<CPosition>();
 
             foreach (var entity in filter)
             {

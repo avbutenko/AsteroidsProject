@@ -8,12 +8,12 @@ namespace AsteroidsProject.GameLogic.Features.UpdateGameObjectView
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<LinkToGameObject>()
-                              .Inc<Rotation>()
+            var filter = world.Filter<CLinkToGameObject>()
+                              .Inc<CRotation>()
                               .End();
 
-            var viewPool = world.GetPool<LinkToGameObject>();
-            var rotationPool = world.GetPool<Rotation>();
+            var viewPool = world.GetPool<CLinkToGameObject>();
+            var rotationPool = world.GetPool<CRotation>();
 
 
             foreach (var entity in filter)

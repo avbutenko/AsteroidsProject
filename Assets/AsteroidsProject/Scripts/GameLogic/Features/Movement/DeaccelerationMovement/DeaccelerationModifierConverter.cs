@@ -2,5 +2,5 @@
 
 namespace AsteroidsProject.GameLogic.Features.DeaccelerationMovement
 {
-    public class DeaccelerationModifierConverter : ComponentConverter<DeaccelerationModifier> { }
+    public class DeaccelerationModifierConverter : ComponentConverter<CDeaccelerationModifier> { }
 }

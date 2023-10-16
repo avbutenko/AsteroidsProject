@@ -1,6 +1,7 @@
-using AsteroidsProject.Shared;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
-namespace AsteroidsProject.Configs
+namespace AsteroidsProject.Test
 {
     public class AsteroidConfig
     {
@@ -8,9 +9,8 @@ namespace AsteroidsProject.Configs
         public float StartingSpawns { get; set; }
         public float MaxSpawns { get; set; }
         public float SpawnTime { get; set; }
-        public float[] VelocityX { get; set; }
-        public float[] VelocityY { get; set; }
-        public float[] RotationDirection { get; set; }
-        public float[] RotationSpeed { get; set; }
+
+        [JsonConverter(typeof(ComponentListJsonConverter))]
+        public List<object> Components { get; set; }
     }
 }

@@ -9,10 +9,10 @@ namespace AsteroidsProject.GameLogic.Features.Destroy
         {
             var world = systems.GetWorld();
             var filter = world.Filter<DestroyTag>()
-                              .Inc<LinkToGameObject>()
+                              .Inc<CLinkToGameObject>()
                               .End();
 
-            var linkToGameObjectPool = world.GetPool<LinkToGameObject>();
+            var linkToGameObjectPool = world.GetPool<CLinkToGameObject>();
 
             foreach (var entity in filter)
             {

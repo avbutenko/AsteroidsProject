@@ -16,14 +16,14 @@ namespace AsteroidsProject.GameLogic.Features.DeaccelerationMovement
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<DeaccelerationVector>()
-                              .Inc<Velocity>()
-                              .Inc<Position>()
+            var filter = world.Filter<CDeaccelerationVector>()
+                              .Inc<CVelocity>()
+                              .Inc<CPosition>()
                               .End();
 
-            var deaccelerationVectorPool = world.GetPool<DeaccelerationVector>();
-            var velocityPool = world.GetPool<Velocity>();
-            var positionPool = world.GetPool<Position>();
+            var deaccelerationVectorPool = world.GetPool<CDeaccelerationVector>();
+            var velocityPool = world.GetPool<CVelocity>();
+            var positionPool = world.GetPool<CPosition>();
 
             foreach (var entity in filter)
             {

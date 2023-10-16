@@ -2,5 +2,7 @@
     "PlayerConfigPath": "Configs/PlayerConfig.json",
     "AsteroidConfigPath": "Configs/AsteroidConfig.json",
     "BulletGunConfigPath": "Configs/BulletGunConfig.json",
-    "LaserGunConfigPath": "Configs/LaserGunConfig.json"
+    "BulletConfigPath": "Configs/BulletConfig.json",
+    "LaserGunConfigPath": "Configs/LaserGunConfig.json",
+    "LaserConfigPath": "Configs/LaserConfig.json"
 }

@@ -10,13 +10,13 @@ namespace AsteroidsProject.GameLogic.Features.AlignVelocityWithRotation
         {
             var world = systems.GetWorld();
             var filter = world.Filter<AlignVelocityWithRotationRequest>()
-                              .Inc<Velocity>()
-                              .Inc<Rotation>()
+                              .Inc<CVelocity>()
+                              .Inc<CRotation>()
                               .End();
 
             var requestPool = world.GetPool<AlignVelocityWithRotationRequest>();
-            var velocityPool = world.GetPool<Velocity>();
-            var rotationPool = world.GetPool<Rotation>();
+            var velocityPool = world.GetPool<CVelocity>();
+            var rotationPool = world.GetPool<CRotation>();
 
             foreach (var entity in filter)
             {

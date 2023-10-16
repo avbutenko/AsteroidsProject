@@ -2,5 +2,5 @@
 
 namespace AsteroidsProject.GameLogic.Features.AccelerationMovement
 {
-    public class AccelerationModifierConverter : ComponentConverter<AccelerationModifier> { }
+    public class AccelerationModifierConverter : ComponentConverter<CAccelerationModifier> { }
 }

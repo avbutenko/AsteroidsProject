@@ -1,6 +1,6 @@
 ﻿using AsteroidsProject.Shared;
 using System.Threading.Tasks;
-using Unity.Plastic.Newtonsoft.Json;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace AsteroidsProject.Services

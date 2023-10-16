@@ -9,14 +9,14 @@ namespace AsteroidsProject.GameLogic.Features.AccelerationMovement
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<AccelerationVector>()
-                              .Inc<AccelerationModifier>()
-                              .Inc<Rotation>()
+            var filter = world.Filter<CAccelerationVector>()
+                              .Inc<CAccelerationModifier>()
+                              .Inc<CRotation>()
                               .End();
 
-            var accelerationVectorPool = world.GetPool<AccelerationVector>();
-            var accelerationModifierPool = world.GetPool<AccelerationModifier>();
-            var rotationPool = world.GetPool<Rotation>();
+            var accelerationVectorPool = world.GetPool<CAccelerationVector>();
+            var accelerationModifierPool = world.GetPool<CAccelerationModifier>();
+            var rotationPool = world.GetPool<CRotation>();
 
             foreach (var entity in filter)
             {

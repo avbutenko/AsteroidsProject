@@ -1,24 +1,16 @@
-using AsteroidsProject.Configs;
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.BulletGun
 {
-    public class BulletGunAttackSystem : IEcsInitSystem, IEcsRunSystem
+    public class BulletGunAttackSystem : IEcsRunSystem
     {
-        private readonly IConfigProvider configProvider;
-        private BulletGunConfig config;
+        private readonly ISceneData sceneData;
 
-        public BulletGunAttackSystem(IConfigProvider configProvider)
+        public BulletGunAttackSystem(ISceneData sceneData)
         {
-            this.configProvider = configProvider;
-        }
-
-        public async void Init(IEcsSystems systems)
-        {
-            var gameConfig = await configProvider.Load<GameConfig>("Configs/GameConfig.json");
-            config = await configProvider.Load<BulletGunConfig>(gameConfig.BulletGunConfigPath);
+            this.sceneData = sceneData;
         }
 
         public void Run(IEcsSystems systems)
@@ -40,14 +32,13 @@ namespace AsteroidsProject.GameLogic.Features.BulletGun
                 ref var shootingPoint = ref shootingPointPool.Get(entity).Value;
                 ref var coolDown = ref coolDownPool.Get(entity).Value;
 
-                world.NewEntityWith(new SpawnPrefabRequest
+                world.NewEntityWith(new SpawnBulletRequest
                 {
                     SpawnInfo = new SpawnInfo
                     {
-                        PrefabAddress = config.ProjectilePrefabAddress,
                         Position = shootingPoint.position,
                         Rotation = shootingPoint.rotation,
-                        Parent = null
+                        Parent = sceneData.BulletsPool
                     }
                 });
 

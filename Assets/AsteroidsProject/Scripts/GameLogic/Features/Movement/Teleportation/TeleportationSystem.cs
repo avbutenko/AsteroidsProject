@@ -16,12 +16,12 @@ namespace AsteroidsProject.GameLogic.Features.Teleportation
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<TeleportationRequest>()
-                              .Inc<Position>()
+            var filter = world.Filter<CTeleportationRequest>()
+                              .Inc<CPosition>()
                               .End();
 
-            var teleportationRequestPool = world.GetPool<TeleportationRequest>();
-            var positionPool = world.GetPool<Position>();
+            var teleportationRequestPool = world.GetPool<CTeleportationRequest>();
+            var positionPool = world.GetPool<CPosition>();
 
             foreach (var entity in filter)
             {

@@ -1,3 +1,5 @@
 {
-    "ProjectilePrefabAddress": "Bundles/Projectiles/Bullet/Prefabs/Bullet.prefab"
+    "ProjectilePrefabAddress": "Bundles/Projectiles/Bullet/Prefabs/Bullet.prefab",
+    "VelocityX": 0,
+    "VelocityY": 15
 }

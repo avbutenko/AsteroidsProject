@@ -10,13 +10,14 @@ using AsteroidsProject.GameLogic.Features.Destroy;
 using AsteroidsProject.GameLogic.Features.Input;
 using AsteroidsProject.GameLogic.Features.LaserGun;
 using AsteroidsProject.GameLogic.Features.Lifetime;
-using AsteroidsProject.GameLogic.Features.RandomizedVelocity;
+using AsteroidsProject.GameLogic.Features.RandomizeVelocity;
+using AsteroidsProject.GameLogic.Features.RandomizePosition;
 using AsteroidsProject.GameLogic.Features.RandomizeRotationDirection;
 using AsteroidsProject.GameLogic.Features.RandomizeRotationSpeed;
 using AsteroidsProject.GameLogic.Features.Rotation;
 using AsteroidsProject.GameLogic.Features.SpawnAsteroid;
+using AsteroidsProject.GameLogic.Features.SpawnBullet;
 using AsteroidsProject.GameLogic.Features.SpawnPlayer;
-using AsteroidsProject.GameLogic.Features.SpawnPrefab;
 using AsteroidsProject.GameLogic.Features.SpawnWeapon;
 using AsteroidsProject.GameLogic.Features.Teleportation;
 using AsteroidsProject.GameLogic.Features.UpdateGameObjectView;
@@ -29,6 +30,16 @@ namespace AsteroidsProject.CompositionRoot
     {
         public override void InstallBindings()
         {
+            Container.BindInterfacesAndSelfTo<SpawnAsteroidTimerSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnAsteroidSystem>().AsSingle();
+
+            Container.BindInterfacesAndSelfTo<RandomizePositionSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<RandomizeVelocitySystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<RandomizeRotationDirectionSysytem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<RandomizeRotationSpeedSystem>().AsSingle();
+
+            Container.BindInterfacesAndSelfTo<SpawnPrefabSystem>().AsSingle();
+
             BindLifecycleSystems();
             BindSpawnSystems();
             BindPlayerInputSystems();
@@ -54,9 +65,9 @@ namespace AsteroidsProject.CompositionRoot
         {
             Container.BindInterfacesAndSelfTo<SpawnPlayerSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnWeaponSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<SpawnAsteroidTimerSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<SpawnAsteroidSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<SpawnPrefabSystem>().AsSingle();
+
+            Container.BindInterfacesAndSelfTo<SpawnBulletSystem>().AsSingle();
+
         }
 
         private void BindPlayerInputSystems()
@@ -67,9 +78,7 @@ namespace AsteroidsProject.CompositionRoot
 
         private void BindMovementSystems()
         {
-            Container.BindInterfacesAndSelfTo<RandomizeVelocitySystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<RandomizeRotationDirectionSysytem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<RandomizeRotationSpeedSystem>().AsSingle();
+
             Container.BindInterfacesAndSelfTo<AlignVelocityWithRotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<AccelerationVectorSystem>().AsSingle();

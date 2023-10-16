@@ -16,12 +16,12 @@ namespace AsteroidsProject.GameLogic.Features.AccelerationMovement
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<AccelerationVector>()
-                              .Inc<Velocity>()
+            var filter = world.Filter<CAccelerationVector>()
+                              .Inc<CVelocity>()
                               .End();
 
-            var accelerationVectorPool = world.GetPool<AccelerationVector>();
-            var velocityPool = world.GetPool<Velocity>();
+            var accelerationVectorPool = world.GetPool<CAccelerationVector>();
+            var velocityPool = world.GetPool<CVelocity>();
 
             foreach (var entity in filter)
             {

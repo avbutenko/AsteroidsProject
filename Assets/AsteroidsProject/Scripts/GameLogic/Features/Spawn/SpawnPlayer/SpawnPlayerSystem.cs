@@ -22,7 +22,7 @@ namespace AsteroidsProject.GameLogic.Features.SpawnPlayer
             var gameConfig = await configProvider.Load<GameConfig>("Configs/GameConfig.json");
             var config = await configProvider.Load<PlayerConfig>(gameConfig.PlayerConfigPath);
 
-            world.NewEntityWith(new SpawnPrefabRequest
+            world.NewEntityWith(new SpawnPrefabRequestOLD
             {
                 SpawnInfo = new SpawnInfo
                 {

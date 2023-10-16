@@ -16,11 +16,11 @@ namespace AsteroidsProject.GameLogic.Features.Input
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<PlayerTag>().End();
+            var filter = world.Filter<CPlayerTag>().End();
 
-            var accelerationVectorPool = world.GetPool<AccelerationVector>();
-            var deaccelerationVectorPool = world.GetPool<DeaccelerationVector>();
-            var rotationDirectionPool = world.GetPool<RotationDirection>();
+            var accelerationVectorPool = world.GetPool<CAccelerationVector>();
+            var deaccelerationVectorPool = world.GetPool<CDeaccelerationVector>();
+            var rotationDirectionPool = world.GetPool<CRotationDirection>();
             var primaryWeaponPool = world.GetPool<PrimaryWeapon>();
             var secondaryWeaponPool = world.GetPool<SecondaryWeapon>();
             var attackRequestPool = world.GetPool<AttackRequest>();

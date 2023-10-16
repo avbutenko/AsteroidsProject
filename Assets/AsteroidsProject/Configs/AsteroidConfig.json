@@ -1,10 +1,26 @@
 {
-    "PrefabAddress": "Bundles/Obstacles/Asteroid/Prefabs/Asteroid.prefab",
     "StartingSpawns": 10,
     "MaxSpawns": 30,
     "SpawnTime": 3,
-    "VelocityX": [ -2, 2 ],
-    "VelocityY": [ -2, 2 ],
-    "RotationDirection": [ -1, 1 ],
-    "RotationSpeed": [ 50, 100 ]
+    "Components": [
+        {
+            "CSpawnPrefabRequest": "Bundles/Obstacles/Asteroid/Prefabs/Asteroid.prefab",
+            "CAsteroidTag": {},
+            "CTeleportableTag": {},
+            "CRotation": 0.0000,
+            "CRandomizePositionRequest": {},
+            "CRandomizeVelocityRequest": [
+                {
+                    "x": -2,
+                    "y": -2
+                },
+                {
+                    "x": 2,
+                    "y": 2
+                }
+            ],
+            "CRandomizeRotationDirectionRequest": [ -1, 1 ],
+            "CRandomizeRotationSpeedRequest": [ 50.0000, 100.0000 ]
+        }
+    ]
 }

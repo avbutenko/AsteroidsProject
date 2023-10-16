@@ -2,5 +2,5 @@
 
 namespace AsteroidsProject.GameLogic.Core
 {
-    public class LinkToGameObjectConverter : ComponentConverter<LinkToGameObject> { }
+    public class LinkToGameObjectConverter : ComponentConverter<CLinkToGameObject> { }
 }
