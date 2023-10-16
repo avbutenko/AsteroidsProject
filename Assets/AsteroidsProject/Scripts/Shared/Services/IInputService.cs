@@ -4,6 +4,7 @@ namespace AsteroidsProject.Shared
     {
         public bool IsAccelerating { get; }
         public bool IsDeaccelerating { get; }
+        public bool IsRotating { get; }
         public float RotationDirection { get; }
         public bool IsSecondaryWeaponAttackPerformed { get; }
         public bool IsPrimaryWeaponAttackPerformed { get; }

@@ -23,6 +23,7 @@ using AsteroidsProject.GameLogic.Features.Teleportation;
 using AsteroidsProject.GameLogic.Features.UpdateGameObjectView;
 using Leopotam.EcsLite.UnityEditor;
 using Zenject;
+using AsteroidsProject.GameLogic.Features.PermanentRandomRotation;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -32,10 +33,11 @@ namespace AsteroidsProject.CompositionRoot
         {
             Container.BindInterfacesAndSelfTo<SpawnAsteroidTimerSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnAsteroidSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnPlayerSystem>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<RandomizePositionSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RandomizeVelocitySystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<RandomizeRotationDirectionSysytem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<RandomizePermanentRotationDirectionSysytem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RandomizeRotationSpeedSystem>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<SpawnPrefabSystem>().AsSingle();
@@ -63,7 +65,7 @@ namespace AsteroidsProject.CompositionRoot
 
         private void BindSpawnSystems()
         {
-            Container.BindInterfacesAndSelfTo<SpawnPlayerSystem>().AsSingle();
+
             Container.BindInterfacesAndSelfTo<SpawnWeaponSystem>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<SpawnBulletSystem>().AsSingle();
@@ -80,6 +82,7 @@ namespace AsteroidsProject.CompositionRoot
         {
 
             Container.BindInterfacesAndSelfTo<AlignVelocityWithRotationSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PermanentRotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<AccelerationVectorSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<AccelerationVelocitySystem>().AsSingle();

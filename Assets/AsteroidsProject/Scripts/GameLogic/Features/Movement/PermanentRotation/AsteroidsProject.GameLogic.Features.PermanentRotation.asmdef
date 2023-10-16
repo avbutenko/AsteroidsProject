@@ -1,14 +1,11 @@
 {
-    "name": "AsteroidsProject.ComponentListJsonConverter",
+    "name": "AsteroidsProject.GameLogic.Features.PermanentRotation",
     "rootNamespace": "",
     "references": [
+        "GUID:e59bf9fc7d5a44b18a819a92edd46163",
+        "GUID:6edd76a60c59af6479735feb61d29472",
         "GUID:82e47fb6cfee41b4988fa1b318ce1490",
-        "GUID:d5f58397086736b48ad64e9ab750fc7f",
-        "GUID:1ba384a3c66e9054dbe350b311460576",
-        "GUID:72a0bcb15af262943bc6d2d0745f9673",
-        "GUID:e7091d830d14c7046bd7fc3e745c34c0",
-        "GUID:948b22657b3dd9f4591cdb1efc563239",
-        "GUID:8037c6878929f5c4b8c7be867d46dfda"
+        "GUID:02e9d0c052fbf484388102198213ee39"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

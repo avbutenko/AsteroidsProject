@@ -5,6 +5,7 @@ using Leopotam.EcsLite;
 public class SpawnPrefabSystem : IEcsRunSystem
 {
     private readonly IGameObjectFactory gameObjectFactory;
+
     public SpawnPrefabSystem(IGameObjectFactory gameObjectFactory)
     {
         this.gameObjectFactory = gameObjectFactory;
@@ -37,12 +38,7 @@ public class SpawnPrefabSystem : IEcsRunSystem
 
     private async void Spawn(int entity, EcsWorld world, SpawnInfo info)
     {
-        var go = await gameObjectFactory.CreateAsync(new SpawnInfo
-        {
-            PrefabAddress = info.PrefabAddress,
-            Position = info.Position,
-            Rotation = info.Rotation,
-        });
+        var go = await gameObjectFactory.CreateAsync(info);
 
         var goLink = go.GetComponent<ILinkToGameObject>();
         goLink.Entity = world.PackEntity(entity);

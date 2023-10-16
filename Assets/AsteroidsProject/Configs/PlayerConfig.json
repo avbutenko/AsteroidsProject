@@ -1,3 +1,16 @@
 {
-    "PrefabAddress": "Bundles/Player/Prefabs/Player.prefab"
+    "Components": [
+        {
+            "CSpawnPrefabRequest": "Bundles/Player/Prefabs/Player.prefab",
+            "CPlayerTag": {},
+            "CTeleportableTag": {},
+            "CVelocity": {
+                "x": 0,
+                "y": 0
+            },
+            "CRotationSpeed": 150,
+            "CAccelerationModifier": 3,
+            "CDeaccelerationModifier": 2
+        }
+    ]
 }

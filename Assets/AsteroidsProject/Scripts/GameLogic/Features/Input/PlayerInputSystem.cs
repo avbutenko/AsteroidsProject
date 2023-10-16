@@ -43,21 +43,23 @@ namespace AsteroidsProject.GameLogic.Features.Input
                     accelerationVectorPool.Del(entity);
                 }
 
-                ref var rotationDirection = ref rotationDirectionPool.Get(entity).Value;
-                rotationDirection = inputService.RotationDirection;
-
-                if (inputService.IsPrimaryWeaponAttackPerformed)
+                if (inputService.IsRotating)
                 {
-                    ref var primaryWeaponPackedEntity = ref primaryWeaponPool.Get(entity).WeaponEntity;
-                    AddWeaponAttackRequest(attackRequestPool, primaryWeaponPackedEntity, world);
-
+                    rotationDirectionPool.Add(entity).Value = inputService.RotationDirection;
                 }
 
-                if (inputService.IsSecondaryWeaponAttackPerformed)
-                {
-                    ref var secondaryWeaponPackedEntity = ref secondaryWeaponPool.Get(entity).WeaponEntity;
-                    AddWeaponAttackRequest(attackRequestPool, secondaryWeaponPackedEntity, world);
-                }
+                //if (inputService.IsPrimaryWeaponAttackPerformed)
+                //{
+                //    ref var primaryWeaponPackedEntity = ref primaryWeaponPool.Get(entity).WeaponEntity;
+                //    AddWeaponAttackRequest(attackRequestPool, primaryWeaponPackedEntity, world);
+
+                //}
+
+                //if (inputService.IsSecondaryWeaponAttackPerformed)
+                //{
+                //    ref var secondaryWeaponPackedEntity = ref secondaryWeaponPool.Get(entity).WeaponEntity;
+                //    AddWeaponAttackRequest(attackRequestPool, secondaryWeaponPackedEntity, world);
+                //}
             }
         }
 

@@ -34,6 +34,7 @@ namespace AsteroidsProject.GameLogic.Features.Rotation
                 ref var rotation = ref rotationPool.Get(entity).Value;
 
                 rotation = GetNewRotation(rotation, rotationDirection, rotationSpeed);
+                rotationDirectionPool.Del(entity);
             }
         }
 

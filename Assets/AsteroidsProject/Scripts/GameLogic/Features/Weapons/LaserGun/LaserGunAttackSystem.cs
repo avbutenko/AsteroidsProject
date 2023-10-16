@@ -48,14 +48,14 @@ namespace AsteroidsProject.GameLogic.Features.LaserGun
 
                 if (ammo > 0)
                 {
-                    world.NewEntityWith(new SpawnPrefabRequestOLD
-                    {
-                        SpawnInfo = new SpawnInfo
-                        {
-                            PrefabAddress = config.ProjectilePrefabAddress,
-                            Parent = shootingPoint.transform
-                        }
-                    });
+                    //world.NewEntityWith(new SpawnPrefabRequestOLD
+                    //{
+                    //    SpawnInfo = new SpawnInfo
+                    //    {
+                    //        PrefabAddress = config.ProjectilePrefabAddress,
+                    //        Parent = shootingPoint.transform
+                    //    }
+                    //});
 
                     activeCoolDownPool.Add(entity).Value = coolDown;
                     ammo--;
