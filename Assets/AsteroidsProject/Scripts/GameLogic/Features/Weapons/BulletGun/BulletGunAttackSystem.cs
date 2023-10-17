@@ -17,27 +17,29 @@ namespace AsteroidsProject.GameLogic.Features.BulletGun
         {
             var world = systems.GetWorld();
             var filter = world.Filter<CBulletGunTag>()
-                              .Inc<AttackRequest>()
-                              .Inc<ShootingPoint>()
+                              .Inc<CAttackRequest>()
                               .Inc<CCoolDown>()
-                              .Exc<ActiveCoolDown>()
+                              .Exc<CActiveCoolDown>()
                               .End();
 
-            var shootingPointPool = world.GetPool<ShootingPoint>();
             var coolDownPool = world.GetPool<CCoolDown>();
-            var activeCoolDownPool = world.GetPool<ActiveCoolDown>();
+            var activeCoolDownPool = world.GetPool<CActiveCoolDown>();
+            var goLink = world.GetPool<CLinkToGameObject>();
 
             foreach (var entity in filter)
             {
-                ref var shootingPoint = ref shootingPointPool.Get(entity).Value;
+                if (!goLink.Has(entity)) return;
+
+                ref var view = ref goLink.Get(entity).View;
+                var shootingPoint = view as IHaveShootingPoint;
                 ref var coolDown = ref coolDownPool.Get(entity).Value;
 
-                world.NewEntityWith(new SpawnBulletRequest
+                world.NewEntityWith(new CSpawnBulletRequest
                 {
                     SpawnInfo = new SpawnInfo
                     {
-                        Position = shootingPoint.position,
-                        Rotation = shootingPoint.rotation,
+                        Position = shootingPoint.ShootingPoint.position,
+                        Rotation = shootingPoint.ShootingPoint.rotation,
                         Parent = sceneData.BulletsPool
                     }
                 });

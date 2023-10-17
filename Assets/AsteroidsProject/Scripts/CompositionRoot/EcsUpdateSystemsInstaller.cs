@@ -1,6 +1,5 @@
 ﻿using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.GameLogic.Features.AccelerationMovement;
-using AsteroidsProject.GameLogic.Features.AlignVelocityWithRotation;
 using AsteroidsProject.GameLogic.Features.AmmoRefill;
 using AsteroidsProject.GameLogic.Features.BasicMovement;
 using AsteroidsProject.GameLogic.Features.BulletGun;
@@ -75,14 +74,12 @@ namespace AsteroidsProject.CompositionRoot
 
         private void BindPlayerInputSystems()
         {
-            Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<AttackRequest>>().AsSingle();
+            Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<CAttackRequest>>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerInputSystem>().AsSingle();
         }
 
         private void BindMovementSystems()
         {
-
-            Container.BindInterfacesAndSelfTo<AlignVelocityWithRotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<PermanentRotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<AccelerationVectorSystem>().AsSingle();

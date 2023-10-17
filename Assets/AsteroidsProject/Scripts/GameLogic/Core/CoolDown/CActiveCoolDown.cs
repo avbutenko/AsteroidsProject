@@ -1,6 +1,6 @@
 namespace AsteroidsProject.GameLogic.Core
 {
-    public struct ActiveCoolDown
+    public struct CActiveCoolDown
     {
         public float Value;
     }

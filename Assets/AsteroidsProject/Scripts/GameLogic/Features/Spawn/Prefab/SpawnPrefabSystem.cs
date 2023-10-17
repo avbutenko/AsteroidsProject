@@ -26,30 +26,21 @@ public class SpawnPrefabSystem : IEcsRunSystem
             ref var position = ref positionPool.Get(entity).Value;
             ref var rotation = ref rotationPool.Get(entity).Value;
 
+            var spawnInfo = new SpawnInfo
+            {
+                PrefabAddress = prefabAddress,
+                Position = position,
+                Rotation = rotation,
+            };
+
             if (parentPool.Has(entity))
             {
                 ref var parent = ref parentPool.Get(entity).Value;
-
-                Spawn(entity, world, new SpawnInfo
-                {
-                    PrefabAddress = prefabAddress,
-                    Position = position,
-                    Rotation = rotation,
-                    Parent = parent,
-                });
-
+                spawnInfo.Parent = parent;
                 parentPool.Del(entity);
             }
-            else
-            {
-                Spawn(entity, world, new SpawnInfo
-                {
-                    PrefabAddress = prefabAddress,
-                    Position = position,
-                    Rotation = rotation,
-                });
-            }
 
+            Spawn(entity, world, spawnInfo);
             spawnPool.Del(entity);
         }
     }

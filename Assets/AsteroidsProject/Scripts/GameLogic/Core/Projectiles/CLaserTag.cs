@@ -1,4 +1,4 @@
 ﻿namespace AsteroidsProject.GameLogic.Core
 {
-    public struct LaserTag { }
+    public struct CLaserTag { }
 }

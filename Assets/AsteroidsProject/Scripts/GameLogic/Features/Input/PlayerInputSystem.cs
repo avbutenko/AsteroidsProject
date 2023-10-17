@@ -23,7 +23,7 @@ namespace AsteroidsProject.GameLogic.Features.Input
             var rotationDirectionPool = world.GetPool<CRotationDirection>();
             var primaryWeaponPool = world.GetPool<CPrimaryWeapon>();
             var secondaryWeaponPool = world.GetPool<CSecondaryWeapon>();
-            var attackRequestPool = world.GetPool<AttackRequest>();
+            var attackRequestPool = world.GetPool<CAttackRequest>();
 
             foreach (var entity in filter)
             {
@@ -48,14 +48,13 @@ namespace AsteroidsProject.GameLogic.Features.Input
                     rotationDirectionPool.Add(entity).Value = inputService.RotationDirection;
                 }
 
-                if (inputService.IsPrimaryWeaponAttackPerformed)
+                if (inputService.IsPrimaryWeaponAttackPerformed && primaryWeaponPool.Has(entity))
                 {
                     ref var primaryWeaponPackedEntity = ref primaryWeaponPool.Get(entity).WeaponEntity;
                     AddWeaponAttackRequest(attackRequestPool, primaryWeaponPackedEntity, world);
-
                 }
 
-                if (inputService.IsSecondaryWeaponAttackPerformed)
+                if (inputService.IsSecondaryWeaponAttackPerformed && secondaryWeaponPool.Has(entity))
                 {
                     ref var secondaryWeaponPackedEntity = ref secondaryWeaponPool.Get(entity).WeaponEntity;
                     AddWeaponAttackRequest(attackRequestPool, secondaryWeaponPackedEntity, world);
@@ -63,7 +62,7 @@ namespace AsteroidsProject.GameLogic.Features.Input
             }
         }
 
-        private void AddWeaponAttackRequest(EcsPool<AttackRequest> attackRequestPool, EcsPackedEntity weaponPackedEntity, EcsWorld world)
+        private void AddWeaponAttackRequest(EcsPool<CAttackRequest> attackRequestPool, EcsPackedEntity weaponPackedEntity, EcsWorld world)
         {
             if (weaponPackedEntity.Unpack(world, out int weaponUnpackedEntity))
             {

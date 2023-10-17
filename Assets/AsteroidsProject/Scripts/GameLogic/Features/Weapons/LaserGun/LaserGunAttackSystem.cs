@@ -25,23 +25,23 @@ namespace AsteroidsProject.GameLogic.Features.LaserGun
         {
             var world = systems.GetWorld();
             var filter = world.Filter<CLaserGunTag>()
-                              .Inc<AttackRequest>()
-                              .Inc<ShootingPoint>()
+                              .Inc<CAttackRequest>()
+                              //.Inc<ShootingPoint>()
                               .Inc<CCoolDown>()
                               .Inc<Ammo>()
                               .Inc<CLinkToGameObject>()
-                              .Exc<ActiveCoolDown>()
+                              .Exc<CActiveCoolDown>()
                               .End();
 
-            var shootingPointPool = world.GetPool<ShootingPoint>();
+            //var shootingPointPool = world.GetPool<ShootingPoint>();
             var coolDownPool = world.GetPool<CCoolDown>();
-            var activeCoolDownPool = world.GetPool<ActiveCoolDown>();
+            var activeCoolDownPool = world.GetPool<CActiveCoolDown>();
             var ammoPool = world.GetPool<Ammo>();
             var viewPool = world.GetPool<CLinkToGameObject>();
 
             foreach (var entity in filter)
             {
-                ref var shootingPoint = ref shootingPointPool.Get(entity).Value;
+                //ref var shootingPoint = ref shootingPointPool.Get(entity).Value;
                 ref var coolDown = ref coolDownPool.Get(entity).Value;
                 ref var ammo = ref ammoPool.Get(entity).Value;
                 ref var view = ref viewPool.Get(entity).View;

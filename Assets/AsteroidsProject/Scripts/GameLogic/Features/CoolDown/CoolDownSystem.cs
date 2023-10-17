@@ -16,9 +16,9 @@ namespace AsteroidsProject.GameLogic.Features.CoolDown
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<ActiveCoolDown>().End();
+            var filter = world.Filter<CActiveCoolDown>().End();
 
-            var activeCoolDownPool = world.GetPool<ActiveCoolDown>();
+            var activeCoolDownPool = world.GetPool<CActiveCoolDown>();
 
             foreach (var entity in filter)
             {

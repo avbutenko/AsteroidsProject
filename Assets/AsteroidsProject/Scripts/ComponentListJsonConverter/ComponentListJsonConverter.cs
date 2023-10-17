@@ -40,6 +40,7 @@ namespace AsteroidsProject.Test
                 JToken coolDown = e["CCoolDown"];
                 JToken bulletGunTag = e["CBulletGunTag"];
                 JToken laserGunTag = e["CLaserGunTag"];
+                JToken bulletTag = e["CBulletTag"];
 
 
 
@@ -140,6 +141,13 @@ namespace AsteroidsProject.Test
                 if (laserGunTag != null)
                 {
                     components.Add(new CLaserGunTag { });
+                }
+
+
+                ////PROJECTILES
+                if (bulletTag != null)
+                {
+                    components.Add(new CBulletTag { });
                 }
 
 

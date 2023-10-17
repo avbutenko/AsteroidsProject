@@ -1,3 +1,4 @@
+using Assets.AsteroidsProject.Scripts.Configs;
 using AsteroidsProject.Configs;
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
@@ -9,66 +10,55 @@ namespace AsteroidsProject.GameLogic.Features.SpawnBullet
     public class SpawnBulletSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly IConfigProvider configProvider;
-        private readonly IGameObjectFactory gameObjectFactory;
 
-        private BulletConfig config;
+        private ComponentListConfig config;
 
-        public SpawnBulletSystem(IConfigProvider configProvider, IGameObjectFactory gameObjectFactory)
+        public SpawnBulletSystem(IConfigProvider configProvider)
         {
             this.configProvider = configProvider;
-            this.gameObjectFactory = gameObjectFactory;
         }
 
         public async void Init(IEcsSystems systems)
         {
             var gameConfig = await configProvider.Load<GameConfig>("Configs/GameConfig.json");
-            config = await configProvider.Load<BulletConfig>(gameConfig.BulletConfigPath);
+            config = await configProvider.Load<ComponentListConfig>(gameConfig.BulletConfigPath);
         }
 
         public void Run(IEcsSystems systems)
         {
-            if (config == null)
-            {
-                return;
-            }
-
             var world = systems.GetWorld();
-            var filter = world.Filter<SpawnBulletRequest>().End();
-            var requestPool = world.GetPool<SpawnBulletRequest>();
+            var filter = world.Filter<CSpawnBulletRequest>().End();
+            var requestPool = world.GetPool<CSpawnBulletRequest>();
 
             foreach (var entity in filter)
             {
                 ref var spawnInfo = ref requestPool.Get(entity).SpawnInfo;
+
                 Spawn(world, spawnInfo);
                 world.DelEntity(entity);
             }
         }
 
-        private async void Spawn(EcsWorld world, SpawnInfo spawnInfo)
+        private void Spawn(EcsWorld world, SpawnInfo spawnInfo)
         {
-            var position = spawnInfo.Position;
-            var rotation = spawnInfo.Rotation;
-            var velocityX = config.VelocityX;
-            var velocityY = config.VelocityY;
-            var velocityVector = (Vector2)(rotation * new Vector2(velocityX, velocityY));
+            var entity = world.NewEntity();
 
-            var bulletEntity = world.NewEntity();
-            world.AddComponentToEntity(bulletEntity, new CBulletTag { });
-            world.AddComponentToEntity(bulletEntity, new CPosition { Value = position });
-            world.AddComponentToEntity(bulletEntity, new CRotation { Value = rotation });
-            world.AddComponentToEntity(bulletEntity, new CVelocity { Value = velocityVector });
-
-            var go = await gameObjectFactory.CreateAsync(new SpawnInfo
+            foreach (var component in config.Components)
             {
-                PrefabAddress = config.PrefabAddress,
-                Position = position,
-                Rotation = rotation,
-                Parent = spawnInfo.Parent
-            });
+                world.AddRawComponentToEntity(entity, component);
+            }
 
-            var goLink = go.GetComponent<ILinkToGameObject>();
-            goLink.Entity = world.PackEntity(bulletEntity);
-            world.AddComponentToEntity(bulletEntity, new CLinkToGameObject { View = goLink });
+            world.AddComponentToEntity(entity, new CPosition { Value = spawnInfo.Position });
+            world.AddComponentToEntity(entity, new CRotation { Value = spawnInfo.Rotation });
+
+            AdoptVelocity(world, spawnInfo, entity);
+        }
+
+        private void AdoptVelocity(EcsWorld world, SpawnInfo spawnInfo, int entity)
+        {
+            var velocityPool = world.GetPool<CVelocity>();
+            ref var velocity = ref velocityPool.Get(entity).Value;
+            velocity = (Vector2)(spawnInfo.Rotation * velocity);
         }
     }
 }

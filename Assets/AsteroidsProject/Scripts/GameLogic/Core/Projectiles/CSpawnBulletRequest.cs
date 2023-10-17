@@ -2,7 +2,7 @@ using AsteroidsProject.Shared;
 
 namespace AsteroidsProject.GameLogic.Core
 {
-    public struct SpawnBulletRequest
+    public struct CSpawnBulletRequest
     {
         public SpawnInfo SpawnInfo;
     }
