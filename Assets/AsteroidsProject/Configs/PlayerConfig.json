@@ -11,7 +11,7 @@
                 "y": 0
             },
             "CRotationSpeed": 150,
-            "CAccelerationModifier": 3,
+            "CAccelerationModifier": 5,
             "CDeaccelerationModifier": -2
         }
     ]

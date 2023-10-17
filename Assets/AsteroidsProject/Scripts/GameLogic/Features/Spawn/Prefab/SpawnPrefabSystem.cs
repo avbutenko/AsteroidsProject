@@ -18,6 +18,7 @@ public class SpawnPrefabSystem : IEcsRunSystem
         var spawnPool = world.GetPool<CSpawnPrefabRequest>();
         var positionPool = world.GetPool<CPosition>();
         var rotationPool = world.GetPool<CRotation>();
+        var parentPool = world.GetPool<CParent>();
 
         foreach (var entity in filter)
         {
@@ -25,12 +26,29 @@ public class SpawnPrefabSystem : IEcsRunSystem
             ref var position = ref positionPool.Get(entity).Value;
             ref var rotation = ref rotationPool.Get(entity).Value;
 
-            Spawn(entity, world, new SpawnInfo
+            if (parentPool.Has(entity))
             {
-                PrefabAddress = prefabAddress,
-                Position = position,
-                Rotation = rotation,
-            });
+                ref var parent = ref parentPool.Get(entity).Value;
+
+                Spawn(entity, world, new SpawnInfo
+                {
+                    PrefabAddress = prefabAddress,
+                    Position = position,
+                    Rotation = rotation,
+                    Parent = parent,
+                });
+
+                parentPool.Del(entity);
+            }
+            else
+            {
+                Spawn(entity, world, new SpawnInfo
+                {
+                    PrefabAddress = prefabAddress,
+                    Position = position,
+                    Rotation = rotation,
+                });
+            }
 
             spawnPool.Del(entity);
         }

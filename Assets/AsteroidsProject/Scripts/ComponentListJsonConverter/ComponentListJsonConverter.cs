@@ -38,6 +38,8 @@ namespace AsteroidsProject.Test
                 JToken spawnPrimaryWeaponRequest = e["CSpawnPrimaryWeaponRequest"];
                 JToken spawnSecondaryWeaponRequest = e["CSpawnSecondaryWeaponRequest"];
                 JToken coolDown = e["CCoolDown"];
+                JToken bulletGunTag = e["CBulletGunTag"];
+                JToken laserGunTag = e["CLaserGunTag"];
 
 
 
@@ -123,10 +125,24 @@ namespace AsteroidsProject.Test
                     components.Add(new CSpawnSecondaryWeaponRequest { ConfigAddress = spawnSecondaryWeaponRequest.ToString() });
                 }
 
+                ////WEAPONS
+
                 if (coolDown != null)
                 {
                     components.Add(new CCoolDown { Value = (float)coolDown });
                 }
+
+                if (bulletGunTag != null)
+                {
+                    components.Add(new CBulletGunTag { });
+                }
+
+                if (laserGunTag != null)
+                {
+                    components.Add(new CLaserGunTag { });
+                }
+
+
 
                 //if (rotationDirection != null)
                 //{

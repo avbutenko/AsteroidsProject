@@ -16,7 +16,7 @@ namespace AsteroidsProject.GameLogic.Features.BulletGun
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<BulletGunTag>()
+            var filter = world.Filter<CBulletGunTag>()
                               .Inc<AttackRequest>()
                               .Inc<ShootingPoint>()
                               .Inc<CCoolDown>()

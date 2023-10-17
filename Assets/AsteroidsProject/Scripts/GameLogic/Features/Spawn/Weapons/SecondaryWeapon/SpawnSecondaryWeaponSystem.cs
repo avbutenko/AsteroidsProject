@@ -54,8 +54,9 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.SecondaryWeapon
                 world.AddRawComponentToEntity(weaponEntity, component);
             }
 
-            world.AddComponentToEntity(weaponEntity, new CPosition { Value = slot.position });
-            world.AddComponentToEntity(weaponEntity, new CRotation { Value = slot.rotation });
+            world.AddComponentToEntity(weaponEntity, new CPosition { Value = Vector2.zero });
+            world.AddComponentToEntity(weaponEntity, new CRotation { Value = Quaternion.identity });
+            world.AddComponentToEntity(weaponEntity, new CParent { Value = slot });
 
             return weaponEntity;
         }

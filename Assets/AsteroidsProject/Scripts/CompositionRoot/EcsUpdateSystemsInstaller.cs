@@ -18,7 +18,6 @@ using AsteroidsProject.GameLogic.Features.Rotation;
 using AsteroidsProject.GameLogic.Features.SpawnAsteroid;
 using AsteroidsProject.GameLogic.Features.SpawnBullet;
 using AsteroidsProject.GameLogic.Features.SpawnPlayer;
-using AsteroidsProject.GameLogic.Features.SpawnWeapon;
 using AsteroidsProject.GameLogic.Features.Teleportation;
 using AsteroidsProject.GameLogic.Features.UpdateGameObjectView;
 using Leopotam.EcsLite.UnityEditor;
@@ -71,11 +70,7 @@ namespace AsteroidsProject.CompositionRoot
 
         private void BindSpawnSystems()
         {
-
-            Container.BindInterfacesAndSelfTo<SpawnWeaponSystem>().AsSingle();
-
             Container.BindInterfacesAndSelfTo<SpawnBulletSystem>().AsSingle();
-
         }
 
         private void BindPlayerInputSystems()

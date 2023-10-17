@@ -24,7 +24,7 @@ namespace AsteroidsProject.GameLogic.Features.LaserGun
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<LaserGunTag>()
+            var filter = world.Filter<CLaserGunTag>()
                               .Inc<AttackRequest>()
                               .Inc<ShootingPoint>()
                               .Inc<CCoolDown>()
