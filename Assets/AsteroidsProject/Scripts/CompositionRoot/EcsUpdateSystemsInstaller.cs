@@ -24,6 +24,8 @@ using AsteroidsProject.GameLogic.Features.UpdateGameObjectView;
 using Leopotam.EcsLite.UnityEditor;
 using Zenject;
 using AsteroidsProject.GameLogic.Features.PermanentRandomRotation;
+using AsteroidsProject.GameLogic.Features.Spawn.PrimaryWeapon;
+using AsteroidsProject.GameLogic.Features.Spawn.SecondaryWeapon;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -34,6 +36,8 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<SpawnAsteroidTimerSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnAsteroidSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPlayerSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnPrimaryWeaponSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnSecondaryWeaponSystem>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<RandomizePositionSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RandomizeVelocitySystem>().AsSingle();
@@ -41,6 +45,8 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<RandomizeRotationSpeedSystem>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<SpawnPrefabSystem>().AsSingle();
+
+
 
             BindLifecycleSystems();
             BindSpawnSystems();

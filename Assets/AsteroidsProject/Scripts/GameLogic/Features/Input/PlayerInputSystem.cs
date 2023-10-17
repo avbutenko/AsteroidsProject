@@ -21,8 +21,8 @@ namespace AsteroidsProject.GameLogic.Features.Input
             var accelerationVectorPool = world.GetPool<CAccelerationVector>();
             var deaccelerationVectorPool = world.GetPool<CDeaccelerationVector>();
             var rotationDirectionPool = world.GetPool<CRotationDirection>();
-            var primaryWeaponPool = world.GetPool<PrimaryWeapon>();
-            var secondaryWeaponPool = world.GetPool<SecondaryWeapon>();
+            var primaryWeaponPool = world.GetPool<CPrimaryWeapon>();
+            var secondaryWeaponPool = world.GetPool<CSecondaryWeapon>();
             var attackRequestPool = world.GetPool<AttackRequest>();
 
             foreach (var entity in filter)
@@ -48,18 +48,18 @@ namespace AsteroidsProject.GameLogic.Features.Input
                     rotationDirectionPool.Add(entity).Value = inputService.RotationDirection;
                 }
 
-                //if (inputService.IsPrimaryWeaponAttackPerformed)
-                //{
-                //    ref var primaryWeaponPackedEntity = ref primaryWeaponPool.Get(entity).WeaponEntity;
-                //    AddWeaponAttackRequest(attackRequestPool, primaryWeaponPackedEntity, world);
+                if (inputService.IsPrimaryWeaponAttackPerformed)
+                {
+                    ref var primaryWeaponPackedEntity = ref primaryWeaponPool.Get(entity).WeaponEntity;
+                    AddWeaponAttackRequest(attackRequestPool, primaryWeaponPackedEntity, world);
 
-                //}
+                }
 
-                //if (inputService.IsSecondaryWeaponAttackPerformed)
-                //{
-                //    ref var secondaryWeaponPackedEntity = ref secondaryWeaponPool.Get(entity).WeaponEntity;
-                //    AddWeaponAttackRequest(attackRequestPool, secondaryWeaponPackedEntity, world);
-                //}
+                if (inputService.IsSecondaryWeaponAttackPerformed)
+                {
+                    ref var secondaryWeaponPackedEntity = ref secondaryWeaponPool.Get(entity).WeaponEntity;
+                    AddWeaponAttackRequest(attackRequestPool, secondaryWeaponPackedEntity, world);
+                }
             }
         }
 

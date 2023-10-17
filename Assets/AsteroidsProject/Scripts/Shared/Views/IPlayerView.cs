@@ -1,4 +1,4 @@
 ﻿namespace AsteroidsProject.Shared
 {
-    public interface IPlayerView { }
+    public interface IPlayerView : IHavePrimaryWeapon, IHaveSecondaryWeapon { }
 }

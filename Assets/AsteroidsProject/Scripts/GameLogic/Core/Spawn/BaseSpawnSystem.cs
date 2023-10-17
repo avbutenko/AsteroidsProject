@@ -23,7 +23,7 @@ namespace AsteroidsProject.GameLogic.Core
 
             if (spawnInfo.OwnerEntity.Unpack(spawnInfo.World, out int ownerEntity))
             {
-                spawnInfo.World.AddComponentToEntity(entityWithGameObject.Entity, new OwnerEntity { Value = spawnInfo.OwnerEntity });
+                spawnInfo.World.AddComponentToEntity(entityWithGameObject.Entity, new COwnerEntity { Value = spawnInfo.OwnerEntity });
             }
 
             return entityWithGameObject;

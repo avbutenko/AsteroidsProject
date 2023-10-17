@@ -1,16 +1,18 @@
 {
     "Components": [
         {
-            "CSpawnPrefabRequest": "Bundles/Player/Prefabs/Player.prefab",
             "CPlayerTag": {},
             "CTeleportableTag": {},
+            "CSpawnPrefabRequest": "Bundles/Player/Prefabs/Player.prefab",
+            "CSpawnPrimaryWeaponRequest": "Configs/BulletGunConfig.json",
+            "CSpawnSecondaryWeaponRequest": "Configs/LaserGunConfig.json",
             "CVelocity": {
                 "x": 0,
                 "y": 0
             },
             "CRotationSpeed": 150,
             "CAccelerationModifier": 3,
-            "CDeaccelerationModifier": 2
+            "CDeaccelerationModifier": -2
         }
     ]
 }

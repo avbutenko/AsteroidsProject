@@ -8,7 +8,7 @@ namespace AsteroidsProject.GameLogic.Features.LaserGun
     public class LaserGunAttackSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly IConfigProvider configProvider;
-        private LaserGunConfig config;
+        //private LaserGunConfig config;
 
         public LaserGunAttackSystem(IConfigProvider configProvider)
         {
@@ -18,7 +18,7 @@ namespace AsteroidsProject.GameLogic.Features.LaserGun
         public async void Init(IEcsSystems systems)
         {
             var gameConfig = await configProvider.Load<GameConfig>("Configs/GameConfig.json");
-            config = await configProvider.Load<LaserGunConfig>(gameConfig.LaserGunConfigPath);
+            //config = await configProvider.Load<LaserGunConfig>(gameConfig.LaserGunConfigPath);
         }
 
         public void Run(IEcsSystems systems)
@@ -27,14 +27,14 @@ namespace AsteroidsProject.GameLogic.Features.LaserGun
             var filter = world.Filter<LaserGunTag>()
                               .Inc<AttackRequest>()
                               .Inc<ShootingPoint>()
-                              .Inc<CoolDown>()
+                              .Inc<CCoolDown>()
                               .Inc<Ammo>()
                               .Inc<CLinkToGameObject>()
                               .Exc<ActiveCoolDown>()
                               .End();
 
             var shootingPointPool = world.GetPool<ShootingPoint>();
-            var coolDownPool = world.GetPool<CoolDown>();
+            var coolDownPool = world.GetPool<CCoolDown>();
             var activeCoolDownPool = world.GetPool<ActiveCoolDown>();
             var ammoPool = world.GetPool<Ammo>();
             var viewPool = world.GetPool<CLinkToGameObject>();

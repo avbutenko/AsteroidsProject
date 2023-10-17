@@ -19,12 +19,12 @@ namespace AsteroidsProject.GameLogic.Features.BulletGun
             var filter = world.Filter<BulletGunTag>()
                               .Inc<AttackRequest>()
                               .Inc<ShootingPoint>()
-                              .Inc<CoolDown>()
+                              .Inc<CCoolDown>()
                               .Exc<ActiveCoolDown>()
                               .End();
 
             var shootingPointPool = world.GetPool<ShootingPoint>();
-            var coolDownPool = world.GetPool<CoolDown>();
+            var coolDownPool = world.GetPool<CCoolDown>();
             var activeCoolDownPool = world.GetPool<ActiveCoolDown>();
 
             foreach (var entity in filter)

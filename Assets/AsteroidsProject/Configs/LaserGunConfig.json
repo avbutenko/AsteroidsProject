@@ -1,3 +1,10 @@
 {
-    "ProjectilePrefabAddress": "Bundles/Projectiles/Laser/Prefabs/Laser.prefab"
+    "Components": [
+        {
+            "CLaserGunTag": {},
+            "CSpawnPrefabRequest": "Bundles/Weapons/LaserGun/Prefabs/LaserGun.prefab",
+            "CProjectileConfig": "Configs/BulletConfig.json",
+            "CCoolDown": 2
+        }
+    ]
 }

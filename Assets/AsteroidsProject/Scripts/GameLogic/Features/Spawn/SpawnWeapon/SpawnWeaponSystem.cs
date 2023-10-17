@@ -15,8 +15,8 @@ namespace AsteroidsProject.GameLogic.Features.SpawnWeapon
             var filter = world.Filter<SpawnWeaponRequest>().End();
 
             var requestPool = world.GetPool<SpawnWeaponRequest>();
-            var primaryWeaponPool = world.GetPool<PrimaryWeapon>();
-            var secondaryWeaponPool = world.GetPool<SecondaryWeapon>();
+            var primaryWeaponPool = world.GetPool<CPrimaryWeapon>();
+            var secondaryWeaponPool = world.GetPool<CSecondaryWeapon>();
 
             foreach (var entity in filter)
             {
@@ -32,7 +32,7 @@ namespace AsteroidsProject.GameLogic.Features.SpawnWeapon
         }
 
         private async void SetWeapon(int ownerEntity, SpawnWeaponInfo spawnInfo, EcsWorld world,
-            EcsPool<PrimaryWeapon> primaryWeaponPool, EcsPool<SecondaryWeapon> secondaryWeaponPool)
+            EcsPool<CPrimaryWeapon> primaryWeaponPool, EcsPool<CSecondaryWeapon> secondaryWeaponPool)
         {
             var newEntityWithGameObject = await Spawn(new SpawnInfo
             {

@@ -1,7 +1,4 @@
-﻿using System;
-
-namespace AsteroidsProject.GameLogic.Core
+﻿namespace AsteroidsProject.GameLogic.Core
 {
-    [Serializable]
     public struct CPlayerTag { }
 }

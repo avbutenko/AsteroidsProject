@@ -2,5 +2,5 @@
 
 namespace AsteroidsProject.GameLogic.Core
 {
-    public class CoolDownConverter : ComponentConverter<CoolDown> { }
+    public class CoolDownConverter : ComponentConverter<CCoolDown> { }
 }

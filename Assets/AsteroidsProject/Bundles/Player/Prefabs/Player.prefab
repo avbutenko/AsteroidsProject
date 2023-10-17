@@ -95,10 +95,6 @@ GameObject:
   - component: {fileID: 6363747595553908038}
   - component: {fileID: 3964465532527155628}
   - component: {fileID: 7489917795947231938}
-  - component: {fileID: 2774858234212799050}
-  - component: {fileID: 7190577193476611215}
-  - component: {fileID: 4907745309920554525}
-  - component: {fileID: 8172069200194199812}
   - component: {fileID: 8456797092494229170}
   - component: {fileID: 4691024098902057043}
   m_Layer: 0
@@ -138,6 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab0762b2653879745939e6bd4226f39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  primaryWeaponSlot: {fileID: 3912911271661441822}
+  secondaryWeaponSlot: {fileID: 2713995690916705976}
 --- !u!114 &7489917795947231938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,71 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d5071960684b97bcdb09d4072584ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2774858234212799050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2707922812654170391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09d40b90da6b42589971320ba7a7bc95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _converters:
-  - {fileID: 7190577193476611215}
-  - {fileID: 4907745309920554525}
-  - {fileID: 8172069200194199812}
-  _destroyAfterConversion: 1
---- !u!114 &7190577193476611215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2707922812654170391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64e5dd470337ab04b818faa6f3bd0e60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _component:
-    Info:
-    - PrefabAddress: Bundles/Weapons/BulletGun/Prefabs/BulletGun.prefab
-      WeaponSlot: {fileID: 3912911271661441822}
-      WeaponType: 0
-    - PrefabAddress: Bundles/Weapons/LaserGun/Prefabs/LaserGun.prefab
-      WeaponSlot: {fileID: 2713995690916705976}
-      WeaponType: 1
---- !u!114 &4907745309920554525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2707922812654170391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89234aa9c21e6344ca78a19a21fbb31c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _component:
-    Value: 6
---- !u!114 &8172069200194199812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2707922812654170391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bad7c99db3625f84f93daf6d808e96b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _component:
-    Value: -2
 --- !u!50 &8456797092494229170
 Rigidbody2D:
   serializedVersion: 4

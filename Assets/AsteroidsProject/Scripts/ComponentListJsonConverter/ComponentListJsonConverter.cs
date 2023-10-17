@@ -35,6 +35,10 @@ namespace AsteroidsProject.Test
                 JToken accelerationModifier = e["CAccelerationModifier"];
                 JToken deaccelerationModifier = e["CDeaccelerationModifier"];
                 JToken velocity = e["CVelocity"];
+                JToken spawnPrimaryWeaponRequest = e["CSpawnPrimaryWeaponRequest"];
+                JToken spawnSecondaryWeaponRequest = e["CSpawnSecondaryWeaponRequest"];
+                JToken coolDown = e["CCoolDown"];
+
 
 
                 if (spawnPrefab != null)
@@ -80,6 +84,9 @@ namespace AsteroidsProject.Test
                     components.Add(new CRandomizeRotationSpeedRequest { Range = range });
                 }
 
+
+
+                ////PLAYER
                 if (playerTag != null)
                 {
                     components.Add(new CPlayerTag());
@@ -106,7 +113,20 @@ namespace AsteroidsProject.Test
                     components.Add(new CVelocity { Value = value });
                 }
 
+                if (spawnPrimaryWeaponRequest != null)
+                {
+                    components.Add(new CSpawnPrimaryWeaponRequest { ConfigAddress = spawnPrimaryWeaponRequest.ToString() });
+                }
 
+                if (spawnSecondaryWeaponRequest != null)
+                {
+                    components.Add(new CSpawnSecondaryWeaponRequest { ConfigAddress = spawnSecondaryWeaponRequest.ToString() });
+                }
+
+                if (coolDown != null)
+                {
+                    components.Add(new CCoolDown { Value = (float)coolDown });
+                }
 
                 //if (rotationDirection != null)
                 //{

@@ -125,10 +125,6 @@ GameObject:
   m_Component:
   - component: {fileID: 467693015867638655}
   - component: {fileID: 3042659743559452957}
-  - component: {fileID: 6022398114482749957}
-  - component: {fileID: 894362164624697343}
-  - component: {fileID: 5798825872337793034}
-  - component: {fileID: 679731982485225328}
   m_Layer: 0
   m_Name: BulletGun
   m_TagString: Untagged
@@ -165,60 +161,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de37e9c6d521834d8719100a839f5ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6022398114482749957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6243598741928209995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09d40b90da6b42589971320ba7a7bc95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _converters:
-  - {fileID: 894362164624697343}
-  - {fileID: 5798825872337793034}
-  - {fileID: 679731982485225328}
-  _destroyAfterConversion: 1
---- !u!114 &894362164624697343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6243598741928209995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ff1a366ebc0c1444ae0e3aaa890837b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5798825872337793034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6243598741928209995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e2b53d422f4af94baea74c0daf3a710, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _component:
-    Value: {fileID: 2611206825038936705}
---- !u!114 &679731982485225328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6243598741928209995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0325ef2c5ca060945bff57d2dd6c7922, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _component:
-    Value: 0.3
+  shootingPoint: {fileID: 2611206825038936705}

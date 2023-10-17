@@ -1,5 +1,6 @@
 {
     "PlayerConfigPath": "Configs/PlayerConfig.json",
+    "AsteroidSpawnConfigPath": "Configs/AsteroidSpawnConfig.json",
     "AsteroidConfigPath": "Configs/AsteroidConfig.json",
     "BulletGunConfigPath": "Configs/BulletGunConfig.json",
     "BulletConfigPath": "Configs/BulletConfig.json",

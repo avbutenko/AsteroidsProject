@@ -1,5 +1,10 @@
 {
-    "ProjectilePrefabAddress": "Bundles/Projectiles/Bullet/Prefabs/Bullet.prefab",
-    "VelocityX": 0,
-    "VelocityY": 15
+    "Components": [
+        {
+            "CBulletGunTag": {},
+            "CSpawnPrefabRequest": "Bundles/Weapons/BulletGun/Prefabs/BulletGun.prefab",
+            "CProjectileConfig": "Configs/BulletConfig.json",
+            "CCoolDown": 1
+        }
+    ]
 }
