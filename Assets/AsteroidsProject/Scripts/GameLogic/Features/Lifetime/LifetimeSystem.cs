@@ -19,7 +19,7 @@ namespace AsteroidsProject.GameLogic.Features.Lifetime
             var filter = world.Filter<Lifetime>().End();
 
             var lifetimePool = world.GetPool<Lifetime>();
-            var destroyTagPool = world.GetPool<DestroyTag>();
+            var destroyTagPool = world.GetPool<CDestroyRequest>();
 
             foreach (var entity in filter)
             {

@@ -1,15 +1,16 @@
 ﻿using AsteroidsProject.Shared;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace AsteroidsProject.Services
 {
-    public class Pool : IPool
+    public class GameObjectPool : IGameObjectPool
     {
         private readonly Dictionary<int, Stack<GameObject>> cachedObjects;
         private readonly Dictionary<int, int> cachedIDs;
 
-        public Pool()
+        public GameObjectPool()
         {
             cachedObjects = new Dictionary<int, Stack<GameObject>>();
             cachedIDs = new Dictionary<int, int>();

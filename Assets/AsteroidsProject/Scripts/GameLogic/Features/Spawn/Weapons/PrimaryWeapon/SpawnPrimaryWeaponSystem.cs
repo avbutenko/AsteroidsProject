@@ -21,14 +21,14 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.PrimaryWeapon
             var filter = world.Filter<CSpawnPrimaryWeaponRequest>().End();
 
             var requestPool = world.GetPool<CSpawnPrimaryWeaponRequest>();
-            var linkToGameObjectPool = world.GetPool<CLinkToGameObject>();
+            var linkToGameObjectPool = world.GetPool<CGameObject>();
 
             foreach (var entity in filter)
             {
                 if (!linkToGameObjectPool.Has(entity)) return;
 
                 ref var weaponConfig = ref requestPool.Get(entity).ConfigAddress;
-                ref var view = ref linkToGameObjectPool.Get(entity).View;
+                ref var view = ref linkToGameObjectPool.Get(entity).Link;
                 var slot = (view as IHavePrimaryWeapon).PrimaryWeaponSlot;
 
                 Spawn(weaponConfig, slot, world, entity);

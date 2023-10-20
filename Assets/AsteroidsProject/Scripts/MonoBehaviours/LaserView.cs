@@ -1,6 +1,4 @@
-﻿using AsteroidsProject.Shared;
-
-namespace AsteroidsProject.MonoBehaviours
+﻿namespace AsteroidsProject.MonoBehaviours
 {
-    public class LaserView : GameObjectView, ILaserView { }
+    public class LaserView : GameObjectView { }
 }

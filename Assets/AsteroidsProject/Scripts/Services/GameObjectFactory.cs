@@ -1,29 +1,18 @@
-﻿using AB_Utility.FromSceneToEntityConverter;
-using AsteroidsProject.Shared;
+﻿using AsteroidsProject.Shared;
 using System.Threading.Tasks;
 using UnityEngine;
 
 namespace AsteroidsProject.Services
 {
-    public class GameplayObjectViewFactory : IGameObjectFactory
+    public class GameObjectFactory : IGameObjectFactory
     {
         private readonly IAssetProvider assetProvider;
-        private readonly IPool pool;
+        private readonly IGameObjectPool gameObjectPool;
 
-        public GameplayObjectViewFactory(IAssetProvider assetProvider, IPool pool)
+        public GameObjectFactory(IAssetProvider assetProvider, IGameObjectPool pool)
         {
             this.assetProvider = assetProvider;
-            this.pool = pool;
-        }
-
-        public async Task<EntityWithGameObject> InstantiateAsync(SpawnInfo spawnInfo)
-        {
-            var prefab = await assetProvider.Load<GameObject>(spawnInfo.PrefabAddress);
-
-            var gameObject = EcsConverter.InstantiateAndCreateEntity(prefab, spawnInfo.Position, spawnInfo.Rotation,
-                spawnInfo.Parent, spawnInfo.World, out int entity);
-
-            return new EntityWithGameObject { Entity = entity, GameObject = gameObject };
+            this.gameObjectPool = pool;
         }
 
         public async Task<GameObject> CreateAsync(SpawnInfo spawnInfo)
@@ -44,7 +33,7 @@ namespace AsteroidsProject.Services
 
         private GameObject GetPoolable(GameObject prefab, SpawnInfo spawnInfo)
         {
-            if (pool.HasObjects(prefab))
+            if (gameObjectPool.HasObjects(prefab))
             {
                 return PullFromPool(prefab, spawnInfo);
             }
@@ -56,7 +45,7 @@ namespace AsteroidsProject.Services
 
         private GameObject PullFromPool(GameObject prefab, SpawnInfo spawnInfo)
         {
-            var go = pool.Pull(prefab);
+            var go = gameObjectPool.Pull(prefab);
             SetGOParams(go, spawnInfo);
             return go;
         }
@@ -64,7 +53,7 @@ namespace AsteroidsProject.Services
         private GameObject CreatePoolable(GameObject prefab, SpawnInfo spawnInfo)
         {
             var go = Create(prefab, spawnInfo);
-            pool.Register(prefab, go);
+            gameObjectPool.Register(prefab, go);
             return go;
         }
 

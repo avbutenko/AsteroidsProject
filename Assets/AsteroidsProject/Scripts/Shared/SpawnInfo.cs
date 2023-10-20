@@ -9,7 +9,7 @@ namespace AsteroidsProject.Shared
         public Vector3 Position;
         public Quaternion Rotation;
         public Transform Parent;
-        public EcsWorld World;
+        //public EcsWorld World;
         public EcsPackedEntity OwnerEntity;
     }
 }

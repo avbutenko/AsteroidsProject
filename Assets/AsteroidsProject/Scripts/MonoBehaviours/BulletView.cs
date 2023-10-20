@@ -2,5 +2,5 @@
 
 namespace AsteroidsProject.MonoBehaviours
 {
-    public class BulletView : GameObjectView, IBulletView { }
+    public class BulletView : GameObjectView, IPoolable { }
 }

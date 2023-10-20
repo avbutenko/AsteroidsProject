@@ -3,8 +3,8 @@ using System;
 
 namespace AsteroidsProject.GameLogic.Core
 {
-    public struct CLinkToGameObject
+    public struct CGameObject
     {
-        public ILinkToGameObject View;
+        public IGameObject Link;
     }
 }

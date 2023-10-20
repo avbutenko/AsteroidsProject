@@ -2,7 +2,7 @@
 
 namespace AsteroidsProject.Shared
 {
-    public interface IPool
+    public interface IGameObjectPool
     {
         public void Register(GameObject prefab, GameObject instance);
         public bool HasObjects(GameObject prefab);

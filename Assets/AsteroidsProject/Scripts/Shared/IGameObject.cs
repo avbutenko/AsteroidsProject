@@ -1,13 +1,12 @@
-﻿using Leopotam.EcsLite;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace AsteroidsProject.Shared
 {
-    public interface ILinkToGameObject
+    public interface IGameObject
     {
-        public EcsPackedEntity Entity { get; set; }
         public Vector2 Position { set; }
         public Quaternion Rotation { set; }
+        public int GetGameObjectInstanceID();
         public void DestroySelf();
     }
 }

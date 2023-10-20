@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace AsteroidsProject.MonoBehaviours
 {
-    public class PlayerView : GameObjectView, IPlayerView
+    public class PlayerView : GameObjectView, IHavePrimaryWeapon, IHaveSecondaryWeapon
     {
         [SerializeField] private Transform primaryWeaponSlot;
         [SerializeField] private Transform secondaryWeaponSlot;

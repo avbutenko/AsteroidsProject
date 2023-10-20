@@ -10,6 +10,7 @@
                 "x": 0,
                 "y": 0
             },
+            "CMaxVelocityMagnitude": 50,
             "CRotationSpeed": 150,
             "CAccelerationModifier": 5,
             "CDeaccelerationModifier": -2

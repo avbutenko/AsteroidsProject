@@ -29,7 +29,7 @@ namespace AsteroidsProject.GameLogic.Features.LaserGun
                               //.Inc<ShootingPoint>()
                               .Inc<CCoolDown>()
                               .Inc<Ammo>()
-                              .Inc<CLinkToGameObject>()
+                              .Inc<CGameObject>()
                               .Exc<CActiveCoolDown>()
                               .End();
 
@@ -37,14 +37,14 @@ namespace AsteroidsProject.GameLogic.Features.LaserGun
             var coolDownPool = world.GetPool<CCoolDown>();
             var activeCoolDownPool = world.GetPool<CActiveCoolDown>();
             var ammoPool = world.GetPool<Ammo>();
-            var viewPool = world.GetPool<CLinkToGameObject>();
+            var viewPool = world.GetPool<CGameObject>();
 
             foreach (var entity in filter)
             {
                 //ref var shootingPoint = ref shootingPointPool.Get(entity).Value;
                 ref var coolDown = ref coolDownPool.Get(entity).Value;
                 ref var ammo = ref ammoPool.Get(entity).Value;
-                ref var view = ref viewPool.Get(entity).View;
+                ref var view = ref viewPool.Get(entity).Link;
 
                 if (ammo > 0)
                 {

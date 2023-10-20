@@ -5,10 +5,12 @@ using Leopotam.EcsLite;
 public class SpawnPrefabSystem : IEcsRunSystem
 {
     private readonly IGameObjectFactory gameObjectFactory;
+    private readonly IActiveGameObjectMapService activeGameObjectMapService;
 
-    public SpawnPrefabSystem(IGameObjectFactory gameObjectFactory)
+    public SpawnPrefabSystem(IGameObjectFactory gameObjectFactory, IActiveGameObjectMapService activeGameObjectMapService)
     {
         this.gameObjectFactory = gameObjectFactory;
+        this.activeGameObjectMapService = activeGameObjectMapService;
     }
 
     public void Run(IEcsSystems systems)
@@ -49,8 +51,9 @@ public class SpawnPrefabSystem : IEcsRunSystem
     {
         var go = await gameObjectFactory.CreateAsync(info);
 
-        var goLink = go.GetComponent<ILinkToGameObject>();
-        goLink.Entity = world.PackEntity(entity);
-        world.AddComponentToEntity(entity, new CLinkToGameObject { View = goLink });
+        var link = go.GetComponent<IGameObject>();
+        world.AddComponentToEntity(entity, new CGameObject { Link = link });
+
+        activeGameObjectMapService.Add(link, new GoEntityPair { Go = go, PackedEntity = world.PackEntity(entity) });
     }
 }

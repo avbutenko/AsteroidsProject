@@ -24,6 +24,7 @@ using Zenject;
 using AsteroidsProject.GameLogic.Features.PermanentRandomRotation;
 using AsteroidsProject.GameLogic.Features.Spawn.PrimaryWeapon;
 using AsteroidsProject.GameLogic.Features.Spawn.SecondaryWeapon;
+using AsteroidsProject.GameLogic.Features.MaxVelocityMagnitude;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -80,6 +81,7 @@ namespace AsteroidsProject.CompositionRoot
 
         private void BindMovementSystems()
         {
+            Container.BindInterfacesAndSelfTo<MaxVelocityMagnitudeSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<PermanentRotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<AccelerationVectorSystem>().AsSingle();

@@ -1,6 +1,7 @@
 ﻿using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.GameLogic.Features.AccelerationMovement;
 using AsteroidsProject.GameLogic.Features.DeaccelerationMovement;
+using AsteroidsProject.GameLogic.Features.MaxVelocityMagnitude;
 using AsteroidsProject.GameLogic.Features.RandomizeRotationDirection;
 using AsteroidsProject.GameLogic.Features.RandomizeRotationSpeed;
 using Newtonsoft.Json;
@@ -35,6 +36,7 @@ namespace AsteroidsProject.Test
                 JToken accelerationModifier = e["CAccelerationModifier"];
                 JToken deaccelerationModifier = e["CDeaccelerationModifier"];
                 JToken velocity = e["CVelocity"];
+                JToken maxVelocityMagnitude = e["CMaxVelocityMagnitude"];
                 JToken spawnPrimaryWeaponRequest = e["CSpawnPrimaryWeaponRequest"];
                 JToken spawnSecondaryWeaponRequest = e["CSpawnSecondaryWeaponRequest"];
                 JToken coolDown = e["CCoolDown"];
@@ -114,6 +116,11 @@ namespace AsteroidsProject.Test
                 {
                     var value = JsonConvert.DeserializeObject<Vector2>(velocity.ToString());
                     components.Add(new CVelocity { Value = value });
+                }
+
+                if (maxVelocityMagnitude != null)
+                {
+                    components.Add(new CMaxVelocityMagnitude { Value = (float)maxVelocityMagnitude });
                 }
 
                 if (spawnPrimaryWeaponRequest != null)

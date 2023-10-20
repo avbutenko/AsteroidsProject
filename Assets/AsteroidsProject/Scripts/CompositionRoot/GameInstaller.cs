@@ -12,8 +12,9 @@ namespace AsteroidsProject.CompositionRoot
             Container.Bind<IAssetProvider>().To<AssetProvider>().AsSingle();
             Container.Bind<IConfigProvider>().To<ConfigProvider>().AsSingle();
             Container.Bind<ITimeService>().To<TimeService>().AsSingle();
-            Container.Bind<IPool>().To<Pool>().AsSingle();
-            Container.Bind<IGameObjectFactory>().To<GameplayObjectViewFactory>().AsSingle();
+            Container.Bind<IGameObjectPool>().To<GameObjectPool>().AsSingle();
+            Container.Bind<IActiveGameObjectMapService>().To<ActiveGameObjectMapService>().AsSingle();
+            Container.Bind<IGameObjectFactory>().To<GameObjectFactory>().AsSingle();
         }
     }
 }

@@ -24,13 +24,13 @@ namespace AsteroidsProject.GameLogic.Features.BulletGun
 
             var coolDownPool = world.GetPool<CCoolDown>();
             var activeCoolDownPool = world.GetPool<CActiveCoolDown>();
-            var goLink = world.GetPool<CLinkToGameObject>();
+            var goLink = world.GetPool<CGameObject>();
 
             foreach (var entity in filter)
             {
                 if (!goLink.Has(entity)) return;
 
-                ref var view = ref goLink.Get(entity).View;
+                ref var view = ref goLink.Get(entity).Link;
                 var shootingPoint = view as IHaveShootingPoint;
                 ref var coolDown = ref coolDownPool.Get(entity).Value;
 

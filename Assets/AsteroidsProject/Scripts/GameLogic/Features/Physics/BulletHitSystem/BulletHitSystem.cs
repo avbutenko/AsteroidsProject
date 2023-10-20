@@ -7,10 +7,10 @@ namespace AsteroidsProject.GameLogic.Features.BulletHitSystem
 {
     public class BulletHitSystem : IEcsRunSystem
     {
-        private readonly IPool pool;
+        private readonly IGameObjectPool pool;
         private int hittedEntity;
 
-        public BulletHitSystem(IPool pool)
+        public BulletHitSystem(IGameObjectPool pool)
         {
             this.pool = pool;
         }
@@ -27,19 +27,19 @@ namespace AsteroidsProject.GameLogic.Features.BulletHitSystem
                 ref var senderGameObject = ref eventPool.Get(entity).senderGameObject;
                 ref var collider = ref eventPool.Get(entity).collider2D;
 
-                var isBullet = senderGameObject.TryGetComponent(out IBulletView playerView);
-                var isEnemy = collider.gameObject.TryGetComponent(out IAsteroidView enemyView);
+                //var isBullet = senderGameObject.TryGetComponent(out IBulletView playerView);
+                //var isEnemy = collider.gameObject.TryGetComponent(out IAsteroidView enemyView);
 
-                if (isBullet && isEnemy)
-                {
-                    collider.gameObject.TryGetComponent(out ILinkToGameObject link);
+                //if (isBullet && isEnemy)
+                //{
+                //    collider.gameObject.TryGetComponent(out ILinkToGameObject link);
 
-                    link.Entity.Unpack(world, out hittedEntity);
-                    world.DelEntity(hittedEntity);
-                    //Object.Destroy(collider.gameObject);
-                    pool.Push(collider.gameObject);
-                    eventPool.Del(entity);
-                }
+                //    link.Entity.Unpack(world, out hittedEntity);
+                //    world.DelEntity(hittedEntity);
+                //    //Object.Destroy(collider.gameObject);
+                //    pool.Push(collider.gameObject);
+                //    eventPool.Del(entity);
+                //}
             }
         }
     }
