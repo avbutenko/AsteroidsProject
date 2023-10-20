@@ -2,6 +2,7 @@
     "Components": [
         {
             "CBulletTag": {},
+            "COnOutOfLevelDestroyTag": {},
             "CSpawnPrefabRequest": "Bundles/Projectiles/Bullet/Prefabs/Bullet.prefab",
             "CVelocity": {
                 "x": 0,

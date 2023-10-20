@@ -17,7 +17,6 @@ using AsteroidsProject.GameLogic.Features.Rotation;
 using AsteroidsProject.GameLogic.Features.SpawnAsteroid;
 using AsteroidsProject.GameLogic.Features.SpawnBullet;
 using AsteroidsProject.GameLogic.Features.SpawnPlayer;
-using AsteroidsProject.GameLogic.Features.Teleportation;
 using AsteroidsProject.GameLogic.Features.UpdateGameObjectView;
 using Leopotam.EcsLite.UnityEditor;
 using Zenject;
@@ -25,6 +24,9 @@ using AsteroidsProject.GameLogic.Features.PermanentRandomRotation;
 using AsteroidsProject.GameLogic.Features.Spawn.PrimaryWeapon;
 using AsteroidsProject.GameLogic.Features.Spawn.SecondaryWeapon;
 using AsteroidsProject.GameLogic.Features.MaxVelocityMagnitude;
+using AsteroidsProject.GameLogic.Features.OutOfLevel.Check;
+using AsteroidsProject.GameLogic.Features.OutOfLevel.Teleportation;
+using AsteroidsProject.GameLogic.Features.OutOfLevel.Destruction;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -91,8 +93,9 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<DeaccelerationVelocitySystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<DeaccelerationPositionSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<BasicMovementSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<TeleportationCheckSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<TeleportationSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<OutOfLevelCheckSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<OutOfLevelTeleportationSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<OutOfLevelDestructionSystem>().AsSingle();
         }
 
         private void BindWeaponSystems()

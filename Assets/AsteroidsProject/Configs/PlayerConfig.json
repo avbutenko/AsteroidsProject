@@ -2,7 +2,7 @@
     "Components": [
         {
             "CPlayerTag": {},
-            "CTeleportableTag": {},
+            "COnOutOfLevelTeleportTag": {},
             "CSpawnPrefabRequest": "Bundles/Player/Prefabs/Player.prefab",
             "CSpawnPrimaryWeaponRequest": "Configs/BulletGunConfig.json",
             "CSpawnSecondaryWeaponRequest": "Configs/LaserGunConfig.json",

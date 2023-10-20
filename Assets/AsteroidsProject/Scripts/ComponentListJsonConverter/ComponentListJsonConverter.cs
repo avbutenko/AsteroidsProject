@@ -24,7 +24,8 @@ namespace AsteroidsProject.Test
             {
                 JToken spawnPrefab = e["CSpawnPrefabRequest"];
                 JToken asteroidTag = e["CAsteroidTag"];
-                JToken teleportableTag = e["CTeleportableTag"];
+                JToken onOutOfLevelTeleportTag = e["COnOutOfLevelTeleportTag"];
+                JToken onOutOfLevelDestroyTag = e["COnOutOfLevelDestroyTag"];
                 JToken rotation = e["CRotation"];
                 JToken randomizePositionRequest = e["CRandomizePositionRequest"];
                 JToken randomizeVelocityRequest = e["CRandomizeVelocityRequest"];
@@ -56,9 +57,14 @@ namespace AsteroidsProject.Test
                     components.Add(new CAsteroidTag());
                 }
 
-                if (teleportableTag != null)
+                if (onOutOfLevelTeleportTag != null)
                 {
-                    components.Add(new CTeleportableTag());
+                    components.Add(new COnOutOfLevelTeleportTag());
+                }
+
+                if (onOutOfLevelDestroyTag != null)
+                {
+                    components.Add(new COnOutOfLevelDestroyTag());
                 }
 
                 //if (rotation != null)

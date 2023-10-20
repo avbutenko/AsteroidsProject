@@ -1,14 +1,14 @@
-﻿using AsteroidsProject.GameLogic.Core;
+using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.Teleportation
+namespace AsteroidsProject.GameLogic.Features.OutOfLevel.Check
 {
-    public class TeleportationCheckSystem : IEcsRunSystem
+    public class OutOfLevelCheckSystem : IEcsRunSystem
     {
         private readonly ILevelService level;
 
-        public TeleportationCheckSystem(ILevelService level)
+        public OutOfLevelCheckSystem(ILevelService level)
         {
             this.level = level;
         }
@@ -16,12 +16,10 @@ namespace AsteroidsProject.GameLogic.Features.Teleportation
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<CTeleportableTag>()
-                              .Inc<CPosition>()
-                              .End();
+            var filter = world.Filter<CPosition>().End();
 
             var positionPool = world.GetPool<CPosition>();
-            var teleportationRequestPool = world.GetPool<CTeleportationRequest>();
+            var eventPool = world.GetPool<COutOfLevelEvent>();
 
             foreach (var entity in filter)
             {
@@ -29,7 +27,7 @@ namespace AsteroidsProject.GameLogic.Features.Teleportation
 
                 if (level.IsOut(position))
                 {
-                    teleportationRequestPool.Add(entity);
+                    eventPool.Add(entity);
                 }
             }
         }

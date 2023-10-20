@@ -6,7 +6,7 @@
         {
             "CSpawnPrefabRequest": "Bundles/Obstacles/Asteroid/Prefabs/Asteroid.prefab",
             "CAsteroidTag": {},
-            "CTeleportableTag": {},
+            "COnOutOfLevelTeleportTag": {},
             "CRandomizePositionRequest": {},
             "CRandomizePermanentRotationDirectionRequest": [ -1, 1 ],
             "CRandomizeRotationSpeedRequest": [ 50, 100 ],
