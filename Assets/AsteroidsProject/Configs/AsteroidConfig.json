@@ -1,12 +1,11 @@
 {
-    "StartingSpawns": 10,
-    "MaxSpawns": 30,
-    "SpawnTime": 3,
     "Components": [
         {
             "CSpawnPrefabRequest": "Bundles/Obstacles/Asteroid/Prefabs/Asteroid.prefab",
             "CAsteroidTag": {},
-            "COnOutOfLevelTeleportTag": {},
+            "CEnemyTag": {},
+
+            "COnOutOfLevel": [ { "CTeleportRequest": {} } ],
             "CRandomizePositionRequest": {},
             "CRandomizePermanentRotationDirectionRequest": [ -1, 1 ],
             "CRandomizeRotationSpeedRequest": [ 50, 100 ],

@@ -1,4 +1,3 @@
-using Assets.AsteroidsProject.Scripts.Configs;
 using AsteroidsProject.Configs;
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
@@ -21,7 +20,7 @@ namespace AsteroidsProject.GameLogic.Features.SpawnPlayer
         {
             var world = systems.GetWorld();
             var gameConfig = await configProvider.Load<GameConfig>("Configs/GameConfig.json");
-            var config = await configProvider.Load<ComponentListConfig>(gameConfig.PlayerConfigPath);
+            var config = await configProvider.Load<ComponentList>(gameConfig.PlayerConfigPath);
 
             var playerEntity = world.NewEntity();
 

@@ -1,5 +1,4 @@
-﻿using Assets.AsteroidsProject.Scripts.Configs;
-using AsteroidsProject.Configs;
+﻿using AsteroidsProject.Configs;
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
@@ -10,7 +9,7 @@ namespace AsteroidsProject.GameLogic.Features.SpawnAsteroid
     {
         private readonly IConfigProvider configProvider;
 
-        private ComponentListConfig config;
+        private ComponentList config;
 
         public SpawnAsteroidSystem(IConfigProvider configProvider)
         {
@@ -20,7 +19,7 @@ namespace AsteroidsProject.GameLogic.Features.SpawnAsteroid
         public async void Init(IEcsSystems systems)
         {
             var gameConfig = await configProvider.Load<GameConfig>("Configs/GameConfig.json");
-            config = await configProvider.Load<ComponentListConfig>(gameConfig.AsteroidConfigPath);
+            config = await configProvider.Load<ComponentList>(gameConfig.AsteroidConfigPath);
         }
 
         public void Run(IEcsSystems systems)

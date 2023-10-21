@@ -1,4 +1,3 @@
-using Assets.AsteroidsProject.Scripts.Configs;
 using AsteroidsProject.Configs;
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
@@ -11,7 +10,7 @@ namespace AsteroidsProject.GameLogic.Features.SpawnBullet
     {
         private readonly IConfigProvider configProvider;
 
-        private ComponentListConfig config;
+        private ComponentList config;
 
         public SpawnBulletSystem(IConfigProvider configProvider)
         {
@@ -21,7 +20,7 @@ namespace AsteroidsProject.GameLogic.Features.SpawnBullet
         public async void Init(IEcsSystems systems)
         {
             var gameConfig = await configProvider.Load<GameConfig>("Configs/GameConfig.json");
-            config = await configProvider.Load<ComponentListConfig>(gameConfig.BulletConfigPath);
+            config = await configProvider.Load<ComponentList>(gameConfig.BulletConfigPath);
         }
 
         public void Run(IEcsSystems systems)

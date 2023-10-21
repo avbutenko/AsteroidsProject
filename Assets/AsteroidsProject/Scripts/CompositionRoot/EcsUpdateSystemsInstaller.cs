@@ -34,11 +34,11 @@ namespace AsteroidsProject.CompositionRoot
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<SpawnAsteroidTimerSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<SpawnAsteroidSystem>().AsSingle();
+            //Container.BindInterfacesAndSelfTo<SpawnAsteroidTimerSystem>().AsSingle();
+            //Container.BindInterfacesAndSelfTo<SpawnAsteroidSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPlayerSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<SpawnPrimaryWeaponSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<SpawnSecondaryWeaponSystem>().AsSingle();
+            //Container.BindInterfacesAndSelfTo<SpawnPrimaryWeaponSystem>().AsSingle();
+            //Container.BindInterfacesAndSelfTo<SpawnSecondaryWeaponSystem>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<RandomizePositionSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RandomizeVelocitySystem>().AsSingle();

@@ -1,4 +1,3 @@
-using Assets.AsteroidsProject.Scripts.Configs;
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
@@ -38,14 +37,14 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.PrimaryWeapon
 
         private async void Spawn(string configAddress, Transform slot, EcsWorld world, int owner)
         {
-            var config = await configProvider.Load<ComponentListConfig>(configAddress);
+            var config = await configProvider.Load<ComponentList>(configAddress);
 
             var weaponEntity = CreateWeaponEntity(world, config, slot);
 
             LinkWeaponEntityWithOwner(world, owner, weaponEntity);
         }
 
-        private int CreateWeaponEntity(EcsWorld world, ComponentListConfig config, Transform slot)
+        private int CreateWeaponEntity(EcsWorld world, ComponentList config, Transform slot)
         {
             var weaponEntity = world.NewEntity();
 

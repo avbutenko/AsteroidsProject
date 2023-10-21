@@ -1,10 +1,9 @@
-﻿using AsteroidsProject.Test;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace Assets.AsteroidsProject.Scripts.Configs
+namespace AsteroidsProject.Shared
 {
-    public class ComponentListConfig
+    public class ComponentList
     {
         [JsonConverter(typeof(ComponentListJsonConverter))]
         public List<object> Components { get; set; }
