@@ -2,9 +2,15 @@
     "Components": [
         {
             "CBulletGunTag": {},
-            "CSpawnPrefabRequest": "Bundles/Weapons/BulletGun/Prefabs/BulletGun.prefab",
             "CProjectileConfig": "Configs/BulletConfig.json",
-            "CCoolDown": 0.2
+            "CCoolDown": 0.2,
+            "COnSpawn": {
+                "Components": [
+                    {
+                        "CSpawnPrefabRequest": "Bundles/Weapons/BulletGun/Prefabs/BulletGun.prefab"
+                    }
+                ]
+            }
         }
     ]
 }

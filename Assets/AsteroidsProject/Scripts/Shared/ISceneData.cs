@@ -4,7 +4,7 @@ namespace AsteroidsProject.Shared
 {
     public interface ISceneData
     {
-        public Transform SpawnPlayerPosition { get; }
+        public Transform SpawnPlayerPoint { get; }
         public Transform AsteroidsPool { get; }
         public Transform BulletsPool { get; }
     }

@@ -2,22 +2,30 @@
     "Components": [
         {
             "CPlayerTag": {},
-            "CSpawnPrefabRequest": "Bundles/Player/Prefabs/Player.prefab",
             "CVelocity": {
                 "x": 0,
                 "y": 0
             },
             "CMaxVelocityMagnitude": 50,
-
-
-
-
-            "COnOutOfLevelTeleportTag": {},
-            "CSpawnPrimaryWeaponRequest": "Configs/BulletGunConfig.json",
-            "CSpawnSecondaryWeaponRequest": "Configs/LaserGunConfig.json",
             "CRotationSpeed": 150,
             "CAccelerationModifier": 5,
-            "CDeaccelerationModifier": -2
+            "CDeaccelerationModifier": -2,
+            "COnSpawn": {
+                "Components": [
+                    {
+                        "CSpawnPrefabRequest": "Bundles/Player/Prefabs/Player.prefab",
+                        "CSpawnPrimaryWeaponRequest": "Configs/BulletGunConfig.json",
+                        "CSpawnSecondaryWeaponRequest": "Configs/LaserGunConfig.json"
+                    }
+                ]
+            },
+            "COnOutOfLevel": {
+                "Components": [
+                    {
+                        "CTeleportationRequest": {}
+                    }
+                ]
+            }
         }
     ]
 }

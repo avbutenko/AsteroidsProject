@@ -9,7 +9,7 @@ namespace AsteroidsProject.Services
 {
     public class ConfigProvider : IConfigProvider, IInitializable
     {
-        private IComponentConverterService componentConverterService;
+        private readonly IComponentConverterService componentConverterService;
         private readonly IAssetProvider assetProvider;
         private JsonSerializerSettings serializerSettings;
         public ConfigProvider(IAssetProvider assetProvider, IComponentConverterService componentConverterService)

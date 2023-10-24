@@ -1,14 +1,16 @@
 ﻿using AsteroidsProject.Shared;
 using System.Collections.Generic;
 using System.Linq;
+using Zenject;
 
 namespace AsteroidsProject.Services
 {
     public class ComponentConverterService : IComponentConverterService
     {
-        private readonly List<IJTokenConverter> converters;
+        private List<IJTokenConverter> converters;
 
-        public ComponentConverterService(IEnumerable<IJTokenConverter> converters)
+        [Inject]
+        public void Construct(IEnumerable<IJTokenConverter> converters)
         {
             this.converters = converters.ToList();
         }

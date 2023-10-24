@@ -3,7 +3,7 @@ using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.SpawnPlayer
+namespace AsteroidsProject.GameLogic.Features.Spawn.Player
 {
     public class SpawnPlayerSystem : IEcsInitSystem
     {
@@ -29,8 +29,8 @@ namespace AsteroidsProject.GameLogic.Features.SpawnPlayer
                 world.AddRawComponentToEntity(playerEntity, component);
             }
 
-            world.AddComponentToEntity(playerEntity, new CPosition { Value = sceneData.SpawnPlayerPosition.position });
-            world.AddComponentToEntity(playerEntity, new CRotation { Value = sceneData.SpawnPlayerPosition.rotation });
+            world.AddComponentToEntity(playerEntity, new CPosition { Value = sceneData.SpawnPlayerPoint.position });
+            world.AddComponentToEntity(playerEntity, new CRotation { Value = sceneData.SpawnPlayerPoint.rotation });
         }
     }
 }

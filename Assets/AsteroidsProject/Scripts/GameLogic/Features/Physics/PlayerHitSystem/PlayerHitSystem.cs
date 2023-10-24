@@ -21,7 +21,7 @@ namespace AsteroidsProject.GameLogic.Features.PlayerHitSystem
             var world = systems.GetWorld();
             var filter = world.Filter<OnTriggerEnter2DEvent>().End();
 
-            var destroyRequestPool = world.GetPool<CDestroyRequest>();
+            var destroyRequestPool = world.GetPool<CDestructionRequest>();
             var eventPool = world.GetPool<OnTriggerEnter2DEvent>();
 
             foreach (var entity in filter)
@@ -34,7 +34,7 @@ namespace AsteroidsProject.GameLogic.Features.PlayerHitSystem
 
                 if (!destroyRequestPool.Has(collisionEntity))
                 {
-                    world.AddComponentToEntity(collisionEntity, new CDestroyRequest { });
+                    world.AddComponentToEntity(collisionEntity, new CDestructionRequest { });
                 }
 
                 eventPool.Del(entity);

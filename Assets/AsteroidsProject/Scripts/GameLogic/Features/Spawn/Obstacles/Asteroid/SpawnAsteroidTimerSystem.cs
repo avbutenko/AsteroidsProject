@@ -4,7 +4,7 @@ using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.SpawnAsteroid
+namespace AsteroidsProject.GameLogic.Features.Spawn.Asteroid
 {
     public class SpawnAsteroidTimerSystem : IEcsInitSystem, IEcsRunSystem
     {

@@ -9,7 +9,7 @@ namespace AsteroidsProject.MonoBehaviours
         [SerializeField] private Transform asteroidsPool;
         [SerializeField] private Transform bulletsPool;
 
-        public Transform SpawnPlayerPosition => spawnPlayerPosition;
+        public Transform SpawnPlayerPoint => spawnPlayerPosition;
         public Transform AsteroidsPool => asteroidsPool;
         public Transform BulletsPool => bulletsPool;
     }

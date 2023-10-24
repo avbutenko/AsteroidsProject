@@ -2,58 +2,66 @@ using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-public class SpawnPrefabSystem : IEcsRunSystem
+namespace AsteroidsProject.GameLogic.Features.Spawn.Prefab
 {
-    private readonly IGameObjectFactory gameObjectFactory;
-    private readonly IActiveGameObjectMapService activeGameObjectMapService;
-
-    public SpawnPrefabSystem(IGameObjectFactory gameObjectFactory, IActiveGameObjectMapService activeGameObjectMapService)
+    public class SpawnPrefabSystem : IEcsRunSystem
     {
-        this.gameObjectFactory = gameObjectFactory;
-        this.activeGameObjectMapService = activeGameObjectMapService;
-    }
+        private readonly IGameObjectFactory gameObjectFactory;
+        private readonly IActiveGameObjectMapService activeGameObjectMapService;
 
-    public void Run(IEcsSystems systems)
-    {
-        var world = systems.GetWorld();
-        var filter = world.Filter<CSpawnPrefabRequest>().End();
-        var spawnPool = world.GetPool<CSpawnPrefabRequest>();
-        var positionPool = world.GetPool<CPosition>();
-        var rotationPool = world.GetPool<CRotation>();
-        var parentPool = world.GetPool<CParent>();
-
-        foreach (var entity in filter)
+        public SpawnPrefabSystem(IGameObjectFactory gameObjectFactory, IActiveGameObjectMapService activeGameObjectMapService)
         {
-            ref var prefabAddress = ref spawnPool.Get(entity).PrefabAddress;
-            ref var position = ref positionPool.Get(entity).Value;
-            ref var rotation = ref rotationPool.Get(entity).Value;
-
-            var spawnInfo = new SpawnInfo
-            {
-                PrefabAddress = prefabAddress,
-                Position = position,
-                Rotation = rotation,
-            };
-
-            if (parentPool.Has(entity))
-            {
-                ref var parent = ref parentPool.Get(entity).Value;
-                spawnInfo.Parent = parent;
-                parentPool.Del(entity);
-            }
-
-            Spawn(entity, world, spawnInfo);
-            spawnPool.Del(entity);
+            this.gameObjectFactory = gameObjectFactory;
+            this.activeGameObjectMapService = activeGameObjectMapService;
         }
-    }
 
-    private async void Spawn(int entity, EcsWorld world, SpawnInfo info)
-    {
-        var go = await gameObjectFactory.CreateAsync(info);
+        public void Run(IEcsSystems systems)
+        {
+            var world = systems.GetWorld();
 
-        var link = go.GetComponent<IGameObject>();
-        world.AddComponentToEntity(entity, new CGameObject { Link = link });
+            var filter = world.Filter<CSpawnPrefabRequest>()
+                              .Inc<CPosition>()
+                              .Inc<CRotation>()
+                              .End();
 
-        activeGameObjectMapService.Add(link, new GoEntityPair { Go = go, PackedEntity = world.PackEntity(entity) });
+            var spawnPool = world.GetPool<CSpawnPrefabRequest>();
+            var positionPool = world.GetPool<CPosition>();
+            var rotationPool = world.GetPool<CRotation>();
+            var parentPool = world.GetPool<CParent>();
+
+            foreach (var entity in filter)
+            {
+                ref var prefabAddress = ref spawnPool.Get(entity).PrefabAddress;
+                ref var position = ref positionPool.Get(entity).Value;
+                ref var rotation = ref rotationPool.Get(entity).Value;
+
+                var spawnInfo = new SpawnInfo
+                {
+                    PrefabAddress = prefabAddress,
+                    Position = position,
+                    Rotation = rotation,
+                };
+
+                if (parentPool.Has(entity))
+                {
+                    ref var parent = ref parentPool.Get(entity).Value;
+                    spawnInfo.Parent = parent;
+                    parentPool.Del(entity);
+                }
+
+                Spawn(entity, world, spawnInfo);
+                spawnPool.Del(entity);
+            }
+        }
+
+        private async void Spawn(int entity, EcsWorld world, SpawnInfo info)
+        {
+            var go = await gameObjectFactory.CreateAsync(info);
+
+            var link = go.GetComponent<IGameObject>();
+            world.AddComponentToEntity(entity, new CGameObject { Link = link });
+
+            activeGameObjectMapService.Add(link, new GoEntityPair { Go = go, PackedEntity = world.PackEntity(entity) });
+        }
     }
 }

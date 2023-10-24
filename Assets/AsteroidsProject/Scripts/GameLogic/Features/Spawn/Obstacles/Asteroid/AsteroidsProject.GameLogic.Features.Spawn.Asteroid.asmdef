@@ -1,0 +1,19 @@
+{
+    "name": "AsteroidsProject.GameLogic.Features.Spawn.Asteroid",
+    "rootNamespace": "",
+    "references": [
+        "GUID:e59bf9fc7d5a44b18a819a92edd46163",
+        "GUID:02e9d0c052fbf484388102198213ee39",
+        "GUID:82e47fb6cfee41b4988fa1b318ce1490",
+        "GUID:2d1c4a28192e23d458c471736d32ccec"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

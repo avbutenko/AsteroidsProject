@@ -2,11 +2,23 @@
     "Components": [
         {
             "CBulletTag": {},
-            "COnOutOfLevelDestroyTag": {},
-            "CSpawnPrefabRequest": "Bundles/Projectiles/Bullet/Prefabs/Bullet.prefab",
             "CVelocity": {
                 "x": 0,
                 "y": 15
+            },
+            "COnSpawn": {
+                "Components": [
+                    {
+                        "CSpawnPrefabRequest": "Bundles/Projectiles/Bullet/Prefabs/Bullet.prefab"
+                    }
+                ]
+            },
+            "COnOutOfLevel": {
+                "Components": [
+                    {
+                        "CDestructionRequest": {}
+                    }
+                ]
             }
         }
     ]

@@ -18,7 +18,7 @@ namespace AsteroidsProject.GameLogic.Features.Destroy
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<CDestroyRequest>()
+            var filter = world.Filter<CDestructionRequest>()
                               .Inc<CGameObject>()
                               .End();
 
