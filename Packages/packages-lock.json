@@ -1,12 +1,5 @@
 {
   "dependencies": {
-    "com.anbi.leoecslite.entityconverter": {
-      "version": "https://github.com/avbutenko/LeoEcsLiteEntityConverter.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "11a1b5b3549baa3b6e400c7d4f250a7c785e5d03"
-    },
     "com.leopotam.ecslite": {
       "version": "https://github.com/Leopotam/ecslite.git",
       "depth": 0,

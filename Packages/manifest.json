@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.anbi.leoecslite.entityconverter": "https://github.com/avbutenko/LeoEcsLiteEntityConverter.git",
     "com.leopotam.ecslite": "https://github.com/Leopotam/ecslite.git",
     "com.leopotam.ecslite.extendedsystems": "https://github.com/Leopotam/ecslite-extendedsystems.git",
     "com.leopotam.ecslite.unityeditor": "https://github.com/Leopotam/ecslite-unityeditor.git",
