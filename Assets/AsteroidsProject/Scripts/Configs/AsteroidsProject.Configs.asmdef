@@ -2,8 +2,7 @@
     "name": "AsteroidsProject.Configs",
     "rootNamespace": "",
     "references": [
-        "GUID:02e9d0c052fbf484388102198213ee39",
-        "GUID:f6eb89e9d270ddf479ebdfa41b81ef23"
+        "GUID:02e9d0c052fbf484388102198213ee39"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

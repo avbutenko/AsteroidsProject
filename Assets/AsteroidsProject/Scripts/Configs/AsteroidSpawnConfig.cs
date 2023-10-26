@@ -1,4 +1,4 @@
-﻿namespace Assets.AsteroidsProject.Scripts.Configs
+﻿namespace AsteroidsProject.Configs
 {
     public class AsteroidSpawnConfig
     {

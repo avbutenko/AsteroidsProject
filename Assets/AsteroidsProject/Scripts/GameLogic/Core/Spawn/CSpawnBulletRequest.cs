@@ -4,6 +4,6 @@ namespace AsteroidsProject.GameLogic.Core
 {
     public struct CSpawnBulletRequest
     {
-        public SpawnInfo SpawnInfo;
+        public SpawnPrefabInfo SpawnInfo;
     }
 }

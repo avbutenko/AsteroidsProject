@@ -1,7 +1,7 @@
 ﻿using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
-using System;
-using System.Reflection;
+using System.Collections.Generic;
+using static Leopotam.EcsLite.EcsWorld;
 
 namespace AsteroidsProject.GameLogic.Core
 {
@@ -42,6 +42,19 @@ namespace AsteroidsProject.GameLogic.Core
             }
 
             pool.AddRaw(entity, component);
+        }
+
+
+        public static int NewEntityWithComponents(this EcsWorld world, List<object> componentList)
+        {
+            var entity = world.NewEntity();
+
+            foreach (var component in componentList)
+            {
+                world.AddRawComponentToEntity(entity, component);
+            }
+
+            return entity;
         }
     }
 }

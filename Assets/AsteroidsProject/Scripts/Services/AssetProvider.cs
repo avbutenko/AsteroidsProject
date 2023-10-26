@@ -9,20 +9,19 @@ namespace AsteroidsProject.Services
 {
     public class AssetProvider : IAssetProvider
     {
+        private readonly Dictionary<string, AsyncOperationHandle> cachedObjects = new();
 
-        private readonly Dictionary<string, AsyncOperationHandle> cache = new();
-
-        public async Task<TAsset> Load<TAsset>(string address) where TAsset : Object
+        public async Task<T> Load<T>(string address) where T : Object
         {
-            return cache.TryGetValue(address, out var cachedHandle)
-                ? cachedHandle.Result as TAsset
-                : await ResourceLoading<TAsset>(address);
+            return cachedObjects.TryGetValue(address, out var cachedHandle)
+                ? cachedHandle.Result as T
+                : await ResourceLoading<T>(address);
         }
 
-        private async Task<TResource> ResourceLoading<TResource>(string address)
+        private async Task<T> ResourceLoading<T>(string address)
         {
-            var handle = Addressables.LoadAssetAsync<TResource>(address);
-            handle.Completed += operationHandle => cache[address] = operationHandle;
+            var handle = Addressables.LoadAssetAsync<T>(address);
+            handle.Completed += operationHandle => cachedObjects[address] = operationHandle;
             return await handle.Task;
         }
     }

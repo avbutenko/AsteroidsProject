@@ -1,4 +1,4 @@
-﻿using AsteroidsProject.Configs;
+using AsteroidsProject.Configs;
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
@@ -8,35 +8,61 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Asteroid
     public class SpawnAsteroidSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly IConfigProvider configProvider;
+        private readonly ITimeService timeService;
+        private AsteroidSpawnConfig asteroidSpawnconfig;
+        private GameConfig gameConfig;
+        private float timeToNextSpawn;
 
-        private ComponentList config;
-
-        public SpawnAsteroidSystem(IConfigProvider configProvider)
+        public SpawnAsteroidSystem(IConfigProvider configProvider, ITimeService timeService)
         {
             this.configProvider = configProvider;
+            this.timeService = timeService;
         }
 
         public async void Init(IEcsSystems systems)
         {
-            var gameConfig = await configProvider.Load<GameConfig>("Configs/GameConfig.json");
-            config = await configProvider.Load<ComponentList>(gameConfig.AsteroidConfigPath);
+            gameConfig = await configProvider.Load<GameConfig>(configProvider.GameConfigPath);
+            asteroidSpawnconfig = await configProvider.Load<AsteroidSpawnConfig>(gameConfig.AsteroidSpawnConfigPath);
+            SpawnInitialAmountOfAsteroids(systems.GetWorld());
         }
 
         public void Run(IEcsSystems systems)
         {
+
+            if (asteroidSpawnconfig == null) return;
+
             var world = systems.GetWorld();
-            var filter = world.Filter<CSpawnAsteroidRequest>().End();
+            var filter = world.Filter<CAsteroidTag>().End();
+            var count = filter.GetEntitiesCount();
 
-            foreach (var entity in filter)
+            timeToNextSpawn -= timeService.DeltaTime;
+
+            if (timeToNextSpawn < 0 && count < asteroidSpawnconfig.MaxSpawns)
             {
-                var asteroidEntity = world.NewEntity();
-                foreach (var component in config.Components)
-                {
-                    world.AddRawComponentToEntity(asteroidEntity, component);
-                }
+                timeToNextSpawn = asteroidSpawnconfig.SpawnTime;
 
-                world.DelEntity(entity);
+                Spawn(world, gameConfig.AsteroidConfigPath);
             }
+        }
+
+
+        private void SpawnInitialAmountOfAsteroids(EcsWorld world)
+        {
+            timeToNextSpawn = asteroidSpawnconfig.SpawnTime;
+
+            var counter = asteroidSpawnconfig.StartingSpawns;
+
+            while (counter > 0)
+            {
+                counter--;
+                Spawn(world, gameConfig.AsteroidConfigPath);
+            }
+        }
+
+        private async void Spawn(EcsWorld world, string config)
+        {
+            var componentList = await configProvider.Load<ComponentList>(config);
+            world.NewEntityWithComponents(componentList.Components);
         }
     }
 }

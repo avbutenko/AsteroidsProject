@@ -1,9 +1,16 @@
-﻿using Leopotam.EcsLite;
+﻿using AsteroidsProject.Shared;
+using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Core
 {
-    public struct CPrimaryWeapon
+    public struct CPrimaryWeapon : IHaveLinkedEntity
     {
         public EcsPackedEntity WeaponEntity;
+
+        public EcsPackedEntity LinkedEntity
+        {
+            get => WeaponEntity;
+            set => WeaponEntity = value;
+        }
     }
 }

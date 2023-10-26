@@ -4,12 +4,12 @@ using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.Destroy
 {
-    public class DestroySystem : IEcsRunSystem
+    public class DestructionSystem : IEcsRunSystem
     {
         private readonly IActiveGameObjectMapService activeGameObjectMapService;
         private readonly IGameObjectPool gameObjectPool;
 
-        public DestroySystem(IActiveGameObjectMapService activeGameObjectMapService, IGameObjectPool gameObjectPool)
+        public DestructionSystem(IActiveGameObjectMapService activeGameObjectMapService, IGameObjectPool gameObjectPool)
         {
             this.activeGameObjectMapService = activeGameObjectMapService;
             this.gameObjectPool = gameObjectPool;

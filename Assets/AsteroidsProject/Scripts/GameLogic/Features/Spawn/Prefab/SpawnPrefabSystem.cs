@@ -35,7 +35,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Prefab
                 ref var position = ref positionPool.Get(entity).Value;
                 ref var rotation = ref rotationPool.Get(entity).Value;
 
-                var spawnInfo = new SpawnInfo
+                var spawnInfo = new SpawnPrefabInfo
                 {
                     PrefabAddress = prefabAddress,
                     Position = position,
@@ -54,7 +54,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Prefab
             }
         }
 
-        private async void Spawn(int entity, EcsWorld world, SpawnInfo info)
+        private async void Spawn(int entity, EcsWorld world, SpawnPrefabInfo info)
         {
             var go = await gameObjectFactory.CreateAsync(info);
 

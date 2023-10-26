@@ -14,6 +14,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<PlayerTagConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<AsteroidTagConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<BulletGunTagConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LaserGunTagConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<BulletTagConverter>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<VelocityConverter>().AsSingle();
@@ -34,6 +35,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<DestructionRequestConverter>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<SpawnPrimaryWeaponRequestConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnSecondaryWeaponRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPrefabRequestConverter>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<CoolDownConverter>().AsSingle();

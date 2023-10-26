@@ -38,7 +38,7 @@ namespace AsteroidsProject.GameLogic.Features.SpawnBullet
             }
         }
 
-        private void Spawn(EcsWorld world, SpawnInfo spawnInfo)
+        private void Spawn(EcsWorld world, SpawnPrefabInfo spawnInfo)
         {
             var entity = world.NewEntity();
 
@@ -53,7 +53,7 @@ namespace AsteroidsProject.GameLogic.Features.SpawnBullet
             AdoptVelocity(world, spawnInfo, entity);
         }
 
-        private void AdoptVelocity(EcsWorld world, SpawnInfo spawnInfo, int entity)
+        private void AdoptVelocity(EcsWorld world, SpawnPrefabInfo spawnInfo, int entity)
         {
             var velocityPool = world.GetPool<CVelocity>();
             ref var velocity = ref velocityPool.Get(entity).Value;

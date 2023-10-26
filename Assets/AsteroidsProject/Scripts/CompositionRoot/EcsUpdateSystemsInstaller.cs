@@ -21,8 +21,7 @@ using AsteroidsProject.GameLogic.Features.UpdateGameObjectView;
 using Leopotam.EcsLite.UnityEditor;
 using Zenject;
 using AsteroidsProject.GameLogic.Features.PermanentRandomRotation;
-using AsteroidsProject.GameLogic.Features.Spawn.PrimaryWeapon;
-using AsteroidsProject.GameLogic.Features.Spawn.SecondaryWeapon;
+using AsteroidsProject.GameLogic.Features.Spawn.Weapons;
 using AsteroidsProject.GameLogic.Features.MaxVelocityMagnitude;
 using AsteroidsProject.GameLogic.Features.OutOfLevel.Check;
 using AsteroidsProject.GameLogic.Features.Teleportation;
@@ -35,11 +34,10 @@ namespace AsteroidsProject.CompositionRoot
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<SpawnAsteroidTimerSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnAsteroidSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPlayerSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPrimaryWeaponSystem>().AsSingle();
-            //Container.BindInterfacesAndSelfTo<SpawnSecondaryWeaponSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnSecondaryWeaponSystem>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<RandomizePositionSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RandomizeVelocitySystem>().AsSingle();
@@ -70,7 +68,7 @@ namespace AsteroidsProject.CompositionRoot
         private void BindLifecycleSystems()
         {
             Container.BindInterfacesAndSelfTo<LifetimeSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<DestroySystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<DestructionSystem>().AsSingle();
         }
 
         private void BindSpawnSystems()

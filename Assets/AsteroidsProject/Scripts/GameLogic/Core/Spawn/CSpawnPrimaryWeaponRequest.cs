@@ -1,7 +1,15 @@
+using AsteroidsProject.Shared;
+
 namespace AsteroidsProject.GameLogic.Core
 {
-    public struct CSpawnPrimaryWeaponRequest
+    public struct CSpawnPrimaryWeaponRequest : IHaveConfigAddress
     {
-        public string ConfigAddress;
+        public string WeaponConfig;
+
+        public string ConfigAddress
+        {
+            get => WeaponConfig;
+            set => WeaponConfig = value;
+        }
     }
 }

@@ -19,18 +19,18 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Player
         public async void Init(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var gameConfig = await configProvider.Load<GameConfig>("Configs/GameConfig.json");
-            var config = await configProvider.Load<ComponentList>(gameConfig.PlayerConfigPath);
+            var gameConfig = await configProvider.Load<GameConfig>(configProvider.GameConfigPath);
+            Spawn(world, gameConfig.PlayerConfigPath);
+        }
 
-            var playerEntity = world.NewEntity();
+        private async void Spawn(EcsWorld world, string config)
+        {
+            var componentList = await configProvider.Load<ComponentList>(config);
+            var components = componentList.Components;
+            components.Add(new CPosition { Value = sceneData.SpawnPlayerPoint.position });
+            components.Add(new CRotation { Value = sceneData.SpawnPlayerPoint.rotation });
 
-            foreach (var component in config.Components)
-            {
-                world.AddRawComponentToEntity(playerEntity, component);
-            }
-
-            world.AddComponentToEntity(playerEntity, new CPosition { Value = sceneData.SpawnPlayerPoint.position });
-            world.AddComponentToEntity(playerEntity, new CRotation { Value = sceneData.SpawnPlayerPoint.rotation });
+            world.NewEntityWithComponents(componentList.Components);
         }
     }
 }

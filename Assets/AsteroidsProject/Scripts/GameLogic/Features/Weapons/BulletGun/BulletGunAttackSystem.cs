@@ -36,7 +36,7 @@ namespace AsteroidsProject.GameLogic.Features.BulletGun
 
                 world.NewEntityWith(new CSpawnBulletRequest
                 {
-                    SpawnInfo = new SpawnInfo
+                    SpawnInfo = new SpawnPrefabInfo
                     {
                         Position = shootingPoint.ShootingPoint.position,
                         Rotation = shootingPoint.ShootingPoint.rotation,

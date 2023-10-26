@@ -2,9 +2,15 @@
     "Components": [
         {
             "CLaserGunTag": {},
-            "CSpawnPrefabRequest": "Bundles/Weapons/LaserGun/Prefabs/LaserGun.prefab",
-            "CProjectileConfig": "Configs/BulletConfig.json",
-            "CCoolDown": 2
+            "CProjectileConfig": "Configs/LaserConfig.json",
+            "CCoolDown": 2,
+            "COnSpawn": {
+                "Components": [
+                    {
+                        "CSpawnPrefabRequest": "Bundles/Weapons/LaserGun/Prefabs/LaserGun.prefab"
+                    }
+                ]
+            }
         }
     ]
 }
