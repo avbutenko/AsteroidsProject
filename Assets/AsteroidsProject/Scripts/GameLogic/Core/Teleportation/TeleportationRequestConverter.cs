@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 
 namespace AsteroidsProject.GameLogic.Core
 {
-    public class TeleportationRequestConverter : IJTokenConverter
+    public class TeleportationRequestConverter : IComponentConverter
     {
         public string TokenName => nameof(CTeleportationRequest);
 

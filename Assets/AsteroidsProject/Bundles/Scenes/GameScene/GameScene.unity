@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 221698812}
   m_Layer: 0
-  m_Name: SpawnPlayerPosition
+  m_Name: SpawnPlayerPoint
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -387,9 +387,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b424707e389d4054aaafa6aac5b8990e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPlayerPosition: {fileID: 221698812}
+  spawnPlayerPoint: {fileID: 221698812}
   asteroidsPool: {fileID: 361720156}
-  bulletsPool: {fileID: 1816205532}
+  projectilePool: {fileID: 1816205532}
 --- !u!1 &659186656
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,7 +497,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1816205532}
   m_Layer: 0
-  m_Name: BulletsPool
+  m_Name: ProjectilePool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

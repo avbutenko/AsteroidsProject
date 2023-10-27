@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 
 namespace AsteroidsProject.GameLogic.Core
 {
-    public class DestructionRequestConverter : IJTokenConverter
+    public class DestructionRequestConverter : IComponentConverter
     {
         public string TokenName => nameof(CDestructionRequest);
 

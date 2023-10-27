@@ -3,7 +3,7 @@ using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.LaserGun
+namespace AsteroidsProject.GameLogic.Features.Weapons.LaserGun
 {
     public class LaserGunAttackSystem : IEcsInitSystem, IEcsRunSystem
     {
@@ -28,7 +28,7 @@ namespace AsteroidsProject.GameLogic.Features.LaserGun
                               .Inc<CAttackRequest>()
                               //.Inc<ShootingPoint>()
                               .Inc<CCoolDown>()
-                              .Inc<Ammo>()
+                              .Inc<CurrentAmmoLevel>()
                               .Inc<CGameObject>()
                               .Exc<CActiveCoolDown>()
                               .End();
@@ -36,7 +36,7 @@ namespace AsteroidsProject.GameLogic.Features.LaserGun
             //var shootingPointPool = world.GetPool<ShootingPoint>();
             var coolDownPool = world.GetPool<CCoolDown>();
             var activeCoolDownPool = world.GetPool<CActiveCoolDown>();
-            var ammoPool = world.GetPool<Ammo>();
+            var ammoPool = world.GetPool<CurrentAmmoLevel>();
             var viewPool = world.GetPool<CGameObject>();
 
             foreach (var entity in filter)

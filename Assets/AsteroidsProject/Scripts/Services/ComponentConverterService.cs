@@ -7,14 +7,14 @@ namespace AsteroidsProject.Services
 {
     public class ComponentConverterService : IComponentConverterService
     {
-        private List<IJTokenConverter> converters;
+        private List<IComponentConverter> converters;
 
         [Inject]
-        public void Construct(IEnumerable<IJTokenConverter> converters)
+        public void Construct(IEnumerable<IComponentConverter> converters)
         {
             this.converters = converters.ToList();
         }
 
-        public List<IJTokenConverter> Converters => converters;
+        public List<IComponentConverter> Converters => converters;
     }
 }

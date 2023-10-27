@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Core
 {
-    public class VelocityConverter : IJTokenConverter
+    public class VelocityConverter : IComponentConverter
     {
         public string TokenName => nameof(CVelocity);
 

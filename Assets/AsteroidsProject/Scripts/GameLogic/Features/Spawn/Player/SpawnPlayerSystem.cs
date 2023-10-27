@@ -30,7 +30,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Player
             components.Add(new CPosition { Value = sceneData.SpawnPlayerPoint.position });
             components.Add(new CRotation { Value = sceneData.SpawnPlayerPoint.rotation });
 
-            world.NewEntityWithComponents(componentList.Components);
+            world.NewEntityWithRawComponents(componentList.Components);
         }
     }
 }

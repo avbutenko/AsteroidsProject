@@ -20,18 +20,20 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Prefab
             var world = systems.GetWorld();
 
             var filter = world.Filter<CSpawnPrefabRequest>()
+                              .Inc<CPrefabAddress>()
                               .Inc<CPosition>()
                               .Inc<CRotation>()
                               .End();
 
-            var spawnPool = world.GetPool<CSpawnPrefabRequest>();
+            var requestPool = world.GetPool<CSpawnPrefabRequest>();
+            var prefabAddressPool = world.GetPool<CPrefabAddress>();
             var positionPool = world.GetPool<CPosition>();
             var rotationPool = world.GetPool<CRotation>();
             var parentPool = world.GetPool<CParent>();
 
             foreach (var entity in filter)
             {
-                ref var prefabAddress = ref spawnPool.Get(entity).PrefabAddress;
+                ref var prefabAddress = ref prefabAddressPool.Get(entity).Value;
                 ref var position = ref positionPool.Get(entity).Value;
                 ref var rotation = ref rotationPool.Get(entity).Value;
 
@@ -50,7 +52,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Prefab
                 }
 
                 Spawn(entity, world, spawnInfo);
-                spawnPool.Del(entity);
+                requestPool.Del(entity);
             }
         }
 

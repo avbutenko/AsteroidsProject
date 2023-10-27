@@ -5,12 +5,12 @@ namespace AsteroidsProject.MonoBehaviours
 {
     public class SceneData : MonoBehaviour, ISceneData
     {
-        [SerializeField] private Transform spawnPlayerPosition;
+        [SerializeField] private Transform spawnPlayerPoint;
         [SerializeField] private Transform asteroidsPool;
-        [SerializeField] private Transform bulletsPool;
+        [SerializeField] private Transform projectilePool;
 
-        public Transform SpawnPlayerPoint => spawnPlayerPosition;
+        public Transform SpawnPlayerPoint => spawnPlayerPoint;
         public Transform AsteroidsPool => asteroidsPool;
-        public Transform BulletsPool => bulletsPool;
+        public Transform ProjectilePool => projectilePool;
     }
 }

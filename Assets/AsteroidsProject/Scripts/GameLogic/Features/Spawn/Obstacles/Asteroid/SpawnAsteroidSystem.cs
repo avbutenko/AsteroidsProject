@@ -3,20 +3,23 @@ using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.Spawn.Asteroid
+namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.Asteroid
 {
     public class SpawnAsteroidSystem : IEcsInitSystem, IEcsRunSystem
     {
+        private readonly ISceneData sceneData;
         private readonly IConfigProvider configProvider;
         private readonly ITimeService timeService;
         private AsteroidSpawnConfig asteroidSpawnconfig;
         private GameConfig gameConfig;
         private float timeToNextSpawn;
 
-        public SpawnAsteroidSystem(IConfigProvider configProvider, ITimeService timeService)
+        public SpawnAsteroidSystem(IConfigProvider configProvider, ITimeService timeService, ISceneData sceneData)
         {
+            this.sceneData = sceneData;
             this.configProvider = configProvider;
             this.timeService = timeService;
+            this.sceneData = sceneData;
         }
 
         public async void Init(IEcsSystems systems)
@@ -62,7 +65,8 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Asteroid
         private async void Spawn(EcsWorld world, string config)
         {
             var componentList = await configProvider.Load<ComponentList>(config);
-            world.NewEntityWithComponents(componentList.Components);
+            var entity = world.NewEntityWithRawComponents(componentList.Components);
+            world.AddComponentToEntity(entity, new CParent { Value = sceneData.AsteroidsPool });
         }
     }
 }

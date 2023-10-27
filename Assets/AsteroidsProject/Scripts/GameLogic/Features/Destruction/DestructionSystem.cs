@@ -2,7 +2,7 @@ using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.Destroy
+namespace AsteroidsProject.GameLogic.Features.Destruction
 {
     public class DestructionSystem : IEcsRunSystem
     {

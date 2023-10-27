@@ -31,13 +31,14 @@
         "GUID:fa337994e6a54c14aab813bad34752fd",
         "GUID:6a3ca7bbb14ffde48bbfd9ca86b121dd",
         "GUID:76dbc1394715a0e43b84604b07387c74",
-        "GUID:ddaa4e65e2d04fb44a28b12bed9e5025",
         "GUID:d5f58397086736b48ad64e9ab750fc7f",
         "GUID:7911ed3f686b9a84eb07d6a9af133469",
-        "GUID:0e943ecb8a0aec849b2cb4d2b3af983d",
         "GUID:f6dc54373f5c2df499945e9b7dbc7182",
         "GUID:7bb8e6dab69a7394ab14b20f46221bb3",
-        "GUID:31926699035b9014c8e9d5ac85fdb432"
+        "GUID:31926699035b9014c8e9d5ac85fdb432",
+        "GUID:6f2d9ebbaa720df4485a577de18a16a1",
+        "GUID:689b74312d3dc424b9e8c48f56c1a183",
+        "GUID:0e943ecb8a0aec849b2cb4d2b3af983d"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

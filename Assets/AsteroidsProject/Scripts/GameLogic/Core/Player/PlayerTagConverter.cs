@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 
 namespace AsteroidsProject.GameLogic.Core
 {
-    public class PlayerTagConverter : IJTokenConverter
+    public class PlayerTagConverter : IComponentConverter
     {
         public string TokenName => nameof(CPlayerTag);
 

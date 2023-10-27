@@ -6,6 +6,6 @@ namespace AsteroidsProject.Shared
     {
         public Transform SpawnPlayerPoint { get; }
         public Transform AsteroidsPool { get; }
-        public Transform BulletsPool { get; }
+        public Transform ProjectilePool { get; }
     }
 }
