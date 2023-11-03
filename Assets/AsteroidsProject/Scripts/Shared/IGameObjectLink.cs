@@ -2,7 +2,7 @@
 
 namespace AsteroidsProject.Shared
 {
-    public interface IGameObject
+    public interface IGameObjectLink
     {
         public Vector2 Position { set; }
         public Quaternion Rotation { set; }

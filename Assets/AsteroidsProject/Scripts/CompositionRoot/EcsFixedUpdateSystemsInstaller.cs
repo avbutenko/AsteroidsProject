@@ -1,7 +1,5 @@
 ﻿using AsteroidsProject.GameLogic.Core;
-using AsteroidsProject.GameLogic.Features.BulletHitSystem;
-using AsteroidsProject.GameLogic.Features.LaserHitSystem;
-using AsteroidsProject.GameLogic.Features.PlayerHitSystem;
+using AsteroidsProject.GameLogic.Features.Events.OnCollision;
 using Zenject;
 
 namespace AsteroidsProject.CompositionRoot
@@ -10,9 +8,7 @@ namespace AsteroidsProject.CompositionRoot
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<PlayerHitSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<BulletHitSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<LaserHitSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CollisionSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<EcsFixedUpdateSystemsRunner>().AsSingle();
         }
     }

@@ -20,6 +20,18 @@
                         "CDestructionRequest": {}
                     }
                 ]
+            },
+            "COnCollision": {
+                "Components": [
+                    {
+                        "CDestructionRequest": {}
+                    }
+                ],
+                "CollisionObjectComponents": [
+                    {
+                        "CChangeHealthRequest": -1
+                    }
+                ]
             }
         }
     ]

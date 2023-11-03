@@ -13,10 +13,12 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Weapons
         where TConfigAddress : struct, IHaveConfigAddress
     {
         private readonly IConfigProvider configProvider;
+        protected IActiveGOMappingService activeGOMappingService;
 
-        public BaseSpawnWeaponSystem(IConfigProvider configProvider)
+        public BaseSpawnWeaponSystem(IConfigProvider configProvider, IActiveGOMappingService activeGOMappingService)
         {
             this.configProvider = configProvider;
+            this.activeGOMappingService = activeGOMappingService;
         }
 
         public void Run(IEcsSystems systems)
@@ -27,7 +29,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Weapons
                               .End();
             var requestPool = world.GetPool<TRequest>();
             var configPool = world.GetPool<TConfigAddress>();
-            var linkToGameObjectPool = world.GetPool<CGameObject>();
+            var linkToGameObjectPool = world.GetPool<CGameObjectInstanceID>();
 
             foreach (var entity in filter)
             {

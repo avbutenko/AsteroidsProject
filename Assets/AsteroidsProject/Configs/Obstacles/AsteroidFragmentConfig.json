@@ -31,33 +31,13 @@
                     }
                 ]
             },
-            "COnCollision": [
-                {
-                    "RelevantForCollisionTags": [
-                        {
-                            "CPlayerTag": {}
-                        }
-                    ],
-                    "AddToSelfComponents": [
-                        {
-                            "CDestructionRequest": {}
-                        }
-                    ],
-                    "AddToCollidedObjectComponents": [
-                        {
-                            "CChangeHealthRequest": -1
-                        }
-                    ]
-                }
-            ],
-            "COnDeath": {
+            "COnCollision": {
                 "Components": [
+                    {}
+                ],
+                "CollisionObjectComponents": [
                     {
-                        "CSpawn": [
-                            "Configs/Obstacles/AsteroidFragmentConfig.json",
-                            "Configs/Obstacles/AsteroidFragmentConfig.json",
-                            "Configs/Obstacles/AsteroidFragmentConfig.json"
-                        ]
+                        "CChangeHealthRequest": -1
                     }
                 ]
             }

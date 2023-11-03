@@ -12,7 +12,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.Bind<IAssetProvider>().To<AssetProvider>().AsSingle();
             Container.Bind<ITimeService>().To<TimeService>().AsSingle();
             Container.Bind<IGameObjectPool>().To<GameObjectPool>().AsSingle();
-            Container.Bind<IActiveGameObjectMapService>().To<ActiveGameObjectMapService>().AsSingle();
+            Container.Bind<IActiveGOMappingService>().To<ActiveGOMappingService>().AsSingle();
             Container.Bind<IGameObjectFactory>().To<GameObjectFactory>().AsSingle();
 
             Container

@@ -44,6 +44,8 @@ namespace AsteroidsProject.GameLogic.Core
 
         public static void AddRawComponentsToEntity(this EcsWorld world, int entity, List<object> components)
         {
+            if (components == null) return;
+
             foreach (var component in components)
             {
                 world.AddRawComponentToEntity(entity, component);

@@ -7,12 +7,12 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Prefab
     public class SpawnPrefabSystem : IEcsRunSystem
     {
         private readonly IGameObjectFactory gameObjectFactory;
-        private readonly IActiveGameObjectMapService activeGameObjectMapService;
+        private readonly IActiveGOMappingService activeGOMappingService;
 
-        public SpawnPrefabSystem(IGameObjectFactory gameObjectFactory, IActiveGameObjectMapService activeGameObjectMapService)
+        public SpawnPrefabSystem(IGameObjectFactory gameObjectFactory, IActiveGOMappingService activeGOMappingService)
         {
             this.gameObjectFactory = gameObjectFactory;
-            this.activeGameObjectMapService = activeGameObjectMapService;
+            this.activeGOMappingService = activeGOMappingService;
         }
 
         public void Run(IEcsSystems systems)
@@ -59,11 +59,10 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Prefab
         private async void Spawn(int entity, EcsWorld world, SpawnPrefabInfo info)
         {
             var go = await gameObjectFactory.CreateAsync(info);
+            var goID = go.GetInstanceID();
 
-            var link = go.GetComponent<IGameObject>();
-            world.AddComponentToEntity(entity, new CGameObject { Link = link });
-
-            activeGameObjectMapService.Add(link, new GoEntityPair { Go = go, PackedEntity = world.PackEntity(entity) });
+            world.AddComponentToEntity(entity, new CGameObjectInstanceID { Value = goID });
+            activeGOMappingService.Add(goID, new GoEntityPair { Go = go, PackedEntity = world.PackEntity(entity) });
         }
     }
 }

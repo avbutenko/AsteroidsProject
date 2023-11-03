@@ -38,9 +38,9 @@ namespace AsteroidsProject.CompositionRoot
             //Spawn Entities
             Container.BindInterfacesAndSelfTo<SpawnAsteroidSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPlayerSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<SpawnPrimaryWeaponSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<SpawnSecondaryWeaponSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<SpawnProjectileSystem>().AsSingle();
+            //Container.BindInterfacesAndSelfTo<SpawnPrimaryWeaponSystem>().AsSingle();
+            //Container.BindInterfacesAndSelfTo<SpawnSecondaryWeaponSystem>().AsSingle();
+            //Container.BindInterfacesAndSelfTo<SpawnProjectileSystem>().AsSingle();
 
             //Initializing
             Container.BindInterfacesAndSelfTo<RandomizePositionSystem>().AsSingle();
@@ -54,18 +54,13 @@ namespace AsteroidsProject.CompositionRoot
 
             //Player Input
             Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<CAttackRequest>>().AsSingle();
+            Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<CChangeHealthRequest>>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerInputSystem>().AsSingle();
 
             //Weapons
             Container.BindInterfacesAndSelfTo<OnAttackSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<BulletGunAttackSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<LaserGunAttackSystem>().AsSingle();
-
-            //Lifecycle
-            Container.BindInterfacesAndSelfTo<CoolDownSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<AmmoAutoRefillSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<LifetimeSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<DestructionSystem>().AsSingle();
 
             //Movement
             Container.BindInterfacesAndSelfTo<MaxVelocityMagnitudeSystem>().AsSingle();
@@ -80,6 +75,12 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<BasicMovementSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<OnOutOfLevelSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<TeleportationSystem>().AsSingle();
+
+            //Lifecycle
+            Container.BindInterfacesAndSelfTo<CoolDownSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AmmoAutoRefillSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LifetimeSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<DestructionSystem>().AsSingle();
 
             //UpdateView
             Container.BindInterfacesAndSelfTo<UpdateGameObjectViewRotationSystem>().AsSingle();

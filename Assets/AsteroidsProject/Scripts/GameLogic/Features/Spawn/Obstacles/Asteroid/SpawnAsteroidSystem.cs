@@ -31,7 +31,6 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.Asteroid
 
         public void Run(IEcsSystems systems)
         {
-
             if (asteroidSpawnconfig == null) return;
 
             var world = systems.GetWorld();

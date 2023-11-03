@@ -12,6 +12,7 @@ using AsteroidsProject.GameLogic.Features.MaxVelocityMagnitude;
 using AsteroidsProject.GameLogic.Features.Weapons.BulletGun;
 using AsteroidsProject.GameLogic.Features.Weapons.LaserGun;
 using AsteroidsProject.GameLogic.Features.Projectiles.Bullet;
+using AsteroidsProject.GameLogic.Features.Events.OnCollision;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -39,6 +40,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<RandomizeRotationSpeedRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<OnSpawnConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<OnOutOfLevelConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<OnCollisionConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<TeleportationRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<DestructionRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPrimaryWeaponRequestConverter>().AsSingle();
@@ -46,6 +48,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<SpawnProjectileRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPrefabRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<CoolDownConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ChangeHealthRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<ComponentConverterService>().AsSingle();
         }
     }

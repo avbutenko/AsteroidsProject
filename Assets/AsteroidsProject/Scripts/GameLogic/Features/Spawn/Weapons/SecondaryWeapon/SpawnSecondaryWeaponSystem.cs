@@ -7,13 +7,15 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Weapons
 {
     public class SpawnSecondaryWeaponSystem : BaseSpawnWeaponSystem<CSpawnSecondaryWeaponRequest, CSecondaryWeapon, CSecondaryWeaponConfigAddress>
     {
-        public SpawnSecondaryWeaponSystem(IConfigProvider configProvider) : base(configProvider) { }
+        public SpawnSecondaryWeaponSystem(IConfigProvider configProvider, IActiveGOMappingService activeGOMappingService)
+            : base(configProvider, activeGOMappingService) { }
 
         protected override Transform GetWeaponSlot(EcsWorld world, int entity)
         {
-            var linkToGameObjectPool = world.GetPool<CGameObject>();
-            ref var view = ref linkToGameObjectPool.Get(entity).Link;
-            return (view as IHaveSecondaryWeapon).SecondaryWeaponSlot;
+            var goIDPool = world.GetPool<CGameObjectInstanceID>();
+            ref var goID = ref goIDPool.Get(entity).Value;
+            if (!activeGOMappingService.TryGetGoLink(goID, out var goLink)) return default;
+            return (goLink as IHaveSecondaryWeapon).SecondaryWeaponSlot;
         }
     }
 }

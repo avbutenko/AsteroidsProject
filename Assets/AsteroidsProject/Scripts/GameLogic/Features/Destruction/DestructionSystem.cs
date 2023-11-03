@@ -6,12 +6,12 @@ namespace AsteroidsProject.GameLogic.Features.Destruction
 {
     public class DestructionSystem : IEcsRunSystem
     {
-        private readonly IActiveGameObjectMapService activeGameObjectMapService;
+        private readonly IActiveGOMappingService activeGOMappingService;
         private readonly IGameObjectPool gameObjectPool;
 
-        public DestructionSystem(IActiveGameObjectMapService activeGameObjectMapService, IGameObjectPool gameObjectPool)
+        public DestructionSystem(IActiveGOMappingService activeGOMappingService, IGameObjectPool gameObjectPool)
         {
-            this.activeGameObjectMapService = activeGameObjectMapService;
+            this.activeGOMappingService = activeGOMappingService;
             this.gameObjectPool = gameObjectPool;
         }
 
@@ -19,27 +19,28 @@ namespace AsteroidsProject.GameLogic.Features.Destruction
         {
             var world = systems.GetWorld();
             var filter = world.Filter<CDestructionRequest>()
-                              .Inc<CGameObject>()
+                              .Inc<CGameObjectInstanceID>()
                               .End();
 
-            var linkToGameObjectPool = world.GetPool<CGameObject>();
+            var goIDPool = world.GetPool<CGameObjectInstanceID>();
 
             foreach (var entity in filter)
             {
-                ref var link = ref linkToGameObjectPool.Get(entity).Link;
-                var go = activeGameObjectMapService.GetValuePair(link).Go;
+                ref var goID = ref goIDPool.Get(entity).Value;
 
-                if (link is IPoolable)
+                if (!activeGOMappingService.TryGetGo(goID, out var go)) return;
+                if (!activeGOMappingService.TryGetGoLink(goID, out var goLink)) return;
+
+                if (goLink is IPoolable)
                 {
-
                     gameObjectPool.Push(go);
                 }
                 else
                 {
-                    link.DestroySelf();
+                    goLink.DestroySelf();
                 }
 
-                activeGameObjectMapService.Remove(link);
+                activeGOMappingService.Remove(goID);
                 world.DelEntity(entity);
             }
         }
