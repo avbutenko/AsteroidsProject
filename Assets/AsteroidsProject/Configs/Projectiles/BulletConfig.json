@@ -2,37 +2,43 @@
     "Components": [
         {
             "CBulletTag": {},
-            "CPrefabAddress": "Bundles/Projectiles/Bullet/Prefabs/Bullet.prefab",
             "CVelocity": {
                 "x": 0,
                 "y": 15
             },
             "COnSpawn": {
-                "Components": [
+                "AddToSelfComponents": [
                     {
-                        "CSpawnPrefabRequest": {}
+                        "CSpawnEntityViewRequest": "Bundles/Projectiles/Bullet/Prefabs/Bullet.prefab"
                     }
                 ]
             },
             "COnOutOfLevel": {
-                "Components": [
+                "AddToSelfComponents": [
                     {
                         "CDestructionRequest": {}
                     }
                 ]
             },
-            "COnCollision": {
-                "Components": [
-                    {
-                        "CDestructionRequest": {}
-                    }
-                ],
-                "CollisionObjectComponents": [
-                    {
-                        "CChangeHealthRequest": -1
-                    }
-                ]
-            }
+            "COnCollision": [
+                {
+                    "RelevantForCollisionTags": [
+                        {
+                            "CAsteroidTag": {}
+                        }
+                    ],
+                    "AddToSelfComponents": [
+                        {
+                            "CDestructionRequest": {}
+                        }
+                    ],
+                    "AddToCollidedObjectComponents": [
+                        {
+                            "CChangeHealthRequest": -1
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

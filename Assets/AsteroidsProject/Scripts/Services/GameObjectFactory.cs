@@ -15,7 +15,7 @@ namespace AsteroidsProject.Services
             this.gameObjectPool = pool;
         }
 
-        public async Task<GameObject> CreateAsync(SpawnPrefabInfo spawnInfo)
+        public async Task<GameObject> CreateAsync(SpawnEntityViewInfo spawnInfo)
         {
             var prefab = await assetProvider.Load<GameObject>(spawnInfo.PrefabAddress);
 
@@ -31,7 +31,7 @@ namespace AsteroidsProject.Services
             }
         }
 
-        private GameObject GetPoolable(GameObject prefab, SpawnPrefabInfo spawnInfo)
+        private GameObject GetPoolable(GameObject prefab, SpawnEntityViewInfo spawnInfo)
         {
             if (gameObjectPool.HasObjects(prefab))
             {
@@ -43,28 +43,28 @@ namespace AsteroidsProject.Services
             }
         }
 
-        private GameObject PullFromPool(GameObject prefab, SpawnPrefabInfo spawnInfo)
+        private GameObject PullFromPool(GameObject prefab, SpawnEntityViewInfo spawnInfo)
         {
             var go = gameObjectPool.Pull(prefab);
             SetGOParams(go, spawnInfo);
             return go;
         }
 
-        private GameObject CreatePoolable(GameObject prefab, SpawnPrefabInfo spawnInfo)
+        private GameObject CreatePoolable(GameObject prefab, SpawnEntityViewInfo spawnInfo)
         {
             var go = Create(prefab, spawnInfo);
             gameObjectPool.Register(prefab, go);
             return go;
         }
 
-        private GameObject Create(GameObject prefab, SpawnPrefabInfo spawnInfo)
+        private GameObject Create(GameObject prefab, SpawnEntityViewInfo spawnInfo)
         {
             var go = Object.Instantiate(prefab, spawnInfo.Position, spawnInfo.Rotation, spawnInfo.Parent);
             SetGOParams(go, spawnInfo);
             return go;
         }
 
-        private void SetGOParams(GameObject go, SpawnPrefabInfo spawnInfo)
+        private void SetGOParams(GameObject go, SpawnEntityViewInfo spawnInfo)
         {
             go.transform.position = spawnInfo.Position;
             go.transform.rotation = spawnInfo.Rotation;

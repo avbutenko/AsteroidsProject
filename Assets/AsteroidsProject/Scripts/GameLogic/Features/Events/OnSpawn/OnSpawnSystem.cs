@@ -14,7 +14,7 @@ namespace AsteroidsProject.GameLogic.Features.Events.OnSpawn
 
             foreach (var entity in filter)
             {
-                ref var components = ref spawnPool.Get(entity).Components;
+                ref var components = ref spawnPool.Get(entity).AddToSelfComponents;
                 world.AddRawComponentsToEntity(entity, components);
                 spawnPool.Del(entity);
             }

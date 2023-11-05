@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Spawn.Weapons
 {
-    public class SpawnSecondaryWeaponSystem : BaseSpawnWeaponSystem<CSpawnSecondaryWeaponRequest, CSecondaryWeapon, CSecondaryWeaponConfigAddress>
+    public class SpawnSecondaryWeaponSystem : BaseSpawnWeaponSystem<CSpawnSecondaryWeaponRequest, CSecondaryWeapon>
     {
         public SpawnSecondaryWeaponSystem(IConfigProvider configProvider, IActiveGOMappingService activeGOMappingService)
             : base(configProvider, activeGOMappingService) { }

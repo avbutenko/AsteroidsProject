@@ -29,7 +29,7 @@ namespace AsteroidsProject.GameLogic.Features.Events.OnOutOfLevel
 
                 if (level.IsOut(position))
                 {
-                    ref var components = ref onOutOfLevelPool.Get(entity).Components;
+                    ref var components = ref onOutOfLevelPool.Get(entity).AddToSelfComponents;
                     world.AddRawComponentsToEntity(entity, components);
                 }
             }

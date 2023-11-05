@@ -2,20 +2,18 @@
     "Components": [
         {
             "CBulletGunTag": {},
-            "CPrefabAddress": "Bundles/Weapons/BulletGun/Prefabs/BulletGun.prefab",
-            "CProjectileConfig": "Configs/Projectiles/BulletConfig.json",
             "CCoolDown": 0.2,
             "COnSpawn": {
-                "Components": [
+                "AddToSelfComponents": [
                     {
-                        "CSpawnPrefabRequest": {}
+                        "CSpawnEntityViewRequest": "Bundles/Weapons/BulletGun/Prefabs/BulletGun.prefab"
                     }
                 ]
             },
             "COnAttack": {
-                "Components": [
+                "AddToSelfComponents": [
                     {
-                        "CSpawnProjectileRequest": {}
+                        "CSpawnProjectileRequest": "Configs/Projectiles/BulletConfig.json"
                     }
                 ]
             }

@@ -9,7 +9,7 @@ namespace AsteroidsProject.GameLogic.Core
 
         public object Convert(JToken token)
         {
-            return new CSpawnProjectileRequest { ShootingPoint = (IHaveShootingPoint)token };
+            return new CSpawnProjectileRequest { Config = token.ToString() };
         }
     }
 }

@@ -4,7 +4,7 @@ using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.GameLogic.Features.Spawn.Obstacles.Asteroid;
 using AsteroidsProject.GameLogic.Features.Spawn.Projectiles;
 using AsteroidsProject.GameLogic.Features.Spawn.Player;
-using AsteroidsProject.GameLogic.Features.Spawn.Prefab;
+using AsteroidsProject.GameLogic.Features.Spawn.EntityView;
 using AsteroidsProject.GameLogic.Features.Spawn.Weapons;
 using AsteroidsProject.GameLogic.Features.Randomization.PermanentRotationDirection;
 using AsteroidsProject.GameLogic.Features.Randomization.Position;
@@ -28,6 +28,7 @@ using AsteroidsProject.GameLogic.Features.Teleportation;
 using AsteroidsProject.GameLogic.Features.Lifetime;
 using AsteroidsProject.GameLogic.Features.MaxVelocityMagnitude;
 using AsteroidsProject.GameLogic.Features.UpdateGameObjectView;
+using AsteroidsProject.GameLogic.Features.Health;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -38,9 +39,9 @@ namespace AsteroidsProject.CompositionRoot
             //Spawn Entities
             Container.BindInterfacesAndSelfTo<SpawnAsteroidSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPlayerSystem>().AsSingle();
-            //Container.BindInterfacesAndSelfTo<SpawnPrimaryWeaponSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnPrimaryWeaponSystem>().AsSingle();
             //Container.BindInterfacesAndSelfTo<SpawnSecondaryWeaponSystem>().AsSingle();
-            //Container.BindInterfacesAndSelfTo<SpawnProjectileSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnProjectileSystem>().AsSingle();
 
             //Initializing
             Container.BindInterfacesAndSelfTo<RandomizePositionSystem>().AsSingle();
@@ -50,17 +51,16 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<OnSpawnSystem>().AsSingle();
 
             //Spawn Prefabs
-            Container.BindInterfacesAndSelfTo<SpawnPrefabSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnEntityViewSystem>().AsSingle();
 
             //Player Input
             Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<CAttackRequest>>().AsSingle();
-            Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<CChangeHealthRequest>>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerInputSystem>().AsSingle();
 
             //Weapons
-            Container.BindInterfacesAndSelfTo<OnAttackSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<BulletGunAttackSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<LaserGunAttackSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<OnAttackSystem>().AsSingle();
 
             //Movement
             Container.BindInterfacesAndSelfTo<MaxVelocityMagnitudeSystem>().AsSingle();
@@ -80,6 +80,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<CoolDownSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<AmmoAutoRefillSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<LifetimeSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ChangeHealthSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<DestructionSystem>().AsSingle();
 
             //UpdateView

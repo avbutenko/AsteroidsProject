@@ -2,9 +2,7 @@
     "Components": [
         {
             "CPlayerTag": {},
-            "CPrefabAddress": "Bundles/Player/Prefabs/Player.prefab",
-            "CPrimaryWeaponConfigAddress": "Configs/Weapons/BulletGunConfig.json",
-            "CSecondaryWeaponConfigAddress": "Configs/Weapons/LaserGunConfig.json",
+            "CHealth": 1,
             "CVelocity": {
                 "x": 0,
                 "y": 0
@@ -14,16 +12,16 @@
             "CAccelerationModifier": 5,
             "CDeaccelerationModifier": -2,
             "COnSpawn": {
-                "Components": [
+                "AddToSelfComponents": [
                     {
-                        "CSpawnPrefabRequest": {},
-                        "CSpawnPrimaryWeaponRequest": {},
-                        "CSpawnSecondaryWeaponRequest": {}
+                        "CSpawnEntityViewRequest": "Bundles/Player/Prefabs/Player.prefab",
+                        "CSpawnPrimaryWeaponRequest": "Configs/Weapons/BulletGunConfig.json",
+                        "CSpawnSecondaryWeaponRequest": "Configs/Weapons/LaserGunConfig.json"
                     }
                 ]
             },
             "COnOutOfLevel": {
-                "Components": [
+                "AddToSelfComponents": [
                     {
                         "CTeleportationRequest": {}
                     }

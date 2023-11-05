@@ -2,14 +2,14 @@ using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.Spawn.Prefab
+namespace AsteroidsProject.GameLogic.Features.Spawn.EntityView
 {
-    public class SpawnPrefabSystem : IEcsRunSystem
+    public class SpawnEntityViewSystem : IEcsRunSystem
     {
         private readonly IGameObjectFactory gameObjectFactory;
         private readonly IActiveGOMappingService activeGOMappingService;
 
-        public SpawnPrefabSystem(IGameObjectFactory gameObjectFactory, IActiveGOMappingService activeGOMappingService)
+        public SpawnEntityViewSystem(IGameObjectFactory gameObjectFactory, IActiveGOMappingService activeGOMappingService)
         {
             this.gameObjectFactory = gameObjectFactory;
             this.activeGOMappingService = activeGOMappingService;
@@ -19,25 +19,23 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Prefab
         {
             var world = systems.GetWorld();
 
-            var filter = world.Filter<CSpawnPrefabRequest>()
-                              .Inc<CPrefabAddress>()
+            var filter = world.Filter<CSpawnEntityViewRequest>()
                               .Inc<CPosition>()
                               .Inc<CRotation>()
                               .End();
 
-            var requestPool = world.GetPool<CSpawnPrefabRequest>();
-            var prefabAddressPool = world.GetPool<CPrefabAddress>();
+            var requestPool = world.GetPool<CSpawnEntityViewRequest>();
             var positionPool = world.GetPool<CPosition>();
             var rotationPool = world.GetPool<CRotation>();
             var parentPool = world.GetPool<CParent>();
 
             foreach (var entity in filter)
             {
-                ref var prefabAddress = ref prefabAddressPool.Get(entity).Value;
+                ref var prefabAddress = ref requestPool.Get(entity).PrefabAddress;
                 ref var position = ref positionPool.Get(entity).Value;
                 ref var rotation = ref rotationPool.Get(entity).Value;
 
-                var spawnInfo = new SpawnPrefabInfo
+                var spawnInfo = new SpawnEntityViewInfo
                 {
                     PrefabAddress = prefabAddress,
                     Position = position,
@@ -56,7 +54,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Prefab
             }
         }
 
-        private async void Spawn(int entity, EcsWorld world, SpawnPrefabInfo info)
+        private async void Spawn(int entity, EcsWorld world, SpawnEntityViewInfo info)
         {
             var go = await gameObjectFactory.CreateAsync(info);
             var goID = go.GetInstanceID();

@@ -7,10 +7,9 @@ using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Spawn.Weapons
 {
-    public abstract class BaseSpawnWeaponSystem<TRequest, TWeaponType, TConfigAddress> : IEcsRunSystem
-        where TRequest : struct
+    public abstract class BaseSpawnWeaponSystem<TRequest, TWeaponType> : IEcsRunSystem
+        where TRequest : struct, IHaveConfigAddress
         where TWeaponType : struct, IHaveLinkedEntity
-        where TConfigAddress : struct, IHaveConfigAddress
     {
         private readonly IConfigProvider configProvider;
         protected IActiveGOMappingService activeGOMappingService;
@@ -25,17 +24,16 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Weapons
         {
             var world = systems.GetWorld();
             var filter = world.Filter<TRequest>()
-                              .Inc<TConfigAddress>()
                               .End();
+
             var requestPool = world.GetPool<TRequest>();
-            var configPool = world.GetPool<TConfigAddress>();
             var linkToGameObjectPool = world.GetPool<CGameObjectInstanceID>();
 
             foreach (var entity in filter)
             {
                 if (!linkToGameObjectPool.Has(entity)) return;
 
-                var weaponConfig = configPool.Get(entity).ConfigAddress;
+                var weaponConfig = requestPool.Get(entity).ConfigAddress;
                 Spawn(world, entity, weaponConfig);
                 requestPool.Del(entity);
             }

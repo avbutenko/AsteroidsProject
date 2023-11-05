@@ -15,14 +15,14 @@ namespace AsteroidsProject.Shared
 
         public string TokenName => typeof(T).Name;
 
-        public object Convert(JToken token)
+        public virtual object Convert(JToken token)
         {
             var serializerSettings = GetSerializerSettings();
             var list = JsonConvert.DeserializeObject<ComponentList>(token.ToString(), serializerSettings);
             return new T { ComponentList = list.Components };
         }
 
-        private JsonSerializerSettings GetSerializerSettings()
+        protected JsonSerializerSettings GetSerializerSettings()
         {
             return new JsonSerializerSettings
             {

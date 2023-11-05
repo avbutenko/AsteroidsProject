@@ -17,8 +17,8 @@ namespace AsteroidsProject.GameLogic.Features.Events.OnCollision
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<OnTriggerEnter2DEvent>().End();
-            var collisionPool = world.GetPool<OnTriggerEnter2DEvent>();
+            var filter = world.Filter<OnCollisionEnter2DEvent>().End();
+            var collisionPool = world.GetPool<OnCollisionEnter2DEvent>();
             var onCollisionPool = world.GetPool<COnCollision>();
 
             foreach (var entity in filter)

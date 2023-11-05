@@ -3,11 +3,11 @@
         {
             "CAsteroidTag": {},
             "CEnemyTag": {},
-            "CPrefabAddress": "Bundles/Obstacles/Asteroid/Prefabs/Asteroid.prefab",
+            "CHealth": 1,
             "COnSpawn": {
-                "Components": [
+                "AddToSelfComponents": [
                     {
-                        "CSpawnPrefabRequest": {},
+                        "CSpawnEntityViewRequest": "Bundles/Obstacles/Asteroid/Prefabs/Asteroid.prefab",
                         "CRandomizePositionRequest": {},
                         "CRandomizePermanentRotationDirectionRequest": [ -1, 1 ],
                         "CRandomizeRotationSpeedRequest": [ 50, 100 ],
@@ -25,7 +25,7 @@
                 ]
             },
             "COnOutOfLevel": {
-                "Components": [
+                "AddToSelfComponents": [
                     {
                         "CTeleportationRequest": {}
                     }
@@ -40,7 +40,7 @@
                     ],
                     "AddToSelfComponents": [
                         {
-                            "CDestructionRequest": {}
+                            //add vfx,sfx,etc..
                         }
                     ],
                     "AddToCollidedObjectComponents": [

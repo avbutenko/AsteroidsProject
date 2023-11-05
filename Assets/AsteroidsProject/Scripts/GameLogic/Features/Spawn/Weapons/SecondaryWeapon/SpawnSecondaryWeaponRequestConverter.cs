@@ -10,7 +10,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Weapons
 
         public object Convert(JToken token)
         {
-            return new CSpawnSecondaryWeaponRequest { };
+            return new CSpawnSecondaryWeaponRequest { Config = (string)token };
         }
     }
 }

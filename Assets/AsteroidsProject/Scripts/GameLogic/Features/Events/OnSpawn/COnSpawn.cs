@@ -7,7 +7,7 @@ namespace AsteroidsProject.GameLogic.Features.Events.OnSpawn
     public struct COnSpawn : IHaveComponentList
     {
         [JsonConverter(typeof(ComponentListJsonConverter))]
-        public List<object> Components;
-        public List<object> ComponentList { set => Components = value; }
+        public List<object> AddToSelfComponents;
+        public List<object> ComponentList { set => AddToSelfComponents = value; }
     }
 }

@@ -5,6 +5,6 @@ namespace AsteroidsProject.Shared
 {
     public interface IGameObjectFactory
     {
-        public Task<GameObject> CreateAsync(SpawnPrefabInfo spawnInfo);
+        public Task<GameObject> CreateAsync(SpawnEntityViewInfo spawnInfo);
     }
 }

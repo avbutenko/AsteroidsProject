@@ -2,8 +2,14 @@
 
 namespace AsteroidsProject.GameLogic.Core
 {
-    public struct CSpawnProjectileRequest
+    public struct CSpawnProjectileRequest : IHaveConfigAddress
     {
-        public IHaveShootingPoint ShootingPoint;
+        public string Config;
+
+        public string ConfigAddress
+        {
+            readonly get => Config;
+            set => Config = value;
+        }
     }
 }

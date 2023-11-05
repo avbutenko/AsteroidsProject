@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6363747595553908038}
   - component: {fileID: 3964465532527155628}
-  - component: {fileID: 7489917795947231938}
+  - component: {fileID: 4275377346378966855}
   - component: {fileID: 8456797092494229170}
   - component: {fileID: 4691024098902057043}
   m_Layer: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   primaryWeaponSlot: {fileID: 3912911271661441822}
   secondaryWeaponSlot: {fileID: 2713995690916705976}
---- !u!114 &7489917795947231938
+--- !u!114 &4275377346378966855
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2707922812654170391}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52d5071960684b97bcdb09d4072584ac, type: 3}
+  m_Script: {fileID: 11500000, guid: e26314793eec48849181452b2f6cc9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!50 &8456797092494229170
@@ -204,7 +204,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

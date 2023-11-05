@@ -2,7 +2,7 @@
 
 namespace AsteroidsProject.Shared
 {
-    public struct SpawnPrefabInfo
+    public struct SpawnEntityViewInfo
     {
         public string PrefabAddress;
         public Vector3 Position;

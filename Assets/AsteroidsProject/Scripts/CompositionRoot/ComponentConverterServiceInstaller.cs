@@ -2,8 +2,6 @@
 using AsteroidsProject.Services;
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.GameLogic.Features.Spawn.Weapons;
-using AsteroidsProject.GameLogic.Features.Spawn.Prefab;
-using AsteroidsProject.GameLogic.Features.Spawn.Projectiles;
 using AsteroidsProject.GameLogic.Features.Movement.Acceleration;
 using AsteroidsProject.GameLogic.Features.Movement.Deacceleration;
 using AsteroidsProject.GameLogic.Features.Events.OnSpawn;
@@ -13,6 +11,8 @@ using AsteroidsProject.GameLogic.Features.Weapons.BulletGun;
 using AsteroidsProject.GameLogic.Features.Weapons.LaserGun;
 using AsteroidsProject.GameLogic.Features.Projectiles.Bullet;
 using AsteroidsProject.GameLogic.Features.Events.OnCollision;
+using AsteroidsProject.GameLogic.Features.Health;
+using AsteroidsProject.GameLogic.Features.Events.OnAttack;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -25,10 +25,6 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<BulletGunTagConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<LaserGunTagConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<BulletTagConverter>().AsSingle();
-            Container.BindInterfacesAndSelfTo<PrefabAddressConverter>().AsSingle();
-            Container.BindInterfacesAndSelfTo<PrimaryWeaponConfigAddressConverter>().AsSingle();
-            Container.BindInterfacesAndSelfTo<SecondaryWeaponConfigAddressConverter>().AsSingle();
-            Container.BindInterfacesAndSelfTo<ProjectileConfigConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<VelocityConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<MaxVelocityMagnitudeConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<AccelerationModifierConverter>().AsSingle();
@@ -41,14 +37,16 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<OnSpawnConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<OnOutOfLevelConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<OnCollisionConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<OnAttackConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<TeleportationRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<DestructionRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPrimaryWeaponRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnSecondaryWeaponRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnProjectileRequestConverter>().AsSingle();
-            Container.BindInterfacesAndSelfTo<SpawnPrefabRequestConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnEntityViewRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<CoolDownConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<ChangeHealthRequestConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<HealthConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<ComponentConverterService>().AsSingle();
         }
     }
