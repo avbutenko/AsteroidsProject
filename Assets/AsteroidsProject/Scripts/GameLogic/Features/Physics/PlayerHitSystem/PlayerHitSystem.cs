@@ -21,8 +21,8 @@ namespace AsteroidsProject.GameLogic.Features.PlayerHitSystem
             var world = systems.GetWorld();
             var filter = world.Filter<OnTriggerEnter2DEvent>().End();
 
-            var destroyRequestPool = world.GetPool<CDestructionRequest>();
-            var eventPool = world.GetPool<OnTriggerEnter2DEvent>();
+            //var destroyRequestPool = world.GetPool<CDestructionRequest>();
+            //var eventPool = world.GetPool<OnTriggerEnter2DEvent>();
 
             foreach (var entity in filter)
             {

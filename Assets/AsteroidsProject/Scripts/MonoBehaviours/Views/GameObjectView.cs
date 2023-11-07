@@ -13,7 +13,7 @@ namespace AsteroidsProject.MonoBehaviours
             return transform.gameObject.GetInstanceID();
         }
 
-        public void DestroySelf()
+        public void Destroy()
         {
             Destroy(gameObject);
         }

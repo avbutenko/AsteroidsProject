@@ -11,9 +11,10 @@ using AsteroidsProject.GameLogic.Features.Weapons.BulletGun;
 using AsteroidsProject.GameLogic.Features.Weapons.LaserGun;
 using AsteroidsProject.GameLogic.Features.Projectiles.Bullet;
 using AsteroidsProject.GameLogic.Features.Events.OnCollision;
-using AsteroidsProject.GameLogic.Features.Health;
+using AsteroidsProject.GameLogic.Features.Damage;
 using AsteroidsProject.GameLogic.Features.Events.OnAttack;
 using AsteroidsProject.GameLogic.Core.Assets.AsteroidsProject.Scripts.GameLogic.Core.Score;
+using AsteroidsProject.GameLogic.Features.Events.OnDeath;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -40,15 +41,17 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<OnCollisionConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<OnAttackConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<TeleportationRequestConverter>().AsSingle();
-            Container.BindInterfacesAndSelfTo<DestructionRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPrimaryWeaponRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnSecondaryWeaponRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnProjectileRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnEntityViewRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<CoolDownConverter>().AsSingle();
-            Container.BindInterfacesAndSelfTo<ChangeHealthRequestConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<DamageRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<HealthConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<CollectScoreRequestConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<OnDeathConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnFragmentsRequestConverter>().AsSingle();
+
             Container.BindInterfacesAndSelfTo<ComponentConverterService>().AsSingle();
         }
     }

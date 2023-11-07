@@ -16,7 +16,7 @@
             "COnOutOfLevel": {
                 "AddToSelfComponents": [
                     {
-                        "CDestructionRequest": {}
+                        //"CDestructionRequest": {}
                     }
                 ]
             },
@@ -30,12 +30,12 @@
                     ],
                     "AddToSelfComponents": [
                         {
-                            "CDestructionRequest": {}
+                            //"CDestructionRequest": {}
                         }
                     ],
                     "AddToCollidedObjectComponents": [
                         {
-                            "CChangeHealthRequest": -1
+                            "CDamageRequest": -1
                         }
                     ]
                 }

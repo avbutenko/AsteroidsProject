@@ -45,6 +45,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Weapons
         {
             var components = await GetComponents(world, ownerEntity, configAddress);
             var weaponEntity = world.NewEntityWithRawComponents(components);
+            world.AddComponentToEntity(weaponEntity, new CSpawnedEntityEvent { PackedEntity = world.PackEntity(weaponEntity) });
             Link(world, ownerEntity, weaponEntity);
         }
 

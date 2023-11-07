@@ -1,37 +1,31 @@
 using AsteroidsProject.GameLogic.Core;
-using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.Events.OnOutOfLevel
 {
     public class OnOutOfLevelSystem : IEcsRunSystem
     {
-        private readonly ILevelService level;
-
-        public OnOutOfLevelSystem(ILevelService level)
-        {
-            this.level = level;
-        }
-
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<CPosition>()
-                              .Inc<COnOutOfLevel>()
-                              .End();
-
-            var positionPool = world.GetPool<CPosition>();
+            var filter = world.Filter<COutOfLevelEvent>().End();
+            var eventPool = world.GetPool<COutOfLevelEvent>();
             var onOutOfLevelPool = world.GetPool<COnOutOfLevel>();
 
             foreach (var entity in filter)
             {
-                ref var position = ref positionPool.Get(entity).Value;
+                ref var packedEntity = ref eventPool.Get(entity).PackedEntity;
 
-                if (level.IsOut(position))
+                if (packedEntity.Unpack(world, out int outOfLevelEntity))
                 {
-                    ref var components = ref onOutOfLevelPool.Get(entity).AddToSelfComponents;
-                    world.AddRawComponentsToEntity(entity, components);
+                    if (onOutOfLevelPool.Has(outOfLevelEntity))
+                    {
+                        ref var components = ref onOutOfLevelPool.Get(outOfLevelEntity).AddToSelfComponents;
+                        world.AddRawComponentsToEntity(outOfLevelEntity, components);
+                    }
                 }
+
+                eventPool.Del(entity);
             }
         }
     }

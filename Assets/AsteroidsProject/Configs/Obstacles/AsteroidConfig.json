@@ -45,18 +45,30 @@
                     ],
                     "AddToCollidedObjectComponents": [
                         {
-                            "CChangeHealthRequest": -1
+                            "CDamageRequest": -1
                         }
                     ]
                 }
             ],
-            "COnDeath": {
-                "AddToSelfComponents": [
-                    {
-                        "CCollectScoreRequest": 1
-                    }
-                ]
-            }
+            "COnDeath": [
+                {
+                    "Components": [
+                        {
+                            "CCollectScoreRequest": 1
+                        }
+                    ]
+                },
+                {
+                    "Components": [
+                        {
+                            "CSpawnFragmentsRequest": {
+                                "Config": "Bundles/Obstacles/AsteroidFragment/Prefabs/AsteroidFragment.prefab",
+                                "Amount": 3
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

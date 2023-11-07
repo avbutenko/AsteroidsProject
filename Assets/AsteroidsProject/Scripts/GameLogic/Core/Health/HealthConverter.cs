@@ -1,7 +1,7 @@
 using AsteroidsProject.Shared;
 using Newtonsoft.Json.Linq;
 
-namespace AsteroidsProject.GameLogic.Features.Health
+namespace AsteroidsProject.GameLogic.Core
 {
     public class HealthConverter : IComponentConverter
     {

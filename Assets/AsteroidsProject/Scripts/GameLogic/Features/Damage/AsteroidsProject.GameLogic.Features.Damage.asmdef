@@ -1,6 +1,6 @@
 {
-    "name": "AsteroidsProject.GameLogic.Features.Health",
-    "rootNamespace": "AsteroidsProject.GameLogic.Features.Health",
+    "name": "AsteroidsProject.GameLogic.Features.Damage",
+    "rootNamespace": "AsteroidsProject.GameLogic.Features.Damage",
     "references": [
         "GUID:e59bf9fc7d5a44b18a819a92edd46163",
         "GUID:82e47fb6cfee41b4988fa1b318ce1490",

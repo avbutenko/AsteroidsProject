@@ -66,6 +66,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.Asteroid
             var componentList = await configProvider.Load<ComponentList>(config);
             var entity = world.NewEntityWithRawComponents(componentList.Components);
             world.AddComponentToEntity(entity, new CParent { Value = sceneData.AsteroidsPool });
+            world.AddComponentToEntity(entity, new CSpawnedEntityEvent { PackedEntity = world.PackEntity(entity) });
         }
     }
 }

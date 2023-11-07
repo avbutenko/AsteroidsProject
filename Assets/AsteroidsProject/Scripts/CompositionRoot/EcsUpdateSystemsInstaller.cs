@@ -23,13 +23,13 @@ using AsteroidsProject.GameLogic.Features.CoolDown;
 using AsteroidsProject.GameLogic.Features.Events.OnOutOfLevel;
 using AsteroidsProject.GameLogic.Features.Events.OnSpawn;
 using AsteroidsProject.GameLogic.Features.Events.OnAttack;
-using AsteroidsProject.GameLogic.Features.Destruction;
 using AsteroidsProject.GameLogic.Features.Teleportation;
 using AsteroidsProject.GameLogic.Features.Lifetime;
 using AsteroidsProject.GameLogic.Features.MaxVelocityMagnitude;
 using AsteroidsProject.GameLogic.Features.UpdateGameObjectView;
-using AsteroidsProject.GameLogic.Features.Health;
+using AsteroidsProject.GameLogic.Features.Damage;
 using AsteroidsProject.GameLogic.Features.Score;
+using AsteroidsProject.GameLogic.Features.Events.OnDeath;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -74,6 +74,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<DeaccelerationVelocitySystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<DeaccelerationPositionSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<BasicMovementSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<OutOfLevelCheckSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<OnOutOfLevelSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<TeleportationSystem>().AsSingle();
 
@@ -81,9 +82,9 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<CoolDownSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<AmmoAutoRefillSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<LifetimeSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<ChangeHealthSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<DamageSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<ScoreSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<DestructionSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<OnDeathSystem>().AsSingle();
 
             //UpdateView
             Container.BindInterfacesAndSelfTo<UpdateGameObjectViewRotationSystem>().AsSingle();

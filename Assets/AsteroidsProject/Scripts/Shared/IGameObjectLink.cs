@@ -7,6 +7,6 @@ namespace AsteroidsProject.Shared
         public Vector2 Position { set; }
         public Quaternion Rotation { set; }
         public int GetGameObjectInstanceID();
-        public void DestroySelf();
+        public void Destroy();
     }
 }

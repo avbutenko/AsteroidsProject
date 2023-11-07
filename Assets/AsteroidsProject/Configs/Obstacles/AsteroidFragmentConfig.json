@@ -38,7 +38,7 @@
                 ],
                 "CollisionObjectComponents": [
                     {
-                        "CChangeHealthRequest": -1
+                        "CDamageRequest": -1
                     }
                 ]
             }

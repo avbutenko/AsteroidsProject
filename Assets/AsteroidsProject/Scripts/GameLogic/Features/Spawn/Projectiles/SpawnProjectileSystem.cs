@@ -4,6 +4,7 @@ using Leopotam.EcsLite;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace AsteroidsProject.GameLogic.Features.Spawn.Projectiles
 {
@@ -47,6 +48,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Projectiles
         {
             var components = await GetComponents(shootingPoint, config);
             var projectileEntity = world.NewEntityWithRawComponents(components);
+            world.AddComponentToEntity(projectileEntity, new CSpawnedEntityEvent { PackedEntity = world.PackEntity(projectileEntity) });
             AdoptVelocity(world, shootingPoint, projectileEntity);
         }
 
