@@ -13,6 +13,7 @@ using AsteroidsProject.GameLogic.Features.Projectiles.Bullet;
 using AsteroidsProject.GameLogic.Features.Events.OnCollision;
 using AsteroidsProject.GameLogic.Features.Health;
 using AsteroidsProject.GameLogic.Features.Events.OnAttack;
+using AsteroidsProject.GameLogic.Core.Assets.AsteroidsProject.Scripts.GameLogic.Core.Score;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -47,6 +48,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<CoolDownConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<ChangeHealthRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<HealthConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CollectScoreRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<ComponentConverterService>().AsSingle();
         }
     }

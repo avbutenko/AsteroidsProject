@@ -29,6 +29,7 @@ using AsteroidsProject.GameLogic.Features.Lifetime;
 using AsteroidsProject.GameLogic.Features.MaxVelocityMagnitude;
 using AsteroidsProject.GameLogic.Features.UpdateGameObjectView;
 using AsteroidsProject.GameLogic.Features.Health;
+using AsteroidsProject.GameLogic.Features.Score;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -81,6 +82,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<AmmoAutoRefillSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<LifetimeSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<ChangeHealthSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ScoreSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<DestructionSystem>().AsSingle();
 
             //UpdateView

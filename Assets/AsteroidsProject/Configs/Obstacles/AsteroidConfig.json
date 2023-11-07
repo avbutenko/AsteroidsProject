@@ -51,13 +51,9 @@
                 }
             ],
             "COnDeath": {
-                "Components": [
+                "AddToSelfComponents": [
                     {
-                        "CSpawn": [
-                            "Configs/Obstacles/AsteroidFragmentConfig.json",
-                            "Configs/Obstacles/AsteroidFragmentConfig.json",
-                            "Configs/Obstacles/AsteroidFragmentConfig.json"
-                        ]
+                        "CCollectScoreRequest": 1
                     }
                 ]
             }
