@@ -16,10 +16,8 @@ namespace AsteroidsProject.GameLogic.Features.Lifetime
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-            var filter = world.Filter<Lifetime>().End();
-
-            var lifetimePool = world.GetPool<Lifetime>();
-            //var destroyTagPool = world.GetPool<CDestructionRequest>();
+            var filter = world.Filter<CLifetime>().End();
+            var lifetimePool = world.GetPool<CLifetime>();
 
             foreach (var entity in filter)
             {
@@ -28,7 +26,7 @@ namespace AsteroidsProject.GameLogic.Features.Lifetime
 
                 if (lifetime <= 0)
                 {
-                    //destroyTagPool.Add(entity);
+                    world.NewEntityWith(new CDeathEvent { PackedEntity = world.PackEntity(entity) });
                 }
             }
         }

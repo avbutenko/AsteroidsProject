@@ -39,7 +39,10 @@ namespace AsteroidsProject.GameLogic.Core
                 pool = (IEcsPool)generic.Invoke(world, null);
             }
 
-            pool.AddRaw(entity, component);
+            if (!pool.Has(entity))
+            {
+                pool.AddRaw(entity, component);
+            }
         }
 
         public static void AddRawComponentsToEntity(this EcsWorld world, int entity, List<object> components)

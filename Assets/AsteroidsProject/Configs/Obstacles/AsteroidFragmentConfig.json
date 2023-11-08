@@ -1,25 +1,23 @@
 {
     "Components": [
         {
-            "CAsteroidTag": {},
-            "CHealth": 1,
+            "CAsteroidFragmentTag": {},
             "CEnemyTag": {},
-            "CPrefabAddress": "Bundles/Obstacles/Asteroid/Prefabs/Asteroid.prefab",
+            "CHealth": 1,
             "COnSpawn": {
                 "AddToSelfComponents": [
                     {
-                        "CSpawnPrefabRequest": {},
-                        "CRandomizePositionRequest": {},
+                        "CSpawnEntityViewRequest": "Bundles/Obstacles/AsteroidFragment/Prefabs/AsteroidFragment.prefab",
                         "CRandomizePermanentRotationDirectionRequest": [ -1, 1 ],
-                        "CRandomizeRotationSpeedRequest": [ 50, 100 ],
+                        "CRandomizeRotationSpeedRequest": [ 85, 160 ],
                         "CRandomizeVelocityRequest": [
                             {
-                                "x": -2,
-                                "y": -2
+                                "x": -4,
+                                "y": -4
                             },
                             {
-                                "x": 2,
-                                "y": 2
+                                "x": 4,
+                                "y": 4
                             }
                         ]
                     }
@@ -32,16 +30,35 @@
                     }
                 ]
             },
-            "COnCollision": {
-                "AddToSelfComponents": [
-                    {}
-                ],
-                "CollisionObjectComponents": [
-                    {
-                        "CDamageRequest": -1
-                    }
-                ]
-            }
+            "COnCollision": [
+                {
+                    "RelevantForCollisionTags": [
+                        {
+                            "CPlayerTag": {},
+                            "CBulletTag": {}
+                        }
+                    ],
+                    "AddToSelfComponents": [
+                        {
+                            //add vfx,sfx,etc..
+                        }
+                    ],
+                    "AddToCollidedObjectComponents": [
+                        {
+                            "CDamageRequest": -1
+                        }
+                    ]
+                }
+            ],
+            "COnDeath": [
+                {
+                    "Components": [
+                        {
+                            "CCollectScoreRequest": 1
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

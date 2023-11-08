@@ -3,6 +3,7 @@
         {
             "CBulletTag": {},
             "CHealth": 1,
+            "CLifetime": 3,
             "CVelocity": {
                 "x": 0,
                 "y": 15
@@ -14,24 +15,16 @@
                     }
                 ]
             },
-            "COnOutOfLevel": {
-                "AddToSelfComponents": [
-                    {
-                        //"CDestructionRequest": {}
-                    }
-                ]
-            },
             "COnCollision": [
                 {
                     "RelevantForCollisionTags": [
                         {
-                            "CAsteroidTag": {},
-                            "CAsteroidFragmentTag": {}
+                            "CEnemyTag": {}
                         }
                     ],
                     "AddToSelfComponents": [
                         {
-                            //"CDestructionRequest": {}
+                            //add vfx,sfx,etc..
                         }
                     ],
                     "AddToCollidedObjectComponents": [

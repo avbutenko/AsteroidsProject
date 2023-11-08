@@ -2,6 +2,7 @@
     "Components": [
         {
             "CLaserTag": {},
+            "CLifetime": 5,
             "COnSpawn": {
                 "AddToSelfComponents": [
                     {
@@ -13,8 +14,7 @@
                 {
                     "RelevantForCollisionTags": [
                         {
-                            "CAsteroidTag": {},
-                            "CAsteroidFragmentTag": {}
+                            "CEnemyTag": {}
                         }
                     ],
                     "AddToSelfComponents": [
@@ -24,7 +24,7 @@
                     ],
                     "AddToCollidedObjectComponents": [
                         {
-                            "CDamageRequest": -1
+                            "CDamageRequest": -10
                         }
                     ]
                 }

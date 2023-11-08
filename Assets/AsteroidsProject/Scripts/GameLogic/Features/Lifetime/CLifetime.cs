@@ -3,7 +3,7 @@ using System;
 namespace AsteroidsProject.GameLogic.Features.Lifetime
 {
     [Serializable]
-    public struct Lifetime
+    public struct CLifetime
     {
         public float Value;
     }

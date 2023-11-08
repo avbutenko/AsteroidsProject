@@ -4,7 +4,6 @@ using Leopotam.EcsLite;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 namespace AsteroidsProject.GameLogic.Features.Spawn.Projectiles
 {
@@ -39,17 +38,17 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Projectiles
                 var shootingPoint = goLink as IHaveShootingPoint;
 
                 ref var config = ref requestPool.Get(entity).Config;
-                Spawn(world, shootingPoint.ShootingPoint, config);
+                Spawn(world, shootingPoint.ShootingPoint, config, entity);
                 requestPool.Del(entity);
             }
         }
 
-        private async void Spawn(EcsWorld world, Transform shootingPoint, string config)
+        private async void Spawn(EcsWorld world, Transform shootingPoint, string config, int weaponEntity)
         {
             var components = await GetComponents(shootingPoint, config);
             var projectileEntity = world.NewEntityWithRawComponents(components);
             world.AddComponentToEntity(projectileEntity, new CSpawnedEntityEvent { PackedEntity = world.PackEntity(projectileEntity) });
-            AdoptVelocity(world, shootingPoint, projectileEntity);
+            AdoptVelocity(world, shootingPoint, projectileEntity, weaponEntity);
         }
 
         private async Task<List<object>> GetComponents(Transform shootingPoint, string config)
@@ -63,13 +62,26 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Projectiles
             return components;
         }
 
-        private void AdoptVelocity(EcsWorld world, Transform shootingPoint, int projectileEntity)
+        private void AdoptVelocity(EcsWorld world, Transform shootingPoint, int projectileEntity, int weaponEntity)
         {
             var velocityPool = world.GetPool<CVelocity>();
+            var ownerPool = world.GetPool<COwnerEntity>();
+
             if (velocityPool.Has(projectileEntity))
             {
                 ref var velocity = ref velocityPool.Get(projectileEntity).Value;
                 velocity = (Vector2)(shootingPoint.rotation * velocity);
+
+                if (ownerPool.Has(weaponEntity))
+                {
+                    ref var ownerPackedEntity = ref ownerPool.Get(weaponEntity).Value;
+
+                    if (ownerPackedEntity.Unpack(world, out int ownerEntity))
+                    {
+                        ref var ownerVelocity = ref velocityPool.Get(ownerEntity).Value;
+                        velocity += ownerVelocity;
+                    }
+                }
             }
         }
     }

@@ -30,6 +30,7 @@ using AsteroidsProject.GameLogic.Features.UpdateGameObjectView;
 using AsteroidsProject.GameLogic.Features.Damage;
 using AsteroidsProject.GameLogic.Features.Score;
 using AsteroidsProject.GameLogic.Features.Events.OnDeath;
+using AsteroidsProject.GameLogic.Features.Spawn.Obstacles.AsteroidFragment;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -39,9 +40,10 @@ namespace AsteroidsProject.CompositionRoot
         {
             //Spawn Entities
             Container.BindInterfacesAndSelfTo<SpawnAsteroidSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnAsteroidFragmentSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPlayerSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPrimaryWeaponSystem>().AsSingle();
-            //Container.BindInterfacesAndSelfTo<SpawnSecondaryWeaponSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnSecondaryWeaponSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnProjectileSystem>().AsSingle();
 
             //Initializing

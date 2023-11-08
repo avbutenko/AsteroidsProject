@@ -1,3 +1,4 @@
+using Assets.AsteroidsProject.Scripts.Shared;
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
@@ -31,14 +32,13 @@ namespace AsteroidsProject.GameLogic.Features.Events.OnDeath
                     HandleGO(world, deadEntity);
                     world.DelEntity(deadEntity);
                 }
-
-                eventPool.Del(entity);
             }
         }
 
         private void HandleOnDeathEvents(EcsWorld world, int entity)
         {
             var onDeathPool = world.GetPool<COnDeath>();
+            var positionPool = world.GetPool<CPosition>();
 
             if (onDeathPool.Has(entity))
             {
@@ -46,7 +46,18 @@ namespace AsteroidsProject.GameLogic.Features.Events.OnDeath
 
                 foreach (var item in createList)
                 {
-                    world.NewEntityWithRawComponents(item.Components);
+                    var newEntity = world.NewEntity();
+
+                    foreach (var component in item.Components)
+                    {
+                        if (component is IHavePosition)
+                        {
+                            ref var originPosition = ref positionPool.Get(entity).Value;
+                            (component as IHavePosition).Position = originPosition;
+                        }
+
+                        world.AddRawComponentToEntity(newEntity, component);
+                    }
                 }
             }
         }

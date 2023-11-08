@@ -16,6 +16,7 @@ using AsteroidsProject.GameLogic.Features.Events.OnAttack;
 using AsteroidsProject.GameLogic.Core.Assets.AsteroidsProject.Scripts.GameLogic.Core.Score;
 using AsteroidsProject.GameLogic.Features.Events.OnDeath;
 using AsteroidsProject.GameLogic.Features.Score;
+using AsteroidsProject.GameLogic.Features.Lifetime;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -25,9 +26,11 @@ namespace AsteroidsProject.CompositionRoot
         {
             Container.BindInterfacesAndSelfTo<PlayerTagConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<AsteroidTagConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AsteroidFragmentTagConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<BulletGunTagConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<LaserGunTagConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<BulletTagConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<EnemyTagConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<VelocityConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<MaxVelocityMagnitudeConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<AccelerationModifierConverter>().AsSingle();
@@ -51,8 +54,9 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<HealthConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<CollectScoreRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<OnDeathConverter>().AsSingle();
-            Container.BindInterfacesAndSelfTo<SpawnFragmentsRequestConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnAsteroidFragmentsRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<CScoreConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LifetimeConverter>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<ComponentConverterService>().AsSingle();
         }

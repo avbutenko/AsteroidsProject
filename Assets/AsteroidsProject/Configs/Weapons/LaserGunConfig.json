@@ -2,7 +2,7 @@
     "Components": [
         {
             "CLaserGunTag": {},
-            "CCoolDown": 2,
+            "CCoolDown": 10,
             "COnSpawn": {
                 "AddToSelfComponents": [
                     {
