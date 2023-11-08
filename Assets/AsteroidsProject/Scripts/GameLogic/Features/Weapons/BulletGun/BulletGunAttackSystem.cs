@@ -17,13 +17,12 @@ namespace AsteroidsProject.GameLogic.Features.Weapons.BulletGun
 
             var coolDownPool = world.GetPool<CCoolDown>();
             var activeCoolDownPool = world.GetPool<CActiveCoolDown>();
-            var attackAllowedPool = world.GetPool<CAttackAllowed>();
 
             foreach (var entity in filter)
             {
                 ref var coolDown = ref coolDownPool.Get(entity).Value;
                 activeCoolDownPool.Add(entity).Value = coolDown;
-                attackAllowedPool.Add(entity);
+                world.NewEntityWith(new CAttackEvent { PackedEntity = world.PackEntity(entity) });
             }
         }
     }
