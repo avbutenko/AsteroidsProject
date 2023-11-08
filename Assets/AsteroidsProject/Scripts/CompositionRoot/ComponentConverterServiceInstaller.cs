@@ -15,6 +15,7 @@ using AsteroidsProject.GameLogic.Features.Damage;
 using AsteroidsProject.GameLogic.Features.Events.OnAttack;
 using AsteroidsProject.GameLogic.Core.Assets.AsteroidsProject.Scripts.GameLogic.Core.Score;
 using AsteroidsProject.GameLogic.Features.Events.OnDeath;
+using AsteroidsProject.GameLogic.Features.Score;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -51,6 +52,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<CollectScoreRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<OnDeathConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnFragmentsRequestConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CScoreConverter>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<ComponentConverterService>().AsSingle();
         }

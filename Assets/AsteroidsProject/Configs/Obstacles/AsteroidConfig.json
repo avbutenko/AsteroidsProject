@@ -35,7 +35,8 @@
                 {
                     "RelevantForCollisionTags": [
                         {
-                            "CPlayerTag": {}
+                            "CPlayerTag": {},
+                            "CBulletTag": {}
                         }
                     ],
                     "AddToSelfComponents": [

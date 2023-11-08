@@ -42,7 +42,7 @@ namespace AsteroidsProject.GameLogic.Features.Events.OnCollision
                         {
                             var relavantForCollisionTagPool = world.GetPoolByType(tag.GetType());
 
-                            if (relavantForCollisionTagPool.Has(collisionEntity.Value))
+                            if (relavantForCollisionTagPool != null && relavantForCollisionTagPool.Has(collisionEntity.Value))
                             {
                                 world.AddRawComponentsToEntity(senderEntity.Value, param.AddToSelfComponents);
                                 world.AddRawComponentsToEntity(collisionEntity.Value, param.AddToCollidedObjectComponents);

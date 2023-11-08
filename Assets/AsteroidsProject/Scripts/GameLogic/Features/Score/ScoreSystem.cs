@@ -8,19 +8,23 @@ namespace AsteroidsProject.GameLogic.Features.Score
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
-
-            var filter = world.Filter<CCollectScoreRequest>()
-                              .Inc<CScore>()
-                              .End();
+            var reqestFilter = world.Filter<CCollectScoreRequest>().End();
+            var scoreFilter = world.Filter<CScore>().End();
 
             var scorePool = world.GetPool<CScore>();
             var requestPool = world.GetPool<CCollectScoreRequest>();
 
-            foreach (var entity in filter)
+            foreach (var requestEntity in reqestFilter)
             {
-                ref var currentScore = ref scorePool.Get(entity).Value;
-                ref var deltaValue = ref requestPool.Get(entity).Value;
-                currentScore += deltaValue;
+                ref var deltaValue = ref requestPool.Get(requestEntity).Value;
+
+                foreach (var scoreHolderEntity in scoreFilter)
+                {
+                    ref var currentScore = ref scorePool.Get(scoreHolderEntity).Value;
+                    currentScore += deltaValue;
+                }
+
+                requestPool.Del(requestEntity);
             }
         }
     }
