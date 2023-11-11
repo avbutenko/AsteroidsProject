@@ -18,8 +18,6 @@ using AsteroidsProject.GameLogic.Features.Rotation.Permanent;
 using AsteroidsProject.GameLogic.Features.Rotation.Basic;
 using AsteroidsProject.GameLogic.Features.Weapons.BulletGun;
 using AsteroidsProject.GameLogic.Features.Weapons.LaserGun;
-using AsteroidsProject.GameLogic.Features.Weapons.AmmoAutoRefill;
-using AsteroidsProject.GameLogic.Features.CoolDown;
 using AsteroidsProject.GameLogic.Features.Events.OnOutOfLevel;
 using AsteroidsProject.GameLogic.Features.Events.OnSpawn;
 using AsteroidsProject.GameLogic.Features.Events.OnAttack;
@@ -31,6 +29,10 @@ using AsteroidsProject.GameLogic.Features.Damage;
 using AsteroidsProject.GameLogic.Features.Score;
 using AsteroidsProject.GameLogic.Features.Events.OnDeath;
 using AsteroidsProject.GameLogic.Features.Spawn.Obstacles.AsteroidFragment;
+using AsteroidsProject.GameLogic.Features.AttackCoolDown;
+using AsteroidsProject.GameLogic.Features.Ammo.AutoRefill;
+using AsteroidsProject.GameLogic.Features.Ammo.Max;
+using AsteroidsProject.GameLogic.Features.Ammo.ChangeAmount;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -64,6 +66,13 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<BulletGunAttackSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<LaserGunAttackSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<OnAttackSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AttackCoolDownSystem>().AsSingle();
+
+            //Ammo
+            Container.BindInterfacesAndSelfTo<ChangeAmmoAmountSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AmmoAutoRefillSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AmmoAutoRefillCoolDownSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AmmoMaxSystem>().AsSingle();
 
             //Movement
             Container.BindInterfacesAndSelfTo<MaxVelocityMagnitudeSystem>().AsSingle();
@@ -81,8 +90,6 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<TeleportationSystem>().AsSingle();
 
             //Lifecycle
-            Container.BindInterfacesAndSelfTo<CoolDownSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<AmmoAutoRefillSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<LifetimeSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<DamageSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<ScoreSystem>().AsSingle();

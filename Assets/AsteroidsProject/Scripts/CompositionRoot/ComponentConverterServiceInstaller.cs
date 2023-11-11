@@ -11,12 +11,13 @@ using AsteroidsProject.GameLogic.Features.Weapons.BulletGun;
 using AsteroidsProject.GameLogic.Features.Weapons.LaserGun;
 using AsteroidsProject.GameLogic.Features.Projectiles.Bullet;
 using AsteroidsProject.GameLogic.Features.Events.OnCollision;
-using AsteroidsProject.GameLogic.Features.Damage;
 using AsteroidsProject.GameLogic.Features.Events.OnAttack;
 using AsteroidsProject.GameLogic.Core.Assets.AsteroidsProject.Scripts.GameLogic.Core.Score;
 using AsteroidsProject.GameLogic.Features.Events.OnDeath;
 using AsteroidsProject.GameLogic.Features.Score;
 using AsteroidsProject.GameLogic.Features.Lifetime;
+using AsteroidsProject.GameLogic.Features.Ammo.AutoRefill;
+using AsteroidsProject.GameLogic.Features.Ammo.Max;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -49,14 +50,18 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<SpawnSecondaryWeaponRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnProjectileRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnEntityViewRequestConverter>().AsSingle();
-            Container.BindInterfacesAndSelfTo<CoolDownConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AttackCoolDownConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<DamageRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<HealthConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<CollectScoreRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<OnDeathConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnAsteroidFragmentsRequestConverter>().AsSingle();
-            Container.BindInterfacesAndSelfTo<CScoreConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ScoreConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<LifetimeConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AmmoConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AmmoMaxConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AmmoAutoRefillConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ChangeAmmoAmountRequestConverter>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<ComponentConverterService>().AsSingle();
         }

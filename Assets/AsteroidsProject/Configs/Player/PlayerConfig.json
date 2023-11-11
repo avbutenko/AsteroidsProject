@@ -27,7 +27,26 @@
                         "CTeleportationRequest": {}
                     }
                 ]
-            }
+            },
+            "COnCollision": [
+                {
+                    "RelevantForCollisionTags": [
+                        {
+                            "CEnemyTag": {}
+                        }
+                    ],
+                    "AddToSelfComponents": [
+                        {
+                            //add vfx,sfx,etc..
+                        }
+                    ],
+                    "AddToCollidedObjectComponents": [
+                        {
+                            "CDamageRequest": -1
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

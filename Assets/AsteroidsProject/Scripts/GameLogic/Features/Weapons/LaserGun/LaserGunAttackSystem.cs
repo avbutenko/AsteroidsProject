@@ -1,64 +1,29 @@
-﻿using AsteroidsProject.Configs;
-using AsteroidsProject.GameLogic.Core;
-using AsteroidsProject.Shared;
+﻿using AsteroidsProject.GameLogic.Core;
 using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.Weapons.LaserGun
 {
-    public class LaserGunAttackSystem : IEcsInitSystem, IEcsRunSystem
+    public class LaserGunAttackSystem : IEcsRunSystem
     {
-        private readonly IConfigProvider configProvider;
-        //private LaserGunConfig config;
-
-        public LaserGunAttackSystem(IConfigProvider configProvider)
-        {
-            this.configProvider = configProvider;
-        }
-
-        public async void Init(IEcsSystems systems)
-        {
-            var gameConfig = await configProvider.Load<GameConfig>("Configs/GameConfig.json");
-            //config = await configProvider.Load<LaserGunConfig>(gameConfig.LaserGunConfigPath);
-        }
-
         public void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
+
             var filter = world.Filter<CLaserGunTag>()
                               .Inc<CAttackRequest>()
-                              //.Inc<ShootingPoint>()
-                              .Inc<CCoolDown>()
-                              .Inc<CurrentAmmoLevel>()
-                              .Inc<CGameObjectInstanceID>()
-                              .Exc<CActiveCoolDown>()
+                              .Inc<CAmmo>()
+                              .Exc<CAttackCoolDown>()
                               .End();
 
-            //var shootingPointPool = world.GetPool<ShootingPoint>();
-            var coolDownPool = world.GetPool<CCoolDown>();
-            var activeCoolDownPool = world.GetPool<CActiveCoolDown>();
-            var ammoPool = world.GetPool<CurrentAmmoLevel>();
-            var viewPool = world.GetPool<CGameObjectInstanceID>();
+            var ammoPool = world.GetPool<CAmmo>();
 
             foreach (var entity in filter)
             {
-                //ref var shootingPoint = ref shootingPointPool.Get(entity).Value;
-                ref var coolDown = ref coolDownPool.Get(entity).Value;
                 ref var ammo = ref ammoPool.Get(entity).Value;
-                //ref var view = ref viewPool.Get(entity).Link;
 
                 if (ammo > 0)
                 {
-                    //world.NewEntityWith(new SpawnPrefabRequestOLD
-                    //{
-                    //    SpawnInfo = new SpawnInfo
-                    //    {
-                    //        PrefabAddress = config.ProjectilePrefabAddress,
-                    //        Parent = shootingPoint.transform
-                    //    }
-                    //});
-
-                    activeCoolDownPool.Add(entity).Value = coolDown;
-                    ammo--;
+                    world.NewEntityWith(new CAttackEvent { PackedEntity = world.PackEntity(entity) });
                 }
                 else
                 {

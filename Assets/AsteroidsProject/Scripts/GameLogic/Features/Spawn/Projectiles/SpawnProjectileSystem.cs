@@ -1,3 +1,4 @@
+using Assets.AsteroidsProject.Scripts.Shared;
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
@@ -38,27 +39,40 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Projectiles
                 var shootingPoint = goLink as IHaveShootingPoint;
 
                 ref var config = ref requestPool.Get(entity).Config;
-                Spawn(world, shootingPoint.ShootingPoint, config, entity);
+                ref var parentType = ref requestPool.Get(entity).ParentType;
+                Spawn(world, shootingPoint.ShootingPoint, config, entity, parentType);
                 requestPool.Del(entity);
             }
         }
 
-        private async void Spawn(EcsWorld world, Transform shootingPoint, string config, int weaponEntity)
+        private async void Spawn(EcsWorld world, Transform shootingPoint, string config, int weaponEntity, ParentType parentType)
         {
-            var components = await GetComponents(shootingPoint, config);
+            var components = await GetComponents(shootingPoint, config, parentType);
             var projectileEntity = world.NewEntityWithRawComponents(components);
             world.AddComponentToEntity(projectileEntity, new CSpawnedEntityEvent { PackedEntity = world.PackEntity(projectileEntity) });
             AdoptVelocity(world, shootingPoint, projectileEntity, weaponEntity);
         }
 
-        private async Task<List<object>> GetComponents(Transform shootingPoint, string config)
+        private async Task<List<object>> GetComponents(Transform shootingPoint, string config, ParentType parentType)
         {
             var componentList = await configProvider.Load<ComponentList>(config);
             var components = new List<object>();
             components.AddRange(componentList.Components);
-            components.Add(new CPosition { Value = shootingPoint.position });
-            components.Add(new CRotation { Value = shootingPoint.rotation });
-            components.Add(new CParent { Value = sceneData.ProjectilePool });
+
+            switch (parentType)
+            {
+                case ParentType.Pool:
+                    components.Add(new CParent { Value = sceneData.ProjectilePool });
+                    components.Add(new CPosition { Value = shootingPoint.position });
+                    components.Add(new CRotation { Value = shootingPoint.rotation });
+                    break;
+                case ParentType.OwnerEntity:
+                    components.Add(new CParent { Value = shootingPoint });
+                    components.Add(new CPosition { Value = Vector2.zero });
+                    components.Add(new CRotation { Value = Quaternion.identity });
+                    break;
+            }
+
             return components;
         }
 

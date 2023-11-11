@@ -32,6 +32,8 @@ namespace AsteroidsProject.GameLogic.Features.Events.OnDeath
                     HandleGO(world, deadEntity);
                     world.DelEntity(deadEntity);
                 }
+
+                world.DelEntity(entity);
             }
         }
 

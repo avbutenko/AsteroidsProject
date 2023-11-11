@@ -1,4 +1,5 @@
 ﻿using AsteroidsProject.Shared;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace AsteroidsProject.GameLogic.Core
@@ -9,7 +10,8 @@ namespace AsteroidsProject.GameLogic.Core
 
         public object Convert(JToken token)
         {
-            return new CSpawnProjectileRequest { Config = token.ToString() };
+            var data = JsonConvert.DeserializeObject<CSpawnProjectileRequest>(token.ToString());
+            return new CSpawnProjectileRequest { Config = data.Config, ParentType = data.ParentType };
         }
     }
 }

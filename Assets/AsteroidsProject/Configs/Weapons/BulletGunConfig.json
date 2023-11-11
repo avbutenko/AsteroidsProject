@@ -2,7 +2,6 @@
     "Components": [
         {
             "CBulletGunTag": {},
-            "CCoolDown": 0.2,
             "COnSpawn": {
                 "AddToSelfComponents": [
                     {
@@ -13,7 +12,11 @@
             "COnAttack": {
                 "AddToSelfComponents": [
                     {
-                        "CSpawnProjectileRequest": "Configs/Projectiles/BulletConfig.json"
+                        "CSpawnProjectileRequest": {
+                            "Config": "Configs/Projectiles/BulletConfig.json",
+                            "ParentType": 0 //Pool on the scene
+                        },
+                        "CAttackCoolDown": 0.2
                     }
                 ]
             }

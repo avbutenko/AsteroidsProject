@@ -24,13 +24,36 @@ namespace AsteroidsProject.GameLogic.Features.Events.OnCollision
             foreach (var entity in filter)
             {
                 ref var senderGO = ref collisionPool.Get(entity).senderGameObject;
+
+                if (!senderGO.activeSelf)
+                {
+                    collisionPool.Del(entity);
+                    continue;
+                }
+
                 var senderGOID = senderGO.GetInstanceID();
-                if (!TryUnpack(world, senderGOID, out var senderEntity)) return;
+
+                if (!TryUnpack(world, senderGOID, out var senderEntity))
+                {
+                    collisionPool.Del(entity);
+                    continue;
+                }
 
                 ref var collider = ref collisionPool.Get(entity).collider2D;
-                var collisionGOID = collider.gameObject.GetInstanceID();
-                if (!TryUnpack(world, collisionGOID, out var collisionEntity)) return;
 
+                if (!collider.gameObject.activeSelf)
+                {
+                    collisionPool.Del(entity);
+                    continue;
+                }
+
+                var collisionGOID = collider.gameObject.GetInstanceID();
+
+                if (!TryUnpack(world, collisionGOID, out var collisionEntity))
+                {
+                    collisionPool.Del(entity);
+                    continue;
+                }
 
                 if (onCollisionPool.Has(senderEntity.Value))
                 {

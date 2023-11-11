@@ -11,17 +11,11 @@ namespace AsteroidsProject.GameLogic.Features.Weapons.BulletGun
 
             var filter = world.Filter<CBulletGunTag>()
                               .Inc<CAttackRequest>()
-                              .Inc<CCoolDown>()
-                              .Exc<CActiveCoolDown>()
+                              .Exc<CAttackCoolDown>()
                               .End();
-
-            var coolDownPool = world.GetPool<CCoolDown>();
-            var activeCoolDownPool = world.GetPool<CActiveCoolDown>();
 
             foreach (var entity in filter)
             {
-                ref var coolDown = ref coolDownPool.Get(entity).Value;
-                activeCoolDownPool.Add(entity).Value = coolDown;
                 world.NewEntityWith(new CAttackEvent { PackedEntity = world.PackEntity(entity) });
             }
         }
