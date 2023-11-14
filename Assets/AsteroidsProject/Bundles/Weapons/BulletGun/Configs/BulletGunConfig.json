@@ -13,7 +13,7 @@
                 "AddToSelfComponents": [
                     {
                         "CSpawnProjectileRequest": {
-                            "Config": "Configs/Projectiles/BulletConfig.json",
+                            "Config": "Bundles/Projectiles/Bullet/Configs/BulletConfig.json",
                             "ParentType": 0 //Pool on the scene
                         },
                         "CAttackCoolDown": 0.2

@@ -10,7 +10,7 @@ namespace AsteroidsProject.Services
 {
     public class ConfigProvider : IConfigProvider, IInitializable
     {
-        private const string gameConfigPath = "Configs/GameConfig.json";
+        private const string gameConfigPath = "GameConfig";
         private readonly IComponentConverterService componentConverterService;
         private readonly IAssetProvider assetProvider;
         private readonly Dictionary<string, object> cachedObjects;

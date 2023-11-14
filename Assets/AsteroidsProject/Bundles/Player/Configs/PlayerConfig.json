@@ -16,8 +16,8 @@
                 "AddToSelfComponents": [
                     {
                         "CSpawnEntityViewRequest": "Bundles/Player/Prefabs/Player.prefab",
-                        "CSpawnPrimaryWeaponRequest": "Configs/Weapons/BulletGunConfig.json",
-                        "CSpawnSecondaryWeaponRequest": "Configs/Weapons/LaserGunConfig.json"
+                        "CSpawnPrimaryWeaponRequest": "Bundles/Weapons/BulletGun/Configs/BulletGunConfig.json",
+                        "CSpawnSecondaryWeaponRequest": "Bundles/Weapons/LaserGun/Configs/LaserGunConfig.json"
                     }
                 ]
             },

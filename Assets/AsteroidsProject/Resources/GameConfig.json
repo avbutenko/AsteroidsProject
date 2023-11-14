@@ -1,0 +1,9 @@
+{
+    "PlayerConfigPath": "Bundles/Player/Configs/PlayerConfig.json",
+    "AsteroidSpawnConfigPath": "Bundles/Obstacles/Asteroid/Configs/AsteroidSpawnConfig.json",
+    "AsteroidConfigPath": "Bundles/Obstacles/Asteroid/Configs/AsteroidConfig.json",
+    "BulletGunConfigPath": "Bundles/Weapons/BulletGun/Configs/BulletGunConfig.json",
+    "BulletConfigPath": "Bundles/Projectiles/Bullet/Configs/BulletConfig.json",
+    "LaserGunConfigPath": "Bundles/Weapons/LaserGun/Configs/LaserGunConfig.json",
+    "LaserConfigPath": "Bundles/Projectiles/Laser/Configs/LaserConfig.json"
+}

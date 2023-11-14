@@ -2,10 +2,10 @@
     "Components": [
         {
             "CLaserGunTag": {},
-            "CAmmo": 3,
+            "CAmmo": 1,
             "CAmmoMax": 3,
             "CAmmoAutoRefill": {
-                "Timer": 15,
+                "Timer": 20,
                 "Amount": 1
             },
             "COnSpawn": {
@@ -19,10 +19,10 @@
                 "AddToSelfComponents": [
                     {
                         "CSpawnProjectileRequest": {
-                            "Config": "Configs/Projectiles/LaserConfig.json",
+                            "Config": "Bundles/Projectiles/Laser/Configs/LaserConfig.json",
                             "ParentType": 1 //OwnerEntity
                         },
-                        "CAttackCoolDown": 5,
+                        "CAttackCoolDown": 7,
                         "CChangeAmmoAmountRequest": -1
                     }
                 ]

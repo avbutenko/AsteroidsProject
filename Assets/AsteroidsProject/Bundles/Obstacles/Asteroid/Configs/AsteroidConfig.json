@@ -63,7 +63,7 @@
                     "Components": [
                         {
                             "CSpawnAsteroidFragmentsRequest": {
-                                "Config": "Configs/Obstacles/AsteroidFragmentConfig.json",
+                                "Config": "Bundles/Obstacles/AsteroidFragment/Configs/AsteroidFragmentConfig.json",
                                 "Amount": 3
                             }
                         }

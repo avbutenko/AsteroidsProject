@@ -2,7 +2,7 @@
     "Components": [
         {
             "CLaserTag": {},
-            "CLifetime": 5,
+            "CLifetime": 2,
             "COnSpawn": {
                 "AddToSelfComponents": [
                     {
