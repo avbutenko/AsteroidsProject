@@ -4,11 +4,11 @@ using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Core
 {
-    public class CoolDownSystem<T> : IEcsRunSystem where T : struct, IHaveTimer
+    public abstract class BaseCoolDownSystem<T> : IEcsRunSystem where T : struct, IHaveTimer
     {
         private readonly ITimeService timeService;
 
-        public CoolDownSystem(ITimeService timeService)
+        public BaseCoolDownSystem(ITimeService timeService)
         {
             this.timeService = timeService;
         }

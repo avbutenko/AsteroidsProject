@@ -3,7 +3,7 @@ using AsteroidsProject.Shared;
 
 namespace AsteroidsProject.GameLogic.Features.Ammo.AutoRefill
 {
-    public class AmmoAutoRefillCoolDownSystem : CoolDownSystem<CAmmoAutoRefillCoolDown>
+    public class AmmoAutoRefillCoolDownSystem : BaseCoolDownSystem<CAmmoAutoRefillCoolDown>
     {
         public AmmoAutoRefillCoolDownSystem(ITimeService timeService) : base(timeService) { }
     }

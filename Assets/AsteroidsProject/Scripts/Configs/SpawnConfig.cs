@@ -1,6 +1,6 @@
 ﻿namespace AsteroidsProject.Configs
 {
-    public class AsteroidSpawnConfig
+    public class SpawnConfig
     {
         public float StartingSpawns { get; set; }
         public float MaxSpawns { get; set; }

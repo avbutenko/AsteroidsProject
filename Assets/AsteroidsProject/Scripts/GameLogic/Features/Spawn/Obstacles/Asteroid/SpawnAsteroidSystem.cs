@@ -10,13 +10,12 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.Asteroid
         private readonly ISceneData sceneData;
         private readonly IConfigProvider configProvider;
         private readonly ITimeService timeService;
-        private AsteroidSpawnConfig asteroidSpawnconfig;
+        private SpawnConfig asteroidSpawnconfig;
         private GameConfig gameConfig;
         private float timeToNextSpawn;
 
         public SpawnAsteroidSystem(IConfigProvider configProvider, ITimeService timeService, ISceneData sceneData)
         {
-            this.sceneData = sceneData;
             this.configProvider = configProvider;
             this.timeService = timeService;
             this.sceneData = sceneData;
@@ -25,7 +24,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.Asteroid
         public async void Init(IEcsSystems systems)
         {
             gameConfig = await configProvider.Load<GameConfig>(configProvider.GameConfigPath);
-            asteroidSpawnconfig = await configProvider.Load<AsteroidSpawnConfig>(gameConfig.AsteroidSpawnConfigPath);
+            asteroidSpawnconfig = await configProvider.Load<SpawnConfig>(gameConfig.AsteroidSpawnConfigPath);
             SpawnInitialAmountOfAsteroids(systems.GetWorld());
         }
 

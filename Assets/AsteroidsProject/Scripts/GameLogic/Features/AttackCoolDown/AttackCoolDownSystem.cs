@@ -3,7 +3,7 @@ using AsteroidsProject.Shared;
 
 namespace AsteroidsProject.GameLogic.Features.AttackCoolDown
 {
-    public class AttackCoolDownSystem : CoolDownSystem<CAttackCoolDown>
+    public class AttackCoolDownSystem : BaseCoolDownSystem<CAttackCoolDown>
     {
         public AttackCoolDownSystem(ITimeService timeService) : base(timeService) { }
     }

@@ -5,5 +5,7 @@
     "BulletGunConfigPath": "Bundles/Weapons/BulletGun/Configs/BulletGunConfig.json",
     "BulletConfigPath": "Bundles/Projectiles/Bullet/Configs/BulletConfig.json",
     "LaserGunConfigPath": "Bundles/Weapons/LaserGun/Configs/LaserGunConfig.json",
-    "LaserConfigPath": "Bundles/Projectiles/Laser/Configs/LaserConfig.json"
+    "LaserConfigPath": "Bundles/Projectiles/Laser/Configs/LaserConfig.json",
+    "UfoSpawnConfigPath": "Bundles/Units/Ufo/Configs/UfoSpawnConfig.json",
+    "UfoConfigPath": "Bundles/Units/Ufo/Configs/UfoConfig.json"
 }

@@ -1,0 +1,49 @@
+{
+    "Components": [
+        {
+            "CUfoTag": {},
+            "CEnemyTag": {},
+            "CHealth": 1,
+            "CVelocity": {
+                "x": 0,
+                "y": 5
+            },
+            "CRotationSpeed": 150,
+            "COnSpawn": {
+                "AddToSelfComponents": [
+                    {
+                        "CSpawnEntityViewRequest": "Bundles/Units/Ufo/Prefabs/Ufo.prefab",
+                        "CRandomizePositionRequest": {},
+                        "CSetFollowTargetRequest": { "CPlayerTag": {} }
+                    }
+                ]
+            },
+            "COnOutOfLevel": {
+                "AddToSelfComponents": [
+                    {
+                        "CTeleportationRequest": {}
+                    }
+                ]
+            },
+            "COnCollision": [
+                {
+                    "RelevantForCollisionTags": [
+                        {
+                            "CPlayerTag": {}
+                        }
+                    ],
+                    "AddToSelfComponents": [
+                        {
+                            //add vfx,sfx,etc..
+                        }
+                    ],
+                    "AddToCollidedObjectComponents": [
+                        {
+                            "CDamageRequest": -1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

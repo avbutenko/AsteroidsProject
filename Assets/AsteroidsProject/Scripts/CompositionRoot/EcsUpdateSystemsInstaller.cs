@@ -2,6 +2,8 @@
 using Leopotam.EcsLite.UnityEditor;
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.GameLogic.Features.Spawn.Obstacles.Asteroid;
+using AsteroidsProject.GameLogic.Features.Spawn.Obstacles.AsteroidFragment;
+using AsteroidsProject.GameLogic.Features.Spawn.Units.Ufo;
 using AsteroidsProject.GameLogic.Features.Spawn.Projectiles;
 using AsteroidsProject.GameLogic.Features.Spawn.Player;
 using AsteroidsProject.GameLogic.Features.Spawn.EntityView;
@@ -21,18 +23,18 @@ using AsteroidsProject.GameLogic.Features.Weapons.LaserGun;
 using AsteroidsProject.GameLogic.Features.Events.OnOutOfLevel;
 using AsteroidsProject.GameLogic.Features.Events.OnSpawn;
 using AsteroidsProject.GameLogic.Features.Events.OnAttack;
+using AsteroidsProject.GameLogic.Features.Events.OnDeath;
 using AsteroidsProject.GameLogic.Features.Teleportation;
 using AsteroidsProject.GameLogic.Features.Lifetime;
 using AsteroidsProject.GameLogic.Features.MaxVelocityMagnitude;
 using AsteroidsProject.GameLogic.Features.UpdateGameObjectView;
 using AsteroidsProject.GameLogic.Features.Damage;
 using AsteroidsProject.GameLogic.Features.Score;
-using AsteroidsProject.GameLogic.Features.Events.OnDeath;
-using AsteroidsProject.GameLogic.Features.Spawn.Obstacles.AsteroidFragment;
 using AsteroidsProject.GameLogic.Features.AttackCoolDown;
 using AsteroidsProject.GameLogic.Features.Ammo.AutoRefill;
 using AsteroidsProject.GameLogic.Features.Ammo.Max;
 using AsteroidsProject.GameLogic.Features.Ammo.ChangeAmount;
+using AsteroidsProject.GameLogic.Features.Movement.FollowTarget;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -44,6 +46,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<SpawnAsteroidSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnAsteroidFragmentSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPlayerSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnUfoSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPrimaryWeaponSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnSecondaryWeaponSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnProjectileSystem>().AsSingle();
@@ -53,6 +56,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<RandomizeVelocitySystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RandomizePermanentRotationDirectionSysytem>().AsSingle();
             Container.BindInterfacesAndSelfTo<RandomizeRotationSpeedSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SetFollowTargetSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<OnSpawnSystem>().AsSingle();
 
             //Spawn Prefabs
@@ -85,6 +89,8 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<DeaccelerationVelocitySystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<DeaccelerationPositionSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<BasicMovementSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AlignRotationWithTargetSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AlignVelocityWithTargetSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<OutOfLevelCheckSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<OnOutOfLevelSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<TeleportationSystem>().AsSingle();

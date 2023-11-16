@@ -47,6 +47,12 @@ TagManager:
   - name: PlayerWeapons
     uniqueID: 3103679983
     locked: 0
+  - name: Obstacles
+    uniqueID: 551542795
+    locked: 0
+  - name: Units
+    uniqueID: 3717024605
+    locked: 0
   - name: Projectiles
     uniqueID: 2493147229
     locked: 0

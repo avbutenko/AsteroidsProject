@@ -9,5 +9,7 @@ namespace AsteroidsProject.Configs
         public string BulletConfigPath { get; set; }
         public string LaserGunConfigPath { get; set; }
         public string LaserConfigPath { get; set; }
+        public string UfoSpawnConfigPath { get; set; }
+        public string UfoConfigPath { get; set; }
     }
 }

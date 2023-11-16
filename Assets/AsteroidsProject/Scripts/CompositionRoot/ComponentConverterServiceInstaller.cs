@@ -18,6 +18,7 @@ using AsteroidsProject.GameLogic.Features.Score;
 using AsteroidsProject.GameLogic.Features.Lifetime;
 using AsteroidsProject.GameLogic.Features.Ammo.AutoRefill;
 using AsteroidsProject.GameLogic.Features.Ammo.Max;
+using AsteroidsProject.GameLogic.Features.Movement.FollowTarget;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -31,6 +32,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<BulletGunTagConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<LaserGunTagConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<BulletTagConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<UfoTagConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<EnemyTagConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<VelocityConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<MaxVelocityMagnitudeConverter>().AsSingle();
@@ -62,6 +64,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<AmmoMaxConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<AmmoAutoRefillConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<ChangeAmmoAmountRequestConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SetFollowTargetRequestConverter>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<ComponentConverterService>().AsSingle();
         }
