@@ -1,5 +1,4 @@
-﻿using AsteroidsProject.GameLogic.Core;
-using Leopotam.EcsLite;
+﻿using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.Movement.FollowTarget
 {
@@ -14,11 +13,9 @@ namespace AsteroidsProject.GameLogic.Features.Movement.FollowTarget
 
             foreach (var entity in filter)
             {
-
-                //ref var tagObject = ref requestPool.Get(entity).TargetComponent;
-                //var targetPool = world.GetPoolByType(tagObject.GetType());
-                //just for  testing
-                var targetPool = world.GetPool<CPlayerTag>();
+                ref var targetObject = ref requestPool.Get(entity).TargetComponent;
+                var targetType = targetObject.GetType();
+                var targetPool = world.GetPoolByType(targetType);
 
                 int[] entities = null;
                 world.GetAllEntities(ref entities);
