@@ -3,7 +3,7 @@
         {
             "CPlayerTag": {},
             "CScore": 0,
-            "CHealth": 1,
+            "CHealth": 3,
             "CVelocity": {
                 "x": 0,
                 "y": 0
@@ -43,6 +43,15 @@
                     "AddToCollidedObjectComponents": [
                         {
                             "CDamageRequest": -1
+                        }
+                    ]
+                }
+            ],
+            "COnDeath": [
+                {
+                    "Components": [
+                        {
+                            "CGameOverEvent": {}
                         }
                     ]
                 }

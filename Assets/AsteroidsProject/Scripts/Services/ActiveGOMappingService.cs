@@ -33,8 +33,16 @@ namespace AsteroidsProject.Services
         {
             if (cachedObjects.TryGetValue(objectInstanceID, out var goEntityPair))
             {
-                result = goEntityPair.Go.GetComponent<IGameObjectLink>();
-                return true;
+                if (goEntityPair.Go == null)
+                {
+                    result = null;
+                    return false;
+                }
+                else
+                {
+                    result = goEntityPair.Go.GetComponent<IGameObjectLink>();
+                    return true;
+                }
             }
             else
             {

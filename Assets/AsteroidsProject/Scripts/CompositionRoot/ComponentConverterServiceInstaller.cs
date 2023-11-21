@@ -65,6 +65,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<AmmoAutoRefillConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<ChangeAmmoAmountRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<SetFollowTargetRequestConverter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameOverEventConverter>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<ComponentConverterService>().AsSingle();
         }

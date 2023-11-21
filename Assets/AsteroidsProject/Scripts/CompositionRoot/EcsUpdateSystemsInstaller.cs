@@ -16,6 +16,7 @@ using AsteroidsProject.GameLogic.Features.PlayerInput;
 using AsteroidsProject.GameLogic.Features.Movement.Acceleration;
 using AsteroidsProject.GameLogic.Features.Movement.Deacceleration;
 using AsteroidsProject.GameLogic.Features.Movement.Basic;
+using AsteroidsProject.GameLogic.Features.Movement.FollowTarget;
 using AsteroidsProject.GameLogic.Features.Rotation.Permanent;
 using AsteroidsProject.GameLogic.Features.Rotation.Basic;
 using AsteroidsProject.GameLogic.Features.Weapons.BulletGun;
@@ -24,6 +25,7 @@ using AsteroidsProject.GameLogic.Features.Events.OnOutOfLevel;
 using AsteroidsProject.GameLogic.Features.Events.OnSpawn;
 using AsteroidsProject.GameLogic.Features.Events.OnAttack;
 using AsteroidsProject.GameLogic.Features.Events.OnDeath;
+using AsteroidsProject.GameLogic.Features.Events.OnGameOver;
 using AsteroidsProject.GameLogic.Features.Teleportation;
 using AsteroidsProject.GameLogic.Features.Lifetime;
 using AsteroidsProject.GameLogic.Features.MaxVelocityMagnitude;
@@ -34,7 +36,8 @@ using AsteroidsProject.GameLogic.Features.AttackCoolDown;
 using AsteroidsProject.GameLogic.Features.Ammo.AutoRefill;
 using AsteroidsProject.GameLogic.Features.Ammo.Max;
 using AsteroidsProject.GameLogic.Features.Ammo.ChangeAmount;
-using AsteroidsProject.GameLogic.Features.Movement.FollowTarget;
+using AsteroidsProject.GameLogic.Features.InvalidOwner;
+using AsteroidsProject.GameLogic.Features.InvalidGO;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -100,6 +103,9 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<DamageSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<ScoreSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<OnDeathSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<InvalidOwnerSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<InvalidGOSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<OnGameOverSystem>().AsSingle();
 
             //UpdateView
             Container.BindInterfacesAndSelfTo<UpdateGameObjectViewRotationSystem>().AsSingle();
