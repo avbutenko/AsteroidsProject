@@ -7,12 +7,17 @@ using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Spawn.Weapons
 {
-    public abstract class BaseSpawnWeaponSystem<TRequest, TWeaponType> : IEcsRunSystem
+    public abstract class BaseSpawnWeaponSystem<TRequest, TWeaponType> : IEcsInitSystem, IEcsRunSystem
         where TRequest : struct, IHaveConfigAddress
         where TWeaponType : struct, IHaveLinkedEntity
     {
         private readonly IConfigProvider configProvider;
         protected IActiveGOMappingService activeGOMappingService;
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<TRequest> requestPool;
+        private EcsPool<CGameObjectInstanceID> linkToGameObjectPool;
+        protected EcsPool<CGameObjectInstanceID> goIDPool;
 
         public BaseSpawnWeaponSystem(IConfigProvider configProvider, IActiveGOMappingService activeGOMappingService)
         {
@@ -20,48 +25,50 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Weapons
             this.activeGOMappingService = activeGOMappingService;
         }
 
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+            filter = world.Filter<TRequest>().End();
+            requestPool = world.GetPool<TRequest>();
+            linkToGameObjectPool = world.GetPool<CGameObjectInstanceID>();
+            goIDPool = world.GetPool<CGameObjectInstanceID>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<TRequest>()
-                              .End();
-
-            var requestPool = world.GetPool<TRequest>();
-            var linkToGameObjectPool = world.GetPool<CGameObjectInstanceID>();
-
             foreach (var entity in filter)
             {
                 if (!linkToGameObjectPool.Has(entity)) return;
 
                 var weaponConfig = requestPool.Get(entity).ConfigAddress;
-                Spawn(world, entity, weaponConfig);
+                Spawn(entity, weaponConfig);
                 requestPool.Del(entity);
             }
         }
 
-        protected abstract Transform GetWeaponSlot(EcsWorld world, int entity);
+        protected abstract Transform GetWeaponSlot(int entity);
 
-        private async void Spawn(EcsWorld world, int ownerEntity, string configAddress)
+        private async void Spawn(int ownerEntity, string configAddress)
         {
-            var components = await GetComponents(world, ownerEntity, configAddress);
+            var components = await GetComponents(ownerEntity, configAddress);
             var weaponEntity = world.NewEntityWithRawComponents(components);
             world.AddComponentToEntity(weaponEntity, new CSpawnedEntityEvent { PackedEntity = world.PackEntity(weaponEntity) });
-            Link(world, ownerEntity, weaponEntity);
+            Link(ownerEntity, weaponEntity);
         }
 
-        private async Task<List<object>> GetComponents(EcsWorld world, int ownerEntity, string configAddress)
+        private async Task<List<object>> GetComponents(int ownerEntity, string configAddress)
         {
             var configComponentList = await configProvider.Load<ComponentList>(configAddress);
             var components = new List<object>();
             components.AddRange(configComponentList.Components);
             components.Add(new CPosition { Value = Vector2.zero });
             components.Add(new CRotation { Value = Quaternion.identity });
-            components.Add(new CParent { Value = GetWeaponSlot(world, ownerEntity) });
+            components.Add(new CParent { Value = GetWeaponSlot(ownerEntity) });
             components.Add(new COwnerEntity { Value = world.PackEntity(ownerEntity) });
             return components;
         }
 
-        private void Link(EcsWorld world, int owner, int weapon)
+        private void Link(int owner, int weapon)
         {
             var weaponPackedEntity = world.PackEntity(weapon);
             var component = new TWeaponType

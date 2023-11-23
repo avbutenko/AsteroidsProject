@@ -3,21 +3,30 @@ using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.Ammo.Max
 {
-    public class AmmoMaxSystem : IEcsRunSystem
+    public class AmmoMaxSystem : IEcsInitSystem, IEcsRunSystem
     {
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CAmmoMax> ammoMaxPool;
+        private EcsPool<CAmmo> ammoPool;
+        private EcsPool<CChangeAmmoAmountRequest> requestPool;
+
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+
+            filter = world.Filter<CAmmoMax>()
+                          .Inc<CAmmo>()
+                          .Inc<CChangeAmmoAmountRequest>()
+                          .End();
+
+            ammoMaxPool = world.GetPool<CAmmoMax>();
+            ammoPool = world.GetPool<CAmmo>();
+            requestPool = world.GetPool<CChangeAmmoAmountRequest>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-
-            var filter = world.Filter<CAmmoMax>()
-                              .Inc<CAmmo>()
-                              .Inc<CChangeAmmoAmountRequest>()
-                              .End();
-
-            var ammoMaxPool = world.GetPool<CAmmoMax>();
-            var ammoPool = world.GetPool<CAmmo>();
-            var requestPool = world.GetPool<CChangeAmmoAmountRequest>();
-
             foreach (var entity in filter)
             {
                 ref var currentValue = ref ammoPool.Get(entity).Value;

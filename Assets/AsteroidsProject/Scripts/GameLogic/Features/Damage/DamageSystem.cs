@@ -3,20 +3,27 @@ using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.Damage
 {
-    public class DamageSystem : IEcsRunSystem
+    public class DamageSystem : IEcsInitSystem, IEcsRunSystem
     {
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CHealth> healthPool;
+        private EcsPool<CDamageRequest> damageRequestPool;
+
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+
+            filter = world.Filter<CDamageRequest>()
+                          .Inc<CHealth>()
+                          .End();
+
+            healthPool = world.GetPool<CHealth>();
+            damageRequestPool = world.GetPool<CDamageRequest>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-
-            var filter = world.Filter<CDamageRequest>()
-                              .Inc<CHealth>()
-                              .End();
-
-            var healthPool = world.GetPool<CHealth>();
-            var damageRequestPool = world.GetPool<CDamageRequest>();
-
-
             foreach (var entity in filter)
             {
                 ref var currentValue = ref healthPool.Get(entity).Value;

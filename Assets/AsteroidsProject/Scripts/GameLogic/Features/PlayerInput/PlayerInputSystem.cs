@@ -4,27 +4,37 @@ using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.PlayerInput
 {
-    public class PlayerInputSystem : IEcsRunSystem
+    public class PlayerInputSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly IInputService inputService;
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CAccelerationVector> accelerationVectorPool;
+        private EcsPool<CDeaccelerationVector> deaccelerationVectorPool;
+        private EcsPool<CRotationDirection> rotationDirectionPool;
+        private EcsPool<CPrimaryWeapon> primaryWeaponPool;
+        private EcsPool<CSecondaryWeapon> secondaryWeaponPool;
+        private EcsPool<CAttackRequest> attackRequestPool;
 
         public PlayerInputSystem(IInputService inputService)
         {
             this.inputService = inputService;
         }
 
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+            filter = world.Filter<CPlayerTag>().End();
+            accelerationVectorPool = world.GetPool<CAccelerationVector>();
+            deaccelerationVectorPool = world.GetPool<CDeaccelerationVector>();
+            rotationDirectionPool = world.GetPool<CRotationDirection>();
+            primaryWeaponPool = world.GetPool<CPrimaryWeapon>();
+            secondaryWeaponPool = world.GetPool<CSecondaryWeapon>();
+            attackRequestPool = world.GetPool<CAttackRequest>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<CPlayerTag>().End();
-
-            var accelerationVectorPool = world.GetPool<CAccelerationVector>();
-            var deaccelerationVectorPool = world.GetPool<CDeaccelerationVector>();
-            var rotationDirectionPool = world.GetPool<CRotationDirection>();
-            var primaryWeaponPool = world.GetPool<CPrimaryWeapon>();
-            var secondaryWeaponPool = world.GetPool<CSecondaryWeapon>();
-            var attackRequestPool = world.GetPool<CAttackRequest>();
-
             foreach (var entity in filter)
             {
                 if (inputService.IsAccelerating)
@@ -51,18 +61,18 @@ namespace AsteroidsProject.GameLogic.Features.PlayerInput
                 if (inputService.IsPrimaryWeaponAttackPerformed && primaryWeaponPool.Has(entity))
                 {
                     ref var primaryWeaponPackedEntity = ref primaryWeaponPool.Get(entity).WeaponEntity;
-                    AddWeaponAttackRequest(attackRequestPool, primaryWeaponPackedEntity, world);
+                    AddWeaponAttackRequest(primaryWeaponPackedEntity);
                 }
 
                 if (inputService.IsSecondaryWeaponAttackPerformed && secondaryWeaponPool.Has(entity))
                 {
                     ref var secondaryWeaponPackedEntity = ref secondaryWeaponPool.Get(entity).WeaponEntity;
-                    AddWeaponAttackRequest(attackRequestPool, secondaryWeaponPackedEntity, world);
+                    AddWeaponAttackRequest(secondaryWeaponPackedEntity);
                 }
             }
         }
 
-        private void AddWeaponAttackRequest(EcsPool<CAttackRequest> attackRequestPool, EcsPackedEntity weaponPackedEntity, EcsWorld world)
+        private void AddWeaponAttackRequest(EcsPackedEntity weaponPackedEntity)
         {
             if (weaponPackedEntity.Unpack(world, out int weaponUnpackedEntity))
             {

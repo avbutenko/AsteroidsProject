@@ -4,10 +4,16 @@ using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.Spawn.EntityView
 {
-    public class SpawnEntityViewSystem : IEcsRunSystem
+    public class SpawnEntityViewSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly IGameObjectFactory gameObjectFactory;
         private readonly IActiveGOMappingService activeGOMappingService;
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CSpawnEntityViewRequest> requestPool;
+        private EcsPool<CPosition> positionPool;
+        private EcsPool<CRotation> rotationPool;
+        private EcsPool<CParent> parentPool;
 
         public SpawnEntityViewSystem(IGameObjectFactory gameObjectFactory, IActiveGOMappingService activeGOMappingService)
         {
@@ -15,19 +21,23 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.EntityView
             this.activeGOMappingService = activeGOMappingService;
         }
 
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+            filter = world.Filter<CSpawnEntityViewRequest>()
+                          .Inc<CPosition>()
+                          .Inc<CRotation>()
+                          .End();
+
+            requestPool = world.GetPool<CSpawnEntityViewRequest>();
+            positionPool = world.GetPool<CPosition>();
+            rotationPool = world.GetPool<CRotation>();
+            parentPool = world.GetPool<CParent>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
 
-            var filter = world.Filter<CSpawnEntityViewRequest>()
-                              .Inc<CPosition>()
-                              .Inc<CRotation>()
-                              .End();
-
-            var requestPool = world.GetPool<CSpawnEntityViewRequest>();
-            var positionPool = world.GetPool<CPosition>();
-            var rotationPool = world.GetPool<CRotation>();
-            var parentPool = world.GetPool<CParent>();
 
             foreach (var entity in filter)
             {
@@ -49,12 +59,12 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.EntityView
                     parentPool.Del(entity);
                 }
 
-                Spawn(entity, world, spawnInfo);
+                Spawn(entity, spawnInfo);
                 requestPool.Del(entity);
             }
         }
 
-        private async void Spawn(int entity, EcsWorld world, SpawnEntityViewInfo info)
+        private async void Spawn(int entity, SpawnEntityViewInfo info)
         {
             var go = await gameObjectFactory.CreateAsync(info);
             var goID = go.GetInstanceID();

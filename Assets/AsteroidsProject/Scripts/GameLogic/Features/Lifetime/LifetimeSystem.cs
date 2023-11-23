@@ -4,21 +4,27 @@ using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.Lifetime
 {
-    public class LifetimeSystem : IEcsRunSystem
+    public class LifetimeSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly ITimeService timeService;
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CLifetime> lifetimePool;
 
         public LifetimeSystem(ITimeService timeService)
         {
             this.timeService = timeService;
         }
 
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+            filter = world.Filter<CLifetime>().End();
+            lifetimePool = world.GetPool<CLifetime>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<CLifetime>().End();
-            var lifetimePool = world.GetPool<CLifetime>();
-
             foreach (var entity in filter)
             {
                 ref var lifetime = ref lifetimePool.Get(entity).Value;

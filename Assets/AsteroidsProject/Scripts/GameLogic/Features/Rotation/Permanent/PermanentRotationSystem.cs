@@ -3,16 +3,23 @@ using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.Rotation.Permanent
 {
-    public class PermanentRotationSystem : IEcsRunSystem
+    public class PermanentRotationSystem : IEcsInitSystem, IEcsRunSystem
     {
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CPermanentRotationDirection> permanentRotationPool;
+        private EcsPool<CRotationDirection> rotationDirectionPool;
+
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+            filter = world.Filter<CPermanentRotationDirection>().End();
+            permanentRotationPool = world.GetPool<CPermanentRotationDirection>();
+            rotationDirectionPool = world.GetPool<CRotationDirection>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<CPermanentRotationDirection>().End();
-
-            var permanentRotationPool = world.GetPool<CPermanentRotationDirection>();
-            var rotationDirectionPool = world.GetPool<CRotationDirection>();
-
             foreach (var entity in filter)
             {
                 ref var direction = ref permanentRotationPool.Get(entity).Value;

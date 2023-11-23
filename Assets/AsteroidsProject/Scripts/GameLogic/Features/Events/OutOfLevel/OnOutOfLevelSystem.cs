@@ -3,15 +3,23 @@ using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.Events.OnOutOfLevel
 {
-    public class OnOutOfLevelSystem : IEcsRunSystem
+    public class OnOutOfLevelSystem : IEcsInitSystem, IEcsRunSystem
     {
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<COutOfLevelEvent> eventPool;
+        private EcsPool<COnOutOfLevel> onOutOfLevelPool;
+
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+            filter = world.Filter<COutOfLevelEvent>().End();
+            eventPool = world.GetPool<COutOfLevelEvent>();
+            onOutOfLevelPool = world.GetPool<COnOutOfLevel>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<COutOfLevelEvent>().End();
-            var eventPool = world.GetPool<COutOfLevelEvent>();
-            var onOutOfLevelPool = world.GetPool<COnOutOfLevel>();
-
             foreach (var entity in filter)
             {
                 ref var packedEntity = ref eventPool.Get(entity).PackedEntity;

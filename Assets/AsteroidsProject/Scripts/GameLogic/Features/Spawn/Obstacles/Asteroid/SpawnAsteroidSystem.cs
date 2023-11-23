@@ -13,6 +13,8 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.Asteroid
         private SpawnConfig asteroidSpawnconfig;
         private GameConfig gameConfig;
         private float timeToNextSpawn;
+        private EcsWorld world;
+        private EcsFilter filter;
 
         public SpawnAsteroidSystem(IConfigProvider configProvider, ITimeService timeService, ISceneData sceneData)
         {
@@ -25,15 +27,15 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.Asteroid
         {
             gameConfig = await configProvider.Load<GameConfig>(configProvider.GameConfigPath);
             asteroidSpawnconfig = await configProvider.Load<SpawnConfig>(gameConfig.AsteroidSpawnConfigPath);
-            SpawnInitialAmountOfAsteroids(systems.GetWorld());
+            world = systems.GetWorld();
+            filter = world.Filter<CAsteroidTag>().End();
+            SpawnInitialAmountOfAsteroids();
         }
 
         public void Run(IEcsSystems systems)
         {
             if (asteroidSpawnconfig == null) return;
 
-            var world = systems.GetWorld();
-            var filter = world.Filter<CAsteroidTag>().End();
             var count = filter.GetEntitiesCount();
 
             timeToNextSpawn -= timeService.DeltaTime;
@@ -42,12 +44,11 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.Asteroid
             {
                 timeToNextSpawn = asteroidSpawnconfig.SpawnTime;
 
-                Spawn(world, gameConfig.AsteroidConfigPath);
+                Spawn(gameConfig.AsteroidConfigPath);
             }
         }
 
-
-        private void SpawnInitialAmountOfAsteroids(EcsWorld world)
+        private void SpawnInitialAmountOfAsteroids()
         {
             timeToNextSpawn = asteroidSpawnconfig.SpawnTime;
 
@@ -56,11 +57,11 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.Asteroid
             while (counter > 0)
             {
                 counter--;
-                Spawn(world, gameConfig.AsteroidConfigPath);
+                Spawn(gameConfig.AsteroidConfigPath);
             }
         }
 
-        private async void Spawn(EcsWorld world, string config)
+        private async void Spawn(string config)
         {
             var componentList = await configProvider.Load<ComponentList>(config);
             var entity = world.NewEntityWithRawComponents(componentList.Components);

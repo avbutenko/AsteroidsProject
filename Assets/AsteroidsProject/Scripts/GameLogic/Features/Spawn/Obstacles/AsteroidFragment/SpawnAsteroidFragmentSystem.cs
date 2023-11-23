@@ -7,10 +7,13 @@ using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.AsteroidFragment
 {
-    public class SpawnAsteroidFragmentSystem : IEcsRunSystem
+    public class SpawnAsteroidFragmentSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly ISceneData sceneData;
         private readonly IConfigProvider configProvider;
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CSpawnAsteroidFragmentsRequest> requestPool;
 
         public SpawnAsteroidFragmentSystem(ISceneData sceneData, IConfigProvider configProvider)
         {
@@ -18,12 +21,15 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.AsteroidFragment
             this.configProvider = configProvider;
         }
 
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+            filter = world.Filter<CSpawnAsteroidFragmentsRequest>().End();
+            requestPool = world.GetPool<CSpawnAsteroidFragmentsRequest>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<CSpawnAsteroidFragmentsRequest>().End();
-            var requestPool = world.GetPool<CSpawnAsteroidFragmentsRequest>();
-
             foreach (var entity in filter)
             {
                 ref var num = ref requestPool.Get(entity).Amount;
@@ -33,14 +39,14 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.AsteroidFragment
                 while (num > 0)
                 {
                     num--;
-                    Spawn(world, spawnPosition, config);
+                    Spawn(spawnPosition, config);
                 }
 
                 world.DelEntity(entity);
             }
         }
 
-        private async void Spawn(EcsWorld world, Vector2 spawnPosition, string config)
+        private async void Spawn(Vector2 spawnPosition, string config)
         {
             var components = await GetComponents(spawnPosition, config);
             var fragmentEntity = world.NewEntityWithRawComponents(components);

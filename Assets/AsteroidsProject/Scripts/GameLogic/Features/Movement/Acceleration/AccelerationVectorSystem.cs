@@ -4,20 +4,29 @@ using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Movement.Acceleration
 {
-    public class AccelerationVectorSystem : IEcsRunSystem
+    public class AccelerationVectorSystem : IEcsInitSystem, IEcsRunSystem
     {
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CAccelerationVector> accelerationVectorPool;
+        private EcsPool<CAccelerationModifier> accelerationModifierPool;
+        private EcsPool<CRotation> rotationPool;
+
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+            filter = world.Filter<CAccelerationVector>()
+                          .Inc<CAccelerationModifier>()
+                          .Inc<CRotation>()
+                          .End();
+
+            accelerationVectorPool = world.GetPool<CAccelerationVector>();
+            accelerationModifierPool = world.GetPool<CAccelerationModifier>();
+            rotationPool = world.GetPool<CRotation>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<CAccelerationVector>()
-                              .Inc<CAccelerationModifier>()
-                              .Inc<CRotation>()
-                              .End();
-
-            var accelerationVectorPool = world.GetPool<CAccelerationVector>();
-            var accelerationModifierPool = world.GetPool<CAccelerationModifier>();
-            var rotationPool = world.GetPool<CRotation>();
-
             foreach (var entity in filter)
             {
                 ref var accelerationVector = ref accelerationVectorPool.Get(entity).Value;

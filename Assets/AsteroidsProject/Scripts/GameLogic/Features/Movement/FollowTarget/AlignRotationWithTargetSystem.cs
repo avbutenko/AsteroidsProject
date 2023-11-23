@@ -5,29 +5,38 @@ using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Movement.FollowTarget
 {
-    public class AlignRotationWithTargetSystem : IEcsRunSystem
+    public class AlignRotationWithTargetSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly ITimeService timeService;
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CFollow> followPool;
+        private EcsPool<CPosition> positionPool;
+        private EcsPool<CRotation> rotationPool;
+        private EcsPool<CRotationSpeed> rotationSpeedPool;
 
         public AlignRotationWithTargetSystem(ITimeService timeService)
         {
             this.timeService = timeService;
         }
 
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+            filter = world.Filter<CFollow>()
+                          .Inc<CPosition>()
+                          .Inc<CRotation>()
+                          .Inc<CRotationSpeed>()
+                          .End();
+
+            followPool = world.GetPool<CFollow>();
+            positionPool = world.GetPool<CPosition>();
+            rotationPool = world.GetPool<CRotation>();
+            rotationSpeedPool = world.GetPool<CRotationSpeed>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<CFollow>()
-                              .Inc<CPosition>()
-                              .Inc<CRotation>()
-                              .Inc<CRotationSpeed>()
-                              .End();
-
-            var followPool = world.GetPool<CFollow>();
-            var positionPool = world.GetPool<CPosition>();
-            var rotationPool = world.GetPool<CRotation>();
-            var rotationSpeedPool = world.GetPool<CRotationSpeed>();
-
             foreach (var entity in filter)
             {
                 ref var position = ref positionPool.Get(entity).Value;

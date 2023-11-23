@@ -2,15 +2,23 @@
 
 namespace AsteroidsProject.GameLogic.Features.Movement.FollowTarget
 {
-    public class SetFollowTargetSystem : IEcsRunSystem
+    public class SetFollowTargetSystem : IEcsInitSystem, IEcsRunSystem
     {
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CSetFollowTargetRequest> requestPool;
+        private EcsPool<CFollow> followPool;
+
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+            filter = world.Filter<CSetFollowTargetRequest>().End();
+            requestPool = world.GetPool<CSetFollowTargetRequest>();
+            followPool = world.GetPool<CFollow>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<CSetFollowTargetRequest>().End();
-            var requestPool = world.GetPool<CSetFollowTargetRequest>();
-            var followPool = world.GetPool<CFollow>();
-
             foreach (var entity in filter)
             {
                 ref var targetObject = ref requestPool.Get(entity).TargetComponent;

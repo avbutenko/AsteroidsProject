@@ -3,15 +3,23 @@ using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.Ammo.ChangeAmount
 {
-    public class ChangeAmmoAmountSystem : IEcsRunSystem
+    public class ChangeAmmoAmountSystem : IEcsInitSystem, IEcsRunSystem
     {
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CAmmo> ammoPool;
+        private EcsPool<CChangeAmmoAmountRequest> requestPool;
+
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+            filter = world.Filter<CChangeAmmoAmountRequest>().End();
+            ammoPool = world.GetPool<CAmmo>();
+            requestPool = world.GetPool<CChangeAmmoAmountRequest>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<CChangeAmmoAmountRequest>().End();
-            var ammoPool = world.GetPool<CAmmo>();
-            var requestPool = world.GetPool<CChangeAmmoAmountRequest>();
-
             foreach (var entity in filter)
             {
                 ref var deltaValue = ref requestPool.Get(entity).Value;

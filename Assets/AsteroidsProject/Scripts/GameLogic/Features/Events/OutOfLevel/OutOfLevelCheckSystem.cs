@@ -4,21 +4,27 @@ using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.Events.OnOutOfLevel
 {
-    public class OutOfLevelCheckSystem : IEcsRunSystem
+    public class OutOfLevelCheckSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly ILevelService level;
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CPosition> positionPool;
 
         public OutOfLevelCheckSystem(ILevelService level)
         {
             this.level = level;
         }
 
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+            filter = world.Filter<CPosition>().End();
+            positionPool = world.GetPool<CPosition>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<CPosition>().End();
-            var positionPool = world.GetPool<CPosition>();
-
             foreach (var entity in filter)
             {
                 ref var position = ref positionPool.Get(entity).Value;

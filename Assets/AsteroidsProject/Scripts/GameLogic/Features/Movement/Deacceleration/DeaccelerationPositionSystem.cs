@@ -5,26 +5,35 @@ using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Movement.Deacceleration
 {
-    public class DeaccelerationPositionSystem : IEcsRunSystem
+    public class DeaccelerationPositionSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly ITimeService timeService;
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CDeaccelerationVector> deaccelerationVectorPool;
+        private EcsPool<CVelocity> velocityPool;
+        private EcsPool<CPosition> positionPool;
 
         public DeaccelerationPositionSystem(ITimeService timeService)
         {
             this.timeService = timeService;
         }
+
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+            filter = world.Filter<CDeaccelerationVector>()
+                          .Inc<CVelocity>()
+                          .Inc<CPosition>()
+                          .End();
+
+            deaccelerationVectorPool = world.GetPool<CDeaccelerationVector>();
+            velocityPool = world.GetPool<CVelocity>();
+            positionPool = world.GetPool<CPosition>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<CDeaccelerationVector>()
-                              .Inc<CVelocity>()
-                              .Inc<CPosition>()
-                              .End();
-
-            var deaccelerationVectorPool = world.GetPool<CDeaccelerationVector>();
-            var velocityPool = world.GetPool<CVelocity>();
-            var positionPool = world.GetPool<CPosition>();
-
             foreach (var entity in filter)
             {
                 ref var deaccelerationVector = ref deaccelerationVectorPool.Get(entity).Value;

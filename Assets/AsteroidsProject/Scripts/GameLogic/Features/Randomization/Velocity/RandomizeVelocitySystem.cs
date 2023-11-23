@@ -4,16 +4,23 @@ using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Randomization.Velocity
 {
-    public class RandomizeVelocitySystem : IEcsRunSystem
+    public class RandomizeVelocitySystem : IEcsInitSystem, IEcsRunSystem
     {
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CRandomizeVelocityRequest> requestPool;
+        private EcsPool<CVelocity> velocityPool;
+
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+            filter = world.Filter<CRandomizeVelocityRequest>().End();
+            requestPool = world.GetPool<CRandomizeVelocityRequest>();
+            velocityPool = world.GetPool<CVelocity>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<CRandomizeVelocityRequest>().End();
-
-            var requestPool = world.GetPool<CRandomizeVelocityRequest>();
-            var velocityPool = world.GetPool<CVelocity>();
-
             foreach (var entity in filter)
             {
                 ref var range = ref requestPool.Get(entity).Range;

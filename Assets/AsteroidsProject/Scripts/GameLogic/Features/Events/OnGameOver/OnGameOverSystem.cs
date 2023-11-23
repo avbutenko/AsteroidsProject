@@ -4,14 +4,21 @@ using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Events.OnGameOver
 {
-    public class OnGameOverSystem : IEcsRunSystem
+    public class OnGameOverSystem : IEcsInitSystem, IEcsRunSystem
     {
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CGameOverEvent> eventPool;
+
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+            filter = world.Filter<CGameOverEvent>().End();
+            eventPool = world.GetPool<CGameOverEvent>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<CGameOverEvent>().End();
-            var eventPool = world.GetPool<CGameOverEvent>();
-
             foreach (var entity in filter)
             {
                 Debug.Log("Gameover"); // show GameOver Window instead

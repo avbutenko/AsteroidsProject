@@ -3,20 +3,27 @@ using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.Weapons.LaserGun
 {
-    public class LaserGunAttackSystem : IEcsRunSystem
+    public class LaserGunAttackSystem : IEcsInitSystem, IEcsRunSystem
     {
-        public void Run(IEcsSystems systems)
-        {
-            var world = systems.GetWorld();
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CAmmo> ammoPool;
 
-            var filter = world.Filter<CLaserGunTag>()
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+
+            filter = world.Filter<CLaserGunTag>()
                               .Inc<CAttackRequest>()
                               .Inc<CAmmo>()
                               .Exc<CAttackCoolDown>()
                               .End();
 
-            var ammoPool = world.GetPool<CAmmo>();
+            ammoPool = world.GetPool<CAmmo>();
+        }
 
+        public void Run(IEcsSystems systems)
+        {
             foreach (var entity in filter)
             {
                 ref var ammo = ref ammoPool.Get(entity).Value;

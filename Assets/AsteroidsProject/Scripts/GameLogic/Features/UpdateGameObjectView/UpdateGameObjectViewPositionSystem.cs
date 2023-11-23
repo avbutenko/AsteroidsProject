@@ -4,26 +4,32 @@ using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.UpdateGameObjectView
 {
-    public class UpdateGameObjectViewPositionSystem : IEcsRunSystem
+    public class UpdateGameObjectViewPositionSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly IActiveGOMappingService activeGOMappingService;
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CGameObjectInstanceID> goIDPool;
+        private EcsPool<CPosition> positionPool;
 
         public UpdateGameObjectViewPositionSystem(IActiveGOMappingService activeGOMappingService)
         {
             this.activeGOMappingService = activeGOMappingService;
         }
 
-        public void Run(IEcsSystems systems)
+        public void Init(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<CGameObjectInstanceID>()
+            world = systems.GetWorld();
+            filter = world.Filter<CGameObjectInstanceID>()
                               .Inc<CPosition>()
                               .End();
 
-            var goIDPool = world.GetPool<CGameObjectInstanceID>();
-            var positionPool = world.GetPool<CPosition>();
+            goIDPool = world.GetPool<CGameObjectInstanceID>();
+            positionPool = world.GetPool<CPosition>();
+        }
 
-
+        public void Run(IEcsSystems systems)
+        {
             foreach (var entity in filter)
             {
                 ref var position = ref positionPool.Get(entity).Value;

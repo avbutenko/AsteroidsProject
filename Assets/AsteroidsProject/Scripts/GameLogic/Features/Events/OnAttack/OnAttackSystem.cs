@@ -3,15 +3,23 @@ using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.Events.OnAttack
 {
-    public class OnAttackSystem : IEcsRunSystem
+    public class OnAttackSystem : IEcsInitSystem, IEcsRunSystem
     {
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CAttackEvent> eventPool;
+        private EcsPool<COnAttack> onAttackPool;
+
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+            filter = world.Filter<CAttackEvent>().End();
+            eventPool = world.GetPool<CAttackEvent>();
+            onAttackPool = world.GetPool<COnAttack>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<CAttackEvent>().End();
-            var eventPool = world.GetPool<CAttackEvent>();
-            var onAttackPool = world.GetPool<COnAttack>();
-
             foreach (var entity in filter)
             {
                 ref var attackingPackedEntity = ref eventPool.Get(entity).PackedEntity;

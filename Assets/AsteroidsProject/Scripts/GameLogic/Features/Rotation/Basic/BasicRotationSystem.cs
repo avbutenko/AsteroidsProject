@@ -5,28 +5,36 @@ using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Rotation.Basic
 {
-    public class BasicRotationSystem : IEcsRunSystem
+    public class BasicRotationSystem : IEcsInitSystem, IEcsRunSystem
     {
         private const float MAX_ROTATION_DEGREE = 360f;
         private readonly ITimeService timeService;
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CRotationDirection> rotationDirectionPool;
+        private EcsPool<CRotationSpeed> rotationSpeedPool;
+        private EcsPool<CRotation> rotationPool;
 
         public BasicRotationSystem(ITimeService timeService)
         {
             this.timeService = timeService;
         }
 
-        public void Run(IEcsSystems systems)
+        public void Init(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<CRotationDirection>()
+            world = systems.GetWorld();
+            filter = world.Filter<CRotationDirection>()
                               .Inc<CRotationSpeed>()
                               .Inc<CRotation>()
                               .End();
 
-            var rotationDirectionPool = world.GetPool<CRotationDirection>();
-            var rotationSpeedPool = world.GetPool<CRotationSpeed>();
-            var rotationPool = world.GetPool<CRotation>();
+            rotationDirectionPool = world.GetPool<CRotationDirection>();
+            rotationSpeedPool = world.GetPool<CRotationSpeed>();
+            rotationPool = world.GetPool<CRotation>();
+        }
 
+        public void Run(IEcsSystems systems)
+        {
             foreach (var entity in filter)
             {
                 ref var rotationDirection = ref rotationDirectionPool.Get(entity).Value;

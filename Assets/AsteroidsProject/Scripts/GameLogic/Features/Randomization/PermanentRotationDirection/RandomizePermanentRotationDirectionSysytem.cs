@@ -4,17 +4,25 @@ using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Randomization.PermanentRotationDirection
 {
-    public class RandomizePermanentRotationDirectionSysytem : IEcsRunSystem
+    public class RandomizePermanentRotationDirectionSysytem : IEcsInitSystem, IEcsRunSystem
     {
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CRandomizePermanentRotationDirectionRequest> requestPool;
+        private EcsPool<CPermanentRotationDirection> directionPool;
+        private EcsPool<CRotation> rotationPool;
+
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+            filter = world.Filter<CRandomizePermanentRotationDirectionRequest>().End();
+            requestPool = world.GetPool<CRandomizePermanentRotationDirectionRequest>();
+            directionPool = world.GetPool<CPermanentRotationDirection>();
+            rotationPool = world.GetPool<CRotation>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<CRandomizePermanentRotationDirectionRequest>().End();
-
-            var requestPool = world.GetPool<CRandomizePermanentRotationDirectionRequest>();
-            var directionPool = world.GetPool<CPermanentRotationDirection>();
-            var rotationPool = world.GetPool<CRotation>();
-
             foreach (var entity in filter)
             {
                 ref var range = ref requestPool.Get(entity).Range;

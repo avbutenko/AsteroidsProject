@@ -3,17 +3,23 @@ using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.Weapons.BulletGun
 {
-    public class BulletGunAttackSystem : IEcsRunSystem
+    public class BulletGunAttackSystem : IEcsInitSystem, IEcsRunSystem
     {
+        private EcsWorld world;
+        private EcsFilter filter;
+
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+
+            filter = world.Filter<CBulletGunTag>()
+                          .Inc<CAttackRequest>()
+                          .Exc<CAttackCoolDown>()
+                          .End();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-
-            var filter = world.Filter<CBulletGunTag>()
-                              .Inc<CAttackRequest>()
-                              .Exc<CAttackCoolDown>()
-                              .End();
-
             foreach (var entity in filter)
             {
                 world.NewEntityWith(new CAttackEvent { PackedEntity = world.PackEntity(entity) });

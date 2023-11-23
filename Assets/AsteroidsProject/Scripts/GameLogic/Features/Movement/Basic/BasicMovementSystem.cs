@@ -4,27 +4,34 @@ using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.Movement.Basic
 {
-    public class BasicMovementSystem : IEcsRunSystem
+    public class BasicMovementSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly ITimeService timeService;
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CVelocity> velocityPool;
+        private EcsPool<CPosition> positionPool;
 
         public BasicMovementSystem(ITimeService timeService)
         {
             this.timeService = timeService;
         }
 
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+            filter = world.Filter<CVelocity>()
+                          .Inc<CPosition>()
+                          .Exc<CAccelerationVector>()
+                          .Exc<CDeaccelerationVector>()
+                          .End();
+
+            velocityPool = world.GetPool<CVelocity>();
+            positionPool = world.GetPool<CPosition>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<CVelocity>()
-                              .Inc<CPosition>()
-                              .Exc<CAccelerationVector>()
-                              .Exc<CDeaccelerationVector>()
-                              .End();
-
-            var velocityPool = world.GetPool<CVelocity>();
-            var positionPool = world.GetPool<CPosition>();
-
             foreach (var entity in filter)
             {
                 ref var velocity = ref velocityPool.Get(entity).Value;

@@ -8,11 +8,15 @@ using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Spawn.Projectiles
 {
-    public class SpawnProjectileSystem : IEcsRunSystem
+    public class SpawnProjectileSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly ISceneData sceneData;
         private readonly IConfigProvider configProvider;
         private readonly IActiveGOMappingService activeGOMappingService;
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CSpawnProjectileRequest> requestPool;
+        private EcsPool<CGameObjectInstanceID> goIDPool;
 
         public SpawnProjectileSystem(IConfigProvider configProvider, ISceneData sceneData, IActiveGOMappingService activeGOMappingService)
         {
@@ -21,17 +25,20 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Projectiles
             this.activeGOMappingService = activeGOMappingService;
         }
 
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+
+            filter = world.Filter<CSpawnProjectileRequest>()
+                          .Inc<CGameObjectInstanceID>()
+                          .End();
+
+            requestPool = world.GetPool<CSpawnProjectileRequest>();
+            goIDPool = world.GetPool<CGameObjectInstanceID>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-
-            var filter = world.Filter<CSpawnProjectileRequest>()
-                              .Inc<CGameObjectInstanceID>()
-                              .End();
-
-            var requestPool = world.GetPool<CSpawnProjectileRequest>();
-            var goIDPool = world.GetPool<CGameObjectInstanceID>();
-
             foreach (var entity in filter)
             {
                 ref var goID = ref goIDPool.Get(entity).Value;
@@ -40,17 +47,17 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Projectiles
 
                 ref var config = ref requestPool.Get(entity).Config;
                 ref var parentType = ref requestPool.Get(entity).ParentType;
-                Spawn(world, shootingPoint.ShootingPoint, config, entity, parentType);
+                Spawn(shootingPoint.ShootingPoint, config, entity, parentType);
                 requestPool.Del(entity);
             }
         }
 
-        private async void Spawn(EcsWorld world, Transform shootingPoint, string config, int weaponEntity, ParentType parentType)
+        private async void Spawn(Transform shootingPoint, string config, int weaponEntity, ParentType parentType)
         {
             var components = await GetComponents(shootingPoint, config, parentType);
             var projectileEntity = world.NewEntityWithRawComponents(components);
             world.AddComponentToEntity(projectileEntity, new CSpawnedEntityEvent { PackedEntity = world.PackEntity(projectileEntity) });
-            AdoptVelocity(world, shootingPoint, projectileEntity, weaponEntity);
+            AdoptVelocity(shootingPoint, projectileEntity, weaponEntity);
         }
 
         private async Task<List<object>> GetComponents(Transform shootingPoint, string config, ParentType parentType)
@@ -76,7 +83,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Projectiles
             return components;
         }
 
-        private void AdoptVelocity(EcsWorld world, Transform shootingPoint, int projectileEntity, int weaponEntity)
+        private void AdoptVelocity(Transform shootingPoint, int projectileEntity, int weaponEntity)
         {
             var velocityPool = world.GetPool<CVelocity>();
             var ownerPool = world.GetPool<COwnerEntity>();

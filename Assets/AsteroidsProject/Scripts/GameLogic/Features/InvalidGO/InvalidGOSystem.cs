@@ -4,10 +4,13 @@ using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.InvalidGO
 {
-    public class InvalidGOSystem : IEcsRunSystem
+    public class InvalidGOSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly IActiveGOMappingService activeGOMappingService;
         private readonly IGameObjectPool gameObjectPool;
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<CInvalidGameObjectInstanceID> goIDPool;
 
         public InvalidGOSystem(IActiveGOMappingService activeGOMappingService, IGameObjectPool gameObjectPool)
         {
@@ -15,12 +18,15 @@ namespace AsteroidsProject.GameLogic.Features.InvalidGO
             this.gameObjectPool = gameObjectPool;
         }
 
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+            filter = world.Filter<CInvalidGameObjectInstanceID>().End();
+            goIDPool = world.GetPool<CInvalidGameObjectInstanceID>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<CInvalidGameObjectInstanceID>().End();
-            var goIDPool = world.GetPool<CInvalidGameObjectInstanceID>();
-
             foreach (var entity in filter)
             {
                 ref var goID = ref goIDPool.Get(entity).Value;

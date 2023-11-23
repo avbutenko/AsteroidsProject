@@ -2,13 +2,21 @@
 
 namespace AsteroidsProject.GameLogic.Core
 {
-    public class EcsDeleteHereSystem<TComponent> : IEcsRunSystem where TComponent : struct
+    public class EcsDeleteHereSystem<TComponent> : IEcsInitSystem, IEcsRunSystem where TComponent : struct
     {
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<TComponent> pool;
+
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+            filter = world.Filter<TComponent>().End();
+            pool = world.GetPool<TComponent>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<TComponent>().End();
-            var pool = world.GetPool<TComponent>();
             foreach (var index in filter) pool.Del(index);
         }
     }
