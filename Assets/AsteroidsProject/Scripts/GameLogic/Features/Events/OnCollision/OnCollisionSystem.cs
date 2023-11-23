@@ -5,27 +5,34 @@ using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.Events.OnCollision
 {
-    public class CollisionSystem : IEcsRunSystem
+    public class CollisionSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly IActiveGOMappingService activeGOMappingService;
+        private EcsWorld world;
+        private EcsFilter filter;
+        private EcsPool<OnCollisionEnter2DEvent> collisionPool;
+        private EcsPool<COnCollision> onCollisionPool;
 
         public CollisionSystem(IActiveGOMappingService activeGOMappingService)
         {
             this.activeGOMappingService = activeGOMappingService;
         }
 
+        public void Init(IEcsSystems systems)
+        {
+            world = systems.GetWorld();
+            filter = world.Filter<OnCollisionEnter2DEvent>().End();
+            collisionPool = world.GetPool<OnCollisionEnter2DEvent>();
+            onCollisionPool = world.GetPool<COnCollision>();
+        }
+
         public void Run(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-            var filter = world.Filter<OnCollisionEnter2DEvent>().End();
-            var collisionPool = world.GetPool<OnCollisionEnter2DEvent>();
-            var onCollisionPool = world.GetPool<COnCollision>();
-
             foreach (var entity in filter)
             {
                 ref var senderGO = ref collisionPool.Get(entity).senderGameObject;
 
-                if (!senderGO.activeSelf)
+                if (senderGO == null || !senderGO.activeSelf)
                 {
                     collisionPool.Del(entity);
                     continue;
@@ -41,7 +48,7 @@ namespace AsteroidsProject.GameLogic.Features.Events.OnCollision
 
                 ref var collider = ref collisionPool.Get(entity).collider2D;
 
-                if (!collider.gameObject.activeSelf)
+                if (collider == null || !collider.gameObject.activeSelf)
                 {
                     collisionPool.Del(entity);
                     continue;
