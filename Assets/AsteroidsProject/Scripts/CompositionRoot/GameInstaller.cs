@@ -8,20 +8,9 @@ namespace AsteroidsProject.CompositionRoot
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<InputService>().AsSingle().NonLazy();
-            Container.Bind<IAssetProvider>().To<AssetProvider>().AsSingle();
-            Container.Bind<ITimeService>().To<TimeService>().AsSingle();
-            Container.Bind<IGameObjectPool>().To<GameObjectPool>().AsSingle();
-            Container.Bind<IActiveGOMappingService>().To<ActiveGOMappingService>().AsSingle();
-            Container.Bind<IGameObjectFactory>().To<GameObjectFactory>().AsSingle();
-
-            Container
-                .BindInterfacesAndSelfTo<ComponentConverterService>()
-                .FromSubContainerResolve()
-                .ByInstaller<ComponentConverterServiceInstaller>()
-                .AsSingle();
-
-            Container.BindInterfacesAndSelfTo<ConfigProvider>().AsSingle();
+            Container.BindInterfacesAndSelfTo<InputService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LoadingScreenService>().AsSingle();
+            Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿using AsteroidsProject.Shared;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using UnityEngine;
 using Zenject;
 using System.Runtime.Serialization;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 
 namespace AsteroidsProject.Services
 {
@@ -33,16 +33,16 @@ namespace AsteroidsProject.Services
             };
         }
 
-        public async Task<T> Load<T>(string configAddress) where T : class
+        public async UniTask<T> Load<T>(string configAddress) where T : class
         {
             return cachedObjects.TryGetValue(configAddress, out var cachedObject)
                 ? cachedObject as T
                 : await ResourceLoading<T>(configAddress);
         }
 
-        private async Task<T> ResourceLoading<T>(string configAddress) where T : class
+        private async UniTask<T> ResourceLoading<T>(string configAddress) where T : class
         {
-            var asset = await assetProvider.Load<TextAsset>(configAddress);
+            var asset = await assetProvider.LoadAsync<TextAsset>(configAddress);
             var result = JsonConvert.DeserializeObject<T>(asset.text, serializerSettings);
             cachedObjects[configAddress] = result;
             return result;

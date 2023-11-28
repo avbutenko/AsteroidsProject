@@ -1,8 +1,8 @@
 ﻿using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
+using Cysharp.Threading.Tasks;
 using Leopotam.EcsLite;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Spawn.Weapons
@@ -56,7 +56,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Weapons
             Link(ownerEntity, weaponEntity);
         }
 
-        private async Task<List<object>> GetComponents(int ownerEntity, string configAddress)
+        private async UniTask<List<object>> GetComponents(int ownerEntity, string configAddress)
         {
             var configComponentList = await configProvider.Load<ComponentList>(configAddress);
             var components = new List<object>();

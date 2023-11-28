@@ -1,16 +1,16 @@
 using Assets.AsteroidsProject.Scripts.Shared;
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
+using Cysharp.Threading.Tasks;
 using Leopotam.EcsLite;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Spawn.Projectiles
 {
     public class SpawnProjectileSystem : IEcsInitSystem, IEcsRunSystem
     {
-        private readonly ISceneData sceneData;
+        private readonly IGameSceneData sceneData;
         private readonly IConfigProvider configProvider;
         private readonly IActiveGOMappingService activeGOMappingService;
         private EcsWorld world;
@@ -18,7 +18,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Projectiles
         private EcsPool<CSpawnProjectileRequest> requestPool;
         private EcsPool<CGameObjectInstanceID> goIDPool;
 
-        public SpawnProjectileSystem(IConfigProvider configProvider, ISceneData sceneData, IActiveGOMappingService activeGOMappingService)
+        public SpawnProjectileSystem(IConfigProvider configProvider, IGameSceneData sceneData, IActiveGOMappingService activeGOMappingService)
         {
             this.sceneData = sceneData;
             this.configProvider = configProvider;
@@ -60,7 +60,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Projectiles
             AdoptVelocity(shootingPoint, projectileEntity, weaponEntity);
         }
 
-        private async Task<List<object>> GetComponents(Transform shootingPoint, string config, ParentType parentType)
+        private async UniTask<List<object>> GetComponents(Transform shootingPoint, string config, ParentType parentType)
         {
             var componentList = await configProvider.Load<ComponentList>(config);
             var components = new List<object>();

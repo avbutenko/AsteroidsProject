@@ -8,7 +8,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Units.Ufo
 {
     public class SpawnUfoSystem : IEcsInitSystem, IEcsRunSystem
     {
-        private readonly ISceneData sceneData;
+        private readonly IGameSceneData sceneData;
         private readonly IConfigProvider configProvider;
         private readonly ITimeService timeService;
         private SpawnConfig spawnconfig;
@@ -16,7 +16,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Units.Ufo
         private float timeToNextSpawn;
         private EcsWorld world;
 
-        public SpawnUfoSystem(IConfigProvider configProvider, ITimeService timeService, ISceneData sceneData)
+        public SpawnUfoSystem(IConfigProvider configProvider, ITimeService timeService, IGameSceneData sceneData)
         {
             this.configProvider = configProvider;
             this.timeService = timeService;

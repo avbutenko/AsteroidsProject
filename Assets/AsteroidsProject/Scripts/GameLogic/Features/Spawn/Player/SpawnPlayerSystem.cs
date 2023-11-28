@@ -7,11 +7,11 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Player
 {
     public class SpawnPlayerSystem : IEcsInitSystem
     {
-        private readonly ISceneData sceneData;
+        private readonly IGameSceneData sceneData;
         private readonly IConfigProvider configProvider;
         private EcsWorld world;
 
-        public SpawnPlayerSystem(ISceneData sceneData, IConfigProvider configProvider)
+        public SpawnPlayerSystem(IGameSceneData sceneData, IConfigProvider configProvider)
         {
             this.sceneData = sceneData;
             this.configProvider = configProvider;

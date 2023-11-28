@@ -6,7 +6,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.EntityView
 {
     public class SpawnEntityViewSystem : IEcsInitSystem, IEcsRunSystem
     {
-        private readonly IGameObjectFactory gameObjectFactory;
+        private readonly IEntityGameObjectFactory gameObjectFactory;
         private readonly IActiveGOMappingService activeGOMappingService;
         private EcsWorld world;
         private EcsFilter filter;
@@ -15,7 +15,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.EntityView
         private EcsPool<CRotation> rotationPool;
         private EcsPool<CParent> parentPool;
 
-        public SpawnEntityViewSystem(IGameObjectFactory gameObjectFactory, IActiveGOMappingService activeGOMappingService)
+        public SpawnEntityViewSystem(IEntityGameObjectFactory gameObjectFactory, IActiveGOMappingService activeGOMappingService)
         {
             this.gameObjectFactory = gameObjectFactory;
             this.activeGOMappingService = activeGOMappingService;

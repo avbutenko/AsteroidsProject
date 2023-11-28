@@ -1,21 +1,21 @@
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
+using Cysharp.Threading.Tasks;
 using Leopotam.EcsLite;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.AsteroidFragment
 {
     public class SpawnAsteroidFragmentSystem : IEcsInitSystem, IEcsRunSystem
     {
-        private readonly ISceneData sceneData;
+        private readonly IGameSceneData sceneData;
         private readonly IConfigProvider configProvider;
         private EcsWorld world;
         private EcsFilter filter;
         private EcsPool<CSpawnAsteroidFragmentsRequest> requestPool;
 
-        public SpawnAsteroidFragmentSystem(ISceneData sceneData, IConfigProvider configProvider)
+        public SpawnAsteroidFragmentSystem(IGameSceneData sceneData, IConfigProvider configProvider)
         {
             this.sceneData = sceneData;
             this.configProvider = configProvider;
@@ -54,7 +54,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.AsteroidFragment
             world.AddComponentToEntity(fragmentEntity, new CSpawnedEntityEvent { PackedEntity = world.PackEntity(fragmentEntity) });
         }
 
-        private async Task<List<object>> GetComponents(Vector2 spawnPosition, string config)
+        private async UniTask<List<object>> GetComponents(Vector2 spawnPosition, string config)
         {
             var componentList = await configProvider.Load<ComponentList>(config);
             var components = new List<object>();

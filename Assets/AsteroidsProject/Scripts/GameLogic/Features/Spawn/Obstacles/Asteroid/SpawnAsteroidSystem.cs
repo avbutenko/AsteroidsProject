@@ -7,7 +7,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.Asteroid
 {
     public class SpawnAsteroidSystem : IEcsInitSystem, IEcsRunSystem
     {
-        private readonly ISceneData sceneData;
+        private readonly IGameSceneData sceneData;
         private readonly IConfigProvider configProvider;
         private readonly ITimeService timeService;
         private SpawnConfig asteroidSpawnconfig;
@@ -16,7 +16,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.Asteroid
         private EcsWorld world;
         private EcsFilter filter;
 
-        public SpawnAsteroidSystem(IConfigProvider configProvider, ITimeService timeService, ISceneData sceneData)
+        public SpawnAsteroidSystem(IConfigProvider configProvider, ITimeService timeService, IGameSceneData sceneData)
         {
             this.configProvider = configProvider;
             this.timeService = timeService;
