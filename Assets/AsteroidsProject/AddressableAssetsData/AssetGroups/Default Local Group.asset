@@ -17,10 +17,70 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 88adc4b24fceb454fbcd265ebdb36dd1
   m_SerializeEntries:
-  - m_GUID: a3e568e7bc6bdfa40912e6d92cf5328e
-    m_Address: Bundles
+  - m_GUID: 7aa5a57efdbe481419fae7e6073c383e
+    m_Address: Bullet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3532464b9f032343b77acb63e313990
+    m_Address: MainMenuScene
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainMenuScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 22a36186bf788c5498fbbbd0074629d2
+    m_Address: Laser
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 32cb9adea56996a449bd2c2b91fc3e33
+    m_Address: Player
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cd89756cd917e644293a4e087e15b168
+    m_Address: Asteroid
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79fedc8f51c4ba849a6afda5da5bad1c
+    m_Address: AsteroidFragment
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 63e2915b530780447a8e6178a83d9ee6
+    m_Address: Ufo
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d1a41a38b8990d41962d11c653909c1
+    m_Address: BulletGun
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c409e692f21c18343ab032e4b7649969
+    m_Address: LaserGun
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ef064cc2faaa3a64b94021ab069c35d7
+    m_Address: UI
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61d7c620a5fdb0040b5dda063718c983
+    m_Address: GameScene
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameScene
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ddfbbdee1ce175948a9e559e33547383, type: 2}

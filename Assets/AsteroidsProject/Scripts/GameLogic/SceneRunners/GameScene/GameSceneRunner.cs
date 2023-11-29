@@ -8,20 +8,21 @@ namespace AsteroidsProject.GameLogic.SceneRunners.GameScene
     {
         private readonly ILoadingScreen loadingScreen;
         private readonly IEcsSystemsRunner ecsSystemsRunner;
+        private readonly IAssetProvider assetProvider;
 
-        public GameSceneRunner(ILoadingScreen loadingScreen, IEcsSystemsRunner ecsSystemsRunner)
+        public GameSceneRunner(ILoadingScreen loadingScreen, IEcsSystemsRunner ecsSystemsRunner, IAssetProvider assetProvider)
         {
             this.loadingScreen = loadingScreen;
             this.ecsSystemsRunner = ecsSystemsRunner;
+            this.assetProvider = assetProvider;
         }
 
-        public void Initialize()
+        public async void Initialize()
         {
-            //loadingScreen.Show();
-            // 1) preload assets
-            // 2) show HUD
-            //loadingScreen.Hide();
+            loadingScreen.Show();
+            await assetProvider.PreLoadAsyncByLabel("InGameScene");
             ecsSystemsRunner.Initialize();
+            loadingScreen.Hide();
         }
 
         public void Tick()

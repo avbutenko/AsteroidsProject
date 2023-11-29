@@ -7,7 +7,7 @@
             "COnSpawn": {
                 "AddToSelfComponents": [
                     {
-                        "CSpawnEntityViewRequest": "Bundles/Obstacles/Asteroid/Prefabs/Asteroid.prefab",
+                        "CSpawnEntityViewRequest": "Asteroid/Prefabs/Asteroid.prefab",
                         "CRandomizePositionRequest": {},
                         "CRandomizePermanentRotationDirectionRequest": [ -1, 1 ],
                         "CRandomizeRotationSpeedRequest": [ 50, 100 ],
@@ -63,7 +63,7 @@
                     "Components": [
                         {
                             "CSpawnAsteroidFragmentsRequest": {
-                                "Config": "Bundles/Obstacles/AsteroidFragment/Configs/AsteroidFragmentConfig.json",
+                                "Config": "AsteroidFragment/Configs/AsteroidFragmentConfig.json",
                                 "Amount": 3
                             }
                         }

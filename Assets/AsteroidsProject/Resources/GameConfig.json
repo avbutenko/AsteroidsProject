@@ -1,11 +1,11 @@
 {
-    "PlayerConfigPath": "Bundles/Player/Configs/PlayerConfig.json",
-    "AsteroidSpawnConfigPath": "Bundles/Obstacles/Asteroid/Configs/AsteroidSpawnConfig.json",
-    "AsteroidConfigPath": "Bundles/Obstacles/Asteroid/Configs/AsteroidConfig.json",
-    "BulletGunConfigPath": "Bundles/Weapons/BulletGun/Configs/BulletGunConfig.json",
-    "BulletConfigPath": "Bundles/Projectiles/Bullet/Configs/BulletConfig.json",
-    "LaserGunConfigPath": "Bundles/Weapons/LaserGun/Configs/LaserGunConfig.json",
-    "LaserConfigPath": "Bundles/Projectiles/Laser/Configs/LaserConfig.json",
-    "UfoSpawnConfigPath": "Bundles/Units/Ufo/Configs/UfoSpawnConfig.json",
-    "UfoConfigPath": "Bundles/Units/Ufo/Configs/UfoConfig.json"
+    "PlayerConfigPath": "Player/Configs/PlayerConfig.json",
+    "AsteroidSpawnConfigPath": "Asteroid/Configs/AsteroidSpawnConfig.json",
+    "AsteroidConfigPath": "Asteroid/Configs/AsteroidConfig.json",
+    "BulletGunConfigPath": "BulletGun/Configs/BulletGunConfig.json",
+    "BulletConfigPath": "Bullet/Configs/BulletConfig.json",
+    "LaserGunConfigPath": "LaserGun/Configs/LaserGunConfig.json",
+    "LaserConfigPath": "Laser/Configs/LaserConfig.json",
+    "UfoSpawnConfigPath": "Ufo/Configs/UfoSpawnConfig.json",
+    "UfoConfigPath": "Ufo/Configs/UfoConfig.json"
 }

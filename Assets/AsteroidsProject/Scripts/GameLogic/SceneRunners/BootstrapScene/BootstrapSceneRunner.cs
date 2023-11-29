@@ -18,7 +18,7 @@ namespace AsteroidsProject.GameLogic.SceneRunners.BootstrapScene
         public async void Initialize()
         {
             loadingScreen.Show();
-            await sceneLoader.LoadSceneAsync("Bundles/Scenes/MainMenuScene/MainMenuScene.unity", LoadSceneMode.Single, false);
+            await sceneLoader.LoadSceneAsync("MainMenuScene/MainMenuScene.unity", LoadSceneMode.Single, false);
             loadingScreen.Hide();
         }
     }

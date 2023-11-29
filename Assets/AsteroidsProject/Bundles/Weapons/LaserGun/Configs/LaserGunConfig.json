@@ -11,7 +11,7 @@
             "COnSpawn": {
                 "AddToSelfComponents": [
                     {
-                        "CSpawnEntityViewRequest": "Bundles/Weapons/LaserGun/Prefabs/LaserGun.prefab"
+                        "CSpawnEntityViewRequest": "LaserGun/Prefabs/LaserGun.prefab"
                     }
                 ]
             },
@@ -19,7 +19,7 @@
                 "AddToSelfComponents": [
                     {
                         "CSpawnProjectileRequest": {
-                            "Config": "Bundles/Projectiles/Laser/Configs/LaserConfig.json",
+                            "Config": "Laser/Configs/LaserConfig.json",
                             "ParentType": 1 //OwnerEntity
                         },
                         "CAttackCoolDown": 7,

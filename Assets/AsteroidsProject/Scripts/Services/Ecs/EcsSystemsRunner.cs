@@ -31,12 +31,12 @@ namespace AsteroidsProject.Services
 
         public void Tick()
         {
-            updateSystems.Run();
+            updateSystems?.Run();
         }
 
         public void FixedTick()
         {
-            fixedUpdateSystems.Run();
+            fixedUpdateSystems?.Run();
         }
 
         public virtual void Dispose()

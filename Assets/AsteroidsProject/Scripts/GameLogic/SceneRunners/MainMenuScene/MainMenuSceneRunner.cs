@@ -23,7 +23,7 @@ namespace AsteroidsProject.GameLogic.SceneRunners.MainMenuScene
         public async void Initialize()
         {
             loadingScreen.Show();
-            var mainMenuView = await uiFactory.CreateAsync<IMainMenuView>("Bundles/Scenes/MainMenuScene/Prefabs/MainMenuView.prefab", sceneData.CanvasTransform);
+            var mainMenuView = await uiFactory.CreateAsync<IMainMenuView>("UI/MainMenuView.prefab", sceneData.CanvasTransform);
             loadingScreen.Hide();
             mainMenuView.StartButton.onClick.AddListener(StartGame);
             mainMenuView.ExitButton.onClick.AddListener(ExitGame);
@@ -31,9 +31,9 @@ namespace AsteroidsProject.GameLogic.SceneRunners.MainMenuScene
 
         private async void StartGame()
         {
-            //loadingScreen.Show();
-            await sceneLoader.LoadSceneAsync("Bundles/Scenes/GameScene/GameScene.unity", LoadSceneMode.Single, true);
-            //loadingScreen.Hide();
+            loadingScreen.Show();
+            await sceneLoader.LoadSceneAsync("GameScene/GameScene.unity", LoadSceneMode.Single, false);
+            loadingScreen.Hide();
         }
 
         private void ExitGame()

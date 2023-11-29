@@ -12,7 +12,7 @@
             "COnSpawn": {
                 "AddToSelfComponents": [
                     {
-                        "CSpawnEntityViewRequest": "Bundles/Units/Ufo/Prefabs/Ufo.prefab",
+                        "CSpawnEntityViewRequest": "Ufo/Prefabs/Ufo.prefab",
                         "CRandomizePositionRequest": {},
                         "CSetFollowTargetRequest": { "CPlayerTag": {} }
                     }
