@@ -1,5 +1,6 @@
 ﻿using AsteroidsProject.Shared;
-using System.Collections;
+using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
 
 namespace AsteroidsProject.MonoBehaviours
@@ -14,17 +15,17 @@ namespace AsteroidsProject.MonoBehaviours
             canvas.alpha = 1;
         }
 
-        public void Hide()
+        public async void Hide()
         {
-            StartCoroutine(DoFadeIn());
+            await Disappear();
         }
 
-        private IEnumerator DoFadeIn()
+        private async UniTask Disappear()
         {
             while (canvas.alpha > 0)
             {
                 canvas.alpha -= 0.03f;
-                yield return new WaitForSeconds(0.03f);
+                await UniTask.Delay(TimeSpan.FromSeconds(0.03f), ignoreTimeScale: false);
             }
 
             gameObject.SetActive(false);
