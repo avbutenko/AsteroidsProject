@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 88adc4b24fceb454fbcd265ebdb36dd1
   m_currentHash:
     serializedVersion: 2
-    Hash: 4572dd5bd6fc016e0a99e25837374e94
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -87,9 +87,10 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
-    - MainMenuScene
+    - InMainMenuScene
     - InGameScene
     - GameScene
+    - MainMenuScene
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 02170ef8cd087094eac94ee6e75211c9, type: 2}

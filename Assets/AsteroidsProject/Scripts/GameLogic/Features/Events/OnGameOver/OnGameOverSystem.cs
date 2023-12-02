@@ -1,14 +1,20 @@
 using AsteroidsProject.GameLogic.Core;
+using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
-using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Events.OnGameOver
 {
     public class OnGameOverSystem : IEcsInitSystem, IEcsRunSystem
     {
+        private readonly IUIService uiService;
         private EcsWorld world;
         private EcsFilter filter;
         private EcsPool<CGameOverEvent> eventPool;
+
+        public OnGameOverSystem(IUIService uiService)
+        {
+            this.uiService = uiService;
+        }
 
         public void Init(IEcsSystems systems)
         {
@@ -21,7 +27,7 @@ namespace AsteroidsProject.GameLogic.Features.Events.OnGameOver
         {
             foreach (var entity in filter)
             {
-                Debug.Log("Gameover"); // show GameOver Window instead
+                uiService.Get<IGameOverScreenPresenter>().Show();
                 eventPool.Del(entity);
             }
         }

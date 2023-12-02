@@ -23,11 +23,11 @@ MonoBehaviour:
     m_SerializedLabels:
     - InGameScene
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a3532464b9f032343b77acb63e313990
-    m_Address: MainMenuScene
+  - m_GUID: b79fe6820b397f74bb5ca096fcb164eb
+    m_Address: MainMenuScreen
     m_ReadOnly: 0
     m_SerializedLabels:
-    - MainMenuScene
+    - InMainMenuScene
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 22a36186bf788c5498fbbbd0074629d2
     m_Address: Laser
@@ -71,16 +71,23 @@ MonoBehaviour:
     m_SerializedLabels:
     - InGameScene
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ef064cc2faaa3a64b94021ab069c35d7
-    m_Address: UI
+  - m_GUID: d7863dc1d64bc5d4f87cbf2655223097
+    m_Address: GameOverScreen
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - InGameScene
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 61d7c620a5fdb0040b5dda063718c983
+  - m_GUID: 691ba695ff72856439e302e1006b80b9
     m_Address: GameScene
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8f20613bcf149434f90c899c4e855134
+    m_Address: MainMenuScene
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainMenuScene
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ddfbbdee1ce175948a9e559e33547383, type: 2}

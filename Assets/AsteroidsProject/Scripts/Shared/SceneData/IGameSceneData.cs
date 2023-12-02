@@ -2,7 +2,7 @@
 
 namespace AsteroidsProject.Shared
 {
-    public interface IGameSceneData : IHaveCanvas
+    public interface IGameSceneData
     {
         public Transform SpawnPlayerPoint { get; }
         public Transform AsteroidsPool { get; }

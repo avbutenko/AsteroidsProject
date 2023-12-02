@@ -1,4 +1,4 @@
-﻿using AsteroidsProject.GameLogic.SceneRunners.BootstrapScene;
+﻿using AsteroidsProject.GameLogic.EntryPoint.BootstrapScene;
 using Zenject;
 
 namespace Assets.AsteroidsProject.Scripts.CompositionRoot
@@ -7,7 +7,7 @@ namespace Assets.AsteroidsProject.Scripts.CompositionRoot
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<BootstrapSceneRunner>().AsSingle();
+            Container.BindInterfacesAndSelfTo<BootstrapSceneEntryPoint>().AsSingle();
         }
     }
 }

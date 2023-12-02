@@ -2,6 +2,7 @@ using AsteroidsProject.Shared;
 using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
@@ -34,6 +35,11 @@ namespace AsteroidsProject.Services
         {
             var assetsList = await GetAddressListByLabel(label);
             await LoadAsync<object>(assetsList);
+        }
+
+        public async UniTask<T> ResourceLoadAsync<T>(string resourceAddress) where T : class
+        {
+            return await Resources.LoadAsync(resourceAddress) as T;
         }
 
         public void Dispose()

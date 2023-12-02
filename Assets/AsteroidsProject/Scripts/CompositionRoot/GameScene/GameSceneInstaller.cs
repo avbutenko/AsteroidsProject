@@ -2,7 +2,9 @@
 using AsteroidsProject.Shared;
 using AsteroidsProject.Services;
 using AsteroidsProject.MonoBehaviours;
-using AsteroidsProject.GameLogic.SceneRunners.GameScene;
+using AsteroidsProject.GameLogic.EntryPoint.GameScene;
+using AsteroidsProject.UI.MainMenuScreen;
+using AsteroidsProject.UI.GameOverScreen;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -15,11 +17,14 @@ namespace AsteroidsProject.CompositionRoot
             Container.Bind<IGameSceneData>().FromInstance(SceneData).AsSingle();
             Container.Bind<ILevelService>().To<LevelService>().AsSingle();
             Container.BindInterfacesAndSelfTo<AssetProvider>().AsSingle();
-            Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
             Container.Bind<ITimeService>().To<TimeService>().AsSingle();
             Container.Bind<IGameObjectPool>().To<GameObjectPool>().AsSingle();
             Container.Bind<IActiveGOMappingService>().To<ActiveGOMappingService>().AsSingle();
             Container.Bind<IEntityGameObjectFactory>().To<EntityGameObjectFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<UIScreenViewFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<MainMenuScreenPresenterFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameOverScreenPresenterFactory>().AsSingle();
+            Container.Bind<IUIService>().To<UIService>().AsSingle();
 
             Container
                 .BindInterfacesAndSelfTo<ComponentConverterService>()
@@ -41,7 +46,7 @@ namespace AsteroidsProject.CompositionRoot
 
             Container.BindInterfacesAndSelfTo<ConfigProvider>().AsSingle();
             Container.Bind<IEcsSystemsRunner>().To<EcsSystemsRunner>().AsSingle();
-            Container.BindInterfacesAndSelfTo<GameSceneRunner>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameSceneEntryPoint>().AsSingle();
         }
     }
 }
