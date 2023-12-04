@@ -1,7 +1,7 @@
 ﻿using AsteroidsProject.GameLogic.EntryPoint.BootstrapScene;
 using Zenject;
 
-namespace Assets.AsteroidsProject.Scripts.CompositionRoot
+namespace AsteroidsProject.CompositionRoot
 {
     public class BootstrapSceneInstaller : MonoInstaller
     {

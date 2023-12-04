@@ -1,5 +1,4 @@
 ﻿using AsteroidsProject.Shared;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace AsteroidsProject.UI.GameOverScreen
@@ -9,14 +8,17 @@ namespace AsteroidsProject.UI.GameOverScreen
         private readonly IGameOverScreenView view;
         private readonly ISceneLoader sceneLoader;
         private readonly ILoadingScreenService loadingScreen;
+        private readonly IRestartService restartService;
 
-        public GameOverScreenPresenter(IUIScreenView view, ISceneLoader sceneLoader, ILoadingScreenService loadingScreen)
+        public GameOverScreenPresenter(IUIScreenView view, ISceneLoader sceneLoader,
+            ILoadingScreenService loadingScreen, IRestartService restartService)
         {
             this.view = (IGameOverScreenView)view;
             this.view.RestartButton.onClick.AddListener(RestartButtonClick);
             this.view.ExitButton.onClick.AddListener(ExitButtonClick);
             this.sceneLoader = sceneLoader;
             this.loadingScreen = loadingScreen;
+            this.restartService = restartService;
         }
 
         public void Hide()
@@ -42,7 +44,7 @@ namespace AsteroidsProject.UI.GameOverScreen
         private void RestartButtonClick()
         {
             view.Hide();
-            Debug.Log("Restart");
+            restartService.Restart();
         }
     }
 }

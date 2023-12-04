@@ -113,7 +113,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<UpdateGameObjectViewPositionSystem>().AsSingle();
 
 #if UNITY_EDITOR
-            Container.BindInterfacesAndSelfTo<EcsWorldDebugSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<EcsSystemsDebugSystem>().AsSingle().WithArguments(new object[] { "Update Systems" });
 #endif
             Container.BindInterfacesAndSelfTo<EcsUpdateSystemsProvider>().AsSingle();
         }

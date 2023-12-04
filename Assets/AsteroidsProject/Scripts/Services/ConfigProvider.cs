@@ -5,10 +5,11 @@ using Zenject;
 using System.Runtime.Serialization;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using System;
 
 namespace AsteroidsProject.Services
 {
-    public class ConfigProvider : IConfigProvider, IInitializable
+    public class ConfigProvider : IConfigProvider, IInitializable, IDisposable
     {
         private const string gameConfigPath = "GameConfig";
         private readonly IComponentConverterService componentConverterService;
@@ -38,6 +39,11 @@ namespace AsteroidsProject.Services
             return cachedObjects.TryGetValue(configAddress, out var cachedObject)
                 ? cachedObject as T
                 : await ResourceLoading<T>(configAddress);
+        }
+
+        public void Dispose()
+        {
+            cachedObjects.Clear();
         }
 
         private async UniTask<T> ResourceLoading<T>(string configAddress) where T : class

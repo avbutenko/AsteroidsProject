@@ -5,6 +5,6 @@ namespace AsteroidsProject.Shared
 {
     public interface IEcsBindedSystemsProvider
     {
-        public IEnumerable<IEcsSystem> BindedSystems { get; }
+        public List<IEcsSystem> BindedSystems { get; }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using AsteroidsProject.Shared;
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 
 namespace AsteroidsProject.Services
 {
-    public class UIService : IUIService
+    public class UIService : IUIService, IDisposable
     {
         private readonly List<IUIScreenPresenterFactoryAsync> factories;
         private List<IUIScreenPresenter> presenters;
@@ -33,6 +34,12 @@ namespace AsteroidsProject.Services
         public T Get<T>() where T : IUIScreenPresenter
         {
             return (T)presenters.Find(x => x is T);
+        }
+
+        public void Dispose()
+        {
+            factories.Clear();
+            presenters.Clear();
         }
     }
 }

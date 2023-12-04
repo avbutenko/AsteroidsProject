@@ -1,11 +1,12 @@
 ﻿using AsteroidsProject.Shared;
 using LeoEcsPhysics;
 using Leopotam.EcsLite;
+using Leopotam.EcsLite.UnityEditor;
 using System.Collections.Generic;
 
 namespace AsteroidsProject.Services
 {
-    public class EcsSystemsRunner : IEcsSystemsRunner
+    public class EcsSystemsRunner : IEcsSystemsRunner, IRestartable
     {
         private readonly IEcsUpdateSystemsProvider updateSystemsProvider;
         private readonly IEcsFixedUpdateSystemsProvider fixedUpdateSystemsProvider;
@@ -25,6 +26,11 @@ namespace AsteroidsProject.Services
             EcsPhysicsEvents.ecsWorld = world;
             updateSystems = GetSystems(updateSystemsProvider.BindedSystems);
             fixedUpdateSystems = GetSystems(fixedUpdateSystemsProvider.BindedSystems);
+
+#if UNITY_EDITOR
+            updateSystems.Add(new EcsWorldDebugSystem());
+#endif
+
             updateSystems.Init();
             fixedUpdateSystems.Init();
         }
@@ -37,6 +43,12 @@ namespace AsteroidsProject.Services
         public void FixedTick()
         {
             fixedUpdateSystems?.Run();
+        }
+
+        public void Restart()
+        {
+            Dispose();
+            Initialize();
         }
 
         public virtual void Dispose()
@@ -62,7 +74,7 @@ namespace AsteroidsProject.Services
             }
         }
 
-        private IEcsSystems GetSystems(IEnumerable<IEcsSystem> bindedSystems)
+        private IEcsSystems GetSystems(List<IEcsSystem> bindedSystems)
         {
             var systems = new EcsSystems(world);
 

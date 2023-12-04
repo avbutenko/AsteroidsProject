@@ -1,11 +1,12 @@
 ﻿using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace AsteroidsProject.Services
 {
-    public class ActiveGOMappingService : IActiveGOMappingService
+    public class ActiveGOMappingService : IActiveGOMappingService, IDisposable, IRestartable
     {
         private readonly Dictionary<int, GoEntityPair> cachedObjects;
 
@@ -77,6 +78,24 @@ namespace AsteroidsProject.Services
                 result = null;
                 return false;
             }
+        }
+
+        public void Restart()
+        {
+            Dispose();
+        }
+
+        public void Dispose()
+        {
+            foreach (var pair in cachedObjects.Values)
+            {
+                if (pair.Go != null && pair.Go.TryGetComponent<IGameObjectLink>(out var goLink))
+                {
+                    goLink.Destroy();
+                }
+            }
+
+            cachedObjects.Clear();
         }
     }
 }
