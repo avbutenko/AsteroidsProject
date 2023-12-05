@@ -1,4 +1,5 @@
 using AsteroidsProject.Shared;
+using UniRx;
 using UnityEngine.SceneManagement;
 using Zenject;
 
@@ -22,8 +23,8 @@ namespace AsteroidsProject.UI.GamePauseScreen
 
         public void Initialize()
         {
-            this.view.ResumeButton.onClick.AddListener(ResumeButtonClick);
-            this.view.ExitButton.onClick.AddListener(ExitButtonClick);
+            view.ResumeButton.OnClickAsObservable().Subscribe(_ => ResumeButtonClick());
+            view.ExitButton.OnClickAsObservable().Subscribe(_ => ExitButtonClick());
         }
 
         public bool IsVisible => view.IsVisible;

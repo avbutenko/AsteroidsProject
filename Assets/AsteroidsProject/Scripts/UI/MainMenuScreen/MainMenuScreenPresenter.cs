@@ -1,4 +1,5 @@
 ﻿using AsteroidsProject.Shared;
+using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -20,8 +21,8 @@ namespace AsteroidsProject.UI.MainMenuScreen
 
         public void Initialize()
         {
-            this.view.StartButton.onClick.AddListener(StartButtonClick);
-            this.view.ExitButton.onClick.AddListener(ExitButtonClick);
+            view.StartButton.OnClickAsObservable().Subscribe(_ => StartButtonClick());
+            view.ExitButton.OnClickAsObservable().Subscribe(_ => ExitButtonClick());
         }
 
         public bool IsVisible => view.IsVisible;

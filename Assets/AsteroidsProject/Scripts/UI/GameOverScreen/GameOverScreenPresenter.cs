@@ -1,4 +1,5 @@
 ﻿using AsteroidsProject.Shared;
+using UniRx;
 using UnityEngine.SceneManagement;
 using Zenject;
 
@@ -22,8 +23,8 @@ namespace AsteroidsProject.UI.GameOverScreen
 
         public void Initialize()
         {
-            this.view.RestartButton.onClick.AddListener(RestartButtonClick);
-            this.view.ExitButton.onClick.AddListener(ExitButtonClick);
+            view.RestartButton.OnClickAsObservable().Subscribe(_ => RestartButtonClick());
+            view.ExitButton.OnClickAsObservable().Subscribe(_ => ExitButtonClick());
         }
 
         public bool IsVisible => view.IsVisible;
