@@ -25,6 +25,7 @@ using AsteroidsProject.GameLogic.Features.Events.OnOutOfLevel;
 using AsteroidsProject.GameLogic.Features.Events.OnSpawn;
 using AsteroidsProject.GameLogic.Features.Events.OnAttack;
 using AsteroidsProject.GameLogic.Features.Events.OnDeath;
+using AsteroidsProject.GameLogic.Features.Events.OnGamePause;
 using AsteroidsProject.GameLogic.Features.Events.OnGameOver;
 using AsteroidsProject.GameLogic.Features.Teleportation;
 using AsteroidsProject.GameLogic.Features.Lifetime;
@@ -69,6 +70,9 @@ namespace AsteroidsProject.CompositionRoot
             //Player Input
             Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<CAttackRequest>>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerInputSystem>().AsSingle();
+
+            //Pause
+            Container.BindInterfacesAndSelfTo<OnGamePauseSystem>().AsSingle();
 
             //Weapons
             Container.BindInterfacesAndSelfTo<BulletGunAttackSystem>().AsSingle();

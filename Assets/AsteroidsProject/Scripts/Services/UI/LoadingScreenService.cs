@@ -19,6 +19,8 @@ namespace AsteroidsProject.Services
             presenter.DontDestroyOnLoad();
         }
 
+        public bool IsVisible => presenter.IsVisible;
+
         public void Show()
         {
             presenter.Show();

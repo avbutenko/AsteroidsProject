@@ -13,6 +13,7 @@ namespace AsteroidsProject.Services
         {
             inputActions = new InputActions();
             inputActions.Ship.Enable();
+            inputActions.UI.Enable();
         }
 
         public bool IsAccelerating => inputActions.Ship.Accelerate.phase == InputActionPhase.Performed;
@@ -21,10 +22,12 @@ namespace AsteroidsProject.Services
         public float RotationDirection => inputActions.Ship.Rotate.ReadValue<float>();
         public bool IsPrimaryWeaponAttackPerformed => inputActions.Ship.PrimaryWeaponAttack.phase == InputActionPhase.Performed;
         public bool IsSecondaryWeaponAttackPerformed => inputActions.Ship.SecondaryWeaponAttack.phase == InputActionPhase.Performed;
+        public bool IsPausePerformed => inputActions.UI.Pause.phase == InputActionPhase.Performed;
 
         public void Dispose()
         {
             inputActions.Ship.Disable();
+            inputActions.UI.Disable();
         }
     }
 }

@@ -69,6 +69,11 @@ namespace AsteroidsProject.GameLogic.Features.PlayerInput
                     ref var secondaryWeaponPackedEntity = ref secondaryWeaponPool.Get(entity).WeaponEntity;
                     AddWeaponAttackRequest(secondaryWeaponPackedEntity);
                 }
+
+                if (inputService.IsPausePerformed)
+                {
+                    world.NewEntityWith<CGamePauseEvent>();
+                }
             }
         }
 

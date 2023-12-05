@@ -19,7 +19,9 @@ namespace AsteroidsProject.UI.MainMenuScreen
         public async UniTask<IUIScreenPresenter> CreateAsync()
         {
             var view = await viewFactory.CreateAsync(prefabAddress);
-            return instantiator.Instantiate<MainMenuScreenPresenter>(new object[] { view });
+            var presenter = instantiator.Instantiate<MainMenuScreenPresenter>(new object[] { view });
+            presenter.Initialize();
+            return presenter;
         }
     }
 }

@@ -11,6 +11,8 @@ namespace AsteroidsProject.UI.LoadingScreen
             this.view = view;
         }
 
+        public bool IsVisible => view.IsVisible;
+
         public void DontDestroyOnLoad()
         {
             view.DontDestroyOnLoad();

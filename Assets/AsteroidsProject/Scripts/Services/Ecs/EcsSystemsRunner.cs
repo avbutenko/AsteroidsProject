@@ -10,14 +10,17 @@ namespace AsteroidsProject.Services
     {
         private readonly IEcsUpdateSystemsProvider updateSystemsProvider;
         private readonly IEcsFixedUpdateSystemsProvider fixedUpdateSystemsProvider;
+        private readonly ITimeService timeService;
         private EcsWorld world;
         private IEcsSystems fixedUpdateSystems;
         private IEcsSystems updateSystems;
 
-        public EcsSystemsRunner(IEcsUpdateSystemsProvider updateSystemsProvider, IEcsFixedUpdateSystemsProvider fixedUpdateSystemsProvider)
+        public EcsSystemsRunner(IEcsUpdateSystemsProvider updateSystemsProvider, IEcsFixedUpdateSystemsProvider fixedUpdateSystemsProvider,
+            ITimeService timeService)
         {
             this.updateSystemsProvider = updateSystemsProvider;
             this.fixedUpdateSystemsProvider = fixedUpdateSystemsProvider;
+            this.timeService = timeService;
         }
 
         public void Initialize()
@@ -37,12 +40,18 @@ namespace AsteroidsProject.Services
 
         public void Tick()
         {
-            updateSystems?.Run();
+            if (!timeService.IsPaused)
+            {
+                updateSystems?.Run();
+            }
         }
 
         public void FixedTick()
         {
-            fixedUpdateSystems?.Run();
+            if (!timeService.IsPaused)
+            {
+                fixedUpdateSystems?.Run();
+            }
         }
 
         public void Restart()

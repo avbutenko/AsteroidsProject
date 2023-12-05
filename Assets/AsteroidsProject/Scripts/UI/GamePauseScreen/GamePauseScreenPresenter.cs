@@ -1,28 +1,28 @@
-﻿using AsteroidsProject.Shared;
+using AsteroidsProject.Shared;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-namespace AsteroidsProject.UI.GameOverScreen
+namespace AsteroidsProject.UI.GamePauseScreen
 {
-    public class GameOverScreenPresenter : IGameOverScreenPresenter, IInitializable
+    public class GamePauseScreenPresenter : IGamePauseScreenPresenter, IInitializable
     {
-        private readonly IGameOverScreenView view;
+        private readonly IGamePauseScreenView view;
+        private readonly ITimeService timeService;
         private readonly ISceneLoader sceneLoader;
         private readonly ILoadingScreenService loadingScreen;
-        private readonly IRestartService restartService;
 
-        public GameOverScreenPresenter(IUIScreenView view, ISceneLoader sceneLoader,
-            ILoadingScreenService loadingScreen, IRestartService restartService)
+        public GamePauseScreenPresenter(IUIScreenView view, ITimeService timeService, ISceneLoader sceneLoader,
+            ILoadingScreenService loadingScreen)
         {
-            this.view = (IGameOverScreenView)view;
+            this.view = (IGamePauseScreenView)view;
+            this.timeService = timeService;
             this.sceneLoader = sceneLoader;
             this.loadingScreen = loadingScreen;
-            this.restartService = restartService;
         }
 
         public void Initialize()
         {
-            this.view.RestartButton.onClick.AddListener(RestartButtonClick);
+            this.view.ResumeButton.onClick.AddListener(ResumeButtonClick);
             this.view.ExitButton.onClick.AddListener(ExitButtonClick);
         }
 
@@ -30,28 +30,29 @@ namespace AsteroidsProject.UI.GameOverScreen
 
         public void Hide()
         {
+            timeService.TooglePause();
             view.Hide();
         }
 
         public void Show()
         {
+            timeService.TooglePause();
             view.Show();
+        }
+
+        private void ResumeButtonClick()
+        {
+            Hide();
         }
 
         private async void ExitButtonClick()
         {
             view.Hide();
             loadingScreen.Show();
-            view.RestartButton.onClick.RemoveAllListeners();
+            view.ResumeButton.onClick.RemoveAllListeners();
             view.ExitButton.onClick.RemoveAllListeners();
             await sceneLoader.LoadSceneAsync("MainMenuScene", LoadSceneMode.Single, false);
             loadingScreen.Hide();
-        }
-
-        private void RestartButtonClick()
-        {
-            view.Hide();
-            restartService.Restart();
         }
     }
 }

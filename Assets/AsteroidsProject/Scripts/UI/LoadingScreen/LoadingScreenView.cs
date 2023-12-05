@@ -9,6 +9,8 @@ namespace AsteroidsProject.UI.LoadingScreen
     {
         [SerializeField] private CanvasGroup canvas;
 
+        public bool IsVisible => gameObject.activeSelf;
+
         public void Show()
         {
             gameObject.SetActive(true);
@@ -20,6 +22,11 @@ namespace AsteroidsProject.UI.LoadingScreen
             await Disappear();
         }
 
+        public void DontDestroyOnLoad()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+
         private async UniTask Disappear()
         {
             while (canvas.alpha > 0)
@@ -29,11 +36,6 @@ namespace AsteroidsProject.UI.LoadingScreen
             }
 
             gameObject.SetActive(false);
-        }
-
-        public void DontDestroyOnLoad()
-        {
-            DontDestroyOnLoad(gameObject);
         }
     }
 }

@@ -89,6 +89,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - MainMenuScene
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 54d033b284c3c4449828ba646c7156e0
+    m_Address: GamePauseScreen
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ddfbbdee1ce175948a9e559e33547383, type: 2}
   m_SchemaSet:

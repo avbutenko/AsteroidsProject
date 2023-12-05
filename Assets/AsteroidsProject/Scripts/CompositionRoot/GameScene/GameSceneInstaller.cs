@@ -5,6 +5,7 @@ using AsteroidsProject.MonoBehaviours;
 using AsteroidsProject.GameLogic.EntryPoint.GameScene;
 using AsteroidsProject.UI.MainMenuScreen;
 using AsteroidsProject.UI.GameOverScreen;
+using AsteroidsProject.UI.GamePauseScreen;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -45,6 +46,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<RestartService>().AsSingle();
             Container.BindInterfacesAndSelfTo<UIScreenViewFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<MainMenuScreenPresenterFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GamePauseScreenPresenterFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameOverScreenPresenterFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<UIService>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameSceneEntryPoint>().AsSingle();

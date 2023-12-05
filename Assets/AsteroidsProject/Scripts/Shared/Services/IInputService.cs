@@ -8,5 +8,6 @@ namespace AsteroidsProject.Shared
         public float RotationDirection { get; }
         public bool IsSecondaryWeaponAttackPerformed { get; }
         public bool IsPrimaryWeaponAttackPerformed { get; }
+        public bool IsPausePerformed { get; }
     }
 }

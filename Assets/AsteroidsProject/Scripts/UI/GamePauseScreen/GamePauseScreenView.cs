@@ -1,15 +1,15 @@
-﻿using AsteroidsProject.Shared;
+using AsteroidsProject.Shared;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AsteroidsProject.MonoBehaviours
+namespace AsteroidsProject.UI.GamePauseScreen
 {
-    public class GameOverScreenView : MonoBehaviour, IGameOverScreenView
+    public class GamePauseScreenView : MonoBehaviour, IGamePauseScreenView
     {
-        [SerializeField] private Button restartButton;
+        [SerializeField] private Button resumeButton;
         [SerializeField] private Button exitButton;
 
-        public Button RestartButton => restartButton;
+        public Button ResumeButton => resumeButton;
         public Button ExitButton => exitButton;
 
         public bool IsVisible => gameObject.activeSelf;

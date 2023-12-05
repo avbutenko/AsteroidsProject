@@ -1,10 +1,11 @@
 ﻿using AsteroidsProject.Shared;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 namespace AsteroidsProject.UI.MainMenuScreen
 {
-    public class MainMenuScreenPresenter : IMainMenuScreenPresenter
+    public class MainMenuScreenPresenter : IMainMenuScreenPresenter, IInitializable
     {
         private readonly IMainMenuScreenView view;
         private readonly ISceneLoader sceneLoader;
@@ -13,11 +14,17 @@ namespace AsteroidsProject.UI.MainMenuScreen
         public MainMenuScreenPresenter(IUIScreenView view, ISceneLoader sceneLoader, ILoadingScreenService loadingScreen)
         {
             this.view = (IMainMenuScreenView)view;
-            this.view.StartButton.onClick.AddListener(StartButtonClick);
-            this.view.ExitButton.onClick.AddListener(ExitButtonClick);
             this.sceneLoader = sceneLoader;
             this.loadingScreen = loadingScreen;
         }
+
+        public void Initialize()
+        {
+            this.view.StartButton.onClick.AddListener(StartButtonClick);
+            this.view.ExitButton.onClick.AddListener(ExitButtonClick);
+        }
+
+        public bool IsVisible => view.IsVisible;
 
         public void Hide()
         {

@@ -12,6 +12,8 @@ namespace AsteroidsProject.MonoBehaviours
         public Button StartButton => startButton;
         public Button ExitButton => exitButton;
 
+        public bool IsVisible => gameObject.activeSelf;
+
         public void Hide()
         {
             gameObject.SetActive(false);
