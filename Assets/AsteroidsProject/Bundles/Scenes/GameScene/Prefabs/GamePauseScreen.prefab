@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 7185109299779551402}
   - component: {fileID: 5353760838731346111}
   - component: {fileID: 1875140009710533295}
-  - component: {fileID: 6421753908920302242}
+  - component: {fileID: 1679332250350223054}
   m_Layer: 5
   m_Name: GamePauseScreen
   m_TagString: Untagged
@@ -633,7 +633,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6421753908920302242
+--- !u!114 &1679332250350223054
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -642,7 +642,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5844257420702885730}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bf90a8989534f24e91a6ce97527e4c1, type: 3}
+  m_Script: {fileID: 11500000, guid: e6a903530d12f8e4fbd71a42693a09f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   resumeButton: {fileID: 1646482237483911259}

@@ -1,31 +1,41 @@
 ﻿using AsteroidsProject.Shared;
+using Cysharp.Threading.Tasks;
+using System;
+using UnityEngine;
 
 namespace AsteroidsProject.UI.LoadingScreen
 {
-    public class LoadingScreenPresenter : ILoadingScreenPresenter
+    public class LoadingScreenPresenter : MonoBehaviour, ILoadingScreenPresenter
     {
-        private readonly ILoadingScreenView view;
+        [SerializeField] private CanvasGroup canvas;
 
-        public LoadingScreenPresenter(ILoadingScreenView view)
-        {
-            this.view = view;
-        }
-
-        public bool IsVisible => view.IsVisible;
+        public bool IsVisible => gameObject.activeSelf;
 
         public void DontDestroyOnLoad()
         {
-            view.DontDestroyOnLoad();
+            DontDestroyOnLoad(gameObject);
         }
 
-        public void Hide()
+        public async void Hide()
         {
-            view.Hide();
+            await Disappear();
         }
 
         public void Show()
         {
-            view.Show();
+            gameObject.SetActive(true);
+            canvas.alpha = 1;
+        }
+
+        private async UniTask Disappear()
+        {
+            while (canvas.alpha > 0)
+            {
+                canvas.alpha -= 0.03f;
+                await UniTask.Delay(TimeSpan.FromSeconds(0.03f), ignoreTimeScale: false);
+            }
+
+            gameObject.SetActive(false);
         }
     }
 }

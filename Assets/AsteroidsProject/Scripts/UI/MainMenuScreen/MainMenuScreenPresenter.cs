@@ -2,46 +2,55 @@
 using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Zenject;
 
 namespace AsteroidsProject.UI.MainMenuScreen
 {
-    public class MainMenuScreenPresenter : IMainMenuScreenPresenter, IInitializable
+    public class MainMenuScreenPresenter : MonoBehaviour, IMainMenuScreenPresenter
     {
-        private readonly IMainMenuScreenView view;
-        private readonly ISceneLoader sceneLoader;
-        private readonly ILoadingScreenService loadingScreen;
+        [SerializeField] private Button startButton;
+        [SerializeField] private Button exitButton;
 
-        public MainMenuScreenPresenter(IUIScreenView view, ISceneLoader sceneLoader, ILoadingScreenService loadingScreen)
+        private ISceneLoader sceneLoader;
+        private ILoadingScreenService loadingScreen;
+        private CompositeDisposable trash;
+
+        [Inject]
+        public void Construct(ISceneLoader sceneLoader, ILoadingScreenService loadingScreen)
         {
-            this.view = (IMainMenuScreenView)view;
             this.sceneLoader = sceneLoader;
             this.loadingScreen = loadingScreen;
         }
 
-        public void Initialize()
+        public void Awake()
         {
-            view.StartButton.OnClickAsObservable().Subscribe(_ => StartButtonClick());
-            view.ExitButton.OnClickAsObservable().Subscribe(_ => ExitButtonClick());
+            trash = new CompositeDisposable();
+            startButton.OnClickAsObservable().Subscribe(_ => StartButtonClick()).AddTo(trash);
+            exitButton.OnClickAsObservable().Subscribe(_ => ExitButtonClick()).AddTo(trash);
+            Hide();
         }
 
-        public bool IsVisible => view.IsVisible;
+        public bool IsVisible => gameObject.activeSelf;
 
         public void Hide()
         {
-            view.Hide();
+            gameObject.SetActive(false);
         }
 
         public void Show()
         {
-            view.Show();
+            gameObject.SetActive(true);
+        }
+
+        public void OnDestroy()
+        {
+            trash.Dispose();
         }
 
         private async void StartButtonClick()
         {
             loadingScreen.Show();
-            view.StartButton.onClick.RemoveAllListeners();
-            view.ExitButton.onClick.RemoveAllListeners();
             await sceneLoader.LoadSceneAsync("GameScene", LoadSceneMode.Single, false);
             loadingScreen.Hide();
         }

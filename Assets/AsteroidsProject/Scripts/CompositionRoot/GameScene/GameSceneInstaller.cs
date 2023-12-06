@@ -44,8 +44,6 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<ConfigProvider>().AsSingle();
             Container.Bind(typeof(IEcsSystemsRunner), typeof(IRestartable)).To<EcsSystemsRunner>().AsSingle();
             Container.BindInterfacesAndSelfTo<RestartService>().AsSingle();
-            Container.BindInterfacesAndSelfTo<UIScreenViewFactory>().AsSingle();
-            Container.BindInterfacesAndSelfTo<MainMenuScreenPresenterFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<GamePauseScreenPresenterFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameOverScreenPresenterFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<UIService>().AsSingle();

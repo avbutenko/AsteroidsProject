@@ -1,57 +1,83 @@
 ﻿using AsteroidsProject.Shared;
 using UniRx;
 using UnityEngine.SceneManagement;
+using UniRx.Extensions;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace AsteroidsProject.UI.GameOverScreen
 {
-    public class GameOverScreenPresenter : IGameOverScreenPresenter, IInitializable
+    public class GameOverScreenPresenter : MonoBehaviour, IGameOverScreenPresenter
     {
-        private readonly IGameOverScreenView view;
-        private readonly ISceneLoader sceneLoader;
-        private readonly ILoadingScreenService loadingScreen;
-        private readonly IRestartService restartService;
+        [SerializeField] private Button restartButton;
+        [SerializeField] private Button exitButton;
+        [SerializeField] private TextMeshProUGUI score;
 
-        public GameOverScreenPresenter(IUIScreenView view, ISceneLoader sceneLoader,
+        private ISceneLoader sceneLoader;
+        private ILoadingScreenService loadingScreen;
+        private IRestartService restartService;
+        private IGameOverScreenModel model;
+        private CompositeDisposable trash;
+
+        [Inject]
+        public void Construct(IGameOverScreenModel model, ISceneLoader sceneLoader,
             ILoadingScreenService loadingScreen, IRestartService restartService)
         {
-            this.view = (IGameOverScreenView)view;
+            this.model = model;
             this.sceneLoader = sceneLoader;
             this.loadingScreen = loadingScreen;
             this.restartService = restartService;
         }
 
-        public void Initialize()
+        public void Awake()
         {
-            view.RestartButton.OnClickAsObservable().Subscribe(_ => RestartButtonClick());
-            view.ExitButton.OnClickAsObservable().Subscribe(_ => ExitButtonClick());
+            trash = new CompositeDisposable();
+            restartButton.OnClickAsObservable().Subscribe(_ => RestartButtonClick()).AddTo(trash);
+            exitButton.OnClickAsObservable().Subscribe(_ => ExitButtonClick()).AddTo(trash);
+            Hide();
         }
 
-        public bool IsVisible => view.IsVisible;
+        public void Start()
+        {
+            model.Score.SubscribeToText(score).AddTo(trash);
+        }
+
+        public bool IsVisible => gameObject.activeSelf;
+
+        public IReactiveProperty<string> Score
+        {
+            get => model.Score;
+            set => model.Score.Value = value.Value;
+        }
 
         public void Hide()
         {
-            view.Hide();
+            gameObject.SetActive(false);
         }
 
         public void Show()
         {
-            view.Show();
+            gameObject.SetActive(true);
+        }
+
+        public void OnDestroy()
+        {
+            trash.Dispose();
         }
 
         private async void ExitButtonClick()
         {
-            view.Hide();
+            Hide();
             loadingScreen.Show();
-            view.RestartButton.onClick.RemoveAllListeners();
-            view.ExitButton.onClick.RemoveAllListeners();
             await sceneLoader.LoadSceneAsync("MainMenuScene", LoadSceneMode.Single, false);
             loadingScreen.Hide();
         }
 
         private void RestartButtonClick()
         {
-            view.Hide();
+            Hide();
             restartService.Restart();
         }
     }

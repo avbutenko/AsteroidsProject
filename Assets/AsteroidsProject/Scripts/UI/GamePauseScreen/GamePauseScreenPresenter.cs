@@ -1,57 +1,67 @@
 using AsteroidsProject.Shared;
 using UniRx;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Zenject;
 
 namespace AsteroidsProject.UI.GamePauseScreen
 {
-    public class GamePauseScreenPresenter : IGamePauseScreenPresenter, IInitializable
+    public class GamePauseScreenPresenter : MonoBehaviour, IGamePauseScreenPresenter
     {
-        private readonly IGamePauseScreenView view;
-        private readonly ITimeService timeService;
-        private readonly ISceneLoader sceneLoader;
-        private readonly ILoadingScreenService loadingScreen;
+        [SerializeField] private Button resumeButton;
+        [SerializeField] private Button exitButton;
 
-        public GamePauseScreenPresenter(IUIScreenView view, ITimeService timeService, ISceneLoader sceneLoader,
-            ILoadingScreenService loadingScreen)
+        private ITimeService timeService;
+        private ISceneLoader sceneLoader;
+        private ILoadingScreenService loadingScreen;
+        private CompositeDisposable trash;
+
+        [Inject]
+        public void Construct(ITimeService timeService, ISceneLoader sceneLoader, ILoadingScreenService loadingScreen)
         {
-            this.view = (IGamePauseScreenView)view;
             this.timeService = timeService;
             this.sceneLoader = sceneLoader;
             this.loadingScreen = loadingScreen;
         }
 
-        public void Initialize()
+        public void Awake()
         {
-            view.ResumeButton.OnClickAsObservable().Subscribe(_ => ResumeButtonClick());
-            view.ExitButton.OnClickAsObservable().Subscribe(_ => ExitButtonClick());
+            trash = new CompositeDisposable();
+            resumeButton.OnClickAsObservable().Subscribe(_ => ResumeButtonClick()).AddTo(trash);
+            exitButton.OnClickAsObservable().Subscribe(_ => ExitButtonClick()).AddTo(trash);
+            Hide();
         }
 
-        public bool IsVisible => view.IsVisible;
+        public bool IsVisible => gameObject.activeSelf;
 
         public void Hide()
         {
-            timeService.TooglePause();
-            view.Hide();
+            gameObject.SetActive(false);
         }
 
         public void Show()
         {
+            gameObject.SetActive(true);
             timeService.TooglePause();
-            view.Show();
+        }
+
+        public void OnDestroy()
+        {
+            trash.Dispose();
         }
 
         private void ResumeButtonClick()
         {
+            timeService.TooglePause();
             Hide();
         }
 
         private async void ExitButtonClick()
         {
-            view.Hide();
+            Hide();
+            timeService.TooglePause();
             loadingScreen.Show();
-            view.ResumeButton.onClick.RemoveAllListeners();
-            view.ExitButton.onClick.RemoveAllListeners();
             await sceneLoader.LoadSceneAsync("MainMenuScene", LoadSceneMode.Single, false);
             loadingScreen.Hide();
         }
