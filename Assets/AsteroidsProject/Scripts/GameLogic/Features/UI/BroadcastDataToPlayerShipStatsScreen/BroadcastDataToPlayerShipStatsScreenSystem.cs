@@ -1,6 +1,7 @@
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
+using System;
 using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.UI.BroadcastDataToPlayerShipStatsScreen
@@ -53,7 +54,7 @@ namespace AsteroidsProject.GameLogic.Features.UI.BroadcastDataToPlayerShipStatsS
                 screenPresenter.Health = health;
                 screenPresenter.Position = position;
                 rotation.ToAngleAxis(out var angle, out axis);
-                screenPresenter.Rotation = angle;
+                screenPresenter.Rotation = angle; ;
                 screenPresenter.Velocity = velocity.magnitude;
             }
         }

@@ -41,15 +41,15 @@ namespace AsteroidsProject.UI.GameOverScreen
 
         public void Start()
         {
-            model.Score.SubscribeToText(score).AddTo(trash);
+            model.Score.DistinctUntilChanged().SubscribeToText(score).AddTo(trash);
         }
 
         public bool IsVisible => gameObject.activeSelf;
 
-        public IReactiveProperty<int> Score
+        public int Score
         {
-            get => model.Score;
-            set => model.Score.Value = value.Value;
+            get => model.Score.Value;
+            set => model.Score.Value = value;
         }
 
         public void Hide()

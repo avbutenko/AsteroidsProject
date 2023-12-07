@@ -33,8 +33,6 @@ namespace AsteroidsProject.GameLogic.Features.Ammo.ChangeAmount
                 {
                     ammoPool.Add(entity).Value = deltaValue;
                 }
-
-                requestPool.Del(entity);
             }
         }
     }

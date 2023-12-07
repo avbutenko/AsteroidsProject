@@ -12,6 +12,7 @@ namespace AsteroidsProject.GameLogic.Features.UI.BroadcastGameOverEventToUI
         private EcsPool<CGameOverEvent> eventPool;
         private IGameOverScreenPresenter gameOverScreen;
         private IPlayerShipStatsScreenPresenter shipStatsScreen;
+        private IPlayerSecondaryWeaponScreenPresenter secondaryWeaponScreen;
 
         public BroadcastGameOverEventToUISystem(IUIService uiService)
         {
@@ -25,6 +26,7 @@ namespace AsteroidsProject.GameLogic.Features.UI.BroadcastGameOverEventToUI
             eventPool = world.GetPool<CGameOverEvent>();
             gameOverScreen = uiService.Get<IGameOverScreenPresenter>();
             shipStatsScreen = uiService.Get<IPlayerShipStatsScreenPresenter>();
+            secondaryWeaponScreen = uiService.Get<IPlayerSecondaryWeaponScreenPresenter>();
         }
 
         public void Run(IEcsSystems systems)
@@ -39,6 +41,11 @@ namespace AsteroidsProject.GameLogic.Features.UI.BroadcastGameOverEventToUI
                 if (shipStatsScreen.IsVisible)
                 {
                     shipStatsScreen.Hide();
+                }
+
+                if (secondaryWeaponScreen.IsVisible)
+                {
+                    secondaryWeaponScreen.Hide();
                 }
 
                 eventPool.Del(entity);

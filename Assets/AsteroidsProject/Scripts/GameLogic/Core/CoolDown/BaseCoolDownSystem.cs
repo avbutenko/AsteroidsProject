@@ -7,7 +7,7 @@ namespace AsteroidsProject.GameLogic.Core
     public abstract class BaseCoolDownSystem<T> : IEcsInitSystem, IEcsRunSystem where T : struct, IHaveTimer
     {
         private readonly ITimeService timeService;
-        private EcsWorld world;
+        protected EcsWorld world;
         private EcsFilter filter;
         private EcsPool<T> coolDownPool;
 
@@ -16,7 +16,7 @@ namespace AsteroidsProject.GameLogic.Core
             this.timeService = timeService;
         }
 
-        public void Init(IEcsSystems systems)
+        public virtual void Init(IEcsSystems systems)
         {
             world = systems.GetWorld();
             filter = world.Filter<T>().End();
@@ -32,9 +32,14 @@ namespace AsteroidsProject.GameLogic.Core
 
                 if (coolDown.Timer <= 0)
                 {
-                    coolDownPool.Del(entity);
+                    OnTimeIsUp(entity);
                 }
             }
+        }
+
+        protected virtual void OnTimeIsUp(int entity)
+        {
+            coolDownPool.Del(entity);
         }
     }
 }

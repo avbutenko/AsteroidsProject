@@ -25,7 +25,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Weapons
             this.activeGOMappingService = activeGOMappingService;
         }
 
-        public void Init(IEcsSystems systems)
+        public virtual void Init(IEcsSystems systems)
         {
             world = systems.GetWorld();
             filter = world.Filter<TRequest>().End();

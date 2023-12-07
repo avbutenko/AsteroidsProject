@@ -2,10 +2,10 @@
     "Components": [
         {
             "CLaserGunTag": {},
-            "CAmmo": 1,
+            "CAmmo": 3,
             "CAmmoMax": 3,
             "CAmmoAutoRefill": {
-                "Timer": 20,
+                "Timer": 10,
                 "Amount": 1
             },
             "COnSpawn": {

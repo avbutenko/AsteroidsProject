@@ -4,6 +4,8 @@ using UniRx;
 using UnityEngine;
 using UniRx.Extensions;
 using Zenject;
+using System;
+using UnityEngine.UIElements;
 
 namespace AsteroidsProject.UI.PlayerShipStatsScreen
 {
@@ -31,10 +33,10 @@ namespace AsteroidsProject.UI.PlayerShipStatsScreen
 
         public void Start()
         {
-            model.Health.SubscribeToText(health).AddTo(trash);
-            model.Position.SubscribeToText(position).AddTo(trash);
-            model.Rotation.SubscribeToText(rotation).AddTo(trash);
-            model.Velocity.SubscribeToText(velocity).AddTo(trash);
+            model.Health.DistinctUntilChanged().SubscribeToText(health).AddTo(trash);
+            model.Position.DistinctUntilChanged().SubscribeToText(position).AddTo(trash);
+            model.Rotation.DistinctUntilChanged().SubscribeToText(rotation).AddTo(trash);
+            model.Velocity.DistinctUntilChanged().SubscribeToText(velocity).AddTo(trash);
         }
 
         public int Health
@@ -50,12 +52,12 @@ namespace AsteroidsProject.UI.PlayerShipStatsScreen
         public float Rotation
         {
             get => model.Rotation.Value;
-            set => model.Rotation.Value = value;
+            set => model.Rotation.Value = (float)Math.Round(value, 2);
         }
         public float Velocity
         {
             get => model.Velocity.Value;
-            set => model.Velocity.Value = value;
+            set => model.Velocity.Value = (float)Math.Round(value, 2);
         }
 
         public bool IsVisible => gameObject.activeSelf;

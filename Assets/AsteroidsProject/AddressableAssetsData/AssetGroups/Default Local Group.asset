@@ -101,6 +101,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - InGameScene
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 485fe4251b2dd2a44bf178b139280761
+    m_Address: PlayerSecondaryWeaponScreen
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ddfbbdee1ce175948a9e559e33547383, type: 2}
   m_SchemaSet:

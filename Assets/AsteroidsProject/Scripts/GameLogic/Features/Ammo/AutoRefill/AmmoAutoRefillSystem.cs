@@ -1,4 +1,4 @@
-using AsteroidsProject.GameLogic.Core;
+﻿using AsteroidsProject.GameLogic.Core;
 using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.Ammo.AutoRefill
@@ -8,32 +8,29 @@ namespace AsteroidsProject.GameLogic.Features.Ammo.AutoRefill
         private EcsWorld world;
         private EcsFilter filter;
         private EcsPool<CAmmoAutoRefill> paramsPool;
-        private EcsPool<CAmmoAutoRefillCoolDown> coolDownPool;
-        private EcsPool<CChangeAmmoAmountRequest> requestPool;
+        private EcsPool<CAmmoAutoRefillRequest> ammoRefillRequestPool;
+        private EcsPool<CChangeAmmoAmountRequest> changeAmmoRequestPool;
 
         public void Init(IEcsSystems systems)
         {
             world = systems.GetWorld();
 
             filter = world.Filter<CAmmoAutoRefill>()
-                          .Exc<CChangeAmmoAmountRequest>()
-                          .Exc<CAmmoAutoRefillCoolDown>()
+                          .Inc<CAmmoAutoRefillRequest>()
                           .End();
 
             paramsPool = world.GetPool<CAmmoAutoRefill>();
-            coolDownPool = world.GetPool<CAmmoAutoRefillCoolDown>();
-            requestPool = world.GetPool<CChangeAmmoAmountRequest>();
+            ammoRefillRequestPool = world.GetPool<CAmmoAutoRefillRequest>();
+            changeAmmoRequestPool = world.GetPool<CChangeAmmoAmountRequest>();
         }
 
         public void Run(IEcsSystems systems)
         {
             foreach (var entity in filter)
             {
-                ref var timer = ref paramsPool.Get(entity).Timer;
                 ref var amount = ref paramsPool.Get(entity).Amount;
-
-                requestPool.Add(entity).Value = amount;
-                coolDownPool.Add(entity).Value = timer;
+                changeAmmoRequestPool.Add(entity).Value = amount;
+                ammoRefillRequestPool.Del(entity);
             }
         }
     }

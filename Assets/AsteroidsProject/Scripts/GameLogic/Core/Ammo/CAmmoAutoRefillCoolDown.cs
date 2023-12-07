@@ -1,6 +1,6 @@
 using Assets.AsteroidsProject.Scripts.Shared;
 
-namespace AsteroidsProject.GameLogic.Features.Ammo.AutoRefill
+namespace AsteroidsProject.GameLogic.Core
 {
     public struct CAmmoAutoRefillCoolDown : IHaveTimer
     {

@@ -1,4 +1,9 @@
-﻿namespace AsteroidsProject.Shared
+﻿using UniRx;
+
+namespace AsteroidsProject.Shared
 {
-    public interface IGameOverScreenModel : IHaveScoreRx { }
+    public interface IGameOverScreenModel
+    {
+        public IReactiveProperty<int> Score { get; }
+    }
 }

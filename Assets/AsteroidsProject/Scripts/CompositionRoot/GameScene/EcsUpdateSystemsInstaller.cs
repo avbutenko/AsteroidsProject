@@ -28,6 +28,7 @@ using AsteroidsProject.GameLogic.Features.Events.OnDeath;
 using AsteroidsProject.GameLogic.Features.UI.BroadcastGamePauseEventToUI;
 using AsteroidsProject.GameLogic.Features.UI.BroadcastGameOverEventToUI;
 using AsteroidsProject.GameLogic.Features.UI.BroadcastDataToPlayerShipStatsScreen;
+using AsteroidsProject.GameLogic.Features.UI.BroadcastDataToPlayerSecondaryWeaponScreen;
 using AsteroidsProject.GameLogic.Features.Teleportation;
 using AsteroidsProject.GameLogic.Features.Lifetime;
 using AsteroidsProject.GameLogic.Features.MaxVelocityMagnitude;
@@ -41,7 +42,6 @@ using AsteroidsProject.GameLogic.Features.Ammo.ChangeAmount;
 using AsteroidsProject.GameLogic.Features.InvalidOwner;
 using AsteroidsProject.GameLogic.Features.InvalidGO;
 using AsteroidsProject.Services;
-
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -84,8 +84,10 @@ namespace AsteroidsProject.CompositionRoot
 
             //Ammo
             Container.BindInterfacesAndSelfTo<ChangeAmmoAmountSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<AmmoAutoRefillSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CheckForAmmoAutoRefillSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<EcsDeleteHereSystem<CChangeAmmoAmountRequest>>().AsSingle();
             Container.BindInterfacesAndSelfTo<AmmoAutoRefillCoolDownSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AmmoAutoRefillSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<AmmoMaxSystem>().AsSingle();
 
             //Movement
@@ -120,6 +122,7 @@ namespace AsteroidsProject.CompositionRoot
 
             //UI
             Container.BindInterfacesAndSelfTo<BroadcastDataToPlayerShipStatsScreenSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<BroadcastDataToPlayerSecondaryWeaponScreenSystem>().AsSingle();
 
 #if UNITY_EDITOR
             Container.BindInterfacesAndSelfTo<EcsSystemsDebugSystem>().AsSingle().WithArguments(new object[] { "Update Systems" });

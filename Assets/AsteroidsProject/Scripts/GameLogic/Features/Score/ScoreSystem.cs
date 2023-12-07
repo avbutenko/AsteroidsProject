@@ -39,7 +39,7 @@ namespace AsteroidsProject.GameLogic.Features.Score
                 {
                     ref var currentScore = ref scorePool.Get(scoreHolderEntity).Value;
                     currentScore += deltaValue;
-                    gameOverScreenPresenter.Score.Value = currentScore;
+                    gameOverScreenPresenter.Score = currentScore;
                 }
 
                 requestPool.Del(requestEntity);
