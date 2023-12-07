@@ -5,12 +5,10 @@ namespace AsteroidsProject.Services
 {
     public class TimeService : ITimeService
     {
-        private float fixedDeltaTime;
         private float timeScale;
 
         public TimeService()
         {
-            fixedDeltaTime = Time.fixedDeltaTime;
             timeScale = Time.timeScale;
         }
 
@@ -28,8 +26,6 @@ namespace AsteroidsProject.Services
             {
                 Time.timeScale = timeScale;
             }
-
-            Time.fixedDeltaTime = fixedDeltaTime * Time.timeScale;
         }
     }
 }
