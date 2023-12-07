@@ -46,7 +46,7 @@ namespace AsteroidsProject.UI.GameOverScreen
 
         public bool IsVisible => gameObject.activeSelf;
 
-        public IReactiveProperty<string> Score
+        public IReactiveProperty<int> Score
         {
             get => model.Score;
             set => model.Score.Value = value.Value;

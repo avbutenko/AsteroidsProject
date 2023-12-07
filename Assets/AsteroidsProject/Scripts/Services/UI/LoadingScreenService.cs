@@ -5,10 +5,10 @@ namespace AsteroidsProject.Services
 {
     public class LoadingScreenService : ILoadingScreenService, IInitializable
     {
-        private readonly IUIScreenPresenterFactory factory;
+        private readonly IUIScreenFactory factory;
         private ILoadingScreenPresenter presenter;
 
-        public LoadingScreenService(IUIScreenPresenterFactory factory)
+        public LoadingScreenService(IUIScreenFactory factory)
         {
             this.factory = factory;
         }

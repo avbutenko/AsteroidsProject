@@ -2,17 +2,18 @@ using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.Events.OnGameOver
+namespace AsteroidsProject.GameLogic.Features.UI.BroadcastGameOverEventToUI
 {
-    public class OnGameOverSystem : IEcsInitSystem, IEcsRunSystem
+    public class BroadcastGameOverEventToUISystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly IUIService uiService;
         private EcsWorld world;
         private EcsFilter filter;
         private EcsPool<CGameOverEvent> eventPool;
         private IGameOverScreenPresenter gameOverScreen;
+        private IPlayerShipStatsScreenPresenter shipStatsScreen;
 
-        public OnGameOverSystem(IUIService uiService)
+        public BroadcastGameOverEventToUISystem(IUIService uiService)
         {
             this.uiService = uiService;
         }
@@ -23,6 +24,7 @@ namespace AsteroidsProject.GameLogic.Features.Events.OnGameOver
             filter = world.Filter<CGameOverEvent>().End();
             eventPool = world.GetPool<CGameOverEvent>();
             gameOverScreen = uiService.Get<IGameOverScreenPresenter>();
+            shipStatsScreen = uiService.Get<IPlayerShipStatsScreenPresenter>();
         }
 
         public void Run(IEcsSystems systems)
@@ -32,6 +34,11 @@ namespace AsteroidsProject.GameLogic.Features.Events.OnGameOver
                 if (!gameOverScreen.IsVisible)
                 {
                     gameOverScreen.Show();
+                }
+
+                if (shipStatsScreen.IsVisible)
+                {
+                    shipStatsScreen.Hide();
                 }
 
                 eventPool.Del(entity);

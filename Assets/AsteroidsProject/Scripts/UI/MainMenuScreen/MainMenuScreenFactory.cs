@@ -5,13 +5,13 @@ using Zenject;
 
 namespace AsteroidsProject.UI.MainMenuScreen
 {
-    public class MainMenuScreenPresenterFactory : IUIScreenPresenterFactoryAsync
+    public class MainMenuScreenFactory : IUIScreenFactoryAsync
     {
         private const string prefabAddress = "MainMenuScreen";
         private readonly IAssetProvider assetProvider;
         private readonly DiContainer diContainer;
 
-        public MainMenuScreenPresenterFactory(DiContainer diContainer, IAssetProvider assetProvider)
+        public MainMenuScreenFactory(DiContainer diContainer, IAssetProvider assetProvider)
         {
             this.diContainer = diContainer;
             this.assetProvider = assetProvider;

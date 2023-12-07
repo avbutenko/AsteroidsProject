@@ -2,9 +2,9 @@ using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.Events.OnGamePause
+namespace AsteroidsProject.GameLogic.Features.UI.BroadcastGamePauseEventToUI
 {
-    public class OnGamePauseSystem : IEcsInitSystem, IEcsRunSystem
+    public class BroadcastGamePauseEventToUISystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly IUIService uiService;
         private EcsWorld world;
@@ -12,7 +12,7 @@ namespace AsteroidsProject.GameLogic.Features.Events.OnGamePause
         private EcsPool<CGamePauseEvent> eventPool;
         private IGamePauseScreenPresenter pauseScreen;
 
-        public OnGamePauseSystem(IUIService uiService)
+        public BroadcastGamePauseEventToUISystem(IUIService uiService)
         {
             this.uiService = uiService;
         }

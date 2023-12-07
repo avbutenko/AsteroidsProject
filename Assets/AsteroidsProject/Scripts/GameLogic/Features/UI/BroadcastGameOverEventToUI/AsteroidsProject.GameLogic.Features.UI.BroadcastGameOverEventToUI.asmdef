@@ -1,6 +1,6 @@
 {
-    "name": "AsteroidsProject.GameLogic.Features.Events.OnGamePause",
-    "rootNamespace": "AsteroidsProject.GameLogic.Features.Events.OnGamePause",
+    "name": "AsteroidsProject.GameLogic.Features.UI.BroadcastGameOverEventToUI",
+    "rootNamespace": "AsteroidsProject.GameLogic.Features.UI.BroadcastGameOverEventToUI",
     "references": [
         "GUID:e59bf9fc7d5a44b18a819a92edd46163",
         "GUID:82e47fb6cfee41b4988fa1b318ce1490",

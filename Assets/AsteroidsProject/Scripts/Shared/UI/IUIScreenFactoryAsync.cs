@@ -2,7 +2,7 @@
 
 namespace AsteroidsProject.Shared
 {
-    public interface IUIScreenPresenterFactoryAsync
+    public interface IUIScreenFactoryAsync
     {
         public UniTask<IUIScreenPresenter> CreateAsync();
     }

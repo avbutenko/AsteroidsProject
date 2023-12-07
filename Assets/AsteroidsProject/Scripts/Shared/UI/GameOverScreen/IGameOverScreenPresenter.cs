@@ -1,4 +1,4 @@
 ﻿namespace AsteroidsProject.Shared
 {
-    public interface IGameOverScreenPresenter : IUIScreenPresenter, IHaveScore { }
+    public interface IGameOverScreenPresenter : IUIScreenPresenter, IHaveScoreRx { }
 }

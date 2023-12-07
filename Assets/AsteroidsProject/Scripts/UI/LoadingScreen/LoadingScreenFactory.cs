@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace AsteroidsProject.UI.LoadingScreen
 {
-    public class LoadingScreenPresenterFactory : IUIScreenPresenterFactory
+    public class LoadingScreenFactory : IUIScreenFactory
     {
         private const string prefabAddress = "LoadingScreen";
 

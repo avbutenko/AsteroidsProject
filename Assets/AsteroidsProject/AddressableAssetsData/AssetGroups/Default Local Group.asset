@@ -95,6 +95,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - InGameScene
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4b78a9638aa9ec14ebdf7d8ef980b224
+    m_Address: PlayerShipStatsScreen
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ddfbbdee1ce175948a9e559e33547383, type: 2}
   m_SchemaSet:

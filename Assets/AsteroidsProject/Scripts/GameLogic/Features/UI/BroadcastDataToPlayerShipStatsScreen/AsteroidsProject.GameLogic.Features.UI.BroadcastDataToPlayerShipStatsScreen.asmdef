@@ -1,10 +1,10 @@
 {
-    "name": "AsteroidsProject.GameLogic.Features.Events.OnGameOver",
-    "rootNamespace": "AsteroidsProject.GameLogic.Features.Events.OnGameOver",
+    "name": "AsteroidsProject.GameLogic.Features.UI.BroadcastDataToPlayerShipStatsScreen",
+    "rootNamespace": "AsteroidsProject.GameLogic.Features.UI.BroadcastDataToPlayerShipStatsScreen",
     "references": [
         "GUID:e59bf9fc7d5a44b18a819a92edd46163",
-        "GUID:82e47fb6cfee41b4988fa1b318ce1490",
-        "GUID:02e9d0c052fbf484388102198213ee39"
+        "GUID:02e9d0c052fbf484388102198213ee39",
+        "GUID:82e47fb6cfee41b4988fa1b318ce1490"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

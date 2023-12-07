@@ -1,18 +1,17 @@
-﻿using AsteroidsProject.Shared;
+using AsteroidsProject.Shared;
 using Cysharp.Threading.Tasks;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace AsteroidsProject.UI.GameOverScreen
+namespace AsteroidsProject.UI.GamePauseScreen
 {
-    public class GameOverScreenPresenterFactory : IUIScreenPresenterFactoryAsync
+    public class GamePauseScreenFactory : IUIScreenFactoryAsync
     {
-        private const string prefabAddress = "GameOverScreen";
+        private const string prefabAddress = "GamePauseScreen";
         private readonly IAssetProvider assetProvider;
         private readonly DiContainer diContainer;
 
-        public GameOverScreenPresenterFactory(DiContainer diContainer, IAssetProvider assetProvider)
+        public GamePauseScreenFactory(DiContainer diContainer, IAssetProvider assetProvider)
         {
             this.diContainer = diContainer;
             this.assetProvider = assetProvider;
@@ -22,9 +21,7 @@ namespace AsteroidsProject.UI.GameOverScreen
         {
             var prefab = await assetProvider.LoadAsync<GameObject>(prefabAddress);
             var presenter = Object.Instantiate(prefab);
-            var model = new GameOverScreenModel();
-            var extraArgs = new List<object> { model };
-            diContainer.InjectGameObjectForComponent(presenter, typeof(GameOverScreenPresenter), extraArgs);
+            diContainer.InjectGameObject(presenter);
             return presenter.GetComponent<IUIScreenPresenter>();
         }
     }

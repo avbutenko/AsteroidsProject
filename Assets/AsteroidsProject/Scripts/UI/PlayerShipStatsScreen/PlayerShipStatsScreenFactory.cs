@@ -1,17 +1,18 @@
 using AsteroidsProject.Shared;
 using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace AsteroidsProject.UI.GamePauseScreen
+namespace AsteroidsProject.UI.PlayerShipStatsScreen
 {
-    public class GamePauseScreenPresenterFactory : IUIScreenPresenterFactoryAsync
+    public class PlayerShipStatsScreenFactory : IUIScreenFactoryAsync
     {
-        private const string prefabAddress = "GamePauseScreen";
+        private const string prefabAddress = "PlayerShipStatsScreen";
         private readonly IAssetProvider assetProvider;
         private readonly DiContainer diContainer;
 
-        public GamePauseScreenPresenterFactory(DiContainer diContainer, IAssetProvider assetProvider)
+        public PlayerShipStatsScreenFactory(DiContainer diContainer, IAssetProvider assetProvider)
         {
             this.diContainer = diContainer;
             this.assetProvider = assetProvider;
@@ -21,7 +22,9 @@ namespace AsteroidsProject.UI.GamePauseScreen
         {
             var prefab = await assetProvider.LoadAsync<GameObject>(prefabAddress);
             var presenter = Object.Instantiate(prefab);
-            diContainer.InjectGameObject(presenter);
+            var model = new PlayerShipStatsScreenModel();
+            var extraArgs = new List<object> { model };
+            diContainer.InjectGameObjectForComponent(presenter, typeof(PlayerShipStatsScreenPresenter), extraArgs);
             return presenter.GetComponent<IUIScreenPresenter>();
         }
     }

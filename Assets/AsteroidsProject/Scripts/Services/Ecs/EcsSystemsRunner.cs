@@ -14,6 +14,7 @@ namespace AsteroidsProject.Services
         private EcsWorld world;
         private IEcsSystems fixedUpdateSystems;
         private IEcsSystems updateSystems;
+        private bool systemsInitialized = false;
 
         public EcsSystemsRunner(IEcsUpdateSystemsProvider updateSystemsProvider, IEcsFixedUpdateSystemsProvider fixedUpdateSystemsProvider,
             ITimeService timeService)
@@ -36,11 +37,12 @@ namespace AsteroidsProject.Services
 
             updateSystems.Init();
             fixedUpdateSystems.Init();
+            systemsInitialized = true;
         }
 
         public void Tick()
         {
-            if (!timeService.IsPaused)
+            if (!timeService.IsPaused && systemsInitialized)
             {
                 updateSystems?.Run();
             }
@@ -48,7 +50,7 @@ namespace AsteroidsProject.Services
 
         public void FixedTick()
         {
-            if (!timeService.IsPaused)
+            if (!timeService.IsPaused && systemsInitialized)
             {
                 fixedUpdateSystems?.Run();
             }
@@ -62,6 +64,8 @@ namespace AsteroidsProject.Services
 
         public virtual void Dispose()
         {
+            systemsInitialized = false;
+
             EcsPhysicsEvents.ecsWorld = null;
 
             if (updateSystems != null)

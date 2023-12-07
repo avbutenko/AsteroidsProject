@@ -3,9 +3,9 @@ using AsteroidsProject.Shared;
 using AsteroidsProject.Services;
 using AsteroidsProject.MonoBehaviours;
 using AsteroidsProject.GameLogic.EntryPoint.GameScene;
-using AsteroidsProject.UI.MainMenuScreen;
 using AsteroidsProject.UI.GameOverScreen;
 using AsteroidsProject.UI.GamePauseScreen;
+using AsteroidsProject.UI.PlayerShipStatsScreen;
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -44,8 +44,9 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<ConfigProvider>().AsSingle();
             Container.Bind(typeof(IEcsSystemsRunner), typeof(IRestartable)).To<EcsSystemsRunner>().AsSingle();
             Container.BindInterfacesAndSelfTo<RestartService>().AsSingle();
-            Container.BindInterfacesAndSelfTo<GamePauseScreenPresenterFactory>().AsSingle();
-            Container.BindInterfacesAndSelfTo<GameOverScreenPresenterFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerShipStatsScreenFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GamePauseScreenFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameOverScreenFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<UIService>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameSceneEntryPoint>().AsSingle();
         }

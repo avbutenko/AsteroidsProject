@@ -1,6 +1,6 @@
 ﻿namespace AsteroidsProject.Shared
 {
-    public interface IUIScreenPresenterFactory
+    public interface IUIScreenFactory
     {
         public IUIScreenPresenter Create();
     }

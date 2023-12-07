@@ -10,7 +10,7 @@ namespace AsteroidsProject.CompositionRoot
         {
             Container.BindInterfacesAndSelfTo<InputService>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneLoader>().AsSingle();
-            Container.BindInterfacesAndSelfTo<LoadingScreenPresenterFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LoadingScreenFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<LoadingScreenService>().AsSingle();
         }
     }

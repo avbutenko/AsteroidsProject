@@ -25,8 +25,9 @@ using AsteroidsProject.GameLogic.Features.Events.OnOutOfLevel;
 using AsteroidsProject.GameLogic.Features.Events.OnSpawn;
 using AsteroidsProject.GameLogic.Features.Events.OnAttack;
 using AsteroidsProject.GameLogic.Features.Events.OnDeath;
-using AsteroidsProject.GameLogic.Features.Events.OnGamePause;
-using AsteroidsProject.GameLogic.Features.Events.OnGameOver;
+using AsteroidsProject.GameLogic.Features.UI.BroadcastGamePauseEventToUI;
+using AsteroidsProject.GameLogic.Features.UI.BroadcastGameOverEventToUI;
+using AsteroidsProject.GameLogic.Features.UI.BroadcastDataToPlayerShipStatsScreen;
 using AsteroidsProject.GameLogic.Features.Teleportation;
 using AsteroidsProject.GameLogic.Features.Lifetime;
 using AsteroidsProject.GameLogic.Features.MaxVelocityMagnitude;
@@ -40,6 +41,7 @@ using AsteroidsProject.GameLogic.Features.Ammo.ChangeAmount;
 using AsteroidsProject.GameLogic.Features.InvalidOwner;
 using AsteroidsProject.GameLogic.Features.InvalidGO;
 using AsteroidsProject.Services;
+
 
 namespace AsteroidsProject.CompositionRoot
 {
@@ -72,7 +74,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<PlayerInputSystem>().AsSingle();
 
             //Pause
-            Container.BindInterfacesAndSelfTo<OnGamePauseSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<BroadcastGamePauseEventToUISystem>().AsSingle();
 
             //Weapons
             Container.BindInterfacesAndSelfTo<BulletGunAttackSystem>().AsSingle();
@@ -110,11 +112,14 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<OnDeathSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<InvalidOwnerSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<InvalidGOSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<OnGameOverSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<BroadcastGameOverEventToUISystem>().AsSingle();
 
             //UpdateView
             Container.BindInterfacesAndSelfTo<UpdateGameObjectViewRotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<UpdateGameObjectViewPositionSystem>().AsSingle();
+
+            //UI
+            Container.BindInterfacesAndSelfTo<BroadcastDataToPlayerShipStatsScreenSystem>().AsSingle();
 
 #if UNITY_EDITOR
             Container.BindInterfacesAndSelfTo<EcsSystemsDebugSystem>().AsSingle().WithArguments(new object[] { "Update Systems" });

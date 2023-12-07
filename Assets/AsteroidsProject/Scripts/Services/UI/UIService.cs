@@ -7,10 +7,10 @@ namespace AsteroidsProject.Services
 {
     public class UIService : IUIService, IDisposable
     {
-        private readonly List<IUIScreenPresenterFactoryAsync> factories;
+        private readonly List<IUIScreenFactoryAsync> factories;
         private List<IUIScreenPresenter> presenters;
 
-        public UIService(IEnumerable<IUIScreenPresenterFactoryAsync> bindedFactories)
+        public UIService(IEnumerable<IUIScreenFactoryAsync> bindedFactories)
         {
             factories = new();
 
