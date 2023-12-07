@@ -9,14 +9,12 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Player
     {
         private readonly IGameSceneData sceneData;
         private readonly IConfigProvider configProvider;
-        private readonly IUIService uiService;
         private EcsWorld world;
 
         public SpawnPlayerSystem(IGameSceneData sceneData, IConfigProvider configProvider, IUIService uiService)
         {
             this.sceneData = sceneData;
             this.configProvider = configProvider;
-            this.uiService = uiService;
         }
 
         public async void Init(IEcsSystems systems)
@@ -24,7 +22,6 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Player
             world = systems.GetWorld();
             var gameConfig = await configProvider.Load<GameConfig>(configProvider.GameConfigPath);
             Spawn(gameConfig.PlayerConfigPath);
-            uiService.Get<IPlayerShipStatsScreenPresenter>().Show();
         }
 
         private async void Spawn(string config)
