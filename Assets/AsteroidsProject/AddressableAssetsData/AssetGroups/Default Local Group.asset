@@ -17,8 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 88adc4b24fceb454fbcd265ebdb36dd1
   m_SerializeEntries:
-  - m_GUID: 7aa5a57efdbe481419fae7e6073c383e
-    m_Address: Bullet
+  - m_GUID: ced3f45af2293da4bb1f769ecfd3f9de
+    m_Address: Player
     m_ReadOnly: 0
     m_SerializedLabels:
     - InGameScene
@@ -29,44 +29,44 @@ MonoBehaviour:
     m_SerializedLabels:
     - InMainMenuScene
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 22a36186bf788c5498fbbbd0074629d2
-    m_Address: Laser
+  - m_GUID: 753396953260c3f4397af89f342ec110
+    m_Address: PlayerConfig
     m_ReadOnly: 0
     m_SerializedLabels:
     - InGameScene
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 32cb9adea56996a449bd2c2b91fc3e33
-    m_Address: Player
+  - m_GUID: d21310ba80f40234ca2664ee43c3a161
+    m_Address: BulletConfig
     m_ReadOnly: 0
     m_SerializedLabels:
     - InGameScene
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cd89756cd917e644293a4e087e15b168
-    m_Address: Asteroid
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - InGameScene
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 79fedc8f51c4ba849a6afda5da5bad1c
+  - m_GUID: c91434d0fd52a3949950a5ece98bd293
     m_Address: AsteroidFragment
     m_ReadOnly: 0
     m_SerializedLabels:
     - InGameScene
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 63e2915b530780447a8e6178a83d9ee6
-    m_Address: Ufo
+  - m_GUID: aa1e7e6564d77d14184558c39a394ee2
+    m_Address: Asteroid
     m_ReadOnly: 0
     m_SerializedLabels:
     - InGameScene
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5d1a41a38b8990d41962d11c653909c1
-    m_Address: BulletGun
+  - m_GUID: a6eb6101f5e0a224da34c8b3c210cb38
+    m_Address: AsteroidSpawnConfig
     m_ReadOnly: 0
     m_SerializedLabels:
     - InGameScene
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c409e692f21c18343ab032e4b7649969
-    m_Address: LaserGun
+  - m_GUID: 107f00ce6702c5848bf39f6554982efb
+    m_Address: AsteroidConfig
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ee841d1f27fdbc4d8dd9dfe93f291ec
+    m_Address: AsteroidFragmentConfig
     m_ReadOnly: 0
     m_SerializedLabels:
     - InGameScene
@@ -103,6 +103,72 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 485fe4251b2dd2a44bf178b139280761
     m_Address: PlayerSecondaryWeaponScreen
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 566fa2c86694b3945a34a9ce28e4f452
+    m_Address: Bullet
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a16f26d6045eccd49a2603b09c19ddbd
+    m_Address: LaserConfig
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ca82bc2c3cfb544ba87058d94b5ec3c
+    m_Address: Laser
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e67d0be56557b2419ef138f0509947f
+    m_Address: UfoConfig
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f7c176d29052604ba73dff598a256e5
+    m_Address: UfoSpawnConfig
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8ef69c3871b85804192f853a122337b1
+    m_Address: Ufo
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d2cd5197bd7135a4181f21dac04e3a65
+    m_Address: BulletGunConfig
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1be25e6f7a489dd4e89695edcee51ef5
+    m_Address: BulletGun
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: adf0699d8b807034cb437e29897f1143
+    m_Address: LaserGunConfig
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 95d7b3cd5cb6d874b8097ef87d847789
+    m_Address: LaserGun
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ab6be25a231e31143aea7a7bc0b6ab87
+    m_Address: GameSceneConfig
     m_ReadOnly: 0
     m_SerializedLabels:
     - InGameScene

@@ -6,7 +6,7 @@
             "COnSpawn": {
                 "AddToSelfComponents": [
                     {
-                        "CSpawnEntityViewRequest": "Laser/Prefabs/Laser.prefab"
+                        "CSpawnEntityViewRequest": "Laser"
                     }
                 ]
             },

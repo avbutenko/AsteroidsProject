@@ -1,0 +1,7 @@
+{
+    "PlayerConfigPath": "PlayerConfig",
+    "AsteroidSpawnConfigPath": "AsteroidSpawnConfig",
+    "AsteroidConfigPath": "AsteroidConfig",
+    "UfoSpawnConfigPath": "UfoSpawnConfig",
+    "UfoConfigPath": "UfoConfig"
+}

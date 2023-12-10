@@ -11,7 +11,7 @@
             "COnSpawn": {
                 "AddToSelfComponents": [
                     {
-                        "CSpawnEntityViewRequest": "Bullet/Prefabs/Bullet.prefab"
+                        "CSpawnEntityViewRequest": "Bullet"
                     }
                 ]
             },

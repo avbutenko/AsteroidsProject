@@ -15,9 +15,9 @@
             "COnSpawn": {
                 "AddToSelfComponents": [
                     {
-                        "CSpawnEntityViewRequest": "Player/Prefabs/Player.prefab",
-                        "CSpawnPrimaryWeaponRequest": "BulletGun/Configs/BulletGunConfig.json",
-                        "CSpawnSecondaryWeaponRequest": "LaserGun/Configs/LaserGunConfig.json"
+                        "CSpawnEntityViewRequest": "Player",
+                        "CSpawnPrimaryWeaponRequest": "BulletGunConfig",
+                        "CSpawnSecondaryWeaponRequest": "LaserGunConfig"
                     }
                 ]
             },

@@ -11,7 +11,6 @@ namespace AsteroidsProject.Services
 {
     public class ConfigProvider : IConfigProvider, IInitializable, IDisposable
     {
-        private const string gameConfigPath = "GameConfig";
         private readonly IComponentConverterService componentConverterService;
         private readonly IAssetProvider assetProvider;
         private readonly Dictionary<string, object> cachedObjects;
@@ -23,8 +22,6 @@ namespace AsteroidsProject.Services
             this.componentConverterService = componentConverterService;
             cachedObjects = new Dictionary<string, object>();
         }
-
-        public string GameConfigPath => gameConfigPath;
 
         public void Initialize()
         {

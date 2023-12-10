@@ -5,6 +5,7 @@ namespace AsteroidsProject.MonoBehaviours
 {
     public class GameSceneData : MonoBehaviour, IGameSceneData
     {
+        [SerializeField] private string sceneConfigAssetPath;
         [SerializeField] private Transform spawnPlayerPoint;
         [SerializeField] private Transform asteroidsPool;
         [SerializeField] private Transform projectilePool;
@@ -14,5 +15,6 @@ namespace AsteroidsProject.MonoBehaviours
         public Transform AsteroidsPool => asteroidsPool;
         public Transform ProjectilePool => projectilePool;
         public Transform UfoPool => ufoPool;
+        public string SceneConfigAssetPath => sceneConfigAssetPath;
     }
 }

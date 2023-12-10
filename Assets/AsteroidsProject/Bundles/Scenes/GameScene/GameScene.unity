@@ -455,6 +455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b424707e389d4054aaafa6aac5b8990e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneConfigAssetPath: GameSceneConfig
   spawnPlayerPoint: {fileID: 221698812}
   asteroidsPool: {fileID: 361720156}
   projectilePool: {fileID: 1816205532}

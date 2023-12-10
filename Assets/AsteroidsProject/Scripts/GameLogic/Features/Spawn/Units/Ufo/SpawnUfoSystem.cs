@@ -12,7 +12,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Units.Ufo
         private readonly IConfigProvider configProvider;
         private readonly ITimeService timeService;
         private SpawnConfig spawnconfig;
-        private GameConfig gameConfig;
+        private GameSceneConfig gameSceneConfig;
         private float timeToNextSpawn;
         private EcsWorld world;
 
@@ -26,8 +26,8 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Units.Ufo
         public async void Init(IEcsSystems systems)
         {
             world = systems.GetWorld();
-            gameConfig = await configProvider.Load<GameConfig>(configProvider.GameConfigPath);
-            spawnconfig = await configProvider.Load<SpawnConfig>(gameConfig.UfoSpawnConfigPath);
+            gameSceneConfig = await configProvider.Load<GameSceneConfig>(sceneData.SceneConfigAssetPath);
+            spawnconfig = await configProvider.Load<SpawnConfig>(gameSceneConfig.UfoSpawnConfigPath);
         }
 
         public void Run(IEcsSystems systems)
@@ -40,7 +40,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Units.Ufo
             {
                 timeToNextSpawn = spawnconfig.SpawnTime;
 
-                Spawn(gameConfig.UfoConfigPath);
+                Spawn(gameSceneConfig.UfoConfigPath);
             }
         }
 

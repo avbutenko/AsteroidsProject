@@ -7,7 +7,7 @@
             "COnSpawn": {
                 "AddToSelfComponents": [
                     {
-                        "CSpawnEntityViewRequest": "AsteroidFragment/Prefabs/AsteroidFragment.prefab",
+                        "CSpawnEntityViewRequest": "AsteroidFragment",
                         "CRandomizePermanentRotationDirectionRequest": [ -1, 1 ],
                         "CRandomizeRotationSpeedRequest": [ 85, 160 ],
                         "CRandomizeVelocityRequest": [

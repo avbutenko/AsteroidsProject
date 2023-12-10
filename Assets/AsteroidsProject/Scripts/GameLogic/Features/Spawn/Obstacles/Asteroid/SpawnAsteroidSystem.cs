@@ -11,7 +11,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.Asteroid
         private readonly IConfigProvider configProvider;
         private readonly ITimeService timeService;
         private SpawnConfig asteroidSpawnconfig;
-        private GameConfig gameConfig;
+        private GameSceneConfig gameSceneConfig;
         private float timeToNextSpawn;
         private EcsWorld world;
         private EcsFilter filter;
@@ -25,8 +25,8 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.Asteroid
 
         public async void Init(IEcsSystems systems)
         {
-            gameConfig = await configProvider.Load<GameConfig>(configProvider.GameConfigPath);
-            asteroidSpawnconfig = await configProvider.Load<SpawnConfig>(gameConfig.AsteroidSpawnConfigPath);
+            gameSceneConfig = await configProvider.Load<GameSceneConfig>(sceneData.SceneConfigAssetPath);
+            asteroidSpawnconfig = await configProvider.Load<SpawnConfig>(gameSceneConfig.AsteroidSpawnConfigPath);
             world = systems.GetWorld();
             filter = world.Filter<CAsteroidTag>().End();
             SpawnInitialAmountOfAsteroids();
@@ -44,7 +44,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.Asteroid
             {
                 timeToNextSpawn = asteroidSpawnconfig.SpawnTime;
 
-                Spawn(gameConfig.AsteroidConfigPath);
+                Spawn(gameSceneConfig.AsteroidConfigPath);
             }
         }
 
@@ -57,7 +57,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.Asteroid
             while (counter > 0)
             {
                 counter--;
-                Spawn(gameConfig.AsteroidConfigPath);
+                Spawn(gameSceneConfig.AsteroidConfigPath);
             }
         }
 
