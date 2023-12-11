@@ -30,8 +30,14 @@ namespace AsteroidsProject.GameLogic.Features.InvalidGO
             foreach (var entity in filter)
             {
                 ref var goID = ref goIDPool.Get(entity).Value;
-                if (!activeGOMappingService.TryGetGo(goID, out var go)) return;
-                if (!activeGOMappingService.TryGetGoLink(goID, out var goLink)) return;
+
+                if (!activeGOMappingService.TryGetGo(goID, out var go))
+                {
+                    world.DelEntity(entity);
+                    continue;
+                }
+
+                if (!activeGOMappingService.TryGetGoLink(goID, out var goLink)) continue;
 
                 if (goLink is IPoolable)
                 {

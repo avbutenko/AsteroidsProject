@@ -56,8 +56,16 @@ namespace AsteroidsProject.Services
         {
             if (cachedObjects.TryGetValue(objectInstanceID, out var goEntityPair))
             {
-                result = goEntityPair.Go;
-                return true;
+                if (goEntityPair.Go == null)
+                {
+                    result = null;
+                    return false;
+                }
+                else
+                {
+                    result = goEntityPair.Go;
+                    return true;
+                }
             }
             else
             {
