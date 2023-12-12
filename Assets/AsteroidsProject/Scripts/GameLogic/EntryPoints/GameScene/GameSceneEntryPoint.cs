@@ -26,8 +26,6 @@ namespace AsteroidsProject.GameLogic.EntryPoint.GameScene
             await assetProvider.PreLoadAsyncByLabel(AssetLabels.InGameScene.ToString());
             await uiService.PreLoadUI();
             ecsSystemsRunner.Initialize();
-            uiService.Get<IPlayerShipStatsScreenPresenter>().Show();
-            uiService.Get<IPlayerSecondaryWeaponScreenPresenter>().Show();
             loadingScreen.Hide();
         }
 

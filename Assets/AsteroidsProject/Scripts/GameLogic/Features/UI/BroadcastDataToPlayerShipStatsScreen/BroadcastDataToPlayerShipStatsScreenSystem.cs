@@ -40,6 +40,7 @@ namespace AsteroidsProject.GameLogic.Features.UI.BroadcastDataToPlayerShipStatsS
             rotationPool = world.GetPool<CRotation>();
             velocityPool = world.GetPool<CVelocity>();
             screenPresenter = uiService.Get<IPlayerShipStatsScreenPresenter>();
+            screenPresenter.Show();
         }
 
         public void Run(IEcsSystems systems)

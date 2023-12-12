@@ -32,6 +32,7 @@ namespace AsteroidsProject.GameLogic.Features.UI.BroadcastDataToPlayerSecondaryW
             ammoPool = world.GetPool<CAmmo>();
             cooldownPool = world.GetPool<CAmmoAutoRefillCoolDown>();
             screenPresenter = uiService.Get<IPlayerSecondaryWeaponScreenPresenter>();
+            screenPresenter.Show();
         }
 
         public void Run(IEcsSystems systems)
