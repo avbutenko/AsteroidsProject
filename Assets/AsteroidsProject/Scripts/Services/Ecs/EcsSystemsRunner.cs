@@ -1,7 +1,6 @@
 ﻿using AsteroidsProject.Shared;
 using LeoEcsPhysics;
 using Leopotam.EcsLite;
-using Leopotam.EcsLite.UnityEditor;
 using System.Collections.Generic;
 
 namespace AsteroidsProject.Services
@@ -32,7 +31,7 @@ namespace AsteroidsProject.Services
             fixedUpdateSystems = GetSystems(fixedUpdateSystemsProvider.BindedSystems);
 
 #if UNITY_EDITOR
-            updateSystems.Add(new EcsWorldDebugSystem());
+            updateSystems.Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem());
 #endif
 
             updateSystems.Init();

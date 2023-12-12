@@ -1,5 +1,4 @@
 ﻿using Zenject;
-using Leopotam.EcsLite.UnityEditor;
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.GameLogic.Features.Spawn.Obstacles.Asteroid;
 using AsteroidsProject.GameLogic.Features.Spawn.Obstacles.AsteroidFragment;
@@ -125,7 +124,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<BroadcastDataToPlayerSecondaryWeaponScreenSystem>().AsSingle();
 
 #if UNITY_EDITOR
-            Container.BindInterfacesAndSelfTo<EcsSystemsDebugSystem>().AsSingle().WithArguments(new object[] { "Update Systems" });
+            Container.BindInterfacesAndSelfTo<Leopotam.EcsLite.UnityEditor.EcsSystemsDebugSystem>().AsSingle().WithArguments(new object[] { "Update Systems" });
 #endif
             Container.BindInterfacesAndSelfTo<EcsUpdateSystemsProvider>().AsSingle();
         }
