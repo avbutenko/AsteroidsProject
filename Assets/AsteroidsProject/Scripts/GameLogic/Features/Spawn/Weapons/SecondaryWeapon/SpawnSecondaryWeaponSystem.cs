@@ -6,7 +6,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Weapons
 {
     public class SpawnSecondaryWeaponSystem : BaseSpawnWeaponSystem<CSpawnSecondaryWeaponRequest, CSecondaryWeapon>
     {
-        public SpawnSecondaryWeaponSystem(IConfigProvider configProvider, IActiveGOMappingService activeGOMappingService)
+        public SpawnSecondaryWeaponSystem(IConfigLoader configProvider, IActiveGOMappingService activeGOMappingService)
             : base(configProvider, activeGOMappingService) { }
 
         protected override Transform GetWeaponSlot(int entity)

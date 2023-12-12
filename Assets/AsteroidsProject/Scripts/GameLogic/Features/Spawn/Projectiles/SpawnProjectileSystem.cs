@@ -11,14 +11,14 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Projectiles
     public class SpawnProjectileSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly IGameSceneData sceneData;
-        private readonly IConfigProvider configProvider;
+        private readonly IConfigLoader configProvider;
         private readonly IActiveGOMappingService activeGOMappingService;
         private EcsWorld world;
         private EcsFilter filter;
         private EcsPool<CSpawnProjectileRequest> requestPool;
         private EcsPool<CGameObjectInstanceID> goIDPool;
 
-        public SpawnProjectileSystem(IConfigProvider configProvider, IGameSceneData sceneData, IActiveGOMappingService activeGOMappingService)
+        public SpawnProjectileSystem(IConfigLoader configProvider, IGameSceneData sceneData, IActiveGOMappingService activeGOMappingService)
         {
             this.sceneData = sceneData;
             this.configProvider = configProvider;

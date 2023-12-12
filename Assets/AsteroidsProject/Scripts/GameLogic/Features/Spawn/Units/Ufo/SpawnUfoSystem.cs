@@ -1,4 +1,3 @@
-using AsteroidsProject.Configs;
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
@@ -9,16 +8,19 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Units.Ufo
     public class SpawnUfoSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly IGameSceneData sceneData;
-        private readonly IConfigProvider configProvider;
+        private readonly IGameConfigProvider configProvider;
+        private readonly IConfigLoader configLoader;
         private readonly ITimeService timeService;
         private SpawnConfig spawnconfig;
         private GameSceneConfig gameSceneConfig;
         private float timeToNextSpawn;
         private EcsWorld world;
 
-        public SpawnUfoSystem(IConfigProvider configProvider, ITimeService timeService, IGameSceneData sceneData)
+        public SpawnUfoSystem(IGameConfigProvider configProvider, IConfigLoader configLoader,
+            ITimeService timeService, IGameSceneData sceneData)
         {
             this.configProvider = configProvider;
+            this.configLoader = configLoader;
             this.timeService = timeService;
             this.sceneData = sceneData;
         }
@@ -26,8 +28,8 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Units.Ufo
         public async void Init(IEcsSystems systems)
         {
             world = systems.GetWorld();
-            gameSceneConfig = await configProvider.Load<GameSceneConfig>(sceneData.SceneConfigAssetPath);
-            spawnconfig = await configProvider.Load<SpawnConfig>(gameSceneConfig.UfoSpawnConfigPath);
+            gameSceneConfig = await configLoader.Load<GameSceneConfig>(configProvider.GameConfig.ScenesConfig.GameSceneConfigPath);
+            spawnconfig = await configLoader.Load<SpawnConfig>(gameSceneConfig.UfoSpawnConfigPath);
         }
 
         public void Run(IEcsSystems systems)
@@ -46,7 +48,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Units.Ufo
 
         private async void Spawn(string config)
         {
-            var componentList = await configProvider.Load<ComponentList>(config);
+            var componentList = await configLoader.Load<ComponentList>(config);
             var entity = world.NewEntityWithRawComponents(componentList.Components);
             world.AddComponentToEntity(entity, new CParent { Value = sceneData.UfoPool });
             world.AddComponentToEntity(entity, new CRotation { Value = Quaternion.identity });

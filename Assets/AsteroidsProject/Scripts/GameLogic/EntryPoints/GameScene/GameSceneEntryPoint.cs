@@ -23,7 +23,7 @@ namespace AsteroidsProject.GameLogic.EntryPoint.GameScene
         public async void Initialize()
         {
             loadingScreen.Show();
-            await assetProvider.PreLoadAsyncByLabel("InGameScene");
+            await assetProvider.PreLoadAsyncByLabel(AssetLabels.InGameScene.ToString());
             await uiService.PreLoadUI();
             ecsSystemsRunner.Initialize();
             uiService.Get<IPlayerShipStatsScreenPresenter>().Show();

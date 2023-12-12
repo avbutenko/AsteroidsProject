@@ -1,0 +1,14 @@
+{
+    "UIConfig": {
+        "LoadingScreenPath": "LoadingScreen",
+        "MainMenuScreenPath": "MainMenuScreen",
+        "GameOverScreenPath": "GameOverScreen",
+        "GamePauseScreenPath": "GamePauseScreen",
+        "PlayerSecondaryWeaponScreenPath": "PlayerSecondaryWeaponScreen",
+        "PlayerShipStatsScreenPath": "PlayerShipStatsScreen"
+    },
+    "ScenesConfig": {
+        "FirstScenePath": "MainMenuScene",
+        "GameSceneConfigPath": "GameSceneConfig"
+    }
+}

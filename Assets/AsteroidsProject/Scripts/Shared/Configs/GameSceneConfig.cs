@@ -1,4 +1,4 @@
-namespace AsteroidsProject.Configs
+namespace AsteroidsProject.Shared
 {
     public class GameSceneConfig
     {

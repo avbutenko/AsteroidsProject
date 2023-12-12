@@ -5,7 +5,6 @@ using UnityEngine;
 using UniRx.Extensions;
 using Zenject;
 using System;
-using UnityEngine.UIElements;
 
 namespace AsteroidsProject.UI.PlayerShipStatsScreen
 {

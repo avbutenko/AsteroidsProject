@@ -71,7 +71,7 @@ namespace AsteroidsProject.UI.GameOverScreen
         {
             Hide();
             loadingScreen.Show();
-            await sceneLoader.LoadSceneAsync("MainMenuScene", LoadSceneMode.Single, false);
+            await sceneLoader.LoadSceneAsync(AssetLabels.MainMenuScene.ToString(), LoadSceneMode.Single, false);
             loadingScreen.Hide();
         }
 

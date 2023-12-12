@@ -25,12 +25,6 @@ namespace AsteroidsProject.CompositionRoot
             Container.Bind<IEntityGameObjectFactory>().To<EntityGameObjectFactory>().AsSingle();
 
             Container
-                .BindInterfacesAndSelfTo<ComponentConverterService>()
-                .FromSubContainerResolve()
-                .ByInstaller<ComponentConverterServiceInstaller>()
-                .AsSingle();
-
-            Container
                 .BindInterfacesAndSelfTo<EcsUpdateSystemsProvider>()
                 .FromSubContainerResolve()
                 .ByInstaller<EcsUpdateSystemsInstaller>()
@@ -42,7 +36,7 @@ namespace AsteroidsProject.CompositionRoot
                 .ByInstaller<EcsFixedUpdateSystemsInstaller>()
                 .AsSingle();
 
-            Container.BindInterfacesAndSelfTo<ConfigProvider>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ConfigLoader>().AsSingle();
             Container.Bind(typeof(IEcsSystemsRunner), typeof(IRestartable)).To<EcsSystemsRunner>().AsSingle();
             Container.BindInterfacesAndSelfTo<RestartService>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerShipStatsScreenFactory>().AsSingle();

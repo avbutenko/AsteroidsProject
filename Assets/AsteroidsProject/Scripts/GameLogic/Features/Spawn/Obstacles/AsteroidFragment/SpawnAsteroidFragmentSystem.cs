@@ -10,12 +10,12 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.AsteroidFragment
     public class SpawnAsteroidFragmentSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly IGameSceneData sceneData;
-        private readonly IConfigProvider configProvider;
+        private readonly IConfigLoader configProvider;
         private EcsWorld world;
         private EcsFilter filter;
         private EcsPool<CSpawnAsteroidFragmentsRequest> requestPool;
 
-        public SpawnAsteroidFragmentSystem(IGameSceneData sceneData, IConfigProvider configProvider)
+        public SpawnAsteroidFragmentSystem(IGameSceneData sceneData, IConfigLoader configProvider)
         {
             this.sceneData = sceneData;
             this.configProvider = configProvider;

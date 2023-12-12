@@ -11,7 +11,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Weapons
         where TRequest : struct, IHaveConfigAddress
         where TWeaponType : struct, IHaveLinkedEntity
     {
-        private readonly IConfigProvider configProvider;
+        private readonly IConfigLoader configProvider;
         protected IActiveGOMappingService activeGOMappingService;
         private EcsWorld world;
         private EcsFilter filter;
@@ -19,7 +19,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Weapons
         private EcsPool<CGameObjectInstanceID> linkToGameObjectPool;
         protected EcsPool<CGameObjectInstanceID> goIDPool;
 
-        public BaseSpawnWeaponSystem(IConfigProvider configProvider, IActiveGOMappingService activeGOMappingService)
+        public BaseSpawnWeaponSystem(IConfigLoader configProvider, IActiveGOMappingService activeGOMappingService)
         {
             this.configProvider = configProvider;
             this.activeGOMappingService = activeGOMappingService;

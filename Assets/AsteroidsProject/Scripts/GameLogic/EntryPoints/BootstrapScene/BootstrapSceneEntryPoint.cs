@@ -8,17 +8,19 @@ namespace AsteroidsProject.GameLogic.EntryPoint.BootstrapScene
     {
         private readonly ISceneLoader sceneLoader;
         private readonly ILoadingScreenService loadingScreen;
+        private readonly IGameConfigProvider configProvider;
 
-        public BootstrapSceneEntryPoint(ISceneLoader sceneLoader, ILoadingScreenService loadingScreen)
+        public BootstrapSceneEntryPoint(ISceneLoader sceneLoader, ILoadingScreenService loadingScreen, IGameConfigProvider configProvider)
         {
             this.sceneLoader = sceneLoader;
             this.loadingScreen = loadingScreen;
+            this.configProvider = configProvider;
         }
 
         public async void Initialize()
         {
             loadingScreen.Show();
-            await sceneLoader.LoadSceneAsync("MainMenuScene", LoadSceneMode.Single, false);
+            await sceneLoader.LoadSceneAsync(configProvider.GameConfig.ScenesConfig.FirstScenePath, LoadSceneMode.Single, false);
             loadingScreen.Hide();
         }
     }

@@ -2,7 +2,7 @@
 
 namespace AsteroidsProject.Shared
 {
-    public interface IConfigProvider
+    public interface IConfigLoader
     {
         public UniTask<T> Load<T>(string configAddress) where T : class;
     }

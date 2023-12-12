@@ -8,19 +8,20 @@ namespace AsteroidsProject.UI.GameOverScreen
 {
     public class GameOverScreenFactory : IUIScreenFactoryAsync
     {
-        private const string prefabAddress = "GameOverScreen";
         private readonly IAssetProvider assetProvider;
+        private readonly IGameConfigProvider configProvider;
         private readonly DiContainer diContainer;
 
-        public GameOverScreenFactory(DiContainer diContainer, IAssetProvider assetProvider)
+        public GameOverScreenFactory(DiContainer diContainer, IAssetProvider assetProvider, IGameConfigProvider configProvider)
         {
             this.diContainer = diContainer;
+            this.configProvider = configProvider;
             this.assetProvider = assetProvider;
         }
 
         public async UniTask<IUIScreenPresenter> CreateAsync()
         {
-            var prefab = await assetProvider.LoadAsync<GameObject>(prefabAddress);
+            var prefab = await assetProvider.LoadAsync<GameObject>(configProvider.GameConfig.UIConfig.GameOverScreenPath);
             var presenter = Object.Instantiate(prefab);
             var model = new GameOverScreenModel();
             var extraArgs = new List<object> { model };

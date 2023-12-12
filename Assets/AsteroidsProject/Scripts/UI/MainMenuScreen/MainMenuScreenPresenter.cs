@@ -51,7 +51,7 @@ namespace AsteroidsProject.UI.MainMenuScreen
         private async void StartButtonClick()
         {
             loadingScreen.Show();
-            await sceneLoader.LoadSceneAsync("GameScene", LoadSceneMode.Single, false);
+            await sceneLoader.LoadSceneAsync(AssetLabels.GameScene.ToString(), LoadSceneMode.Single, false);
             loadingScreen.Hide();
         }
 

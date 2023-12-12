@@ -19,7 +19,7 @@ namespace AsteroidsProject.GameLogic.EntryPoint.MainMenuScene
         public async void Initialize()
         {
             loadingScreen.Show();
-            await assetProvider.PreLoadAsyncByLabel("InMainMenuScene");
+            await assetProvider.PreLoadAsyncByLabel(AssetLabels.InMainMenuScene.ToString());
             await uiService.PreLoadUI();
             uiService.Get<IMainMenuScreenPresenter>().Show();
             loadingScreen.Hide();

@@ -9,14 +9,14 @@ using System;
 
 namespace AsteroidsProject.Services
 {
-    public class ConfigProvider : IConfigProvider, IInitializable, IDisposable
+    public class ConfigLoader : IConfigLoader, IInitializable, IDisposable
     {
         private readonly IComponentConverterService componentConverterService;
         private readonly IAssetProvider assetProvider;
         private readonly Dictionary<string, object> cachedObjects;
         private JsonSerializerSettings serializerSettings;
 
-        public ConfigProvider(IAssetProvider assetProvider, IComponentConverterService componentConverterService)
+        public ConfigLoader(IAssetProvider assetProvider, IComponentConverterService componentConverterService)
         {
             this.assetProvider = assetProvider;
             this.componentConverterService = componentConverterService;

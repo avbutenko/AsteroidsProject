@@ -8,19 +8,20 @@ namespace AsteroidsProject.UI.PlayerSecondaryWeaponScreen
 {
     public class PlayerSecondaryWeaponScreenFactory : IUIScreenFactoryAsync
     {
-        private const string prefabAddress = "PlayerSecondaryWeaponScreen";
         private readonly IAssetProvider assetProvider;
+        private readonly IGameConfigProvider configProvider;
         private readonly DiContainer diContainer;
 
-        public PlayerSecondaryWeaponScreenFactory(DiContainer diContainer, IAssetProvider assetProvider)
+        public PlayerSecondaryWeaponScreenFactory(DiContainer diContainer, IAssetProvider assetProvider, IGameConfigProvider configProvider)
         {
             this.diContainer = diContainer;
             this.assetProvider = assetProvider;
+            this.configProvider = configProvider;
         }
 
         public async UniTask<IUIScreenPresenter> CreateAsync()
         {
-            var prefab = await assetProvider.LoadAsync<GameObject>(prefabAddress);
+            var prefab = await assetProvider.LoadAsync<GameObject>(configProvider.GameConfig.UIConfig.PlayerSecondaryWeaponScreenPath);
             var presenter = Object.Instantiate(prefab);
             var model = new PlayerSecondaryWeaponScreenModel();
             var extraArgs = new List<object> { model };
