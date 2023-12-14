@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 405440441139911605}
-  - component: {fileID: 899590473859335009}
+  - component: {fileID: 3628488620574507272}
   m_Layer: 0
   m_Name: LaserGun
   m_TagString: Untagged
@@ -65,7 +65,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &899590473859335009
+--- !u!114 &3628488620574507272
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4079996391423532739}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c38a72b79c088b40880330ae9980ac9, type: 3}
+  m_Script: {fileID: 11500000, guid: 23edfeb6b24132a43a345faebc3fa15c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shootingPoint: {fileID: 794801114182422704}

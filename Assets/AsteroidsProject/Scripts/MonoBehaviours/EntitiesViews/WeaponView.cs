@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace AsteroidsProject.MonoBehaviours
 {
-    public class BulletGunView : GameObjectView, IHaveShootingPoint
+    public class WeaponView : GameObjectView, IHaveShootingPoint
     {
         [SerializeField] private Transform shootingPoint;
         public Transform ShootingPoint => shootingPoint;

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace AsteroidsProject.MonoBehaviours
 {
-    public abstract class GameObjectView : MonoBehaviour, IGameObjectLink
+    public class GameObjectView : MonoBehaviour, IGameObjectLink, IPoolable
     {
         public Vector2 Position { set => transform.localPosition = value; }
         public Quaternion Rotation { set => transform.localRotation = value; }
