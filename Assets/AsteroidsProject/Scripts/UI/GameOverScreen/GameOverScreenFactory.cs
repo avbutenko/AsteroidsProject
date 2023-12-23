@@ -21,12 +21,13 @@ namespace AsteroidsProject.UI.GameOverScreen
 
         public async UniTask<IUIScreenPresenter> CreateAsync()
         {
-            var prefab = await assetProvider.LoadAsync<GameObject>(configProvider.GameConfig.UIConfig.GameOverScreenPath);
-            var presenter = Object.Instantiate(prefab);
-            var model = new GameOverScreenModel();
-            var extraArgs = new List<object> { model };
-            diContainer.InjectGameObjectForComponent(presenter, typeof(GameOverScreenPresenter), extraArgs);
-            return presenter.GetComponent<IUIScreenPresenter>();
+            return default;
+            //var prefab = await assetProvider.LoadAsync<GameObject>(configProvider.GameConfig.UIConfig.GameOverScreenPath);
+            //var presenter = Object.Instantiate(prefab);
+            //var model = new GameOverScreenModel();
+            //var extraArgs = new List<object> { model };
+            //diContainer.InjectGameObjectForComponent(presenter, typeof(GameOverScreenPresenter), extraArgs);
+            //return presenter.GetComponent<IUIScreenPresenter>();
         }
     }
 }

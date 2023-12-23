@@ -21,12 +21,13 @@ namespace AsteroidsProject.UI.PlayerShipStatsScreen
 
         public async UniTask<IUIScreenPresenter> CreateAsync()
         {
-            var prefab = await assetProvider.LoadAsync<GameObject>(configProvider.GameConfig.UIConfig.PlayerShipStatsScreenPath);
-            var presenter = Object.Instantiate(prefab);
-            var model = new PlayerShipStatsScreenModel();
-            var extraArgs = new List<object> { model };
-            diContainer.InjectGameObjectForComponent(presenter, typeof(PlayerShipStatsScreenPresenter), extraArgs);
-            return presenter.GetComponent<IUIScreenPresenter>();
+            return default;
+            //var prefab = await assetProvider.LoadAsync<GameObject>(configProvider.GameConfig.UIConfig.PlayerShipStatsScreenPath);
+            //var presenter = Object.Instantiate(prefab);
+            //var model = new PlayerShipStatsScreenModel();
+            //var extraArgs = new List<object> { model };
+            //diContainer.InjectGameObjectForComponent(presenter, typeof(PlayerShipStatsScreenPresenter), extraArgs);
+            //return presenter.GetComponent<IUIScreenPresenter>();
         }
     }
 }

@@ -1,5 +1,4 @@
 using AsteroidsProject.Services;
-using AsteroidsProject.UI.LoadingScreen;
 using Zenject;
 
 namespace AsteroidsProject.CompositionRoot
@@ -8,17 +7,22 @@ namespace AsteroidsProject.CompositionRoot
     {
         public override void InstallBindings()
         {
+            Container.BindInterfacesAndSelfTo<TimeService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AssetProvider>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameConfigProvider>().AsSingle();
             Container.BindInterfacesAndSelfTo<InputService>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneLoader>().AsSingle();
-            Container.BindInterfacesAndSelfTo<LoadingScreenFactory>().AsSingle();
-            Container.BindInterfacesAndSelfTo<LoadingScreenService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<UIFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<UIProvider>().AsSingle();
+            Container.BindInterfacesAndSelfTo<EcsSystemsFactory>().AsSingle();
 
             Container
                 .BindInterfacesAndSelfTo<ComponentConverterService>()
                 .FromSubContainerResolve()
                 .ByInstaller<ComponentConverterServiceInstaller>()
                 .AsSingle();
+
+            Container.BindInterfacesAndSelfTo<ConfigLoader>().AsSingle();
         }
     }
 }

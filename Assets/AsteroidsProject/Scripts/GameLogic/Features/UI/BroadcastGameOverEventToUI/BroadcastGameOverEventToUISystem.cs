@@ -6,7 +6,7 @@ namespace AsteroidsProject.GameLogic.Features.UI.BroadcastGameOverEventToUI
 {
     public class BroadcastGameOverEventToUISystem : IEcsInitSystem, IEcsRunSystem
     {
-        private readonly IUIService uiService;
+        private readonly IUIProvider uiProvider;
         private EcsWorld world;
         private EcsFilter filter;
         private EcsPool<CGameOverEvent> eventPool;
@@ -14,9 +14,9 @@ namespace AsteroidsProject.GameLogic.Features.UI.BroadcastGameOverEventToUI
         private IPlayerShipStatsScreenPresenter shipStatsScreen;
         private IPlayerSecondaryWeaponScreenPresenter secondaryWeaponScreen;
 
-        public BroadcastGameOverEventToUISystem(IUIService uiService)
+        public BroadcastGameOverEventToUISystem(IUIProvider uiProvider)
         {
-            this.uiService = uiService;
+            this.uiProvider = uiProvider;
         }
 
         public void Init(IEcsSystems systems)
@@ -24,9 +24,9 @@ namespace AsteroidsProject.GameLogic.Features.UI.BroadcastGameOverEventToUI
             world = systems.GetWorld();
             filter = world.Filter<CGameOverEvent>().End();
             eventPool = world.GetPool<CGameOverEvent>();
-            gameOverScreen = uiService.Get<IGameOverScreenPresenter>();
-            shipStatsScreen = uiService.Get<IPlayerShipStatsScreenPresenter>();
-            secondaryWeaponScreen = uiService.Get<IPlayerSecondaryWeaponScreenPresenter>();
+            //gameOverScreen = uiProvider.Get<IGameOverScreenPresenter>();
+            //shipStatsScreen = uiProvider.Get<IPlayerShipStatsScreenPresenter>();
+            //secondaryWeaponScreen = uiProvider.Get<IPlayerSecondaryWeaponScreenPresenter>();
         }
 
         public void Run(IEcsSystems systems)

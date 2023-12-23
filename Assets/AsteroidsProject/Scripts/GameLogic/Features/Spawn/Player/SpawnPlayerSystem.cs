@@ -21,7 +21,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Player
         public async void Init(IEcsSystems systems)
         {
             world = systems.GetWorld();
-            var gameSceneConfig = await configLoader.Load<GameSceneConfig>(configProvider.GameConfig.ScenesConfig.GameSceneConfigPath);
+            var gameSceneConfig = await configLoader.Load<GameSceneConfig>(configProvider.GameConfig.ScenesConfig.GameSceneConfigLabel);
             Spawn(gameSceneConfig.PlayerConfigPath);
         }
 

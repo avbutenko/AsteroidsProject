@@ -87,10 +87,13 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
+    - MainMenuSceneConfig
     - InMainMenuScene
-    - InGameScene
-    - GameScene
+    - InMainMenuSceneUI
     - MainMenuScene
+    - InGameScene
+    - InGameSceneUI
+    - GameScene
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 02170ef8cd087094eac94ee6e75211c9, type: 2}

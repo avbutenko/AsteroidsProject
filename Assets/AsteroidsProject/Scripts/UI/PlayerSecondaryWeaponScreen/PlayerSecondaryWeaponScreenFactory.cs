@@ -21,12 +21,13 @@ namespace AsteroidsProject.UI.PlayerSecondaryWeaponScreen
 
         public async UniTask<IUIScreenPresenter> CreateAsync()
         {
-            var prefab = await assetProvider.LoadAsync<GameObject>(configProvider.GameConfig.UIConfig.PlayerSecondaryWeaponScreenPath);
-            var presenter = Object.Instantiate(prefab);
-            var model = new PlayerSecondaryWeaponScreenModel();
-            var extraArgs = new List<object> { model };
-            diContainer.InjectGameObjectForComponent(presenter, typeof(PlayerSecondaryWeaponScreenPresenter), extraArgs);
-            return presenter.GetComponent<IUIScreenPresenter>();
+            return default;
+            //var prefab = await assetProvider.LoadAsync<GameObject>(configProvider.GameConfig.UIConfig.PlayerSecondaryWeaponScreenPath);
+            //var presenter = Object.Instantiate(prefab);
+            //var model = new PlayerSecondaryWeaponScreenModel();
+            //var extraArgs = new List<object> { model };
+            //diContainer.InjectGameObjectForComponent(presenter, typeof(PlayerSecondaryWeaponScreenPresenter), extraArgs);
+            //return presenter.GetComponent<IUIScreenPresenter>();
         }
     }
 }

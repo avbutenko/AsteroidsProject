@@ -27,7 +27,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.Asteroid
 
         public async void Init(IEcsSystems systems)
         {
-            gameSceneConfig = await configLoader.Load<GameSceneConfig>(configProvider.GameConfig.ScenesConfig.GameSceneConfigPath);
+            gameSceneConfig = await configLoader.Load<GameSceneConfig>(configProvider.GameConfig.ScenesConfig.GameSceneConfigLabel);
             asteroidSpawnconfig = await configLoader.Load<SpawnConfig>(gameSceneConfig.AsteroidSpawnConfigPath);
             world = systems.GetWorld();
             filter = world.Filter<CAsteroidTag>().End();

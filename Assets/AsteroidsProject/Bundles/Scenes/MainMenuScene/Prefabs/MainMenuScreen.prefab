@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 6948682376658322794}
   - component: {fileID: 4832017888093859509}
   - component: {fileID: 5383184312125549887}
+  - component: {fileID: 5236515903662326375}
   - component: {fileID: 4889686907571696892}
   m_Layer: 5
   m_Name: MainMenuScreen
@@ -376,6 +377,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5236515903662326375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6923852220114916805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7179e343c10d4752bfeb872477553ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parent: {fileID: 0}
+  _searchType: 0
 --- !u!114 &4889686907571696892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,10 +415,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4316552317374673225}
   - component: {fileID: 5199622001247113842}
+  - component: {fileID: 6383409237771160554}
   - component: {fileID: 1278749696219438290}
   - component: {fileID: 7064900790846724858}
   m_Layer: 5
-  m_Name: Exit
+  m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -438,6 +454,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7437997627895410010}
   m_CullTransparentMesh: 1
+--- !u!114 &6383409237771160554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7437997627895410010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b6b406923f44eb196499bd257618bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _widgetName: MainMenu-ExitGame
+  _emitter: {fileID: 0}
+  _nameRegistrationType: 0
+  _selectable: {fileID: 7064900790846724858}
 --- !u!114 &1278749696219438290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,10 +554,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3451531031308496040}
   - component: {fileID: 7254727269763275528}
+  - component: {fileID: 3188363950553290372}
   - component: {fileID: 6066688149768727866}
   - component: {fileID: 6074003005721797174}
   m_Layer: 5
-  m_Name: Start
+  m_Name: StartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -560,6 +593,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8310480039536066659}
   m_CullTransparentMesh: 1
+--- !u!114 &3188363950553290372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8310480039536066659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b6b406923f44eb196499bd257618bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _widgetName: MainMenu-StartGame
+  _emitter: {fileID: 0}
+  _nameRegistrationType: 0
+  _selectable: {fileID: 6074003005721797174}
 --- !u!114 &6066688149768727866
 MonoBehaviour:
   m_ObjectHideFlags: 0

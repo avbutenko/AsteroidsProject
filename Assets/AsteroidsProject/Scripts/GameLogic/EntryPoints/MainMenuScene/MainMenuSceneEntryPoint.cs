@@ -1,28 +1,58 @@
 using AsteroidsProject.Shared;
+using System;
 using Zenject;
 
 namespace AsteroidsProject.GameLogic.EntryPoint.MainMenuScene
 {
-    public class MainMenuSceneEntryPoint : IInitializable
+    public class MainMenuSceneEntryPoint : IInitializable, ITickable, IFixedTickable, IDisposable
     {
-        private readonly ILoadingScreenService loadingScreen;
-        private readonly IUIService uiService;
+        private readonly IEcsSystemsRunner ecsSystemsRunner;
+        private readonly IUIProvider uiProvider;
         private readonly IAssetProvider assetProvider;
+        private readonly IGameConfigProvider configProvider;
+        private readonly IConfigLoader configLoader;
 
-        public MainMenuSceneEntryPoint(IAssetProvider assetProvider, ILoadingScreenService loadingScreen, IUIService uiService)
+        public MainMenuSceneEntryPoint(
+            IEcsSystemsRunner ecsSystemsRunner,
+            IAssetProvider assetProvider,
+            IUIProvider uiProvider,
+            IGameConfigProvider configProvider,
+            IConfigLoader configLoader)
         {
-            this.loadingScreen = loadingScreen;
-            this.uiService = uiService;
+            this.ecsSystemsRunner = ecsSystemsRunner;
+            this.uiProvider = uiProvider;
             this.assetProvider = assetProvider;
+            this.configProvider = configProvider;
+            this.configLoader = configLoader;
         }
 
         public async void Initialize()
         {
-            loadingScreen.Show();
-            await assetProvider.PreLoadAsyncByLabel(AssetLabels.InMainMenuScene.ToString());
-            await uiService.PreLoadUI();
-            uiService.Get<IMainMenuScreenPresenter>().Show();
-            loadingScreen.Hide();
+            uiProvider.LoadingScreen.Show();
+            var sceneConfig = await configLoader.Load<SceneConfig>(configProvider.GameConfig.ScenesConfig.MainMenuSceneConfigLabel);
+            await assetProvider.PreLoadAllByLabelAsync(sceneConfig.PreLoadAssetLabel);
+            await uiProvider.PreInitUIByLabel(sceneConfig.PreInitUILabel);
+            ecsSystemsRunner.PreInitSystems(sceneConfig.EcsUpdateSystems, sceneConfig.EcsFixedUpdateSystems);
+            ecsSystemsRunner.Initialize();
+            uiProvider.Get<IMainMenuScreenController>().Show();
+            uiProvider.LoadingScreen.Hide();
+        }
+
+        public void Tick()
+        {
+            ecsSystemsRunner.Tick();
+        }
+
+        public void FixedTick()
+        {
+            ecsSystemsRunner.Tick();
+        }
+
+        public void Dispose()
+        {
+            assetProvider.Dispose();
+            configLoader.Dispose();
+            ecsSystemsRunner.Dispose();
         }
     }
 }

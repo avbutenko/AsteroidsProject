@@ -28,7 +28,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn.Units.Ufo
         public async void Init(IEcsSystems systems)
         {
             world = systems.GetWorld();
-            gameSceneConfig = await configLoader.Load<GameSceneConfig>(configProvider.GameConfig.ScenesConfig.GameSceneConfigPath);
+            gameSceneConfig = await configLoader.Load<GameSceneConfig>(configProvider.GameConfig.ScenesConfig.GameSceneConfigLabel);
             spawnconfig = await configLoader.Load<SpawnConfig>(gameSceneConfig.UfoSpawnConfigPath);
         }
 

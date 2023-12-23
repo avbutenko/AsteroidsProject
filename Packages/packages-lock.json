@@ -12,7 +12,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "8e714f2caf4450757637f1d31001d0961f66288d"
+      "hash": "984856664a3ae7cff5b8a16eb7ab26ec02cb47d5"
     },
     "com.leopotam.ecslite.extendedsystems": {
       "version": "https://github.com/Leopotam/ecslite-extendedsystems.git",
@@ -20,6 +20,13 @@
       "source": "git",
       "dependencies": {},
       "hash": "007a5af4aaa1c4993523232f306a5f02e1de7c0f"
+    },
+    "com.leopotam.ecslite.unity.ugui": {
+      "version": "https://github.com/Leopotam/ecslite-unity-ugui.git#develop",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "3f4f467d5abbea877a9e2c7e3461645bb5070e35"
     },
     "com.leopotam.ecslite.unityeditor": {
       "version": "https://github.com/Leopotam/ecslite-unityeditor.git",
@@ -125,11 +132,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.addressables": {
-      "version": "1.21.15",
+      "version": "1.21.19",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.scriptablebuildpipeline": "1.21.8",
+        "com.unity.scriptablebuildpipeline": "1.21.21",
         "com.unity.modules.assetbundle": "1.0.0",
         "com.unity.modules.imageconversion": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0",
@@ -195,7 +202,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.18",
+      "version": "2.0.22",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -227,7 +234,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.scriptablebuildpipeline": {
-      "version": "1.21.8",
+      "version": "1.21.21",
       "depth": 1,
       "source": "registry",
       "dependencies": {},

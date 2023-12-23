@@ -8,7 +8,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace AsteroidsProject.Services
 {
-    public class AssetProvider : IAssetProvider, IDisposable
+    public class AssetProvider : IAssetProvider
     {
         private readonly Dictionary<string, AsyncOperationHandle> cachedObjects = new();
 
@@ -31,15 +31,26 @@ namespace AsteroidsProject.Services
             return await UniTask.WhenAll(tasks);
         }
 
-        public async UniTask PreLoadAsyncByLabel(string label)
+        public async UniTask PreLoadAllByLabelAsync(string label)
         {
             var assetsList = await GetAddressListByLabel(label);
             await LoadAsync<object>(assetsList);
         }
 
+        public async UniTask<T[]> LoadByLabelAsync<T>(string label) where T : class
+        {
+            var assetsList = await GetAddressListByLabel(label);
+            return await LoadAsync<T>(assetsList);
+        }
+
         public async UniTask<T> ResourceLoadAsync<T>(string resourceAddress) where T : class
         {
             return await Resources.LoadAsync(resourceAddress) as T;
+        }
+
+        public T ResourceLoad<T>(string resourceAddress) where T : class
+        {
+            return Resources.Load(resourceAddress) as T;
         }
 
         public void Dispose()

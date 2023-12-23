@@ -9,7 +9,7 @@ namespace AsteroidsProject.GameLogic.Features.UI.BroadcastDataToPlayerShipStatsS
     public class BroadcastDataToPlayerShipStatsScreenSystem : IEcsInitSystem, IEcsRunSystem
     {
         private Vector3 axis = Vector3.up;
-        private readonly IUIService uiService;
+        private readonly IUIProvider uiProvider;
         private IPlayerShipStatsScreenPresenter screenPresenter;
         private EcsWorld world;
         private EcsFilter filter;
@@ -19,9 +19,9 @@ namespace AsteroidsProject.GameLogic.Features.UI.BroadcastDataToPlayerShipStatsS
         private EcsPool<CVelocity> velocityPool;
 
 
-        public BroadcastDataToPlayerShipStatsScreenSystem(IUIService uiService)
+        public BroadcastDataToPlayerShipStatsScreenSystem(IUIProvider uiProvider)
         {
-            this.uiService = uiService;
+            this.uiProvider = uiProvider;
         }
 
         public void Init(IEcsSystems systems)
@@ -39,7 +39,7 @@ namespace AsteroidsProject.GameLogic.Features.UI.BroadcastDataToPlayerShipStatsS
             positionPool = world.GetPool<CPosition>();
             rotationPool = world.GetPool<CRotation>();
             velocityPool = world.GetPool<CVelocity>();
-            screenPresenter = uiService.Get<IPlayerShipStatsScreenPresenter>();
+            //screenPresenter = uiProvider.Get<IPlayerShipStatsScreenPresenter>();
             screenPresenter.Show();
         }
 

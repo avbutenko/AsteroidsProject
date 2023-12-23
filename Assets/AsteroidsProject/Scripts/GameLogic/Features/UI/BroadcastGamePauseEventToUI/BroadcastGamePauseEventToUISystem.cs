@@ -6,15 +6,15 @@ namespace AsteroidsProject.GameLogic.Features.UI.BroadcastGamePauseEventToUI
 {
     public class BroadcastGamePauseEventToUISystem : IEcsInitSystem, IEcsRunSystem
     {
-        private readonly IUIService uiService;
+        private readonly IUIProvider uiProvider;
         private EcsWorld world;
         private EcsFilter filter;
         private EcsPool<CGamePauseEvent> eventPool;
         private IGamePauseScreenPresenter pauseScreen;
 
-        public BroadcastGamePauseEventToUISystem(IUIService uiService)
+        public BroadcastGamePauseEventToUISystem(IUIProvider uiProvider)
         {
-            this.uiService = uiService;
+            this.uiProvider = uiProvider;
         }
 
         public void Init(IEcsSystems systems)
@@ -22,7 +22,7 @@ namespace AsteroidsProject.GameLogic.Features.UI.BroadcastGamePauseEventToUI
             world = systems.GetWorld();
             filter = world.Filter<CGamePauseEvent>().End();
             eventPool = world.GetPool<CGamePauseEvent>();
-            pauseScreen = uiService.Get<IGamePauseScreenPresenter>();
+            //pauseScreen = uiProvider.Get<IGamePauseScreenPresenter>();
         }
 
         public void Run(IEcsSystems systems)

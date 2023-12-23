@@ -28,6 +28,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - InMainMenuScene
+    - InMainMenuSceneUI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 753396953260c3f4397af89f342ec110
     m_Address: PlayerConfig
@@ -172,6 +173,12 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - InGameScene
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a19350f50087eec409c46c3c0917cbf2
+    m_Address: MainMenuSceneConfig
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - MainMenuSceneConfig
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ddfbbdee1ce175948a9e559e33547383, type: 2}

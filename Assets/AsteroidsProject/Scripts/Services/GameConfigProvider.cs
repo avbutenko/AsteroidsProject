@@ -7,13 +7,19 @@ namespace AsteroidsProject.Services
 {
     public class GameConfigProvider : IGameConfigProvider, IInitializable
     {
+        private readonly IAssetProvider assetProvider;
         private GameConfig gameConfig;
+
+        public GameConfigProvider(IAssetProvider assetProvider)
+        {
+            this.assetProvider = assetProvider;
+        }
 
         public GameConfig GameConfig => gameConfig;
 
         public void Initialize()
         {
-            var configAsset = Resources.Load<TextAsset>("GameConfig");
+            var configAsset = assetProvider.ResourceLoad<TextAsset>("GameConfig");
             gameConfig = JsonConvert.DeserializeObject<GameConfig>(configAsset.text);
         }
     }

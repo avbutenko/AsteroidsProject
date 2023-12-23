@@ -14,15 +14,15 @@ namespace AsteroidsProject.UI.GamePauseScreen
 
         private ITimeService timeService;
         private ISceneLoader sceneLoader;
-        private ILoadingScreenService loadingScreen;
+        //private ILoadingScreenService loadingScreen;
         private CompositeDisposable trash;
 
         [Inject]
-        public void Construct(ITimeService timeService, ISceneLoader sceneLoader, ILoadingScreenService loadingScreen)
+        public void Construct(ITimeService timeService, ISceneLoader sceneLoader) //, ILoadingScreenService loadingScreen)
         {
             this.timeService = timeService;
             this.sceneLoader = sceneLoader;
-            this.loadingScreen = loadingScreen;
+            //this.loadingScreen = loadingScreen;
         }
 
         public void Awake()
@@ -61,9 +61,9 @@ namespace AsteroidsProject.UI.GamePauseScreen
         {
             Hide();
             timeService.TooglePause();
-            loadingScreen.Show();
+            //loadingScreen.Show();
             await sceneLoader.LoadSceneAsync(AssetLabels.MainMenuScene.ToString(), LoadSceneMode.Single, false);
-            loadingScreen.Hide();
+            //loadingScreen.Hide();
         }
     }
 }

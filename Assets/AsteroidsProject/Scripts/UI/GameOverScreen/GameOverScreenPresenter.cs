@@ -16,18 +16,18 @@ namespace AsteroidsProject.UI.GameOverScreen
         [SerializeField] private TextMeshProUGUI score;
 
         private ISceneLoader sceneLoader;
-        private ILoadingScreenService loadingScreen;
+        //private ILoadingScreenService loadingScreen;
         private IRestartService restartService;
         private IGameOverScreenModel model;
         private CompositeDisposable trash;
 
         [Inject]
-        public void Construct(IGameOverScreenModel model, ISceneLoader sceneLoader,
-            ILoadingScreenService loadingScreen, IRestartService restartService)
+        public void Construct(IGameOverScreenModel model, ISceneLoader sceneLoader, IRestartService restartService)
+        //ILoadingScreenService loadingScreen, )
         {
             this.model = model;
             this.sceneLoader = sceneLoader;
-            this.loadingScreen = loadingScreen;
+            //this.loadingScreen = loadingScreen;
             this.restartService = restartService;
         }
 
@@ -70,9 +70,9 @@ namespace AsteroidsProject.UI.GameOverScreen
         private async void ExitButtonClick()
         {
             Hide();
-            loadingScreen.Show();
+            //loadingScreen.Show();
             await sceneLoader.LoadSceneAsync(AssetLabels.MainMenuScene.ToString(), LoadSceneMode.Single, false);
-            loadingScreen.Hide();
+            //loadingScreen.Hide();
         }
 
         private void RestartButtonClick()

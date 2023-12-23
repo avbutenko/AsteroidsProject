@@ -1,6 +1,6 @@
 namespace AsteroidsProject.Shared
 {
-    public class GameSceneConfig
+    public class GameSceneConfig : SceneConfig
     {
         public string PlayerConfigPath { get; set; }
         public string AsteroidSpawnConfigPath { get; set; }

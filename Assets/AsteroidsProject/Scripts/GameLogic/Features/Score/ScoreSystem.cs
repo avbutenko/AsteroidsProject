@@ -6,7 +6,7 @@ namespace AsteroidsProject.GameLogic.Features.Score
 {
     public class ScoreSystem : IEcsInitSystem, IEcsRunSystem
     {
-        private readonly IUIService uiService;
+        private readonly IUIProvider uiProvider;
         private EcsWorld world;
         private EcsFilter reqestFilter;
         private EcsFilter scoreFilter;
@@ -14,9 +14,9 @@ namespace AsteroidsProject.GameLogic.Features.Score
         private EcsPool<CCollectScoreRequest> requestPool;
         private IGameOverScreenPresenter gameOverScreenPresenter;
 
-        public ScoreSystem(IUIService uiService)
+        public ScoreSystem(IUIProvider uiService)
         {
-            this.uiService = uiService;
+            this.uiProvider = uiService;
         }
 
         public void Init(IEcsSystems systems)
@@ -26,7 +26,7 @@ namespace AsteroidsProject.GameLogic.Features.Score
             scoreFilter = world.Filter<CScore>().End();
             scorePool = world.GetPool<CScore>();
             requestPool = world.GetPool<CCollectScoreRequest>();
-            gameOverScreenPresenter = uiService.Get<IGameOverScreenPresenter>();
+            //gameOverScreenPresenter = uiProvider.Get<IGameOverScreenPresenter>();
         }
 
         public void Run(IEcsSystems systems)

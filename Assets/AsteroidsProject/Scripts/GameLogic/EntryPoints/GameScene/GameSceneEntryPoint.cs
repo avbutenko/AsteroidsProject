@@ -6,27 +6,24 @@ namespace AsteroidsProject.GameLogic.EntryPoint.GameScene
 {
     public class GameSceneEntryPoint : IInitializable, ITickable, IFixedTickable, IDisposable
     {
-        private readonly ILoadingScreenService loadingScreen;
         private readonly IEcsSystemsRunner ecsSystemsRunner;
         private readonly IAssetProvider assetProvider;
-        private readonly IUIService uiService;
+        private readonly IUIProvider uiProvider;
 
-        public GameSceneEntryPoint(ILoadingScreenService loadingScreen, IEcsSystemsRunner ecsSystemsRunner, IAssetProvider assetProvider,
-            IUIService uiService)
+        public GameSceneEntryPoint(IEcsSystemsRunner ecsSystemsRunner, IAssetProvider assetProvider, IUIProvider uiProvider)
         {
-            this.loadingScreen = loadingScreen;
             this.ecsSystemsRunner = ecsSystemsRunner;
             this.assetProvider = assetProvider;
-            this.uiService = uiService;
+            this.uiProvider = uiProvider;
         }
 
         public async void Initialize()
         {
-            loadingScreen.Show();
-            await assetProvider.PreLoadAsyncByLabel(AssetLabels.InGameScene.ToString());
-            await uiService.PreLoadUI();
-            ecsSystemsRunner.Initialize();
-            loadingScreen.Hide();
+            uiProvider.LoadingScreen.Show();
+            await assetProvider.PreLoadAllByLabelAsync(AssetLabels.InGameScene.ToString());
+            await uiProvider.PreInitUIByLabel(AssetLabels.InGameSceneUI.ToString());
+            //ecsSystemsRunner.Initialize();
+            uiProvider.LoadingScreen.Hide();
         }
 
         public void Tick()

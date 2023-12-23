@@ -20,10 +20,11 @@ namespace AsteroidsProject.UI.GamePauseScreen
 
         public async UniTask<IUIScreenPresenter> CreateAsync()
         {
-            var prefab = await assetProvider.LoadAsync<GameObject>(configProvider.GameConfig.UIConfig.GamePauseScreenPath);
-            var presenter = Object.Instantiate(prefab);
-            diContainer.InjectGameObject(presenter);
-            return presenter.GetComponent<IUIScreenPresenter>();
+            return default;
+            //var prefab = await assetProvider.LoadAsync<GameObject>(configProvider.GameConfig.UIConfig.GamePauseScreenPath);
+            //var presenter = Object.Instantiate(prefab);
+            //diContainer.InjectGameObject(presenter);
+            //return presenter.GetComponent<IUIScreenPresenter>();
         }
     }
 }

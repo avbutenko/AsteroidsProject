@@ -5,7 +5,7 @@ namespace AsteroidsProject.Services
 {
     public class TimeService : ITimeService
     {
-        private float timeScale;
+        private readonly float timeScale;
 
         public TimeService()
         {

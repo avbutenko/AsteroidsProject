@@ -5,26 +5,26 @@ using Zenject;
 using System.Runtime.Serialization;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using System;
 
 namespace AsteroidsProject.Services
 {
-    public class ConfigLoader : IConfigLoader, IInitializable, IDisposable
+    public class ConfigLoader : IConfigLoader, IInitializable
     {
         private readonly IComponentConverterService componentConverterService;
         private readonly IAssetProvider assetProvider;
-        private readonly Dictionary<string, object> cachedObjects;
+        private Dictionary<string, object> cachedObjects;
         private JsonSerializerSettings serializerSettings;
 
         public ConfigLoader(IAssetProvider assetProvider, IComponentConverterService componentConverterService)
         {
             this.assetProvider = assetProvider;
             this.componentConverterService = componentConverterService;
-            cachedObjects = new Dictionary<string, object>();
         }
 
         public void Initialize()
         {
+            cachedObjects = new Dictionary<string, object>();
+
             serializerSettings = new JsonSerializerSettings
             {
                 Context = new StreamingContext(StreamingContextStates.All, componentConverterService)

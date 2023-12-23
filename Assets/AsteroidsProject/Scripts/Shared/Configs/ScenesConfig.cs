@@ -2,7 +2,7 @@
 {
     public class ScenesConfig
     {
-        public string FirstScenePath { get; set; }
-        public string GameSceneConfigPath { get; set; }
+        public string MainMenuSceneConfigLabel { get; set; }
+        public string GameSceneConfigLabel { get; set; }
     }
 }

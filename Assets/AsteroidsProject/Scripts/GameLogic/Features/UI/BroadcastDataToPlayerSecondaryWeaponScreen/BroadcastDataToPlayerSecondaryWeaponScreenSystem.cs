@@ -7,7 +7,7 @@ namespace AsteroidsProject.GameLogic.Features.UI.BroadcastDataToPlayerSecondaryW
 {
     public class BroadcastDataToPlayerSecondaryWeaponScreenSystem : IEcsInitSystem, IEcsRunSystem
     {
-        private readonly IUIService uiService;
+        private readonly IUIProvider uiProvider;
         private IPlayerSecondaryWeaponScreenPresenter screenPresenter;
         private EcsWorld world;
         private EcsFilter filter;
@@ -15,9 +15,9 @@ namespace AsteroidsProject.GameLogic.Features.UI.BroadcastDataToPlayerSecondaryW
         private EcsPool<CAmmo> ammoPool;
         private EcsPool<CAmmoAutoRefillCoolDown> cooldownPool;
 
-        public BroadcastDataToPlayerSecondaryWeaponScreenSystem(IUIService uiService)
+        public BroadcastDataToPlayerSecondaryWeaponScreenSystem(IUIProvider uiProvider)
         {
-            this.uiService = uiService;
+            this.uiProvider = uiProvider;
         }
 
         public void Init(IEcsSystems systems)
@@ -31,7 +31,7 @@ namespace AsteroidsProject.GameLogic.Features.UI.BroadcastDataToPlayerSecondaryW
             weaponPool = world.GetPool<CSecondaryWeapon>();
             ammoPool = world.GetPool<CAmmo>();
             cooldownPool = world.GetPool<CAmmoAutoRefillCoolDown>();
-            screenPresenter = uiService.Get<IPlayerSecondaryWeaponScreenPresenter>();
+            //screenPresenter = uiProvider.Get<IPlayerSecondaryWeaponScreenPresenter>();
             screenPresenter.Show();
         }
 

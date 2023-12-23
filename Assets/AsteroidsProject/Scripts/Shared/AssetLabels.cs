@@ -2,9 +2,11 @@
 {
     public enum AssetLabels
     {
-        InMainMenuScene = 0,
-        MainMenuScene = 1,
-        InGameScene = 2,
-        GameScene = 3
+        InMainMenuScene = 10,
+        InMainMenuSceneUI = 20,
+        MainMenuScene = 30,
+        InGameScene = 40,
+        InGameSceneUI = 50,
+        GameScene = 60
     }
 }

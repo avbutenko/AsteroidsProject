@@ -1,58 +1,55 @@
 ﻿using AsteroidsProject.Shared;
 using LeoEcsPhysics;
 using Leopotam.EcsLite;
+using Leopotam.EcsLite.Unity.Ugui;
 using System.Collections.Generic;
 
 namespace AsteroidsProject.Services
 {
     public class EcsSystemsRunner : IEcsSystemsRunner, IRestartable
     {
-        private readonly IEcsUpdateSystemsProvider updateSystemsProvider;
-        private readonly IEcsFixedUpdateSystemsProvider fixedUpdateSystemsProvider;
-        private readonly ITimeService timeService;
+        private readonly EcsUguiEmitter uguiEmitter;
+        private readonly IEcsSystemsFactory systemsFactory;
         private EcsWorld world;
+        private List<IEcsSystem> updateSystemsList;
+        private List<IEcsSystem> fixedUpdateSystemsList;
         private IEcsSystems fixedUpdateSystems;
         private IEcsSystems updateSystems;
-        private bool systemsInitialized = false;
 
-        public EcsSystemsRunner(IEcsUpdateSystemsProvider updateSystemsProvider, IEcsFixedUpdateSystemsProvider fixedUpdateSystemsProvider,
-            ITimeService timeService)
+        public EcsSystemsRunner(EcsUguiEmitter uguiEmitter, IEcsSystemsFactory systemsFactory)
         {
-            this.updateSystemsProvider = updateSystemsProvider;
-            this.fixedUpdateSystemsProvider = fixedUpdateSystemsProvider;
-            this.timeService = timeService;
+            this.uguiEmitter = uguiEmitter;
+            this.systemsFactory = systemsFactory;
+        }
+
+        public void PreInitSystems(List<string> updateSystemNameList, List<string> fixedUpdateSystemNameList)
+        {
+            updateSystemsList = InitSystems(updateSystemNameList);
+            fixedUpdateSystemsList = InitSystems(fixedUpdateSystemNameList);
         }
 
         public void Initialize()
         {
             world = new EcsWorld();
             EcsPhysicsEvents.ecsWorld = world;
-            updateSystems = GetSystems(updateSystemsProvider.BindedSystems);
-            fixedUpdateSystems = GetSystems(fixedUpdateSystemsProvider.BindedSystems);
-
+            updateSystems = ConvertSystemList(updateSystemsList);
 #if UNITY_EDITOR
-            updateSystems.Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem());
+            updateSystems?.Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem());
 #endif
-
-            updateSystems.Init();
-            fixedUpdateSystems.Init();
-            systemsInitialized = true;
+            updateSystems?.InjectUgui(uguiEmitter);
+            updateSystems?.Init();
+            fixedUpdateSystems = ConvertSystemList(fixedUpdateSystemsList);
+            fixedUpdateSystems?.Init();
         }
 
         public void Tick()
         {
-            if (!timeService.IsPaused && systemsInitialized)
-            {
-                updateSystems?.Run();
-            }
+            updateSystems?.Run();
         }
 
         public void FixedTick()
         {
-            if (!timeService.IsPaused && systemsInitialized)
-            {
-                fixedUpdateSystems?.Run();
-            }
+            fixedUpdateSystems?.Run();
         }
 
         public void Restart()
@@ -63,8 +60,6 @@ namespace AsteroidsProject.Services
 
         public virtual void Dispose()
         {
-            systemsInitialized = false;
-
             EcsPhysicsEvents.ecsWorld = null;
 
             if (updateSystems != null)
@@ -86,16 +81,42 @@ namespace AsteroidsProject.Services
             }
         }
 
-        private IEcsSystems GetSystems(List<IEcsSystem> bindedSystems)
+        private List<IEcsSystem> InitSystems(List<string> systemsList)
         {
-            var systems = new EcsSystems(world);
-
-            foreach (var system in bindedSystems)
+            if (systemsList == null)
             {
-                systems.Add(system);
+                return null;
             }
+            else
+            {
+                var systems = new List<IEcsSystem>();
 
-            return systems;
+                foreach (var systemName in systemsList)
+                {
+                    systems.Add(systemsFactory.Create(systemName));
+                }
+
+                return systems;
+            }
+        }
+
+        private IEcsSystems ConvertSystemList(List<IEcsSystem> systemsList)
+        {
+            if (systemsList == null)
+            {
+                return null;
+            }
+            else
+            {
+                var systems = new EcsSystems(world);
+
+                foreach (var system in systemsList)
+                {
+                    systems.Add(system);
+                }
+
+                return systems;
+            }
         }
     }
 }
