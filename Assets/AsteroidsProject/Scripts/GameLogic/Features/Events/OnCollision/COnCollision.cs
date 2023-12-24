@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace AsteroidsProject.GameLogic.Features.Events.OnCollision
+namespace AsteroidsProject.GameLogic.Features.Events
 {
     public struct COnCollision
     {

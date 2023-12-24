@@ -1,9 +1,8 @@
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
-using System;
 
-namespace AsteroidsProject.GameLogic.Features.UI.BroadcastDataToPlayerSecondaryWeaponScreen
+namespace AsteroidsProject.GameLogic.Features.UI
 {
     public class BroadcastDataToPlayerSecondaryWeaponScreenSystem : IEcsInitSystem, IEcsRunSystem
     {

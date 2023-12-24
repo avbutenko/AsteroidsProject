@@ -1,4 +1,4 @@
-﻿using AsteroidsProject.GameLogic.EntryPoint.BootstrapScene;
+﻿using AsteroidsProject.GameLogic.EntryPoints;
 using Zenject;
 
 namespace AsteroidsProject.CompositionRoot

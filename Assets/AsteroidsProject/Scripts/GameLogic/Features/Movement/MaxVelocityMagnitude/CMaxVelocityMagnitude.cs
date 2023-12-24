@@ -1,4 +1,4 @@
-namespace AsteroidsProject.GameLogic.Features.MaxVelocityMagnitude
+namespace AsteroidsProject.GameLogic.Features.Movement
 {
     public struct CMaxVelocityMagnitude
     {

@@ -1,4 +1,4 @@
-namespace AsteroidsProject.GameLogic.Features.Weapons.LaserGun
+namespace AsteroidsProject.GameLogic.Features.Weapons
 {
     public struct CLaserGunTag { }
 }

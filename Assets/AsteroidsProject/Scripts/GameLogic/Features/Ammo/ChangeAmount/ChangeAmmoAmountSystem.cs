@@ -1,7 +1,7 @@
 using AsteroidsProject.GameLogic.Core;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.Ammo.ChangeAmount
+namespace AsteroidsProject.GameLogic.Features.Ammo
 {
     public class ChangeAmmoAmountSystem : IEcsInitSystem, IEcsRunSystem
     {

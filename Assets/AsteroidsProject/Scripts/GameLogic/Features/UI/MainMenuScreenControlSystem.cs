@@ -4,7 +4,7 @@ using UnityEngine;
 using AsteroidsProject.Shared;
 using UnityEngine.SceneManagement;
 
-namespace AsteroidsProject.GameLogic.Features.UI.BroadcastGameOverEventToUI
+namespace AsteroidsProject.GameLogic.Features.UI
 {
     public class MainMenuScreenControlSystem : EcsUguiCallbackSystem
     {

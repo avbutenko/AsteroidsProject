@@ -1,8 +1,7 @@
-using AsteroidsProject.GameLogic.EntryPoints;
 using AsteroidsProject.Shared;
 using Cysharp.Threading.Tasks;
 
-namespace AsteroidsProject.GameLogic.EntryPoint.MainMenuScene
+namespace AsteroidsProject.GameLogic.EntryPoints
 {
     public class MainMenuSceneEntryPoint : SceneRunner
     {

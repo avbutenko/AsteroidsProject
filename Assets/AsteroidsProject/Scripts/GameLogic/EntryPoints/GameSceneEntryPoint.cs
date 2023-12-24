@@ -1,8 +1,7 @@
-using AsteroidsProject.GameLogic.EntryPoints;
 using AsteroidsProject.Shared;
 using Cysharp.Threading.Tasks;
 
-namespace AsteroidsProject.GameLogic.EntryPoint.GameScene
+namespace AsteroidsProject.GameLogic.EntryPoints
 {
     public class GameSceneEntryPoint : SceneRunner
     {
@@ -20,6 +19,5 @@ namespace AsteroidsProject.GameLogic.EntryPoint.GameScene
         {
             //show inGameUI here
         }
-
     }
 }

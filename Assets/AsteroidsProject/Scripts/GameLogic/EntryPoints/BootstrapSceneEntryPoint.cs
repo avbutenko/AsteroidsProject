@@ -2,7 +2,7 @@ using AsteroidsProject.Shared;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-namespace AsteroidsProject.GameLogic.EntryPoint.BootstrapScene
+namespace AsteroidsProject.GameLogic.EntryPoints
 {
     public class BootstrapSceneEntryPoint : IInitializable
     {

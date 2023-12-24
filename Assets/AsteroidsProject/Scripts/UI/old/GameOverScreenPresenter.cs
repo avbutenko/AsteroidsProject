@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace AsteroidsProject.UI.GameOverScreen
+namespace AsteroidsProject.UI
 {
     public class GameOverScreenPresenter //: MonoBehaviour, IGameOverScreenPresenter
     {

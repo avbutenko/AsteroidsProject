@@ -2,7 +2,7 @@ using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.Ammo.AutoRefill
+namespace AsteroidsProject.GameLogic.Features.Ammo
 {
     public class AmmoAutoRefillCoolDownSystem : BaseCoolDownSystem<CAmmoAutoRefillCoolDown>
     {

@@ -1,7 +1,7 @@
 ﻿using AsteroidsProject.Shared;
 using Newtonsoft.Json.Linq;
 
-namespace AsteroidsProject.GameLogic.Features.Movement.Acceleration
+namespace AsteroidsProject.GameLogic.Features.Movement
 {
     public class AccelerationModifierConverter : IComponentConverter
     {

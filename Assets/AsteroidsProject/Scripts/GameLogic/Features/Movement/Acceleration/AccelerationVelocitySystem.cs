@@ -2,7 +2,7 @@
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.Movement.Acceleration
+namespace AsteroidsProject.GameLogic.Features.Movement
 {
     public class AccelerationVelocitySystem : IEcsInitSystem, IEcsRunSystem
     {

@@ -1,7 +1,7 @@
 ﻿using AsteroidsProject.Shared;
 using Newtonsoft.Json.Linq;
 
-namespace AsteroidsProject.GameLogic.Features.Ammo.Max
+namespace AsteroidsProject.GameLogic.Features.Ammo
 {
     public class AmmoMaxConverter : IComponentConverter
     {

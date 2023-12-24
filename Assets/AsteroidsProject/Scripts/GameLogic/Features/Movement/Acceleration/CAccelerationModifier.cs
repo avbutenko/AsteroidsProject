@@ -1,4 +1,4 @@
-﻿namespace AsteroidsProject.GameLogic.Features.Movement.Acceleration
+﻿namespace AsteroidsProject.GameLogic.Features.Movement
 {
     public struct CAccelerationModifier
     {

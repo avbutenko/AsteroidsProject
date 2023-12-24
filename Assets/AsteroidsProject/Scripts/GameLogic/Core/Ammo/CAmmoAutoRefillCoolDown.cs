@@ -1,4 +1,4 @@
-using Assets.AsteroidsProject.Scripts.Shared;
+using AsteroidsProject.Shared;
 
 namespace AsteroidsProject.GameLogic.Core
 {

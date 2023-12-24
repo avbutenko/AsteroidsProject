@@ -2,7 +2,7 @@ using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.Spawn.Player
+namespace AsteroidsProject.GameLogic.Features.Spawn
 {
     public class SpawnPlayerSystem : IEcsInitSystem
     {

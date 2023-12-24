@@ -2,7 +2,7 @@ using AsteroidsProject.Shared;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace AsteroidsProject.GameLogic.Features.Events.OnOutOfLevel
+namespace AsteroidsProject.GameLogic.Features.Events
 {
     public struct COnOutOfLevel : IHaveComponentList
     {

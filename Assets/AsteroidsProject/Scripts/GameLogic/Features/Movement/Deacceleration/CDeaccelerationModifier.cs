@@ -1,4 +1,4 @@
-﻿namespace AsteroidsProject.GameLogic.Features.Movement.Deacceleration
+﻿namespace AsteroidsProject.GameLogic.Features.Movement
 {
     public struct CDeaccelerationModifier
     {

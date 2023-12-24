@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace AsteroidsProject.GameLogic.Features.Ammo.AutoRefill
+namespace AsteroidsProject.GameLogic.Features.Ammo
 {
     public class AmmoAutoRefillConverter : IComponentConverter
     {

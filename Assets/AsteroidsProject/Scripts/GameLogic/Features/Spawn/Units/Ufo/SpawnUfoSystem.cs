@@ -3,7 +3,7 @@ using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace AsteroidsProject.GameLogic.Features.Spawn.Units.Ufo
+namespace AsteroidsProject.GameLogic.Features.Spawn
 {
     public class SpawnUfoSystem : IEcsInitSystem, IEcsRunSystem
     {

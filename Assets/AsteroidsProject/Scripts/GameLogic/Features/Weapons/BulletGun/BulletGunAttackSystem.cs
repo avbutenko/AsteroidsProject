@@ -1,7 +1,8 @@
 using AsteroidsProject.GameLogic.Core;
+using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.Weapons.BulletGun
+namespace AsteroidsProject.GameLogic.Features.Weapons
 {
     public class BulletGunAttackSystem : IEcsInitSystem, IEcsRunSystem
     {

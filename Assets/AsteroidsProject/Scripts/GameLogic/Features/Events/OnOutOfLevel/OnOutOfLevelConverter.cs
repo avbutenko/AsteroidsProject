@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace AsteroidsProject.GameLogic.Features.Events.OnOutOfLevel
+namespace AsteroidsProject.GameLogic.Features.Events
 {
     public class OnOutOfLevelConverter : ComponentListConverter<COnOutOfLevel>
     {

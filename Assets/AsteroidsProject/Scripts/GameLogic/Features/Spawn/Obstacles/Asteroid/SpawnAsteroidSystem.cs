@@ -2,7 +2,7 @@ using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.Asteroid
+namespace AsteroidsProject.GameLogic.Features.Spawn
 {
     public class SpawnAsteroidSystem : IEcsInitSystem, IEcsRunSystem
     {

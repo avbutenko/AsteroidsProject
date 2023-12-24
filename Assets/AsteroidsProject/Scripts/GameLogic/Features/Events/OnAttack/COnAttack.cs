@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace AsteroidsProject.GameLogic.Features.Events.OnAttack
+namespace AsteroidsProject.GameLogic.Features.Events
 {
     public struct COnAttack : IHaveComponentList
     {

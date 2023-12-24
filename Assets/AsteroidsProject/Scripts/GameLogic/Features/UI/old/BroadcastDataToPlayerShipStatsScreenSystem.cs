@@ -1,10 +1,9 @@
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
-using System;
 using UnityEngine;
 
-namespace AsteroidsProject.GameLogic.Features.UI.BroadcastDataToPlayerShipStatsScreen
+namespace AsteroidsProject.GameLogic.Features.UI
 {
     public class BroadcastDataToPlayerShipStatsScreenSystem : IEcsInitSystem, IEcsRunSystem
     {

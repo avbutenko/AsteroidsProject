@@ -1,8 +1,8 @@
-using Assets.AsteroidsProject.Scripts.Shared;
 using AsteroidsProject.GameLogic.Core;
+using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.Events.OnDeath
+namespace AsteroidsProject.GameLogic.Features.Events
 {
     public class OnDeathSystem : IEcsInitSystem, IEcsRunSystem
     {

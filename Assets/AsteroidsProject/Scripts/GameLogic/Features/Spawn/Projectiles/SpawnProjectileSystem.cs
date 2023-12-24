@@ -1,4 +1,3 @@
-using Assets.AsteroidsProject.Scripts.Shared;
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Cysharp.Threading.Tasks;
@@ -6,7 +5,7 @@ using Leopotam.EcsLite;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AsteroidsProject.GameLogic.Features.Spawn.Projectiles
+namespace AsteroidsProject.GameLogic.Features.Spawn
 {
     public class SpawnProjectileSystem : IEcsInitSystem, IEcsRunSystem
     {

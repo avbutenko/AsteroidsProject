@@ -1,7 +1,7 @@
 ﻿using AsteroidsProject.Shared;
 using Newtonsoft.Json.Linq;
 
-namespace AsteroidsProject.GameLogic.Features.Movement.Deacceleration
+namespace AsteroidsProject.GameLogic.Features.Movement
 {
     public class DeaccelerationModifierConverter : IComponentConverter
     {

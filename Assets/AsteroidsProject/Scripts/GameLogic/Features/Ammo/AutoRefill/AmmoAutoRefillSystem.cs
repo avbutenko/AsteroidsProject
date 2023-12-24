@@ -1,7 +1,7 @@
 ﻿using AsteroidsProject.GameLogic.Core;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.Ammo.AutoRefill
+namespace AsteroidsProject.GameLogic.Features.Ammo
 {
     public class AmmoAutoRefillSystem : IEcsInitSystem, IEcsRunSystem
     {

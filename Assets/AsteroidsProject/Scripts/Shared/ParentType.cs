@@ -1,4 +1,4 @@
-﻿namespace Assets.AsteroidsProject.Scripts.Shared
+﻿namespace AsteroidsProject.Shared
 {
     public enum ParentType
     {

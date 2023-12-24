@@ -2,7 +2,7 @@
 using AsteroidsProject.Shared;
 using AsteroidsProject.Services;
 using AsteroidsProject.MonoBehaviours;
-using AsteroidsProject.GameLogic.EntryPoint.GameScene;
+using AsteroidsProject.GameLogic.EntryPoints;
 using Leopotam.EcsLite.Unity.Ugui;
 using UnityEngine;
 

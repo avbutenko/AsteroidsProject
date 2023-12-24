@@ -1,7 +1,7 @@
 ﻿using Leopotam.EcsLite;
 using System.Collections.Generic;
 
-namespace AsteroidsProject.GameLogic.Core
+namespace AsteroidsProject.Shared
 {
     public static class EcsWorldExtensions
     {

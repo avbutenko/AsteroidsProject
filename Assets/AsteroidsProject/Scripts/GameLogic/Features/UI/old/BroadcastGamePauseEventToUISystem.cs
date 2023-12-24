@@ -2,7 +2,7 @@ using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.UI.BroadcastGamePauseEventToUI
+namespace AsteroidsProject.GameLogic.Features.UI
 {
     public class BroadcastGamePauseEventToUISystem : IEcsInitSystem, IEcsRunSystem
     {

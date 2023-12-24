@@ -1,6 +1,6 @@
 ﻿using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Core
+namespace AsteroidsProject.Shared
 {
     public class EcsDeleteHereSystem<TComponent> : IEcsInitSystem, IEcsRunSystem where TComponent : struct
     {

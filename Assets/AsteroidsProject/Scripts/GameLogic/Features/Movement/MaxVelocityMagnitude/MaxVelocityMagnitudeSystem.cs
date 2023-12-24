@@ -2,7 +2,7 @@ using AsteroidsProject.GameLogic.Core;
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace AsteroidsProject.GameLogic.Features.MaxVelocityMagnitude
+namespace AsteroidsProject.GameLogic.Features.Movement
 {
     public class MaxVelocityMagnitudeSystem : IEcsInitSystem, IEcsRunSystem
     {

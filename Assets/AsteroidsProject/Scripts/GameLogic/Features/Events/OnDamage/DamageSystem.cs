@@ -1,7 +1,8 @@
 using AsteroidsProject.GameLogic.Core;
+using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.Damage
+namespace AsteroidsProject.GameLogic.Features.Events
 {
     public class DamageSystem : IEcsInitSystem, IEcsRunSystem
     {

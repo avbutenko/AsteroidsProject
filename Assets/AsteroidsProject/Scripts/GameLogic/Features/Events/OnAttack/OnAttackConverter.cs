@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace AsteroidsProject.GameLogic.Features.Events.OnAttack
+namespace AsteroidsProject.GameLogic.Features.Events
 {
     public class OnAttackConverter : ComponentListConverter<COnAttack>
     {

@@ -2,7 +2,7 @@
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.Events.OnOutOfLevel
+namespace AsteroidsProject.GameLogic.Features.Events
 {
     public class OutOfLevelCheckSystem : IEcsInitSystem, IEcsRunSystem
     {

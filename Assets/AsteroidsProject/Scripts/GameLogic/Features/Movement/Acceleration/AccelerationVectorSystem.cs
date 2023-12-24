@@ -2,7 +2,7 @@
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace AsteroidsProject.GameLogic.Features.Movement.Acceleration
+namespace AsteroidsProject.GameLogic.Features.Movement
 {
     public class AccelerationVectorSystem : IEcsInitSystem, IEcsRunSystem
     {

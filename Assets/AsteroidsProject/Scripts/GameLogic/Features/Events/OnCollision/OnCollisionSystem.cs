@@ -3,7 +3,7 @@ using AsteroidsProject.Shared;
 using LeoEcsPhysics;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.Events.OnCollision
+namespace AsteroidsProject.GameLogic.Features.Events
 {
     public class CollisionSystem : IEcsInitSystem, IEcsRunSystem
     {

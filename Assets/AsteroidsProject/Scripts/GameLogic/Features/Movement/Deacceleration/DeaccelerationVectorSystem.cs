@@ -1,7 +1,7 @@
 ﻿using AsteroidsProject.GameLogic.Core;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.Movement.Deacceleration
+namespace AsteroidsProject.GameLogic.Features.Movement
 {
     public class DeaccelerationVectorSystem : IEcsInitSystem, IEcsRunSystem
     {

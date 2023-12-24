@@ -1,4 +1,4 @@
-namespace AsteroidsProject.GameLogic.Features.Weapons.BulletGun
+namespace AsteroidsProject.GameLogic.Features.Weapons
 {
     public struct CBulletGunTag { }
 }

@@ -2,7 +2,7 @@
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace AsteroidsProject.GameLogic.Features.Randomization.Velocity
+namespace AsteroidsProject.GameLogic.Features.Movement
 {
     public class RandomizeVelocitySystem : IEcsInitSystem, IEcsRunSystem
     {

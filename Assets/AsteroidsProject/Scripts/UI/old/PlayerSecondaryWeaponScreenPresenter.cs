@@ -6,7 +6,7 @@ using System;
 using UnityEngine;
 using Zenject;
 
-namespace AsteroidsProject.UI.PlayerSecondaryWeaponScreen
+namespace AsteroidsProject.UI
 {
     public class PlayerSecondaryWeaponScreenPresenter //: MonoBehaviour, IPlayerSecondaryWeaponScreenPresenter
     {

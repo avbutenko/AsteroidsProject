@@ -1,7 +1,7 @@
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 
-namespace AsteroidsProject.GameLogic.Features.AttackCoolDown
+namespace AsteroidsProject.GameLogic.Features.Weapons
 {
     public class AttackCoolDownSystem : BaseCoolDownSystem<CAttackCoolDown>
     {

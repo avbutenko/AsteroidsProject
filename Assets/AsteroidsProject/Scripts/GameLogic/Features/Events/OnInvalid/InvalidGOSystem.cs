@@ -1,8 +1,7 @@
-using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.InvalidGO
+namespace AsteroidsProject.GameLogic.Features.Events
 {
     public class InvalidGOSystem : IEcsInitSystem, IEcsRunSystem
     {

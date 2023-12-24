@@ -1,7 +1,8 @@
 using AsteroidsProject.GameLogic.Core;
+using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.Events.OnAttack
+namespace AsteroidsProject.GameLogic.Features.Events
 {
     public class OnAttackSystem : IEcsInitSystem, IEcsRunSystem
     {

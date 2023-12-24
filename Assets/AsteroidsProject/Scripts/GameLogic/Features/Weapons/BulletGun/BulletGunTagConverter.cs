@@ -1,7 +1,7 @@
 ﻿using AsteroidsProject.Shared;
 using Newtonsoft.Json.Linq;
 
-namespace AsteroidsProject.GameLogic.Features.Weapons.BulletGun
+namespace AsteroidsProject.GameLogic.Features.Weapons
 {
     public class BulletGunTagConverter : IComponentConverter
     {

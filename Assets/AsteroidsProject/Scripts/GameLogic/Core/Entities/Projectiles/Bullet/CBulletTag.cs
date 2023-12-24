@@ -1,4 +1,4 @@
-﻿namespace AsteroidsProject.GameLogic.Features.Projectiles.Bullet
+﻿namespace AsteroidsProject.GameLogic.Core
 {
     public struct CBulletTag { }
 }

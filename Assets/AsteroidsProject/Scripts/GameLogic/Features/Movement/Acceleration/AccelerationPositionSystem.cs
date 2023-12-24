@@ -3,7 +3,7 @@ using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace AsteroidsProject.GameLogic.Features.Movement.Acceleration
+namespace AsteroidsProject.GameLogic.Features.Movement
 {
     public class AccelerationPositionSystem : IEcsInitSystem, IEcsRunSystem
     {

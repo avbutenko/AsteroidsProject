@@ -2,9 +2,7 @@
     "name": "AsteroidsProject.MonoBehaviours",
     "rootNamespace": "AsteroidsProject.MonoBehaviours",
     "references": [
-        "GUID:02e9d0c052fbf484388102198213ee39",
-        "GUID:f51ebe6a0ceec4240a699833d6309b23",
-        "GUID:de6c4adc3aaac4bb09212ed7b9ba2781"
+        "GUID:02e9d0c052fbf484388102198213ee39"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

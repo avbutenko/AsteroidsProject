@@ -1,4 +1,4 @@
-﻿namespace AsteroidsProject.GameLogic.Features.Ammo.Max
+﻿namespace AsteroidsProject.GameLogic.Features.Ammo
 {
     public struct CAmmoMax
     {

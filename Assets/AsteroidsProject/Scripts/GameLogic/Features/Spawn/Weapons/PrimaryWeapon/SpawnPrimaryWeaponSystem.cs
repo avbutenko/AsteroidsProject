@@ -2,7 +2,7 @@ using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using UnityEngine;
 
-namespace AsteroidsProject.GameLogic.Features.Spawn.Weapons
+namespace AsteroidsProject.GameLogic.Features.Spawn
 {
     public class SpawnPrimaryWeaponSystem : BaseSpawnWeaponSystem<CSpawnPrimaryWeaponRequest, CPrimaryWeapon>
     {

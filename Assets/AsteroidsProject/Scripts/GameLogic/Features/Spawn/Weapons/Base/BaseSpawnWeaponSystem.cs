@@ -5,7 +5,7 @@ using Leopotam.EcsLite;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AsteroidsProject.GameLogic.Features.Spawn.Weapons
+namespace AsteroidsProject.GameLogic.Features.Spawn
 {
     public abstract class BaseSpawnWeaponSystem<TRequest, TWeaponType> : IEcsInitSystem, IEcsRunSystem
         where TRequest : struct, IHaveConfigAddress

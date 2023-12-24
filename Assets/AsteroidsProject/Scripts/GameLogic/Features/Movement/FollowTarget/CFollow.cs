@@ -1,6 +1,6 @@
 ﻿using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.Movement.FollowTarget
+namespace AsteroidsProject.GameLogic.Features.Movement
 {
     public struct CFollow
     {

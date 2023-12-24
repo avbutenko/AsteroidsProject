@@ -3,7 +3,7 @@ using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace AsteroidsProject.GameLogic.Features.Movement.Deacceleration
+namespace AsteroidsProject.GameLogic.Features.Movement
 {
     public class DeaccelerationPositionSystem : IEcsInitSystem, IEcsRunSystem
     {

@@ -1,7 +1,7 @@
 ﻿using AsteroidsProject.GameLogic.Core;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.Rotation.Permanent
+namespace AsteroidsProject.GameLogic.Features.Movement
 {
     public class PermanentRotationSystem : IEcsInitSystem, IEcsRunSystem
     {

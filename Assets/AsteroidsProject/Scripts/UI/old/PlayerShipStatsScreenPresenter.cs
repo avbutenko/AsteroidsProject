@@ -6,7 +6,7 @@ using UnityEngine;
 using Zenject;
 using System;
 
-namespace AsteroidsProject.UI.PlayerShipStatsScreen
+namespace AsteroidsProject.UI
 {
     public class PlayerShipStatsScreenPresenter //: MonoBehaviour, IPlayerShipStatsScreenPresenter
     {

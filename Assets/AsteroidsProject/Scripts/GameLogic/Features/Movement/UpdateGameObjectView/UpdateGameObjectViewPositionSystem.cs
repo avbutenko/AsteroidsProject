@@ -2,7 +2,7 @@
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
 
-namespace AsteroidsProject.GameLogic.Features.UpdateGameObjectView
+namespace AsteroidsProject.GameLogic.Features.Movement
 {
     public class UpdateGameObjectViewPositionSystem : IEcsInitSystem, IEcsRunSystem
     {

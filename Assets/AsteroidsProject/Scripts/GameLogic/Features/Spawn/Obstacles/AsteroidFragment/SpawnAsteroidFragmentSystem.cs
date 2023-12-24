@@ -5,7 +5,7 @@ using Leopotam.EcsLite;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AsteroidsProject.GameLogic.Features.Spawn.Obstacles.AsteroidFragment
+namespace AsteroidsProject.GameLogic.Features.Spawn
 {
     public class SpawnAsteroidFragmentSystem : IEcsInitSystem, IEcsRunSystem
     {

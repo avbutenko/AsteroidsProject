@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;
 
-namespace AsteroidsProject.UI.GamePauseScreen
+namespace AsteroidsProject.UI
 {
     public class GamePauseScreenPresenter //: MonoBehaviour, IGamePauseScreenPresenter
     {

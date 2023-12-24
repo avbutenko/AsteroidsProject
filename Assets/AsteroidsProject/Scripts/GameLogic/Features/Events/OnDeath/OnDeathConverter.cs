@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace AsteroidsProject.GameLogic.Features.Events.OnDeath
+namespace AsteroidsProject.GameLogic.Features.Events
 {
     public class OnDeathConverter : IComponentConverter
     {

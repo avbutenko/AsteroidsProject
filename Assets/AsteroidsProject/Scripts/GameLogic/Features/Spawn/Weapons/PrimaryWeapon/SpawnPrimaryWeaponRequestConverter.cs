@@ -1,8 +1,7 @@
-﻿using AsteroidsProject.GameLogic.Core;
-using AsteroidsProject.Shared;
+﻿using AsteroidsProject.Shared;
 using Newtonsoft.Json.Linq;
 
-namespace AsteroidsProject.GameLogic.Features.Spawn.Weapons
+namespace AsteroidsProject.GameLogic.Features.Spawn
 {
     public class SpawnPrimaryWeaponRequestConverter : IComponentConverter
     {

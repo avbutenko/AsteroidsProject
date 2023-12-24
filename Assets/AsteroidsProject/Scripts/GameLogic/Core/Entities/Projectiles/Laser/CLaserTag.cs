@@ -1,4 +1,4 @@
-﻿namespace AsteroidsProject.GameLogic.Features.Projectiles.Laser
+﻿namespace AsteroidsProject.GameLogic.Core
 {
     public struct CLaserTag { }
 }

@@ -1,24 +1,13 @@
 ﻿using Zenject;
 using AsteroidsProject.Services;
 using AsteroidsProject.GameLogic.Core;
-using AsteroidsProject.GameLogic.Features.Spawn.Weapons;
-using AsteroidsProject.GameLogic.Features.Movement.Acceleration;
-using AsteroidsProject.GameLogic.Features.Movement.Deacceleration;
-using AsteroidsProject.GameLogic.Features.Events.OnSpawn;
-using AsteroidsProject.GameLogic.Features.Events.OnOutOfLevel;
-using AsteroidsProject.GameLogic.Features.MaxVelocityMagnitude;
-using AsteroidsProject.GameLogic.Features.Weapons.BulletGun;
-using AsteroidsProject.GameLogic.Features.Weapons.LaserGun;
-using AsteroidsProject.GameLogic.Features.Projectiles.Bullet;
-using AsteroidsProject.GameLogic.Features.Events.OnCollision;
-using AsteroidsProject.GameLogic.Features.Events.OnAttack;
-using AsteroidsProject.GameLogic.Core.Assets.AsteroidsProject.Scripts.GameLogic.Core.Score;
-using AsteroidsProject.GameLogic.Features.Events.OnDeath;
+using AsteroidsProject.GameLogic.Features.Spawn;
+using AsteroidsProject.GameLogic.Features.Movement;
+using AsteroidsProject.GameLogic.Features.Events;
+using AsteroidsProject.GameLogic.Features.Weapons;
 using AsteroidsProject.GameLogic.Features.Score;
 using AsteroidsProject.GameLogic.Features.Lifetime;
-using AsteroidsProject.GameLogic.Features.Ammo.AutoRefill;
-using AsteroidsProject.GameLogic.Features.Ammo.Max;
-using AsteroidsProject.GameLogic.Features.Movement.FollowTarget;
+using AsteroidsProject.GameLogic.Features.Ammo;
 
 namespace AsteroidsProject.CompositionRoot
 {
