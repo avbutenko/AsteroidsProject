@@ -35,6 +35,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - InGameScene
+    - PlayerConfig
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d21310ba80f40234ca2664ee43c3a161
     m_Address: BulletConfig
@@ -59,12 +60,14 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - InGameScene
+    - AsteroidSpawnConfig
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 107f00ce6702c5848bf39f6554982efb
     m_Address: AsteroidConfig
     m_ReadOnly: 0
     m_SerializedLabels:
     - InGameScene
+    - AsteroidConfig
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0ee841d1f27fdbc4d8dd9dfe93f291ec
     m_Address: AsteroidFragmentConfig
@@ -77,6 +80,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - InGameScene
+    - InGameSceneUI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 691ba695ff72856439e302e1006b80b9
     m_Address: GameScene
@@ -95,18 +99,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - InGameScene
+    - InGameSceneUI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4b78a9638aa9ec14ebdf7d8ef980b224
     m_Address: PlayerShipStatsScreen
     m_ReadOnly: 0
     m_SerializedLabels:
     - InGameScene
+    - InGameSceneUI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 485fe4251b2dd2a44bf178b139280761
     m_Address: PlayerSecondaryWeaponScreen
     m_ReadOnly: 0
     m_SerializedLabels:
     - InGameScene
+    - InGameSceneUI
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 566fa2c86694b3945a34a9ce28e4f452
     m_Address: Bullet
@@ -131,12 +138,14 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - InGameScene
+    - UfoConfig
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5f7c176d29052604ba73dff598a256e5
     m_Address: UfoSpawnConfig
     m_ReadOnly: 0
     m_SerializedLabels:
     - InGameScene
+    - UfoSpawnConfig
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8ef69c3871b85804192f853a122337b1
     m_Address: Ufo
@@ -173,11 +182,13 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - InGameScene
+    - GameSceneConfig
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a19350f50087eec409c46c3c0917cbf2
     m_Address: MainMenuSceneConfig
     m_ReadOnly: 0
     m_SerializedLabels:
+    - InMainMenuScene
     - MainMenuSceneConfig
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0

@@ -35,13 +35,6 @@
       "dependencies": {},
       "hash": "480dbdfd0d73591f93ca010ea1a52bfa8e4cc06e"
     },
-    "com.neuecc.unirx": {
-      "version": "https://github.com/neuecc/UniRx.git?path=Assets/Plugins/UniRx/Scripts",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "284d5c50d3f1ddd9fa7df3d382ea904732a9c2ff"
-    },
     "com.supremestranger.leoecs-lite-physics": {
       "version": "https://github.com/supremestranger/leoecs-lite-physics.git",
       "depth": 0,

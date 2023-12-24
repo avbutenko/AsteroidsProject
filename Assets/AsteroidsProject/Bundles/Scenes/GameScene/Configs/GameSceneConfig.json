@@ -1,7 +1,16 @@
 {
-    "PlayerConfigPath": "PlayerConfig",
-    "AsteroidSpawnConfigPath": "AsteroidSpawnConfig",
-    "AsteroidConfigPath": "AsteroidConfig",
-    "UfoSpawnConfigPath": "UfoSpawnConfig",
-    "UfoConfigPath": "UfoConfig"
+    "SceneLabel": "GameScene",
+    "PreLoadAssetLabel": "InGameScene",
+    "PreInitUILabel": "InGameSceneUI",
+    "EcsUpdateSystems": [
+        "AsteroidsProject.GameLogic.Features.UI.BroadcastGameOverEventToUI.MainMenuScreenControlSystem"
+    ],
+    "EcsFixedUpdateSystems": [
+        //none
+    ],
+    "PlayerConfigLabel": "PlayerConfig",
+    "AsteroidSpawnConfigLabel": "AsteroidSpawnConfig",
+    "AsteroidConfigLabel": "AsteroidConfig",
+    "UfoSpawnConfigLabel": "UfoSpawnConfig",
+    "UfoConfigLabel": "UfoConfig"
 }

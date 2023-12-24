@@ -94,6 +94,12 @@ MonoBehaviour:
     - InGameScene
     - InGameSceneUI
     - GameScene
+    - GameSceneConfig
+    - PlayerConfig
+    - AsteroidSpawnConfig
+    - AsteroidConfig
+    - UfoSpawnConfig
+    - UfoConfig
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 02170ef8cd087094eac94ee6e75211c9, type: 2}

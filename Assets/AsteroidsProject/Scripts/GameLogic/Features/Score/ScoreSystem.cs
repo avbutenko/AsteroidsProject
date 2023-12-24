@@ -12,7 +12,7 @@ namespace AsteroidsProject.GameLogic.Features.Score
         private EcsFilter scoreFilter;
         private EcsPool<CScore> scorePool;
         private EcsPool<CCollectScoreRequest> requestPool;
-        private IGameOverScreenPresenter gameOverScreenPresenter;
+        //private IGameOverScreenPresenter gameOverScreenPresenter;
 
         public ScoreSystem(IUIProvider uiService)
         {
@@ -39,7 +39,7 @@ namespace AsteroidsProject.GameLogic.Features.Score
                 {
                     ref var currentScore = ref scorePool.Get(scoreHolderEntity).Value;
                     currentScore += deltaValue;
-                    gameOverScreenPresenter.Score = currentScore;
+                    //gameOverScreenPresenter.Score = currentScore;
                 }
 
                 requestPool.Del(requestEntity);
