@@ -552,8 +552,9 @@ GameObject:
   - component: {fileID: 3284588048601897758}
   - component: {fileID: 5995449791197958095}
   - component: {fileID: 2946507564924398385}
+  - component: {fileID: 7840988008213601953}
   m_Layer: 5
-  m_Name: Exit
+  m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -662,6 +663,22 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7840988008213601953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4260194233886953666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b6b406923f44eb196499bd257618bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _widgetName: Exit_Button
+  _emitter: {fileID: 0}
+  _nameRegistrationType: 1
+  _selectable: {fileID: 0}
 --- !u!1 &5844257420702885730
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +691,8 @@ GameObject:
   - component: {fileID: 7185109299779551402}
   - component: {fileID: 5353760838731346111}
   - component: {fileID: 1875140009710533295}
-  - component: {fileID: 5546966826334124837}
+  - component: {fileID: 3537559983813194380}
+  - component: {fileID: 6332738741806166924}
   m_Layer: 5
   m_Name: GameOverScreen
   m_TagString: Untagged
@@ -769,7 +787,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5546966826334124837
+--- !u!114 &3537559983813194380
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -778,12 +796,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 5844257420702885730}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1a85ab457a03954bbfa339b52d3ad3d, type: 3}
+  m_Script: {fileID: 11500000, guid: a7179e343c10d4752bfeb872477553ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restartButton: {fileID: 1646482237483911259}
-  exitButton: {fileID: 2946507564924398385}
-  score: {fileID: 1247654524320241281}
+  _parent: {fileID: 0}
+  _searchType: 0
+--- !u!114 &6332738741806166924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5844257420702885730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd78c2f62ba95984bab1bea8703a4104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6018478248637174471
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,6 +889,7 @@ GameObject:
   - component: {fileID: 4624019536463694444}
   - component: {fileID: 2180501638852107877}
   - component: {fileID: 1247654524320241281}
+  - component: {fileID: 2081035235535784361}
   m_Layer: 5
   m_Name: Value
   m_TagString: Untagged
@@ -984,6 +1014,22 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2081035235535784361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6253002998962889678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a2bb647df7944f4b8f1a565fb2bc704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _widgetName: Score_Value
+  _emitter: {fileID: 0}
+  _nameRegistrationType: 1
+  _selectable: {fileID: 0}
 --- !u!1 &7421927160156742234
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,8 +1042,9 @@ GameObject:
   - component: {fileID: 4344920228028349706}
   - component: {fileID: 2929200727561723510}
   - component: {fileID: 1646482237483911259}
+  - component: {fileID: 890423490100569720}
   m_Layer: 5
-  m_Name: Restart
+  m_Name: RestartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1106,3 +1153,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &890423490100569720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7421927160156742234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b6b406923f44eb196499bd257618bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _widgetName: Restart_Button
+  _emitter: {fileID: 0}
+  _nameRegistrationType: 1
+  _selectable: {fileID: 0}

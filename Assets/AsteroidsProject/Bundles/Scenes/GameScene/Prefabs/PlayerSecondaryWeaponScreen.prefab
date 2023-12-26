@@ -547,7 +547,8 @@ GameObject:
   - component: {fileID: 7185109299779551402}
   - component: {fileID: 5353760838731346111}
   - component: {fileID: 1875140009710533295}
-  - component: {fileID: 4807096643565480466}
+  - component: {fileID: 5305954549417334821}
+  - component: {fileID: 7415087094252994177}
   m_Layer: 5
   m_Name: PlayerSecondaryWeaponScreen
   m_TagString: Untagged
@@ -639,7 +640,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4807096643565480466
+--- !u!114 &5305954549417334821
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -648,11 +649,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 5844257420702885730}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c1dc427fb8d48942b3e5c941bd06929, type: 3}
+  m_Script: {fileID: 11500000, guid: a7179e343c10d4752bfeb872477553ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammo: {fileID: 1247654524320241281}
-  ammoAutoRefillCooldown: {fileID: 5124357528150436404}
+  _parent: {fileID: 0}
+  _searchType: 0
+--- !u!114 &7415087094252994177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5844257420702885730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d07edbdcb1657b6468f54c2a097a20fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6253002998962889678
 GameObject:
   m_ObjectHideFlags: 0

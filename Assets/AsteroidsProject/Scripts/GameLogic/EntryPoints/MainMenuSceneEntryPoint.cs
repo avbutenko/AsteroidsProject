@@ -14,10 +14,5 @@ namespace AsteroidsProject.GameLogic.EntryPoints
         {
             return await configLoader.Load<SceneConfig>(configProvider.GameConfig.ScenesConfig.MainMenuSceneConfigLabel);
         }
-
-        protected override void ShowInSceneUI()
-        {
-            uiProvider.Get<IMainMenuScreenController>().Show();
-        }
     }
 }

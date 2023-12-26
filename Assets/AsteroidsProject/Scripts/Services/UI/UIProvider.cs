@@ -1,13 +1,12 @@
 ﻿using AsteroidsProject.Shared;
 using Cysharp.Threading.Tasks;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
 namespace AsteroidsProject.Services
 {
-    public class UIProvider : IUIProvider, IInitializable, IDisposable
+    public class UIProvider : IUIProvider, IInitializable
     {
         private readonly IGameConfigProvider configProvider;
         private readonly IUIFactory factory;
@@ -38,10 +37,18 @@ namespace AsteroidsProject.Services
         public async UniTask PreInitUIByLabel(string label)
         {
             var objects = await assetProvider.LoadByLabelAsync<GameObject>(label);
+            var tasks = new List<UniTask<IUIScreenController>>();
 
             foreach (var obj in objects)
             {
-                controllers.Add(factory.Instantiate(obj));
+                tasks.Add(factory.InstantiateAsync(obj));
+            }
+
+            var instances = await UniTask.WhenAll(tasks);
+
+            foreach (var instance in instances)
+            {
+                controllers.Add(instance);
             }
         }
 

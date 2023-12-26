@@ -14,8 +14,7 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<SceneLoader>().AsSingle();
             Container.BindInterfacesAndSelfTo<UIFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<UIProvider>().AsSingle();
-            Container.BindInterfacesAndSelfTo<EcsSystemsFactory>().AsSingle();
-
+            
             Container
                 .BindInterfacesAndSelfTo<ComponentConverterService>()
                 .FromSubContainerResolve()

@@ -2,11 +2,11 @@ using Leopotam.EcsLite.Unity.Ugui;
 using UnityEngine.Scripting;
 using UnityEngine;
 using AsteroidsProject.Shared;
-using UnityEngine.SceneManagement;
+using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.UI
 {
-    public class MainMenuScreenControlSystem : EcsUguiCallbackSystem
+    public class MainMenuScreenControlSystem : EcsUguiCallbackSystem, IEcsInitSystem
     {
         private readonly IUIProvider uiProvider;
         private readonly ISceneLoader sceneLoader;
@@ -17,15 +17,20 @@ namespace AsteroidsProject.GameLogic.Features.UI
             this.sceneLoader = sceneLoader;
         }
 
+        public void Init(IEcsSystems systems)
+        {
+            uiProvider.Get<IMainMenuScreenController>().Show();
+        }
+
         [Preserve]
-        [EcsUguiClickEvent("MainMenu-StartGame")]
+        [EcsUguiClickEvent(Identifiers.Ui.StartButtonName)]
         void OnClickStartGame(in EcsUguiClickEvent e)
         {
             HandleOnClickStartGame();
         }
 
         [Preserve]
-        [EcsUguiClickEvent("MainMenu-ExitGame")]
+        [EcsUguiClickEvent(Identifiers.Ui.ExitButtonName)]
         void OnClickExitGame(in EcsUguiClickEvent e)
         {
             Application.Quit();
@@ -38,7 +43,7 @@ namespace AsteroidsProject.GameLogic.Features.UI
         private async void HandleOnClickStartGame()
         {
             uiProvider.LoadingScreen.Show();
-            await sceneLoader.LoadSceneAsync(AssetLabels.GameScene.ToString(), LoadSceneMode.Single, false);
+            await sceneLoader.LoadSceneAsync(Identifiers.Scenes.GameSceneName);
             uiProvider.LoadingScreen.Hide();
         }
     }

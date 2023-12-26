@@ -29,7 +29,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
         {
             world = systems.GetWorld();
             gameSceneConfig = await configLoader.Load<GameSceneConfig>(configProvider.GameConfig.ScenesConfig.GameSceneConfigLabel);
-            spawnconfig = await configLoader.Load<SpawnConfig>(gameSceneConfig.UfoSpawnConfigPath);
+            spawnconfig = await configLoader.Load<SpawnConfig>(gameSceneConfig.UfoSpawnConfigLabel);
         }
 
         public void Run(IEcsSystems systems)
@@ -42,7 +42,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
             {
                 timeToNextSpawn = spawnconfig.SpawnTime;
 
-                Spawn(gameSceneConfig.UfoConfigPath);
+                Spawn(gameSceneConfig.UfoConfigLabel);
             }
         }
 

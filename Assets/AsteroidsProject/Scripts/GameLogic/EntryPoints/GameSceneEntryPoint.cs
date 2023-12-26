@@ -14,10 +14,5 @@ namespace AsteroidsProject.GameLogic.EntryPoints
         {
             return await configLoader.Load<GameSceneConfig>(configProvider.GameConfig.ScenesConfig.GameSceneConfigLabel);
         }
-
-        protected override void ShowInSceneUI()
-        {
-            //show inGameUI here
-        }
     }
 }

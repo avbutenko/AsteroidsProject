@@ -6,15 +6,17 @@ using System.Collections.Generic;
 
 namespace AsteroidsProject.Services
 {
-    public class EcsSystemsRunner : IEcsSystemsRunner, IRestartable
+    public class EcsSystemsRunner : IEcsSystemsRunner
     {
         private readonly EcsUguiEmitter uguiEmitter;
         private readonly IEcsSystemsFactory systemsFactory;
-        private EcsWorld world;
+        private EcsWorld gameWorld;
         private List<IEcsSystem> updateSystemsList;
         private List<IEcsSystem> fixedUpdateSystemsList;
-        private IEcsSystems fixedUpdateSystems;
-        private IEcsSystems updateSystems;
+        private List<IEcsSystem> uguiSystemsList;
+        private EcsSystems fixedUpdateSystems;
+        private EcsSystems updateSystems;
+        private EcsSystems uguiSystems;
 
         public EcsSystemsRunner(EcsUguiEmitter uguiEmitter, IEcsSystemsFactory systemsFactory)
         {
@@ -22,29 +24,23 @@ namespace AsteroidsProject.Services
             this.systemsFactory = systemsFactory;
         }
 
-        public void PreInitSystems(List<string> updateSystemNameList, List<string> fixedUpdateSystemNameList)
+        public void PreInitSystems(List<string> updateSystemNameList, List<string> fixedUpdateSystemNameList, List<string> uguiSystemNameList)
         {
             updateSystemsList = InitSystems(updateSystemNameList);
             fixedUpdateSystemsList = InitSystems(fixedUpdateSystemNameList);
+            uguiSystemsList = InitSystems(uguiSystemNameList);
         }
 
         public void Initialize()
         {
-            world = new EcsWorld();
-            EcsPhysicsEvents.ecsWorld = world;
-            updateSystems = ConvertSystemList(updateSystemsList);
-#if UNITY_EDITOR
-            updateSystems?.Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem());
-#endif
-            updateSystems?.InjectUgui(uguiEmitter);
-            updateSystems?.Init();
-            fixedUpdateSystems = ConvertSystemList(fixedUpdateSystemsList);
-            fixedUpdateSystems?.Init();
+            InitGameWorldSystems();
+            InitGUIWorldSystems();
         }
 
         public void Tick()
         {
             updateSystems?.Run();
+            uguiSystems?.Run();
         }
 
         public void FixedTick()
@@ -54,53 +50,60 @@ namespace AsteroidsProject.Services
 
         public void Restart()
         {
-            Dispose();
-            Initialize();
+            ClearSystems(updateSystems);
+            ClearSystems(fixedUpdateSystems);
+            InitGameWorldSystems();
+            uguiSystems.GetAllNamedWorlds()[Identifiers.Worlds.GameWorldName] = gameWorld;
         }
 
         public virtual void Dispose()
         {
             EcsPhysicsEvents.ecsWorld = null;
-
-            if (updateSystems != null)
-            {
-                updateSystems.Destroy();
-                updateSystems = null;
-            }
-
-            if (fixedUpdateSystems != null)
-            {
-                fixedUpdateSystems.Destroy();
-                fixedUpdateSystems = null;
-            }
-
-            if (world != null)
-            {
-                world.Destroy();
-                world = null;
-            }
+            ClearSystems(updateSystems);
+            ClearSystems(fixedUpdateSystems);
+            ClearSystems(uguiSystems);
         }
 
-        private List<IEcsSystem> InitSystems(List<string> systemsList)
+        private void InitGameWorldSystems()
         {
-            if (systemsList == null)
+            gameWorld = new EcsWorld();
+            EcsPhysicsEvents.ecsWorld = gameWorld;
+            updateSystems = ConvertSystemList(updateSystemsList, gameWorld);
+#if UNITY_EDITOR
+            updateSystems?.Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem());
+#endif
+            updateSystems?.Init();
+            fixedUpdateSystems = ConvertSystemList(fixedUpdateSystemsList, gameWorld);
+            fixedUpdateSystems?.Init();
+        }
+
+        private void InitGUIWorldSystems()
+        {
+            uguiSystems = ConvertSystemList(uguiSystemsList, new EcsWorld());
+            uguiSystems.AddWorld(gameWorld, Identifiers.Worlds.GameWorldName);
+            uguiSystems.InjectUgui(uguiEmitter).Init();
+        }
+
+        private List<IEcsSystem> InitSystems(List<string> systemNameList)
+        {
+            if (systemNameList == null)
             {
                 return null;
             }
             else
             {
-                var systems = new List<IEcsSystem>();
+                var systemList = new List<IEcsSystem>();
 
-                foreach (var systemName in systemsList)
+                foreach (var systemName in systemNameList)
                 {
-                    systems.Add(systemsFactory.Create(systemName));
+                    systemList.Add(systemsFactory.Create(systemName));
                 }
 
-                return systems;
+                return systemList;
             }
         }
 
-        private IEcsSystems ConvertSystemList(List<IEcsSystem> systemsList)
+        private EcsSystems ConvertSystemList(List<IEcsSystem> systemsList, EcsWorld world)
         {
             if (systemsList == null)
             {
@@ -116,6 +119,15 @@ namespace AsteroidsProject.Services
                 }
 
                 return systems;
+            }
+        }
+
+        private void ClearSystems(EcsSystems systems)
+        {
+            if (systems != null)
+            {
+                systems.Destroy();
+                systems.GetWorld().Destroy();
             }
         }
     }

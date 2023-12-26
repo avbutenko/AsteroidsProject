@@ -1,5 +1,4 @@
 using AsteroidsProject.Shared;
-using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace AsteroidsProject.GameLogic.EntryPoints
@@ -20,7 +19,7 @@ namespace AsteroidsProject.GameLogic.EntryPoints
         public async void Initialize()
         {
             uiProvider.LoadingScreen.Show();
-            await sceneLoader.LoadSceneAsync(configProvider.GameConfig.FirstSceneLabel, LoadSceneMode.Single, false);
+            await sceneLoader.LoadSceneAsync(configProvider.GameConfig.FirstSceneLabel);
             uiProvider.LoadingScreen.Hide();
         }
     }

@@ -1,4 +1,4 @@
-namespace AsteroidsProject.GameLogic.Features.Score
+namespace AsteroidsProject.GameLogic.Core
 {
     public struct CScore
     {

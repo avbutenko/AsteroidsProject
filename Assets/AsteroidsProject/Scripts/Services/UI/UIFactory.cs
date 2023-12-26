@@ -19,10 +19,11 @@ namespace AsteroidsProject.Services
             return Instantiate(prefab);
         }
 
-        public async UniTask<IUIScreenController> CreateAsync(string address)
+        public async UniTask<IUIScreenController> InstantiateAsync(GameObject prefab)
         {
-            var prefab = await assetProvider.LoadAsync<GameObject>(address);
-            return Instantiate(prefab);
+            var go = Instantiate(prefab);
+            await UniTask.WaitUntil(() => go != null);
+            return go;
         }
 
         public IUIScreenController Instantiate(GameObject prefab)

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace AsteroidsProject.Services
 {
-    public class ActiveGOMappingService : IActiveGOMappingService, IDisposable, IRestartable
+    public class ActiveGOMappingService : IActiveGOMappingService, IDisposable
     {
         private readonly Dictionary<int, GoEntityPair> cachedObjects;
 
@@ -86,11 +86,6 @@ namespace AsteroidsProject.Services
                 result = null;
                 return false;
             }
-        }
-
-        public void Restart()
-        {
-            Dispose();
         }
 
         public void Dispose()

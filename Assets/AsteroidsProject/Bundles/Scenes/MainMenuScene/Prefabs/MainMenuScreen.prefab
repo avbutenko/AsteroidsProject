@@ -403,8 +403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0db56bc31fc70f489241532caa52e5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 6074003005721797174}
-  exitButton: {fileID: 7064900790846724858}
 --- !u!1 &7437997627895410010
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,7 +464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b6b406923f44eb196499bd257618bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _widgetName: MainMenu-ExitGame
+  _widgetName: Exit_Button
   _emitter: {fileID: 0}
   _nameRegistrationType: 0
   _selectable: {fileID: 7064900790846724858}
@@ -605,7 +603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b6b406923f44eb196499bd257618bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _widgetName: MainMenu-StartGame
+  _widgetName: Start_Button
   _emitter: {fileID: 0}
   _nameRegistrationType: 0
   _selectable: {fileID: 6074003005721797174}

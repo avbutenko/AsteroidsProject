@@ -28,7 +28,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
         public async void Init(IEcsSystems systems)
         {
             gameSceneConfig = await configLoader.Load<GameSceneConfig>(configProvider.GameConfig.ScenesConfig.GameSceneConfigLabel);
-            asteroidSpawnconfig = await configLoader.Load<SpawnConfig>(gameSceneConfig.AsteroidSpawnConfigPath);
+            asteroidSpawnconfig = await configLoader.Load<SpawnConfig>(gameSceneConfig.AsteroidSpawnConfigLabel);
             world = systems.GetWorld();
             filter = world.Filter<CAsteroidTag>().End();
             SpawnInitialAmountOfAsteroids();
@@ -46,7 +46,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
             {
                 timeToNextSpawn = asteroidSpawnconfig.SpawnTime;
 
-                Spawn(gameSceneConfig.AsteroidConfigPath);
+                Spawn(gameSceneConfig.AsteroidConfigLabel);
             }
         }
 
@@ -59,7 +59,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
             while (counter > 0)
             {
                 counter--;
-                Spawn(gameSceneConfig.AsteroidConfigPath);
+                Spawn(gameSceneConfig.AsteroidConfigLabel);
             }
         }
 

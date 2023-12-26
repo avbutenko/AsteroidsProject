@@ -5,7 +5,7 @@ using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.Events
 {
-    public class CollisionSystem : IEcsInitSystem, IEcsRunSystem
+    public class OnCollisionSystem : IEcsInitSystem, IEcsRunSystem
     {
         private readonly IActiveGOMappingService activeGOMappingService;
         private EcsWorld world;
@@ -13,7 +13,7 @@ namespace AsteroidsProject.GameLogic.Features.Events
         private EcsPool<OnCollisionEnter2DEvent> collisionPool;
         private EcsPool<COnCollision> onCollisionPool;
 
-        public CollisionSystem(IActiveGOMappingService activeGOMappingService)
+        public OnCollisionSystem(IActiveGOMappingService activeGOMappingService)
         {
             this.activeGOMappingService = activeGOMappingService;
         }

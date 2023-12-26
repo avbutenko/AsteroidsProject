@@ -47,7 +47,6 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<CollectScoreRequestConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<OnDeathConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnAsteroidFragmentsRequestConverter>().AsSingle();
-            Container.BindInterfacesAndSelfTo<ScoreConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<LifetimeConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<AmmoConverter>().AsSingle();
             Container.BindInterfacesAndSelfTo<AmmoMaxConverter>().AsSingle();

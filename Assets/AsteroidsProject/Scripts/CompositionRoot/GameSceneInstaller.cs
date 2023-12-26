@@ -21,8 +21,8 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<GameObjectPool>().AsSingle();
             Container.BindInterfacesAndSelfTo<ActiveGOMappingService>().AsSingle();
             Container.Bind<IEntityGameObjectFactory>().To<EntityGameObjectFactory>().AsSingle();
-            Container.Bind(typeof(IEcsSystemsRunner), typeof(IRestartable)).To<EcsSystemsRunner>().AsSingle();
-            Container.BindInterfacesAndSelfTo<RestartService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<EcsSystemsFactory>().AsSingle();
+            Container.Bind<IEcsSystemsRunner>().To<EcsSystemsRunner>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameSceneEntryPoint>().AsSingle();
         }
     }

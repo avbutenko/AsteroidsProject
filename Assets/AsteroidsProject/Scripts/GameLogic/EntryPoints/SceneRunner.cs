@@ -33,9 +33,8 @@ namespace AsteroidsProject.GameLogic.EntryPoints
             var sceneConfig = await LoadSceneConfigAsync();
             await assetProvider.PreLoadAllByLabelAsync(sceneConfig.PreLoadAssetLabel);
             await uiProvider.PreInitUIByLabel(sceneConfig.PreInitUILabel);
-            ecsSystemsRunner.PreInitSystems(sceneConfig.EcsUpdateSystems, sceneConfig.EcsFixedUpdateSystems);
+            ecsSystemsRunner.PreInitSystems(sceneConfig.EcsUpdateSystems, sceneConfig.EcsFixedUpdateSystems, sceneConfig.EcsGUISystems);
             ecsSystemsRunner.Initialize();
-            ShowInSceneUI();
             uiProvider.LoadingScreen.Hide();
         }
 
@@ -51,12 +50,12 @@ namespace AsteroidsProject.GameLogic.EntryPoints
 
         public void Dispose()
         {
+            uiProvider.Dispose();
             assetProvider.Dispose();
             configLoader.Dispose();
             ecsSystemsRunner.Dispose();
         }
 
         protected abstract UniTask<SceneConfig> LoadSceneConfigAsync();
-        protected abstract void ShowInSceneUI();
     }
 }

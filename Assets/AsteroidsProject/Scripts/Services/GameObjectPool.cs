@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace AsteroidsProject.Services
 {
-    public class GameObjectPool : IGameObjectPool, IDisposable, IRestartable
+    public class GameObjectPool : IGameObjectPool, IDisposable
     {
         private readonly Dictionary<int, Stack<GameObject>> cachedObjects;
         private readonly Dictionary<int, int> cachedIDs;
@@ -50,11 +50,6 @@ namespace AsteroidsProject.Services
             var instance = objects.Pop();
             instance.SetActive(true);
             return instance;
-        }
-
-        public void Restart()
-        {
-            Dispose();
         }
 
         public void Dispose()

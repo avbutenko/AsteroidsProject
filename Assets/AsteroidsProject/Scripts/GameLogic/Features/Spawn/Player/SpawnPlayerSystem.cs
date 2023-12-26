@@ -22,7 +22,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
         {
             world = systems.GetWorld();
             var gameSceneConfig = await configLoader.Load<GameSceneConfig>(configProvider.GameConfig.ScenesConfig.GameSceneConfigLabel);
-            Spawn(gameSceneConfig.PlayerConfigPath);
+            Spawn(gameSceneConfig.PlayerConfigLabel);
         }
 
         private async void Spawn(string config)

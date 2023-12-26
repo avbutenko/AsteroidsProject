@@ -7,7 +7,7 @@ namespace AsteroidsProject.UI
     {
         public bool IsVisible => gameObject.activeSelf;
 
-        public void Awake()
+        public void Start()
         {
             Hide();
         }

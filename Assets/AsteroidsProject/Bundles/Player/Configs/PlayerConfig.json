@@ -2,7 +2,6 @@
     "Components": [
         {
             "CPlayerTag": {},
-            "CScore": 0,
             "CHealth": 3,
             "CVelocity": {
                 "x": 0,

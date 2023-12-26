@@ -1,4 +1,4 @@
-﻿namespace AsteroidsProject.GameLogic.Features.Events
+﻿namespace AsteroidsProject.GameLogic.Core
 {
     public struct CInvalidGameObjectInstanceID
     {

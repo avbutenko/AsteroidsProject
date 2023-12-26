@@ -7,9 +7,9 @@ namespace AsteroidsProject.Services
 {
     public class SceneLoader : ISceneLoader
     {
-        public async UniTask LoadSceneAsync(string scene, LoadSceneMode loadMode, bool activeOnLoad)
+        public async UniTask LoadSceneAsync(string scene)
         {
-            var handle = Addressables.LoadSceneAsync(scene, loadMode, activeOnLoad);
+            var handle = Addressables.LoadSceneAsync(scene, LoadSceneMode.Single, false);
             handle.GetAwaiter();
             await handle.ToUniTask();
             await handle.Result.ActivateAsync().ToUniTask();

@@ -14,7 +14,8 @@ namespace AsteroidsProject.CompositionRoot
         public override void InstallBindings()
         {
             Container.BindInstance(uguiEmitter).AsSingle();
-            Container.Bind(typeof(IEcsSystemsRunner), typeof(IRestartable)).To<EcsSystemsRunner>().AsSingle();
+            Container.BindInterfacesAndSelfTo<EcsSystemsFactory>().AsSingle();
+            Container.Bind<IEcsSystemsRunner>().To<EcsSystemsRunner>().AsSingle();
             Container.BindInterfacesAndSelfTo<MainMenuSceneEntryPoint>().AsSingle();
         }
     }
