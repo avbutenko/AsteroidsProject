@@ -2,11 +2,10 @@ using Leopotam.EcsLite.Unity.Ugui;
 using UnityEngine.Scripting;
 using UnityEngine;
 using AsteroidsProject.Shared;
-using Leopotam.EcsLite;
 
 namespace AsteroidsProject.GameLogic.Features.UI
 {
-    public class MainMenuScreenControlSystem : EcsUguiCallbackSystem, IEcsInitSystem
+    public class MainMenuScreenControlSystem : EcsUguiCallbackSystem
     {
         private readonly IUIProvider uiProvider;
         private readonly ISceneLoader sceneLoader;
@@ -15,11 +14,6 @@ namespace AsteroidsProject.GameLogic.Features.UI
         {
             this.uiProvider = uiProvider;
             this.sceneLoader = sceneLoader;
-        }
-
-        public void Init(IEcsSystems systems)
-        {
-            uiProvider.Get<IMainMenuScreenController>().Show();
         }
 
         [Preserve]

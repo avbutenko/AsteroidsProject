@@ -13,7 +13,14 @@ namespace AsteroidsProject.Shared
             public const string RestartButtonName = "Restart_Button";
             public const string ResumeButtonName = "Resume_Button";
             public const string ExitButtonName = "Exit_Button";
+            public const string PauseScreenExitButtonName = "PauseScreenExit_Button";
             public const string ScoreValueLabelName = "Score_Value";
+            public const string RefillCoolDownLabelName = "RefillCoolDown_Value";
+            public const string AmmoLabelName = "Ammo_Value";
+            public const string HealthLabelName = "Health_Value";
+            public const string PositionLabelName = "Position_Value";
+            public const string RotationLabelName = "Rotation_Value";
+            public const string VelocityLabelName = "Velocity_Value";
         }
 
         public static class Scenes

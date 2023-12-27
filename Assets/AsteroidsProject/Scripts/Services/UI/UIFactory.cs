@@ -1,5 +1,4 @@
 ﻿using AsteroidsProject.Shared;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace AsteroidsProject.Services
@@ -17,13 +16,6 @@ namespace AsteroidsProject.Services
         {
             var prefab = assetProvider.ResourceLoad<GameObject>(address);
             return Instantiate(prefab);
-        }
-
-        public async UniTask<IUIScreenController> InstantiateAsync(GameObject prefab)
-        {
-            var go = Instantiate(prefab);
-            await UniTask.WaitUntil(() => go != null);
-            return go;
         }
 
         public IUIScreenController Instantiate(GameObject prefab)

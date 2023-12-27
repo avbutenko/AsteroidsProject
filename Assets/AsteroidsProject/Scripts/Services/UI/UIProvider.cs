@@ -37,18 +37,12 @@ namespace AsteroidsProject.Services
         public async UniTask PreInitUIByLabel(string label)
         {
             var objects = await assetProvider.LoadByLabelAsync<GameObject>(label);
-            var tasks = new List<UniTask<IUIScreenController>>();
 
             foreach (var obj in objects)
             {
-                tasks.Add(factory.InstantiateAsync(obj));
-            }
-
-            var instances = await UniTask.WhenAll(tasks);
-
-            foreach (var instance in instances)
-            {
+                var instance = factory.Instantiate(obj);
                 controllers.Add(instance);
+                instance.Hide();
             }
         }
 

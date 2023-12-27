@@ -7,11 +7,6 @@ namespace AsteroidsProject.UI
     {
         public bool IsVisible => gameObject.activeSelf;
 
-        public void Start()
-        {
-            Hide();
-        }
-
         public void DontDestroyOnLoad()
         {
             DontDestroyOnLoad(gameObject);

@@ -15,7 +15,6 @@ namespace AsteroidsProject.GameLogic.Features.PlayerInput
         public void Run(IEcsSystems systems)
         {
             Clear<CAccelerationVector>();
-            Clear<CDeaccelerationVector>();
             Clear<CRotationDirection>();
             Clear<CAttackRequest>();
         }

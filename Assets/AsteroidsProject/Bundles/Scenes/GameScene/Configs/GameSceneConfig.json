@@ -26,9 +26,6 @@
         "AsteroidsProject.GameLogic.Features.PlayerInput.ClearPlayerInputSystem",
         "AsteroidsProject.GameLogic.Features.PlayerInput.PlayerInputSystem",
 
-        //Pause
-        //add pause controll systems <BroadcastGamePauseEventToUISystem
-
         //Weapons
         "AsteroidsProject.GameLogic.Features.Weapons.BulletGunAttackSystem",
         "AsteroidsProject.GameLogic.Features.Weapons.LaserGunAttackSystem",
@@ -71,6 +68,8 @@
         "AsteroidsProject.GameLogic.Features.Events.InvalidOwnerSystem",
         "AsteroidsProject.GameLogic.Features.Events.InvalidGOSystem",
         "AsteroidsProject.GameLogic.Features.Events.InvalidGOSystem",
+        "AsteroidsProject.GameLogic.Features.Events.OnGamePauseSystem",
+        "AsteroidsProject.GameLogic.Features.Events.OnGameOverSystem",
         "AsteroidsProject.GameLogic.Features.Events.OnGameRestartSystem",
 
         //Score
@@ -80,7 +79,10 @@
         "AsteroidsProject.GameLogic.Features.Events.OnCollisionSystem"
     ],
     "EcsGUISystems": [
-        "AsteroidsProject.GameLogic.Features.UI.GameOverScreenControlSystem"
+        "AsteroidsProject.GameLogic.Features.UI.GamePauseScreenControlSystem",
+        "AsteroidsProject.GameLogic.Features.UI.GameOverScreenControlSystem",
+        "AsteroidsProject.GameLogic.Features.UI.PlayerSecondaryWeaponScreenControlSystem",
+        "AsteroidsProject.GameLogic.Features.UI.PlayerShipStatsScreenControlSystem"
     ],
     "PlayerConfigLabel": "PlayerConfig",
     "AsteroidSpawnConfigLabel": "AsteroidSpawnConfig",

@@ -10,6 +10,7 @@ namespace AsteroidsProject.Services
     {
         private readonly EcsUguiEmitter uguiEmitter;
         private readonly IEcsSystemsFactory systemsFactory;
+        private readonly ITimeService timeService;
         private EcsWorld gameWorld;
         private List<IEcsSystem> updateSystemsList;
         private List<IEcsSystem> fixedUpdateSystemsList;
@@ -18,10 +19,11 @@ namespace AsteroidsProject.Services
         private EcsSystems updateSystems;
         private EcsSystems uguiSystems;
 
-        public EcsSystemsRunner(EcsUguiEmitter uguiEmitter, IEcsSystemsFactory systemsFactory)
+        public EcsSystemsRunner(EcsUguiEmitter uguiEmitter, IEcsSystemsFactory systemsFactory, ITimeService timeService)
         {
             this.uguiEmitter = uguiEmitter;
             this.systemsFactory = systemsFactory;
+            this.timeService = timeService;
         }
 
         public void PreInitSystems(List<string> updateSystemNameList, List<string> fixedUpdateSystemNameList, List<string> uguiSystemNameList)
@@ -39,13 +41,20 @@ namespace AsteroidsProject.Services
 
         public void Tick()
         {
-            updateSystems?.Run();
+            if (!timeService.IsPaused)
+            {
+                updateSystems?.Run();
+            }
+
             uguiSystems?.Run();
         }
 
         public void FixedTick()
         {
-            fixedUpdateSystems?.Run();
+            if (!timeService.IsPaused)
+            {
+                fixedUpdateSystems?.Run();
+            }
         }
 
         public void Restart()

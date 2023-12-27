@@ -32,22 +32,26 @@ namespace AsteroidsProject.GameLogic.Features.UI
         public override void Run(IEcsSystems systems)
         {
             base.Run(systems);
+
+            if (screenController.IsVisible)
+            {
+                SetScore(systems);
+            }
+        }
+
+        private void SetScore(IEcsSystems systems)
+        {
             var world = systems.GetWorld(Identifiers.Worlds.GameWorldName);
-            var filter = world.Filter<CGameOverEvent>().End();
-            var pool = world.GetPool<CGameOverEvent>();
+            var filter = world.Filter<CScore>().End();
+            var pool = world.GetPool<CScore>();
 
             foreach (var entity in filter)
             {
-                screenController.Show();
-                var scoreFilter = world.Filter<CScore>().End();
-                var scrorePool = world.GetPool<CScore>();
-
-                foreach (var scoreEntity in scoreFilter)
+                var newValue = pool.Get(entity).Value.ToString();
+                if (score.text != newValue)
                 {
-                    score.text = scrorePool.Get(scoreEntity).Value.ToString();
+                    score.text = newValue;
                 }
-
-                pool.Del(entity);
             }
         }
 
