@@ -7,7 +7,6 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
 {
     public class SpawnUfoSystem : IEcsInitSystem, IEcsRunSystem
     {
-        private readonly IGameSceneData sceneData;
         private readonly IGameConfigProvider configProvider;
         private readonly IConfigLoader configLoader;
         private readonly ITimeService timeService;
@@ -15,19 +14,19 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
         private GameSceneConfig gameSceneConfig;
         private float timeToNextSpawn;
         private EcsWorld world;
+        private GameObject parentGO;
 
-        public SpawnUfoSystem(IGameConfigProvider configProvider, IConfigLoader configLoader,
-            ITimeService timeService, IGameSceneData sceneData)
+        public SpawnUfoSystem(IGameConfigProvider configProvider, IConfigLoader configLoader, ITimeService timeService)
         {
             this.configProvider = configProvider;
             this.configLoader = configLoader;
             this.timeService = timeService;
-            this.sceneData = sceneData;
         }
 
         public async void Init(IEcsSystems systems)
         {
             world = systems.GetWorld();
+            parentGO = new GameObject("UFOs");
             gameSceneConfig = await configLoader.Load<GameSceneConfig>(configProvider.GameConfig.ScenesConfig.GameSceneConfigLabel);
             spawnconfig = await configLoader.Load<SpawnConfig>(gameSceneConfig.UfoSpawnConfigLabel);
         }
@@ -50,7 +49,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
         {
             var componentList = await configLoader.Load<ComponentList>(config);
             var entity = world.NewEntityWithRawComponents(componentList.Components);
-            world.AddComponentToEntity(entity, new CParent { Value = sceneData.UfoPool });
+            world.AddComponentToEntity(entity, new CParent { Value = parentGO.transform });
             world.AddComponentToEntity(entity, new CRotation { Value = Quaternion.identity });
             world.AddComponentToEntity(entity, new CSpawnedEntityEvent { PackedEntity = world.PackEntity(entity) });
         }

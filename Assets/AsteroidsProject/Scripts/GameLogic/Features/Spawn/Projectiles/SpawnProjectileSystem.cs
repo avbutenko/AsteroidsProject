@@ -9,23 +9,23 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
 {
     public class SpawnProjectileSystem : IEcsInitSystem, IEcsRunSystem
     {
-        private readonly IGameSceneData sceneData;
         private readonly IConfigLoader configProvider;
         private readonly IActiveGOMappingService activeGOMappingService;
         private EcsWorld world;
         private EcsFilter filter;
         private EcsPool<CSpawnProjectileRequest> requestPool;
         private EcsPool<CGameObjectInstanceID> goIDPool;
+        private GameObject parentGO;
 
-        public SpawnProjectileSystem(IConfigLoader configProvider, IGameSceneData sceneData, IActiveGOMappingService activeGOMappingService)
+        public SpawnProjectileSystem(IConfigLoader configProvider, IActiveGOMappingService activeGOMappingService)
         {
-            this.sceneData = sceneData;
             this.configProvider = configProvider;
             this.activeGOMappingService = activeGOMappingService;
         }
 
         public void Init(IEcsSystems systems)
         {
+            parentGO = new GameObject("Bullets");
             world = systems.GetWorld();
 
             filter = world.Filter<CSpawnProjectileRequest>()
@@ -68,7 +68,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
             switch (parentType)
             {
                 case ParentType.Pool:
-                    components.Add(new CParent { Value = sceneData.ProjectilePool });
+                    components.Add(new CParent { Value = parentGO.transform });
                     components.Add(new CPosition { Value = shootingPoint.position });
                     components.Add(new CRotation { Value = shootingPoint.rotation });
                     break;

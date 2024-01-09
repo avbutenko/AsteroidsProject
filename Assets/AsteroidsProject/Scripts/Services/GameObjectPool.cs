@@ -2,18 +2,21 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace AsteroidsProject.Services
 {
-    public class GameObjectPool : IGameObjectPool, IDisposable
+    public class GameObjectPool : IGameObjectPool, IInitializable, IDisposable
     {
-        private readonly Dictionary<int, Stack<GameObject>> cachedObjects;
-        private readonly Dictionary<int, int> cachedIDs;
+        private Dictionary<int, Stack<GameObject>> cachedObjects;
+        private Dictionary<int, int> cachedIDs;
+        private GameObject poolGO;
 
-        public GameObjectPool()
+        public void Initialize()
         {
             cachedObjects = new Dictionary<int, Stack<GameObject>>();
             cachedIDs = new Dictionary<int, int>();
+            poolGO = new GameObject("###POOL###");
         }
 
         public void Register(GameObject prefab, GameObject instance)
@@ -40,6 +43,7 @@ namespace AsteroidsProject.Services
             var instanceID = instance.GetInstanceID();
             var prefabID = cachedIDs[instanceID];
             instance.SetActive(false);
+            instance.transform.parent = poolGO.transform;
             cachedObjects[prefabID].Push(instance);
         }
 

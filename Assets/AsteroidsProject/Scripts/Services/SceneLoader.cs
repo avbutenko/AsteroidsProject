@@ -9,10 +9,7 @@ namespace AsteroidsProject.Services
     {
         public async UniTask LoadSceneAsync(string scene)
         {
-            var handle = Addressables.LoadSceneAsync(scene, LoadSceneMode.Single, false);
-            handle.GetAwaiter();
-            await handle.ToUniTask();
-            await handle.Result.ActivateAsync().ToUniTask();
+            await Addressables.LoadSceneAsync(scene, LoadSceneMode.Single, true);
         }
     }
 }

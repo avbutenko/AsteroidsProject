@@ -14,9 +14,16 @@ namespace AsteroidsProject.Services
 
         public async UniTask<T> LoadAsync<T>(string address) where T : class
         {
-            return cachedObjects.TryGetValue(address, out var cachedHandle)
-                ? cachedHandle.Result as T
-                : await ResourceLoading<T>(address);
+
+            if (!cachedObjects.TryGetValue(address, out AsyncOperationHandle handle))
+            {
+                handle = Addressables.LoadAssetAsync<T>(address);
+                cachedObjects.Add(address, handle);
+            }
+
+            await handle.ToUniTask();
+
+            return handle.Result as T;
         }
 
         public async UniTask<T[]> LoadAsync<T>(List<string> addresses) where T : class
@@ -61,13 +68,6 @@ namespace AsteroidsProject.Services
             }
 
             cachedObjects.Clear();
-        }
-
-        private async UniTask<T> ResourceLoading<T>(string address)
-        {
-            var handle = Addressables.LoadAssetAsync<T>(address);
-            handle.Completed += operationHandle => cachedObjects[address] = operationHandle;
-            return await handle.Task.AsUniTask();
         }
 
         private async UniTask<List<string>> GetAddressListByLabel(string label, Type type = null)

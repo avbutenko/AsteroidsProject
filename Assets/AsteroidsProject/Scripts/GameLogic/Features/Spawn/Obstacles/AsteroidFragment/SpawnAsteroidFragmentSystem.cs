@@ -9,20 +9,20 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
 {
     public class SpawnAsteroidFragmentSystem : IEcsInitSystem, IEcsRunSystem
     {
-        private readonly IGameSceneData sceneData;
         private readonly IConfigLoader configProvider;
         private EcsWorld world;
         private EcsFilter filter;
         private EcsPool<CSpawnAsteroidFragmentsRequest> requestPool;
+        private GameObject parentGO;
 
-        public SpawnAsteroidFragmentSystem(IGameSceneData sceneData, IConfigLoader configProvider)
+        public SpawnAsteroidFragmentSystem(IConfigLoader configProvider)
         {
-            this.sceneData = sceneData;
             this.configProvider = configProvider;
         }
 
         public void Init(IEcsSystems systems)
         {
+            parentGO = new GameObject("AsteroidFragments");
             world = systems.GetWorld();
             filter = world.Filter<CSpawnAsteroidFragmentsRequest>().End();
             requestPool = world.GetPool<CSpawnAsteroidFragmentsRequest>();
@@ -50,7 +50,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
         {
             var components = await GetComponents(spawnPosition, config);
             var fragmentEntity = world.NewEntityWithRawComponents(components);
-            world.AddComponentToEntity(fragmentEntity, new CParent { Value = sceneData.AsteroidsPool });
+            world.AddComponentToEntity(fragmentEntity, new CParent { Value = parentGO.transform });
             world.AddComponentToEntity(fragmentEntity, new CSpawnedEntityEvent { PackedEntity = world.PackEntity(fragmentEntity) });
         }
 

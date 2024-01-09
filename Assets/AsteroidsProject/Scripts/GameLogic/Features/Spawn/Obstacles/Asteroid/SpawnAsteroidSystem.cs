@@ -1,12 +1,12 @@
 using AsteroidsProject.GameLogic.Core;
 using AsteroidsProject.Shared;
 using Leopotam.EcsLite;
+using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Spawn
 {
     public class SpawnAsteroidSystem : IEcsInitSystem, IEcsRunSystem
     {
-        private readonly IGameSceneData sceneData;
         private readonly IGameConfigProvider configProvider;
         private readonly IConfigLoader configLoader;
         private readonly ITimeService timeService;
@@ -15,18 +15,18 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
         private float timeToNextSpawn;
         private EcsWorld world;
         private EcsFilter filter;
+        private GameObject parentGO;
 
-        public SpawnAsteroidSystem(IGameConfigProvider configProvider, IConfigLoader configLoader,
-            ITimeService timeService, IGameSceneData sceneData)
+        public SpawnAsteroidSystem(IGameConfigProvider configProvider, IConfigLoader configLoader, ITimeService timeService)
         {
             this.configProvider = configProvider;
             this.configLoader = configLoader;
             this.timeService = timeService;
-            this.sceneData = sceneData;
         }
 
         public async void Init(IEcsSystems systems)
         {
+            parentGO = new GameObject("Asteroids");
             gameSceneConfig = await configLoader.Load<GameSceneConfig>(configProvider.GameConfig.ScenesConfig.GameSceneConfigLabel);
             asteroidSpawnconfig = await configLoader.Load<SpawnConfig>(gameSceneConfig.AsteroidSpawnConfigLabel);
             world = systems.GetWorld();
@@ -67,7 +67,7 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
         {
             var componentList = await configLoader.Load<ComponentList>(config);
             var entity = world.NewEntityWithRawComponents(componentList.Components);
-            world.AddComponentToEntity(entity, new CParent { Value = sceneData.AsteroidsPool });
+            world.AddComponentToEntity(entity, new CParent { Value = parentGO.transform });
             world.AddComponentToEntity(entity, new CSpawnedEntityEvent { PackedEntity = world.PackEntity(entity) });
         }
     }

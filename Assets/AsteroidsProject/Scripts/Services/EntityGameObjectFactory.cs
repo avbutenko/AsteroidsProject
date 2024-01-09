@@ -66,8 +66,7 @@ namespace AsteroidsProject.Services
 
         private void SetGOParams(GameObject go, SpawnEntityViewInfo spawnInfo)
         {
-            go.transform.position = spawnInfo.Position;
-            go.transform.rotation = spawnInfo.Rotation;
+            go.transform.SetPositionAndRotation(spawnInfo.Position, spawnInfo.Rotation);
             go.transform.parent = spawnInfo.Parent;
         }
     }
