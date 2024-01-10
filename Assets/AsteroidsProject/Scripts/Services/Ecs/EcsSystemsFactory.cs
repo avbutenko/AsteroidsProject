@@ -14,23 +14,9 @@ namespace AsteroidsProject.Services
             this.diContainer = diContainer;
         }
 
-        public IEcsSystem Create(string typeName)
+        public IEcsSystem Create(Type type)
         {
-            var type = GetType(typeName);
             return (IEcsSystem)diContainer.Instantiate(type);
-        }
-
-        private Type GetType(string typeName)
-        {
-            var type = Type.GetType(typeName);
-            if (type != null) return type;
-            foreach (var a in AppDomain.CurrentDomain.GetAssemblies())
-            {
-                type = a.GetType(typeName);
-                if (type != null)
-                    return type;
-            }
-            return null;
         }
     }
 }

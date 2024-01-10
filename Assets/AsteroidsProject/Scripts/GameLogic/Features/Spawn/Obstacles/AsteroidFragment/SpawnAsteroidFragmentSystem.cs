@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Spawn
 {
-    public class SpawnAsteroidFragmentSystem : IEcsInitSystem, IEcsRunSystem
+    public class SpawnAsteroidFragmentSystem : IEcsInitSystem, IEcsRunSystem, IEcsPostDestroySystem
     {
         private readonly IConfigLoader configProvider;
         private EcsWorld world;
@@ -61,6 +61,11 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
             components.AddRange(componentList.Components);
             components.Add(new CPosition { Value = spawnPosition });
             return components;
+        }
+
+        public void PostDestroy(IEcsSystems systems)
+        {
+            Object.Destroy(parentGO);
         }
     }
 }

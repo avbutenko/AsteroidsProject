@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Spawn
 {
-    public class SpawnUfoSystem : IEcsInitSystem, IEcsRunSystem
+    public class SpawnUfoSystem : IEcsInitSystem, IEcsRunSystem, IEcsPostDestroySystem
     {
         private readonly IGameConfigProvider configProvider;
         private readonly IConfigLoader configLoader;
@@ -52,6 +52,11 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
             world.AddComponentToEntity(entity, new CParent { Value = parentGO.transform });
             world.AddComponentToEntity(entity, new CRotation { Value = Quaternion.identity });
             world.AddComponentToEntity(entity, new CSpawnedEntityEvent { PackedEntity = world.PackEntity(entity) });
+        }
+
+        public void PostDestroy(IEcsSystems systems)
+        {
+            Object.Destroy(parentGO);
         }
     }
 }

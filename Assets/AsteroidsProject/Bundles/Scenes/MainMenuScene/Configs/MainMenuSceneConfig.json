@@ -1,14 +1,5 @@
 {
     "SceneLabel": "MainMenuScene",
     "PreLoadAssetLabel": "InMainMenuScene",
-    "PreInitUILabel": "InMainMenuSceneUI",
-    "EcsUpdateSystems": [
-        "AsteroidsProject.GameLogic.Features.UI.InitMainMenuSceneUISystem"
-    ],
-    "EcsFixedUpdateSystems": [
-        //none
-    ],
-    "EcsGUISystems": [
-        "AsteroidsProject.GameLogic.Features.UI.MainMenuScreenControlSystem"
-    ]
+    "PreInitUILabel": "InMainMenuSceneUI"
 }

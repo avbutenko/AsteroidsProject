@@ -38,8 +38,6 @@ namespace AsteroidsProject.GameLogic.EntryPoints
             await assetProvider.PreLoadAllByLabelAsync(sceneConfig.PreLoadAssetLabel);
             uiProvider.UIRoot = uiRoot;
             await uiProvider.InitAllSceneUIByLabel(sceneConfig.PreInitUILabel);
-            ecsSystemsRunner.UIRoot = uiRoot;
-            ecsSystemsRunner.PreInitSystems(sceneConfig.EcsUpdateSystems, sceneConfig.EcsFixedUpdateSystems, sceneConfig.EcsGUISystems);
             ecsSystemsRunner.Initialize();
             uiProvider.LoadingScreen.Hide();
         }

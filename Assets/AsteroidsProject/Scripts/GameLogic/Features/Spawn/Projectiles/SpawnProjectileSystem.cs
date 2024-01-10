@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace AsteroidsProject.GameLogic.Features.Spawn
 {
-    public class SpawnProjectileSystem : IEcsInitSystem, IEcsRunSystem
+    public class SpawnProjectileSystem : IEcsInitSystem, IEcsRunSystem, IEcsPostDestroySystem
     {
         private readonly IConfigLoader configProvider;
         private readonly IActiveGOMappingService activeGOMappingService;
@@ -103,6 +103,11 @@ namespace AsteroidsProject.GameLogic.Features.Spawn
                     }
                 }
             }
+        }
+
+        public void PostDestroy(IEcsSystems systems)
+        {
+            Object.Destroy(parentGO);
         }
     }
 }
