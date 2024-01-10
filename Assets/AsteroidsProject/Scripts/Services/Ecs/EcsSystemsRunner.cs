@@ -8,7 +8,7 @@ namespace AsteroidsProject.Services
 {
     public class EcsSystemsRunner : IEcsSystemsRunner
     {
-        private readonly EcsUguiEmitter uguiEmitter;
+        private EcsUguiEmitter uguiEmitter;
         private readonly IEcsSystemsFactory systemsFactory;
         private readonly ITimeService timeService;
         private EcsWorld gameWorld;
@@ -19,11 +19,16 @@ namespace AsteroidsProject.Services
         private EcsSystems updateSystems;
         private EcsSystems uguiSystems;
 
-        public EcsSystemsRunner(EcsUguiEmitter uguiEmitter, IEcsSystemsFactory systemsFactory, ITimeService timeService)
+        public EcsSystemsRunner(IEcsSystemsFactory systemsFactory, ITimeService timeService)
         {
-            this.uguiEmitter = uguiEmitter;
             this.systemsFactory = systemsFactory;
             this.timeService = timeService;
+        }
+
+        public EcsUguiEmitter UIRoot
+        {
+            get => uguiEmitter;
+            set => uguiEmitter = value;
         }
 
         public void PreInitSystems(List<string> updateSystemNameList, List<string> fixedUpdateSystemNameList, List<string> uguiSystemNameList)

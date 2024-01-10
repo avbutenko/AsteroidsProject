@@ -15,7 +15,7 @@ namespace AsteroidsProject.CompositionRoot
 
         public override void InstallBindings()
         {
-            Container.BindInstance(uguiEmitter).AsSingle();
+            Container.Bind<EcsUguiEmitter>().FromComponentInNewPrefab(uguiEmitter).AsSingle();
             Container.Bind<IGameSceneData>().FromInstance(sceneData).AsSingle();
             Container.Bind<ILevelService>().To<LevelService>().AsSingle();
             Container.BindInterfacesAndSelfTo<GameObjectPool>().AsSingle();

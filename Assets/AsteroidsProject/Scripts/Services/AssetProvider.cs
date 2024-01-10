@@ -44,7 +44,7 @@ namespace AsteroidsProject.Services
             await LoadAsync<object>(assetsList);
         }
 
-        public async UniTask<T[]> LoadByLabelAsync<T>(string label) where T : class
+        public async UniTask<T[]> LoadAllByLabelAsync<T>(string label) where T : class
         {
             var assetsList = await GetAddressListByLabel(label);
             return await LoadAsync<T>(assetsList);

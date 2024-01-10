@@ -46,7 +46,8 @@ namespace AsteroidsProject.Services
         private GameObject PullFromPool(GameObject prefab, SpawnEntityViewInfo spawnInfo)
         {
             var go = pool.Pull(prefab);
-            SetGOParams(go, spawnInfo);
+            go.transform.SetPositionAndRotation(spawnInfo.Position, spawnInfo.Rotation);
+            go.transform.parent = spawnInfo.Parent;
             return go;
         }
 
@@ -59,15 +60,7 @@ namespace AsteroidsProject.Services
 
         private GameObject Create(GameObject prefab, SpawnEntityViewInfo spawnInfo)
         {
-            var go = Object.Instantiate(prefab, spawnInfo.Position, spawnInfo.Rotation, spawnInfo.Parent);
-            SetGOParams(go, spawnInfo);
-            return go;
-        }
-
-        private void SetGOParams(GameObject go, SpawnEntityViewInfo spawnInfo)
-        {
-            go.transform.SetPositionAndRotation(spawnInfo.Position, spawnInfo.Rotation);
-            go.transform.parent = spawnInfo.Parent;
+            return Object.Instantiate(prefab, spawnInfo.Position, spawnInfo.Rotation, spawnInfo.Parent);
         }
     }
 }

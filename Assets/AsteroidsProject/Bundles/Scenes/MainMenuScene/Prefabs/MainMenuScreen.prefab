@@ -466,7 +466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _widgetName: Exit_Button
   _emitter: {fileID: 0}
-  _nameRegistrationType: 0
+  _nameRegistrationType: 1
   _selectable: {fileID: 7064900790846724858}
 --- !u!114 &1278749696219438290
 MonoBehaviour:
@@ -605,7 +605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _widgetName: Start_Button
   _emitter: {fileID: 0}
-  _nameRegistrationType: 0
+  _nameRegistrationType: 1
   _selectable: {fileID: 6074003005721797174}
 --- !u!114 &6066688149768727866
 MonoBehaviour:

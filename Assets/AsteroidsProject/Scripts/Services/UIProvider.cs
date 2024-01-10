@@ -1,5 +1,6 @@
 ﻿using AsteroidsProject.Shared;
 using Cysharp.Threading.Tasks;
+using Leopotam.EcsLite.Unity.Ugui;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -9,16 +10,21 @@ namespace AsteroidsProject.Services
     public class UIProvider : IUIProvider, IInitializable
     {
         private readonly IGameConfigProvider configProvider;
-        private readonly IUIFactory factory;
         private readonly IAssetProvider assetProvider;
         private List<IUIScreenController> controllers;
         private IUIScreenController loadingScreen;
+        private EcsUguiEmitter uguiEmitter;
 
-        public UIProvider(IGameConfigProvider configProvider, IUIFactory factory, IAssetProvider assetProvider)
+        public UIProvider(IGameConfigProvider configProvider, IAssetProvider assetProvider)
         {
             this.configProvider = configProvider;
-            this.factory = factory;
             this.assetProvider = assetProvider;
+        }
+
+        public EcsUguiEmitter UIRoot
+        {
+            get => uguiEmitter;
+            set => uguiEmitter = value;
         }
 
         public void Initialize()
@@ -34,26 +40,30 @@ namespace AsteroidsProject.Services
             return (T)controllers.Find(x => x is T);
         }
 
-        public async UniTask PreInitUIByLabel(string label)
+        public async UniTask InitAllSceneUIByLabel(string label)
         {
-            var objects = await assetProvider.LoadByLabelAsync<GameObject>(label);
+            var objects = await assetProvider.LoadAllByLabelAsync<GameObject>(label);
 
             foreach (var obj in objects)
             {
-                var instance = factory.Instantiate(obj);
-                controllers.Add(instance);
-                instance.Hide();
+                var screen = Object.Instantiate(obj, UIRoot.transform);
+                var controller = screen.GetComponent<IUIScreenController>();
+                controllers.Add(controller);
+                controller.Hide();
             }
         }
 
         public void Dispose()
         {
+            UIRoot = null;
             controllers.Clear();
         }
 
         private void InitLoadingScreen()
         {
-            loadingScreen = factory.Create(configProvider.GameConfig.LoadingScreenPath);
+            var prefab = assetProvider.ResourceLoad<GameObject>(configProvider.GameConfig.LoadingScreenPath);
+            var go = Object.Instantiate(prefab);
+            loadingScreen = go.GetComponent<IUIScreenController>();
             loadingScreen.DontDestroyOnLoad();
         }
     }

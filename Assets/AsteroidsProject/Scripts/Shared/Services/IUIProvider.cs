@@ -3,10 +3,10 @@ using System;
 
 namespace AsteroidsProject.Shared
 {
-    public interface IUIProvider : IDisposable
+    public interface IUIProvider : IHaveUIRoot, IDisposable
     {
         public IUIScreenController LoadingScreen { get; }
-        public UniTask PreInitUIByLabel(string label);
+        public UniTask InitAllSceneUIByLabel(string label);
         public T Get<T>() where T : IUIScreenController;
     }
 }

@@ -12,7 +12,6 @@ namespace AsteroidsProject.CompositionRoot
             Container.BindInterfacesAndSelfTo<GameConfigProvider>().AsSingle();
             Container.BindInterfacesAndSelfTo<InputService>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneLoader>().AsSingle();
-            Container.BindInterfacesAndSelfTo<UIFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<UIProvider>().AsSingle();
             
             Container
